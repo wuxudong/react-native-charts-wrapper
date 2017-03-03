@@ -6,7 +6,6 @@ gradle.properties
 gradlew
 gradlew.bat
 proguard-rules.pro
-settings.gradle
 BUCK
 keystores
 local.properties
