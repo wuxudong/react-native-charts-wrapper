@@ -1,10 +1,25 @@
 {
   "name": "react-native-charts-wrapper",
-  "version": "0.0.1",
-  "dependencies": {
-    "react": "15.4.2",
-    "react-native": "^0.42.02.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuxudong/react-native-charts-wrapper.git"
   },
+  "version": "0.0.1",
+  "description": "A react-native charts support both android and ios.",
+  "peerDependencies": {
+    "react": ">=15.4.0",
+    "react-native": ">=0.40"
+  },
+  "author": "wuxudong",
+  "license": "MIT",
   "nativePackage": true,
-  "keywords": "react-native"
+  "homepage": "https://github.com/wuxudong/react-native-charts-wrapper",
+  "keywords":  [
+    "react native",
+    "chart",
+    "android",
+    "MPAndroidChart",
+    "ios",
+    "Charts"
+  ],
 }
