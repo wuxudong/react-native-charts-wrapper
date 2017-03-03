@@ -1,0 +1,15 @@
+.*
+!/.gitignore
+target
+build
+gradle.properties
+gradlew
+gradlew.bat
+proguard-rules.pro
+settings.gradle
+BUCK
+keystores
+local.properties
+Pods
+Podfile.lock
+Example.xcworkspace
