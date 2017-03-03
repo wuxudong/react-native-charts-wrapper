@@ -3,8 +3,6 @@
 target
 build
 gradle.properties
-gradlew
-gradlew.bat
 proguard-rules.pro
 BUCK
 keystores
