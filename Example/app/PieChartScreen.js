@@ -67,6 +67,9 @@ class PieChartScreen extends React.Component {
           transparentCircleRadius={45}
           transparentCircleColor={processColor('#f0f0f088')}
 
+          entryLabelColor={processColor('black')}
+          entryLabelTextSize={8}
+          
           maxAngle={350}
         />
       </View>

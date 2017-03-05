@@ -16,6 +16,9 @@ RCT_EXPORT_VIEW_PROPERTY(holeRadius, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(holeColor, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(transparentCircleRadius, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(transparentCircleColor, NSInteger)
+RCT_EXPORT_VIEW_PROPERTY(entryLabelColor, NSInteger)
+RCT_EXPORT_VIEW_PROPERTY(entryLabelTextSize, NSNumber)
+
 RCT_EXPORT_VIEW_PROPERTY(maxAngle, NSNumber)
 
 @end

@@ -70,7 +70,15 @@ class RNPieChartView: RNChartViewBase {
     func setTransparentCircleColor(_ color: Int) {
         chart.transparentCircleColor = RCTConvert.uiColor(color)
     }
-    
+
+    func setEntryLabelColor(_ color: Int) {
+        chart.entryLabelColor = RCTConvert.uiColor(color)
+    }
+
+    func setEntryLabelTextSize(_ size: NSNumber) {
+        chart.entryLabelFont = chart.entryLabelFont.withSize(CGFloat(size))
+    }
+
     func setMaxAngle(_ maxAngle: NSNumber) {
         chart.maxAngle = CGFloat(maxAngle)
     }
