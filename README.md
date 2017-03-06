@@ -82,15 +82,12 @@ dependencies {
 }
 ```
 
-
-#### 3. Add Java Code
-
 **MainApplication.java**
 
 On top where imports are:
 
 ```java
-import com.github.wuxudong.rncharts.MPAndroidChartPackage;;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
 ```
 
 Add package in `getPackages` method:
@@ -116,10 +113,10 @@ protected List<ReactPackage> getPackages() {
  When you add the files XCode should prompt you to create a bridging header if you haven't done so already.  
  Create it and import the RCTViewManager.h. It should look something like this.
 
-		#import "RCTBridge.h"
-		#import "RCTViewManager.h"
-		#import "RCTUIManager.h"
-		#import "UIView+React.h"
+		#import "React/RCTBridge.h"
+		#import "React/RCTViewManager.h"
+		#import "React/RCTUIManager.h"
+		#import "React/UIView+React.h"
 
 #### 3. Add Charts and SwiftyJSON
 
@@ -224,7 +221,7 @@ Android and IOS have different convention:
 
 ## Notice
 
-Several settings are removed.
+**Several settings are removed.**
 
 1. fontFamily & fontStyle
 
@@ -234,7 +231,10 @@ Several settings are removed.
 
   MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabel can only work in android.
   
-  
+
+**size of chart**
+
+you can set chart to fix width & height, or flex:1
   
 ## Need for help
 
