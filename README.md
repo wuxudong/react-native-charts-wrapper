@@ -59,7 +59,7 @@ allprojects {
 
 *   **Mostly automatic install with react-native**
 
-		react-native link react-native-charts-
+		react-native link react-native-charts-wrapper
 		
 *   **Manual install**
 
@@ -159,6 +159,54 @@ More details on available configuration can be found on their [wiki](https://git
 
 Example of how charts are used and how to apply configuration can be found in example.
 
+## Data Format
+
+1. Complete Form
+
+		data : {
+			...
+			dataSets: [
+				{
+					value: [
+						{x: 5, y: 90},
+				        {x: 10, y: 130},
+				        {x: 50, y: 2000, marker: "eat more"},
+				        {x: 80, y: 9000, marker: "eat less"}
+			    	]
+			    },
+			    ...
+			]
+		}
+
+
+
+marker is optional,  if x is omitted, index will be used.
+
+2. Simplified Form
+
+	    data: {
+			...
+	        dataSets: [
+	        	{
+	          		values: [5, 40, 77, 81, 43]
+	          	},
+	          	....
+	        ]
+	    }
+
+index will used as x.
+
+
+
+
+
+
+	
+	
+
+
+
+
 
 ## Convention
 
@@ -173,7 +221,20 @@ Android and IOS have different convention:
 **Color should use processColor**
 
 
+## Notice
 
+Several settings are removed.
+
+1. fontFamily & fontStyle
+
+  The font is a little different in android & ios, I don't know how to configure it in js in the same way.
+  
+2. pie's entryLabelTextSize & entryLabel
+
+  MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabel can only work in android.
+  
+  
+  
 ## Need for help
 
 I spent serveral days to learn swift and ios, but I am still quite new to it.
