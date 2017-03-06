@@ -156,6 +156,27 @@ More details on available configuration can be found on their [wiki](https://git
 
 Example of how charts are used and how to apply configuration can be found in example.
 
+
+
+## Convention
+
+Android and IOS have different convention:
+
+1. color's alpha in android is 0-255, in ios is 0-1
+2. percent in android is 0-100, in ios is 0-1
+3. animation.duration in MpAndroidChart is milliseconds, in Charts is seconds.
+4. their enum case name is always different, for example XAxisPosition, in MpAndroidChart is BOTH_SIDED, in Charts is bothSided.
+
+##Here we use android Convention##
+
+##Always use processColor to set color##
+
+
+
+
+
+
+
 ## Data Format
 
 - Complete Form
@@ -192,29 +213,6 @@ marker is optional,  if x is omitted, index will be used.
 index will used as x.
 
 
-
-
-
-
-	
-	
-
-
-
-
-
-## Convention
-
-Android and IOS have different convention:
-
-1. color's alpha in android is 0-255, in ios is 0-1
-2. percent in android is 0-100, in ios is 0-1
-3. animation.duration in MpAndroidChart is milliseconds, in Charts is seconds.
-4. their enum case name is always different, for example XAxisPosition, in MpAndroidChart is BOTH_SIDED, in Charts is bothSided.
-
-**Here we use android Convention**
-
-**Color should use processColor**
 
 
 ## Notice
