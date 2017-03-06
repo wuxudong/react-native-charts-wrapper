@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/wuxudong/react-native-charts-wrapper.git"
   },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A react-native charts support both android and ios.",
   "peerDependencies": {
     "react": ">=15.4.0",
