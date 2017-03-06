@@ -60,10 +60,6 @@
 		42AEC3671E68546A00B9CAB7 /* ScatterDataExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AEC33E1E68546A00B9CAB7 /* ScatterDataExtract.swift */; };
 		42AEC3681E68546A00B9CAB7 /* BridgeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AEC3401E68546A00B9CAB7 /* BridgeUtils.swift */; };
 		42AEC3691E68546A00B9CAB7 /* ChartDataSetConfigUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AEC3411E68546A00B9CAB7 /* ChartDataSetConfigUtils.swift */; };
-		42FCDD811E68426B00CCE645 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FCDD6E1E6833B900CCE645 /* SwiftyJSON.framework */; };
-		42FCDD821E68426B00CCE645 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42FCDD6E1E6833B900CCE645 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		42FCDD831E68426B00CCE645 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FCDD6B1E6833AF00CCE645 /* Charts.framework */; };
-		42FCDD841E68426B00CCE645 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 42FCDD6B1E6833AF00CCE645 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -246,21 +242,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		42FCDD851E68426B00CCE645 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				42FCDD821E68426B00CCE645 /* SwiftyJSON.framework in Embed Frameworks */,
-				42FCDD841E68426B00CCE645 /* Charts.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -344,8 +325,6 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				42FCDD831E68426B00CCE645 /* Charts.framework in Frameworks */,
-				42FCDD811E68426B00CCE645 /* SwiftyJSON.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -675,7 +654,6 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E545396F4D0034571078B57C /* [CP] Embed Pods Frameworks */,
 				7F304EF160CCAACBD5F3F329 /* [CP] Copy Pods Resources */,
-				42FCDD851E68426B00CCE645 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1085,7 +1063,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51C08068C6A30FA14DCFA43D /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1118,7 +1095,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9709CA5BA4B35D031398D32E /* Pods-Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
