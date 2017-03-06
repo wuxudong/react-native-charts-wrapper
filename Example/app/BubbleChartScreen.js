@@ -89,7 +89,7 @@ class BubbleChartScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: processColor('#F5FCFF')
+    backgroundColor: '#F5FCFF'
   },
   chart: {
     flex: 1

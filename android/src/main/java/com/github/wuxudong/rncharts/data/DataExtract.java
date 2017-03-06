@@ -23,9 +23,6 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
         D chartData = createData();
 
-        if (BridgeUtils.validate(propMap, ReadableType.Map, "config")) {
-            dataConfig(chartData, propMap.getMap("config"));
-        }
 
         ReadableArray dataSets = propMap.getArray("dataSets");
         for (int i = 0; i < dataSets.size(); i++) {
@@ -44,6 +41,10 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
             }
 
             chartData.addDataSet(lineDataSet);
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Map, "config")) {
+            dataConfig(chartData, propMap.getMap("config"));
         }
 
 

@@ -76,7 +76,7 @@ class RNPieChartView: RNChartViewBase {
     }
 
     func setEntryLabelTextSize(_ size: NSNumber) {
-        chart.entryLabelFont = chart.entryLabelFont.withSize(CGFloat(size))
+        chart.entryLabelFont = chart.entryLabelFont?.withSize(CGFloat(size))
     }
 
     func setMaxAngle(_ maxAngle: NSNumber) {

@@ -87,7 +87,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
             data.setBarWidth((float) config.getDouble("barWidth"));
         }
 
-        if (BridgeUtils.validate(config, ReadableType.Number, "group")) {
+        if (BridgeUtils.validate(config, ReadableType.Map, "group")) {
             ReadableMap propMap = config.getMap("group");
             if (BridgeUtils.validate(propMap, ReadableType.Number, "fromX") &&
                     BridgeUtils.validate(propMap, ReadableType.Number, "groupSpace") &&
