@@ -214,7 +214,8 @@ Android and IOS have different convention:
 
 1. color's alpha in android is 0-255, in ios is 0-1
 2. percent in android is 0-100, in ios is 0-1
-3. their enum case name is always different, for example XAxisPosition, in MpAndroidChart is BOTH_SIDED, in Charts is bothSided.
+3. animation.duration in MpAndroidChart is milliseconds, in Charts is seconds.
+4. their enum case name is always different, for example XAxisPosition, in MpAndroidChart is BOTH_SIDED, in Charts is bothSided.
 
 **Here we use android Convention**
 
