@@ -30,7 +30,7 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.0.1) & Charts(v3.0.1),
 ## Setup
 Library can be easily installed using NPM:
 
-`npm install --save react-native-charts-wrapper
+`npm install --save react-native-charts-wrapper`
 
 Additional setup is required because library is using native Android code.
 
