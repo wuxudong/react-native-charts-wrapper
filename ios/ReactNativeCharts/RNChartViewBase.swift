@@ -12,9 +12,9 @@ import SwiftyJSON
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
-public class RNChartViewBase: UIView {
+open class RNChartViewBase: UIView {
 
-    override public func reactSetFrame(_ frame: CGRect)
+    override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
         chart.reactSetFrame(frame);
@@ -185,7 +185,7 @@ public class RNChartViewBase: UIView {
         
         let xAxis = chart.xAxis;
         
-        setCommonAxisConfig(axis: xAxis, config: json)
+        setCommonAxisConfig(xAxis, config: json)
         
         if json["labelRotationAngle"].number != nil {
             xAxis.labelRotationAngle = CGFloat(json["labelRotationAngle"].numberValue)
@@ -200,7 +200,7 @@ public class RNChartViewBase: UIView {
         }
     }
     
-    func setCommonAxisConfig(axis: AxisBase, config: JSON) {
+    func setCommonAxisConfig(_ axis: AxisBase, config: JSON) {
         
         // what is drawn
         if config["enabled"].bool != nil {

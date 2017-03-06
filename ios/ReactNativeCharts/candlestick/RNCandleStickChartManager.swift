@@ -5,8 +5,8 @@
 import UIKit
 
 @objc(RNCandleStickChartManager)
-public class RNCandleStickChartManager: RCTViewManager {
-  override public func view() -> UIView! {
+open class RNCandleStickChartManager: RCTViewManager {
+  override open func view() -> UIView! {
     let ins = RNCandleStickChartView()
     return ins;
   }

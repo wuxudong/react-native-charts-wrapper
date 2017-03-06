@@ -12,19 +12,19 @@ class LineDataExtract : DataExtract {
         return LineChartData();
     }
     
-    override func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return LineChartDataSet(values: entries, label: label)
     }
     
-    override func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         
         
         let lineDataSet = dataSet as! LineChartDataSet;
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: lineDataSet, config: config);
-        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(dataSet: lineDataSet, config: config);
-        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(dataSet: lineDataSet, config: config);
-        ChartDataSetConfigUtils.commonLineRadarConfig(dataSet: lineDataSet, config: config);
+        ChartDataSetConfigUtils.commonConfig(lineDataSet, config: config);
+        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(lineDataSet, config: config);
+        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(lineDataSet, config: config);
+        ChartDataSetConfigUtils.commonLineRadarConfig(lineDataSet, config: config);
         
         // LineDataSet only config
         if config["circleRadius"].number != nil {
@@ -85,7 +85,7 @@ class LineDataExtract : DataExtract {
         }            
     }
     
-    override func createEntry(values: [JSON], index: Int) -> ChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
         var entry: ChartDataEntry;
         
         var x = Double(index);

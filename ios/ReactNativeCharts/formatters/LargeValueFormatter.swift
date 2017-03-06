@@ -28,7 +28,7 @@ open class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
         self.appendix = appendix
     }
     
-    fileprivate func format(value: Double) -> String
+    fileprivate func format(_ value: Double) -> String
     {
         var sig = value
         var length = 0
@@ -53,7 +53,7 @@ open class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
     open func stringForValue(
         _ value: Double, axis: AxisBase?) -> String
     {
-        return format(value: value)
+        return format(value)
     }
     
     open func stringForValue(
@@ -62,6 +62,6 @@ open class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
         dataSetIndex: Int,
         viewPortHandler: ViewPortHandler?) -> String
     {
-        return format(value: value)
+        return format(value)
     }
 }

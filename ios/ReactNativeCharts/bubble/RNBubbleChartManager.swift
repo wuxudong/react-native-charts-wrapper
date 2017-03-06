@@ -5,8 +5,8 @@
 import UIKit
 
 @objc(RNBubbleChartManager)
-public class RNBubbleChartManager: RCTViewManager {
-  override public func view() -> UIView! {
+open class RNBubbleChartManager: RCTViewManager {
+  override open func view() -> UIView! {
     let ins = RNBubbleChartView()
     return ins;
   }

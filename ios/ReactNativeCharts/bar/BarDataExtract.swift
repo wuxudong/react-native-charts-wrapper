@@ -8,11 +8,11 @@ import SwiftyJSON
 import Charts
 
 class BarDataExtract : DataExtract {
-    override public func createData() -> ChartData {
+    override open func createData() -> ChartData {
         return BarChartData();
     }
     
-    override public func dataConfig(data: ChartData, config: JSON) {
+    override open func dataConfig(_ data: ChartData, config: JSON) {
     
         let barData = data as! BarChartData
       
@@ -31,15 +31,15 @@ class BarDataExtract : DataExtract {
        
     }
     
-    override public func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override open func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return BarChartDataSet(values: entries, label: label)
     }
     
-    override public func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override open func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         let barDataSet = dataSet as! BarChartDataSet
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: barDataSet, config: config);
-        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(dataSet: barDataSet, config: config);
+        ChartDataSetConfigUtils.commonConfig(barDataSet, config: config);
+        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(barDataSet, config: config);
         
         if config["barShadowColor"].int != nil {
             barDataSet.barShadowColor = RCTConvert.uiColor(config["barShadowColor"].intValue)
@@ -54,7 +54,7 @@ class BarDataExtract : DataExtract {
         }
     }
     
-    override func createEntry(values: [JSON], index: Int) -> BarChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> BarChartDataEntry {
         var entry: BarChartDataEntry;
         
         var x = Double(index);

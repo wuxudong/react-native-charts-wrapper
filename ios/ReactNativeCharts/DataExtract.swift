@@ -6,7 +6,7 @@ import Foundation
 import Charts
 import SwiftyJSON
 
-public class DataExtract {
+open class DataExtract {
     func extract(_ data: JSON) -> ChartData?  {
         if data["dataSets"].array == nil {
             return nil;
@@ -22,19 +22,19 @@ public class DataExtract {
             let values = dataSet["values"].arrayValue;
             let label = dataSet["label"].stringValue;
             
-            let entries = createEntries(values: values);
+            let entries = createEntries(values);
             
-            let chartDataSet = createDataSet(entries: entries, label: label);
+            let chartDataSet = createDataSet(entries, label: label);
             
             if dataSet["config"].dictionary != nil {
-                dataSetConfig(dataSet: chartDataSet, config: dataSet["config"])
+                dataSetConfig(chartDataSet, config: dataSet["config"])
             }
             
             chartData.addDataSet(chartDataSet);
         }
         
         if data["config"].dictionary != nil {
-            dataConfig(data: chartData, config: data["config"])
+            dataConfig(chartData, config: data["config"])
         }
 
         
@@ -42,12 +42,12 @@ public class DataExtract {
 
     }
     
-    func createEntries(values: [JSON]) -> [ChartDataEntry] {
+    func createEntries(_ values: [JSON]) -> [ChartDataEntry] {
         var entries = [ChartDataEntry]();
         
         for (index, value) in values.enumerated() {
             if value.null == nil {
-                entries.append(createEntry(values: values, index: index))
+                entries.append(createEntry(values, index: index))
             }
         }
         
@@ -60,17 +60,17 @@ public class DataExtract {
         fatalError("subclass should override this function")
     }
     
-    func dataConfig(data: ChartData, config: JSON) {}
+    func dataConfig(_ data: ChartData, config: JSON) {}
     
-    func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         fatalError("subclass should override this function")
     }
     
-    func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         fatalError("subclass should override this function")
     }
     
-    func createEntry(values: [JSON], index: Int) -> ChartDataEntry {
+    func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
         fatalError("subclass should override this function")
     }
 

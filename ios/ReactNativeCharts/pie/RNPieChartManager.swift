@@ -5,8 +5,8 @@
 import UIKit
 
 @objc(RNPieChartManager)
-public class RNPieChartManager: RCTViewManager {
-  override public func view() -> UIView! {
+open class RNPieChartManager: RCTViewManager {
+  override open func view() -> UIView! {
     let ins = RNPieChartView()
     return ins;
   }

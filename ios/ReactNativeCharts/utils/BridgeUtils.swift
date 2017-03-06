@@ -240,7 +240,7 @@ class BridgeUtils {
     
     // unfortunately, this function can only work with pure swift enum without @objc
     // check http://stackoverflow.com/questions/42513337/why-does-an-objc-enum-have-a-different-description-than-a-pure-swift-enum
-    static func parseIntEnumFromString<T:RawRepresentable>(enumType: T.Type, desc: String) -> T? where T.RawValue == Int {
+    static func parseIntEnumFromString<T:RawRepresentable>(_ enumType: T.Type, desc: String) -> T? where T.RawValue == Int {
         let iosEnumString = androidEnumToIOSEnum(desc);
         
         var i = 0

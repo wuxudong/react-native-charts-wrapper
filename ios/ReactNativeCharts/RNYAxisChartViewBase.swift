@@ -12,7 +12,7 @@ class RNYAxisChartViewBase: RNChartViewBase {
         fatalError("subclass should override this function.")
     }
 
-    func setYAxisConfig(axis: YAxis, config: JSON) {
+    func setYAxisConfig(_ axis: YAxis, config: JSON) {
         if config["inverted"].bool != nil {
             axis.inverted = config["inverted"].boolValue
         }

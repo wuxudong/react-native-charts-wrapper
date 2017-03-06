@@ -12,15 +12,15 @@ class BubbleDataExtract : DataExtract {
         return BubbleChartData();
     }
     
-    override func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return BubbleChartDataSet(values: entries, label: label)
     }
     
-    override func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         let bubbleDataSet = dataSet as! BubbleChartDataSet;
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: bubbleDataSet, config: config);
-        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(dataSet: bubbleDataSet, config: config)
+        ChartDataSetConfigUtils.commonConfig(bubbleDataSet, config: config);
+        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(bubbleDataSet, config: config)
         
         // BubbleDataSet only config
         if config["highlightCircleWidth"].number != nil {
@@ -28,7 +28,7 @@ class BubbleDataExtract : DataExtract {
         }
     }
     
-    override func createEntry(values: [JSON], index: Int) -> ChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
         var entry: BubbleChartDataEntry;
         
         var x = Double(index);

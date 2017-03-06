@@ -12,7 +12,7 @@ import SwiftyJSON
 
 
 class ChartDataSetConfigUtils: NSObject {
-    static func commonConfig(dataSet: ChartDataSet, config: JSON) {
+    static func commonConfig(_ dataSet: ChartDataSet, config: JSON) {
         // Setting main color
         if config["color"].int != nil {
             dataSet.setColor(RCTConvert.uiColor(config["color"].intValue))
@@ -31,14 +31,14 @@ class ChartDataSetConfigUtils: NSObject {
         }
     }
     
-    static func commonBarLineScatterCandleBubbleConfig(dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
+    static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
         if config["highlightColor"].string != nil {
             dataSet.highlightColor = RCTConvert.uiColor(config["highlightColor"].stringValue);
         }
     }
     
     
-    static func commonLineScatterCandleRadarConfig(dataSet: LineScatterCandleRadarChartDataSet, config: JSON) {
+    static func commonLineScatterCandleRadarConfig(_ dataSet: LineScatterCandleRadarChartDataSet, config: JSON) {
         if config["drawHighlightIndicators"].bool != nil {
             dataSet.setDrawHighlightIndicators(config["drawHighlightIndicators"].boolValue);
         }
@@ -56,7 +56,7 @@ class ChartDataSetConfigUtils: NSObject {
         }
     }
     
-    static func commonLineRadarConfig( dataSet:LineRadarChartDataSet,  config:JSON) {
+    static func commonLineRadarConfig( _ dataSet:LineRadarChartDataSet,  config:JSON) {
         if config["fillColor"].int != nil {
             dataSet.fillColor = RCTConvert.uiColor(config["fillColor"].intValue);
         }

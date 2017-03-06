@@ -5,8 +5,8 @@
 import UIKit
 
 @objc(RNCombinedChartManager)
-public class RNCombinedChartManager: RCTViewManager {
-  override public func view() -> UIView! {
+open class RNCombinedChartManager: RCTViewManager {
+  override open func view() -> UIView! {
     let ins = RNCombinedChartView()
     return ins;
   }

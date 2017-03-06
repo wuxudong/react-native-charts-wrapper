@@ -12,14 +12,14 @@ class PieDataExtract : DataExtract {
         return PieChartData();
     }
     
-    override func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return PieChartDataSet(values: entries, label: label)
     }
     
-    override func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         let pieDataSet = dataSet as! PieChartDataSet;
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: pieDataSet, config: config);
+        ChartDataSetConfigUtils.commonConfig(pieDataSet, config: config);
         
         // PieDataSet only config
         if config["sliceSpace"].number != nil {
@@ -32,7 +32,7 @@ class PieDataExtract : DataExtract {
         
     }
     
-    override func createEntry(values: [JSON], index: Int) -> ChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
         var entry: PieChartDataEntry;
         
         let item = values[index];

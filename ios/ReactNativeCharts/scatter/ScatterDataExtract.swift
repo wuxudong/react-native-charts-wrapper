@@ -16,16 +16,16 @@ class ScatterDataExtract : DataExtract {
         return ScatterChartData();
     }
     
-    override func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return ScatterChartDataSet(values: entries, label: label)
     }
     
-    override func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         let scatterDataSet = dataSet as! ScatterChartDataSet;
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: scatterDataSet, config: config);
-        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(dataSet: scatterDataSet, config: config);
-        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(dataSet: scatterDataSet, config: config);
+        ChartDataSetConfigUtils.commonConfig(scatterDataSet, config: config);
+        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(scatterDataSet, config: config);
+        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(scatterDataSet, config: config);
         
         // ScatterDataSet only config
         if config["scatterShapeSize"].number != nil {
@@ -45,7 +45,7 @@ class ScatterDataExtract : DataExtract {
         
     }
     
-    override func createEntry(values: [JSON], index: Int) -> ChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
         var entry: ChartDataEntry;
         
         var x = Double(index);

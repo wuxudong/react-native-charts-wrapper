@@ -11,16 +11,16 @@ class CandleDataExtract : DataExtract {
         return CandleChartData();
     }
     
-    override func createDataSet(entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
         return CandleChartDataSet(values: entries, label: label)
     }
     
-    override func dataSetConfig(dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
         let candleDataSet = dataSet as! CandleChartDataSet
         
-        ChartDataSetConfigUtils.commonConfig(dataSet: candleDataSet, config: config);
-        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(dataSet: candleDataSet, config: config);
-        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(dataSet: candleDataSet, config: config);
+        ChartDataSetConfigUtils.commonConfig(candleDataSet, config: config);
+        ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(candleDataSet, config: config);
+        ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(candleDataSet, config: config);
         
         
         // CandleDataSet only config
@@ -73,7 +73,7 @@ class CandleDataExtract : DataExtract {
         }
     }
     
-    override func createEntry(values: [JSON], index: Int) -> CandleChartDataEntry {
+    override func createEntry(_ values: [JSON], index: Int) -> CandleChartDataEntry {
         var entry: CandleChartDataEntry;
         
         var x = Double(index);

@@ -8,7 +8,7 @@ import Charts
 import SwiftyJSON
 
 class RNBarLineChartViewBase: RNYAxisChartViewBase {
-    private var barLineChart: BarLineChartViewBase {
+    fileprivate var barLineChart: BarLineChartViewBase {
         get {
             return chart as! BarLineChartViewBase
         }
@@ -19,15 +19,15 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         if json["left"].exists() {
             let leftYAxis = barLineChart.leftAxis
-            setCommonAxisConfig(axis: leftYAxis, config: json["left"]);
-            setYAxisConfig(axis: leftYAxis, config: json["left"]);
+            setCommonAxisConfig(leftYAxis, config: json["left"]);
+            setYAxisConfig(leftYAxis, config: json["left"]);
         }
 
 
         if json["right"].exists() {
             let rightAxis = barLineChart.rightAxis
-            setCommonAxisConfig(axis: rightAxis, config: json["right"]);
-            setYAxisConfig(axis: rightAxis, config: json["right"]);
+            setCommonAxisConfig(rightAxis, config: json["right"]);
+            setYAxisConfig(rightAxis, config: json["right"]);
         }
     }
 

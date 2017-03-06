@@ -5,8 +5,8 @@
 import UIKit
 
 @objc(RNRadarChartManager)
-public class RNRadarChartManager: RCTViewManager {
-  override public func view() -> UIView! {
+open class RNRadarChartManager: RCTViewManager {
+  override open func view() -> UIView! {
     let ins = RNRadarChartView()
     return ins;
   }
