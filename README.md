@@ -158,7 +158,7 @@ Example of how charts are used and how to apply configuration can be found in ex
 
 ## Data Format
 
-1. Complete Form
+- Complete Form
 
 		data : {
 			...
@@ -175,11 +175,9 @@ Example of how charts are used and how to apply configuration can be found in ex
 			]
 		}
 
-
-
 marker is optional,  if x is omitted, index will be used.
 
-2. Simplified Form
+- Simplified Form
 
 	    data: {
 			...
