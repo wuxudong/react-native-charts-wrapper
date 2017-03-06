@@ -224,7 +224,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             return;
         }
 
-        RNMarkerView marker = new RectangleMarker(chart.getContext());
+        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
+        marker.setChartView(chart);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
                 BridgeUtils.validate(propMap, ReadableType.Number, "markerColor")) {

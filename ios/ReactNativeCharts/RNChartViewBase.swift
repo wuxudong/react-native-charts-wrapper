@@ -367,6 +367,8 @@ open class RNChartViewBase: UIView {
             textColor: RCTConvert.uiColor(json["textColor"].intValue),
             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         chart.marker = balloonMarker
+
+        balloonMarker.chartView = chart
         
     }
 

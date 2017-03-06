@@ -71,10 +71,10 @@ class TimeSeriesLineChartScreen extends React.Component {
                 }
               }
             }, {
-              values: [{x: 5, y: 90},
+              values: [{x: 5, y: 90, marker: "eat eat eat, never stop eat"},
                 {x: 10, y: 130},
                 {x: 50, y: 2000, marker: "eat more"},
-                {x: 80, y: 9000, marker: "your are overweight, eat less"}],
+                {x: 90, y: 9000, marker: "your are overweight, eat less"}],
               label: 'user',
               config: {
                 lineWidth: 1,
