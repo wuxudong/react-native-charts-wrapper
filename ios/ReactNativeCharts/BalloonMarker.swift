@@ -49,16 +49,34 @@ open class BalloonMarker: MarkerView {
     }
 
 
-    open override func draw(context: CGContext, point: CGPoint) {
-        if (labelns == nil) {
-            return
-        }
+    func drawRect(context: CGContext, point: CGPoint) -> CGRect{
+
+        let chart = super.chartView
+
+        let width = _size.width
+
 
         var rect = CGRect(origin: point, size: _size)
-        rect.origin.x -= _size.width / 2.0
         rect.origin.y -= _size.height
 
-        context.saveGState()
+
+        if point.x - _size.width / 2.0 < 0 {
+            drawLeftRect(context: context, rect: rect)
+        } else if (chart != nil && point.x + width - _size.width / 2.0 > (chart?.bounds.width)!) {
+            rect.origin.x -= _size.width
+            drawRightRect(context: context, rect: rect)
+        } else {
+            rect.origin.x -= _size.width / 2.0
+            drawCenterRect(context: context, rect: rect)
+        }
+
+
+        rect.origin.y += self.insets.top
+        rect.size.height -= self.insets.top + self.insets.bottom
+        return rect
+    }
+
+    func drawCenterRect(context: CGContext, rect: CGRect) {
 
         context.setFillColor((color?.cgColor)!)
         context.beginPath()
@@ -72,8 +90,43 @@ open class BalloonMarker: MarkerView {
         context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
         context.fillPath()
 
-        rect.origin.y += self.insets.top
-        rect.size.height -= self.insets.top + self.insets.bottom
+    }
+
+    func drawLeftRect(context: CGContext, rect: CGRect) {
+        context.setFillColor((color?.cgColor)!)
+        context.beginPath()
+        context.move(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x + arrowSize.width / 2.0, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.fillPath()
+
+    }
+
+    func drawRightRect(context: CGContext, rect: CGRect) {
+        context.setFillColor((color?.cgColor)!)
+        context.beginPath()
+        context.move(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y))
+        context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height))
+        context.addLine(to: CGPoint(x: rect.origin.x  + rect.size.width - arrowSize.width / 2.0, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height - arrowSize.height))
+        context.addLine(to: CGPoint(x: rect.origin.x, y: rect.origin.y))
+        context.fillPath()
+
+    }
+
+
+    open override func draw(context: CGContext, point: CGPoint) {
+        if (labelns == nil) {
+            return
+        }
+
+        context.saveGState()
+
+        let rect = drawRect(context: context, point: point)
 
         UIGraphicsPushContext(context)
 
@@ -87,9 +140,9 @@ open class BalloonMarker: MarkerView {
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
 
         var label : String;
-        
+
         if let candleEntry = entry as? CandleChartDataEntry {
-            
+
             label = candleEntry.close.description
         } else {
             label = entry.y.description
@@ -98,7 +151,7 @@ open class BalloonMarker: MarkerView {
         if let object = entry.data as? JSON {
             if object["marker"].exists() {
                 label = object["marker"].stringValue;
-            }   
+            }
         }
 
         labelns = label as NSString
@@ -113,5 +166,6 @@ open class BalloonMarker: MarkerView {
         _size.height = _labelSize.height + self.insets.top + self.insets.bottom
         _size.width = max(minimumSize.width, _size.width)
         _size.height = max(minimumSize.height, _size.height)
+
     }
 }

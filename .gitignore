@@ -10,3 +10,4 @@ local.properties
 Pods
 Podfile.lock
 Example.xcworkspace
+node_modules
