@@ -3,13 +3,13 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -52,9 +52,9 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
 
             float value = (float) map.getDouble("value");
             if (BridgeUtils.validate(map, ReadableType.String, "label")) {
-                entry = new PieEntry(value, map.getString("label"), map);
+                entry = new PieEntry(value, map.getString("label"), ConversionUtil.toMap(map));
             } else {
-                entry = new PieEntry(value, map);
+                entry = new PieEntry(value, ConversionUtil.toMap(map));
             }
         } else if (ReadableType.Number.equals(values.getType(index))) {
             entry = new PieEntry((float) values.getDouble(index));

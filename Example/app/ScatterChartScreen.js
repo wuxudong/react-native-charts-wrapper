@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-processColor
+  processColor
 } from 'react-native';
 import reactAddonsUpdate from 'react-addons-update';
 
@@ -76,15 +76,35 @@ class ScatterChartScreen extends React.Component {
     });
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <ScatterChart
-          style={styles.chart}
-          data={this.state.data}
-          legend={this.state.legend}
-          marker={this.state.marker}
-        />
+
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+        <View style={styles.container}>
+          <ScatterChart
+            style={styles.chart}
+            data={this.state.data}
+            legend={this.state.legend}
+            marker={this.state.marker}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

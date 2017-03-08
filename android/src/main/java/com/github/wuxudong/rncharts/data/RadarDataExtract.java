@@ -3,12 +3,12 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -46,7 +46,7 @@ public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
         if (ReadableType.Map.equals(values.getType(index))) {
             ReadableMap map = values.getMap(index);
             float value = (float) map.getDouble("value");
-            entry = new RadarEntry(value, map);
+            entry = new RadarEntry(value, ConversionUtil.toMap(map));
         } else if (ReadableType.Number.equals(values.getType(index))) {
             entry = new RadarEntry((float) values.getDouble(index));
         } else {

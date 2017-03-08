@@ -6,10 +6,10 @@ import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.BubbleDataSet;
 import com.github.mikephil.charting.data.BubbleEntry;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -64,7 +64,7 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
         float y = (float) map.getDouble("y");
         float size = (float) map.getDouble("size");
 
-        BubbleEntry bubbleEntry = new BubbleEntry(x, y, size, map);
+        BubbleEntry bubbleEntry = new BubbleEntry(x, y, size, ConversionUtil.toMap(map));
 
         return bubbleEntry;
     }

@@ -91,17 +91,36 @@ class AxisLineChartScreen extends React.Component {
     });
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <LineChart
-          style={styles.chart}
-          data={this.state.data}
-          description={{text: ''}}
-          xAxis={this.state.xAxis}
-          yAxis={this.state.yAxis}
-          legend={{enabled: false}}
-        />
+
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+        <View style={styles.container}>
+          <LineChart
+            style={styles.chart}
+            data={this.state.data}
+            description={{text: ''}}
+            xAxis={this.state.xAxis}
+            yAxis={this.state.yAxis}
+            legend={{enabled: false}}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
       </View>
     );
   }

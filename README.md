@@ -32,7 +32,7 @@ Library can be easily installed using NPM:
 
 `npm install --save react-native-charts-wrapper`
 
-Additional setup is required because library is using native Android code.
+Additional setup is required because library is using native code.
 
 
 ### ANDROID  
@@ -213,6 +213,14 @@ marker is optional,  if x is omitted, index will be used.
 index will used as x.
 
 
+check Example->TimeSeriesLineChart for details
+
+
+## Callback
+
+Support value selection callBack. 
+
+you can do whatever you want, even pop your own modal, or jump to another page.
 
 
 ## Notice

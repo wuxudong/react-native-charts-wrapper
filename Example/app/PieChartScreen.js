@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-processColor
+  processColor
 } from 'react-native';
 
 import {PieChart} from 'react-native-charts-wrapper';
@@ -47,31 +47,51 @@ class PieChartScreen extends React.Component {
     };
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <PieChart
-          style={styles.chart}
-          logEnabled={true}
-          chartBackgroundColor={processColor('pink')}
-          description={this.state.description}
-          data={this.state.data}
-          legend={this.state.legend}
 
-          drawSliceText={true}
-          usePercentValues={false}
-          centerText={'Pie center text!'}
-          centerTextRadiusPercent={100}
-          holeRadius={40}
-          holeColor={processColor('#f0f0f0')}
-          transparentCircleRadius={45}
-          transparentCircleColor={processColor('#f0f0f088')}
+      <View style={{flex: 1}}>
 
-          entryLabelColor={processColor('black')}
-          entryLabelTextSize={8}
-          
-          maxAngle={350}
-        />
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+        <View style={styles.container}>
+          <PieChart
+            style={styles.chart}
+            logEnabled={true}
+            chartBackgroundColor={processColor('pink')}
+            description={this.state.description}
+            data={this.state.data}
+            legend={this.state.legend}
+
+            drawSliceText={true}
+            usePercentValues={false}
+            centerText={'Pie center text!'}
+            centerTextRadiusPercent={100}
+            holeRadius={40}
+            holeColor={processColor('#f0f0f0')}
+            transparentCircleRadius={45}
+            transparentCircleColor={processColor('#f0f0f088')}
+
+            entryLabelColor={processColor('black')}
+            entryLabelTextSize={8}
+
+            maxAngle={350}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

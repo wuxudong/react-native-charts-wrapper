@@ -3,7 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,processColor
+  View, processColor
 } from 'react-native';
 import reactAddonsUpdate from 'react-addons-update';
 
@@ -18,7 +18,7 @@ class LineChartScreen extends React.Component {
       data: {},
       legend: {
         enabled: true,
-        textColor:  processColor('blue'),
+        textColor: processColor('blue'),
         textSize: 12,
         position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
@@ -100,34 +100,53 @@ class LineChartScreen extends React.Component {
     );
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <LineChart
-          style={styles.chart}
-          data={this.state.data}
-          description={{text: ''}}
-          legend={this.state.legend}
-          marker={this.state.marker}
-          xAxis={this.state.xAxis}
-          drawGridBackground={false}
-          borderColor={processColor('teal')}
-          borderWidth={1}
-          drawBorders={true}
+      <View style={{flex: 1}}>
 
-          touchEnabled={true}
-          dragEnabled={true}
-          scaleEnabled={true}
-          scaleXEnabled={true}
-          scaleYEnabled={true}
-          pinchZoom={true}
-          doubleTapToZoomEnabled={true}
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
 
-          dragDecelerationEnabled={true}
-          dragDecelerationFrictionCoef={0.99}
+        <View style={styles.container}>
+          <LineChart
+            style={styles.chart}
+            data={this.state.data}
+            description={{text: ''}}
+            legend={this.state.legend}
+            marker={this.state.marker}
+            xAxis={this.state.xAxis}
+            drawGridBackground={false}
+            borderColor={processColor('teal')}
+            borderWidth={1}
+            drawBorders={true}
 
-          keepPositionOnRotation={false}
-        />
+            touchEnabled={true}
+            dragEnabled={true}
+            scaleEnabled={true}
+            scaleXEnabled={true}
+            scaleYEnabled={true}
+            pinchZoom={true}
+            doubleTapToZoomEnabled={true}
+
+            dragDecelerationEnabled={true}
+            dragDecelerationFrictionCoef={0.99}
+
+            keepPositionOnRotation={false}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

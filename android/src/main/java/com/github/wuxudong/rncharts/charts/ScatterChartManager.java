@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.ScatterDataExtract;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 
@@ -28,7 +29,9 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
 
     @Override
     protected ScatterChart createViewInstance(ThemedReactContext reactContext) {
-        return new ScatterChart(reactContext);
+        ScatterChart scatterChart = new ScatterChart(reactContext);
+        scatterChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(scatterChart));
+        return scatterChart;
     }
 
 

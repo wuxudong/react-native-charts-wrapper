@@ -45,20 +45,40 @@ class BarChartScreen extends React.Component {
     };
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
+
   render() {
     return (
-      <View style={styles.container}>
-        <BarChart
-          style={styles.chart}
-          data={this.state.data}
-          xAxis={this.state.xAxis}
-          animation={{durationX: 2000}}
-          legend={this.state.legend}
-          gridBackgroundColor={processColor('#ffffff')}
-          drawBarShadow={false}
-          drawValueAboveBar={true}
-          drawHighlightArrow={true}
-        />
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+
+        <View style={styles.container}>
+          <BarChart
+            style={styles.chart}
+            data={this.state.data}
+            xAxis={this.state.xAxis}
+            animation={{durationX: 2000}}
+            legend={this.state.legend}
+            gridBackgroundColor={processColor('#ffffff')}
+            drawBarShadow={false}
+            drawValueAboveBar={true}
+            drawHighlightArrow={true}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
       </View>
     );
   }

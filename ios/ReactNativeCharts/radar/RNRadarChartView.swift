@@ -24,7 +24,8 @@ class RNRadarChartView: RNYAxisChartViewBase {
         self._dataExtract = RadarDataExtract()
         
         super.init(frame: frame)
-        
+      
+        self._chart.delegate = self
         self.addSubview(_chart)
     }
     

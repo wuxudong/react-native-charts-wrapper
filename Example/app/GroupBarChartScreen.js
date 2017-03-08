@@ -3,7 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,processColor
+  View, processColor
 } from 'react-native';
 
 import {BarChart} from 'react-native-charts-wrapper';
@@ -46,19 +46,19 @@ class StackedBarChartScreen extends React.Component {
             colors: [processColor('green')],
           }
         }],
-        config:{
-          barWidth:0.2,
+        config: {
+          barWidth: 0.2,
           group: {
             fromX: 0,
-            groupSpace : 0.1,
-            barSpace : 0.1,
+            groupSpace: 0.1,
+            barSpace: 0.1,
           },
         }
       },
       xAxis: {
         valueFormatter: ['1990', '1991', '1992', '1993', '1994'],
-        granularityEnabled:true,
-        granularity:1,
+        granularityEnabled: true,
+        granularity: 1,
         axisMaximum: 5,
         axisMinimum: 0,
         centerAxisLabels: true
@@ -68,16 +68,35 @@ class StackedBarChartScreen extends React.Component {
     };
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <BarChart
-          style={styles.chart}
-          xAxis={this.state.xAxis}
-          data={this.state.data}
-          legend={this.state.legend}
-          drawValueAboveBar={false}
-        />
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+        <View style={styles.container}>
+          <BarChart
+            style={styles.chart}
+            xAxis={this.state.xAxis}
+            data={this.state.data}
+            legend={this.state.legend}
+            drawValueAboveBar={false}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

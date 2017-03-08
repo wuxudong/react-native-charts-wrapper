@@ -2,10 +2,10 @@
  * Created by xudong on 02/03/2017.
  */
 
-import React, { Component } from 'react';
-import { StyleSheet, processColor } from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, processColor} from 'react-native';
 
-import { CombinedChart } from 'react-native-charts-wrapper';
+import {CombinedChart} from 'react-native-charts-wrapper';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,8 +23,8 @@ export default class Combined extends Component {
     this.state = {
       xAxis: {
         valueFormatter: ['1990', '1991', '1992', '1993', '1994'],
-        granularityEnabled:true,
-        granularity:1
+        granularityEnabled: true,
+        granularity: 1
       },
 
 
@@ -85,7 +85,7 @@ export default class Combined extends Component {
               y: 65
             }],
             label: 'Company A',
-            config : {
+            config: {
               drawValues: false,
               colors: [processColor('pink')],
             }
@@ -167,12 +167,34 @@ export default class Combined extends Component {
   }
 
 
-
   static displayName = 'Combined';
+
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
 
   render() {
     return (
-      <CombinedChart data={this.state.data} xAxis={this.state.xAxis} style={styles.container}/>
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+
+        <CombinedChart
+          data={this.state.data}
+          xAxis={this.state.xAxis}
+          onSelect={this.handleSelect.bind(this)}
+          style={styles.container}/>
+
+      </View>
     );
   }
 }

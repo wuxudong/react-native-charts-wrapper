@@ -20,7 +20,8 @@ RCT_EXPORT_VIEW_PROPERTY(dragDecelerationEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(dragDecelerationFrictionCoef, NSNumber) \
 RCT_EXPORT_VIEW_PROPERTY(animation, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(xAxis, NSDictionary) \
-RCT_EXPORT_VIEW_PROPERTY(marker, NSDictionary)
+RCT_EXPORT_VIEW_PROPERTY(marker, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTBubblingEventBlock)
 
 
 

@@ -8,10 +8,10 @@ import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -94,7 +94,7 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
         float open = (float) map.getDouble("open");
         float close = (float) map.getDouble("close");
 
-        CandleEntry candleEntry = new CandleEntry(x, shadowH, shadowL, open, close, map);
+        CandleEntry candleEntry = new CandleEntry(x, shadowH, shadowL, open, close, ConversionUtil.toMap(map));
 
         return candleEntry;
     }
