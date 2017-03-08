@@ -6,10 +6,6 @@
   },
   "version": "0.2.0",
   "description": "A react-native charts support both android and ios.",
-  "peerDependencies": {
-    "react": ">=15.4.0",
-    "react-native": ">=0.40"
-  },
   "author": "wuxudong",
   "license": "MIT",
   "nativePackage": true,
