@@ -15,6 +15,8 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.wuxudong.rncharts.R;
 
+import java.util.Map;
+
 public class RNRectangleMarkerView extends MarkerView {
 
     private RelativeLayout markerContent;
@@ -42,9 +44,9 @@ public class RNRectangleMarkerView extends MarkerView {
             text = Utils.formatNumber(e.getY(), 0, true);
         }
 
-        if (e.getData() instanceof ReadableMap) {
-            if(((ReadableMap) e.getData()).hasKey("marker")) {
-                text = ((ReadableMap) e.getData()).getString("marker");
+        if (e.getData() instanceof Map) {
+            if(((Map) e.getData()).containsKey("marker")) {
+                text = ((Map) e.getData()).get("marker").toString();
             }
         }
 

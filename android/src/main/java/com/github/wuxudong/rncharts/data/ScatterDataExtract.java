@@ -4,13 +4,13 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.charts.ScatterChart;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,7 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
             if (map.hasKey("x")) {
                 x = (float) map.getDouble("x");
             }
-            entry = new Entry(x, (float) map.getDouble("y"), map);
+            entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
         } else if (ReadableType.Number.equals(values.getType(index))) {
             entry = new Entry(x, (float) values.getDouble(index));
         } else {

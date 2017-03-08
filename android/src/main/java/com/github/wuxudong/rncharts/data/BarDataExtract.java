@@ -6,10 +6,10 @@ import com.facebook.react.bridge.ReadableType;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
+import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 
 public class BarDataExtract extends DataExtract<BarData, BarEntry> {
+
+
     @Override
     BarData createData() {
         return new BarData();
@@ -48,7 +50,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
                 throw new IllegalArgumentException("Unexpected entry type: " + values.getType(index));
             }
 
-            entry.setData(map);
+            entry.setData(ConversionUtil.toMap(map));
 
         } else if (ReadableType.Array.equals(values.getType(index))) {
             entry = new BarEntry(x, BridgeUtils.convertToFloatArray(values.getArray(index)));

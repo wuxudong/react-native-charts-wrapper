@@ -12,14 +12,15 @@ import SwiftyJSON
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
-open class RNChartViewBase: UIView {
-
+open class RNChartViewBase: UIView, ChartViewDelegate {
+    open var onSelect:RCTBubblingEventBlock?
+    
     override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
         chart.reactSetFrame(frame);
     }
-
+    
     var chart: ChartViewBase {
         fatalError("subclass should override this function.")
     }
@@ -33,7 +34,7 @@ open class RNChartViewBase: UIView {
         
         chart.data = dataExtract.extract(json)
     }
-
+    
     func setLegend(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
         
@@ -333,10 +334,6 @@ open class RNChartViewBase: UIView {
                 
                 axis.valueFormatter = DefaultAxisValueFormatter(formatter: percentFormatter);
             }
-            
-            
-            
-            
         }
         
         if config["centerAxisLabels"].bool != nil {
@@ -367,9 +364,48 @@ open class RNChartViewBase: UIView {
             textColor: RCTConvert.uiColor(json["textColor"].intValue),
             insets: UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0))
         chart.marker = balloonMarker
-
+        
         balloonMarker.chartView = chart
         
     }
-
+    
+    
+    
+    // TODO is there any json lib can be more elegant?
+    @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        let copy :ChartDataEntry = entry.copy() as! ChartDataEntry
+        
+        let data = copy.data
+        
+        copy.data = nil
+        
+        var json = JSON.parse(string: JSONSerializer.toJson(copy))
+        
+        json["data"] = data as! JSON;
+        
+        if self.onSelect == nil {
+            return
+        } else {
+            self.onSelect!(json.dictionaryObject!)
+            
+        }
+    }
+    
+    @objc public func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        if self.onSelect == nil {
+            return
+        } else {
+            self.onSelect!(nil)
+            
+        }
+    }
+    
+    @objc public func chartScaled(_ chartView: ChartViewBase, scaleX: CoreGraphics.CGFloat, scaleY: CoreGraphics.CGFloat) {
+    }
+    
+    @objc public func chartTranslated(_ chartView: ChartViewBase, dX: CoreGraphics.CGFloat, dY: CoreGraphics.CGFloat) {
+    }
+    
+    
 }

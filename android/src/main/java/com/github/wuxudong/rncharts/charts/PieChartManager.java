@@ -9,6 +9,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
@@ -19,7 +20,9 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
     @Override
     protected View createViewInstance(ThemedReactContext reactContext) {
-        return new PieChart(reactContext);
+        PieChart pieChart =  new PieChart(reactContext);
+        pieChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(pieChart));
+        return pieChart;
     }
 
     @Override

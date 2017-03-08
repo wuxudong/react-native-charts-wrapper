@@ -25,7 +25,8 @@ class RNCandleStickChartView: RNBarLineChartViewBase {
         self._dataExtract = CandleDataExtract()
         
         super.init(frame: frame);
-        
+      
+        self._chart.delegate = self
         self.addSubview(_chart);
     }
     

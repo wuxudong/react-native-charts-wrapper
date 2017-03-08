@@ -5,6 +5,7 @@ import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.wuxudong.rncharts.data.CandleDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class CandleStickChartManager extends BarLineChartBaseManager<CandleStickChart, CandleEntry> {
 
@@ -15,7 +16,9 @@ public class CandleStickChartManager extends BarLineChartBaseManager<CandleStick
 
     @Override
     protected CandleStickChart createViewInstance(ThemedReactContext reactContext) {
-        return new CandleStickChart(reactContext);
+        CandleStickChart candleStickChart = new CandleStickChart(reactContext);
+        candleStickChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(candleStickChart));
+        return candleStickChart;
     }
 
 
