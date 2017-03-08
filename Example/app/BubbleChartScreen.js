@@ -72,15 +72,35 @@ class BubbleChartScreen extends React.Component {
     });
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <BubbleChart
-          style={styles.chart}
-          data={this.state.data}
-          legend={this.state.legend}
-          animation={this.state.animation}
-        />
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+
+        <View style={styles.container}>
+          <BubbleChart
+            style={styles.chart}
+            data={this.state.data}
+            legend={this.state.legend}
+            animation={this.state.animation}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

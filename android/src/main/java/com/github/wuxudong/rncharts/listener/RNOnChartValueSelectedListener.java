@@ -43,15 +43,11 @@ public class RNOnChartValueSelectedListener implements OnChartValueSelectedListe
         if (mWeakChart != null) {
             Chart chart = mWeakChart.get();
 
-            WritableMap event = Arguments.createMap();
-
-            event.putString("entry", null);
-
             ReactContext reactContext = (ReactContext) chart.getContext();
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                     chart.getId(),
                     "topSelect",
-                    event);
+                    null);
         }
 
     }

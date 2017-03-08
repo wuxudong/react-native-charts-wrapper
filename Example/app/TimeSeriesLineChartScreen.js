@@ -41,8 +41,11 @@ class TimeSeriesLineChartScreen extends React.Component {
         markerColor: processColor('grey'),
         textColor: processColor('white'),
         markerFontSize: 14,
-      }
-    };
+      },
+
+      selectedEntry: ""
+    }
+
   }
 
   componentDidMount() {
@@ -71,7 +74,7 @@ class TimeSeriesLineChartScreen extends React.Component {
                 }
               }
             }, {
-              values: [{x: 5, y: 90, marker: "eat eat eat, never stop eat"},
+              values: [{x: 5, y: 90, marker: "eat eat eat, never\n stop eat"},
                 {x: 10, y: 130},
                 {x: 50, y: 2000, marker: "eat more"},
                 {x: 90, y: 9000, marker: "your are overweight, eat less"}],
@@ -81,7 +84,7 @@ class TimeSeriesLineChartScreen extends React.Component {
                 drawCubic: true,
                 drawCubicIntensity: 0.4,
                 circleRadius: 5,
-                highlightEnabled:true,
+                highlightEnabled: true,
                 drawHighlightIndicators: true,
                 color: processColor('red'),
                 drawFilled: true,
@@ -102,40 +105,63 @@ class TimeSeriesLineChartScreen extends React.Component {
     });
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
 
   render() {
 
     let borderColor = processColor("red");
     return (
-      <View style={styles.container}>
-        <LineChart
-          style={styles.chart}
-          data={this.state.data}
-          chartDescription={{text: ''}}
-          legend={this.state.legend}
-          marker={this.state.marker}
+      <View style={{flex: 1}}>
 
-          drawGridBackground={true}
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
 
-          borderColor={borderColor}
-          borderWidth={1}
-          drawBorders={true}
+        <View style={styles.container}>
 
-          touchEnabled={true}
-          dragEnabled={true}
-          scaleEnabled={true}
-          scaleXEnabled={true}
-          scaleYEnabled={true}
-          pinchZoom={true}
-          doubleTapToZoomEnabled={false}
 
-          dragDecelerationEnabled={true}
-          dragDecelerationFrictionCoef={0.99}
-          yAxis={{left:{valueFormatter:"percent"}}}
+          <LineChart
+            style={styles.chart}
+            data={this.state.data}
+            chartDescription={{text: ''}}
+            legend={this.state.legend}
+            marker={this.state.marker}
 
-          keepPositionOnRotation={false}
-        />
+            drawGridBackground={true}
+
+            borderColor={borderColor}
+            borderWidth={1}
+            drawBorders={true}
+
+            touchEnabled={true}
+            dragEnabled={true}
+            scaleEnabled={true}
+            scaleXEnabled={true}
+            scaleYEnabled={true}
+            pinchZoom={true}
+            doubleTapToZoomEnabled={false}
+
+            dragDecelerationEnabled={true}
+            dragDecelerationFrictionCoef={0.99}
+            yAxis={{left:{valueFormatter:"percent"}}}
+
+            keepPositionOnRotation={false}
+
+            onSelect={this.handleSelect.bind(this)}
+
+          />
+        </View>
       </View>
+
+
     );
   }
 }

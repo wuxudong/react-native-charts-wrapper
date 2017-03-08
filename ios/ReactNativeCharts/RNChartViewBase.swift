@@ -369,25 +369,13 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
     }
     
-    
-    
-    // TODO is there any json lib can be more elegant?
+        
     @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        
-        let copy :ChartDataEntry = entry.copy() as! ChartDataEntry
-        
-        let data = copy.data
-        
-        copy.data = nil
-        
-        var json = JSON.parse(string: JSONSerializer.toJson(copy))
-        
-        json["data"] = data as! JSON;
         
         if self.onSelect == nil {
             return
         } else {
-            self.onSelect!(json.dictionaryObject!)
+            self.onSelect!(EntryToDictionaryUtils.entryToDictionary(entry))
             
         }
     }

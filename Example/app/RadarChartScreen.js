@@ -67,7 +67,7 @@ class RadarChartScreen extends React.Component {
           }
         },
         xAxis: {
-          $set : {
+          $set: {
             valueFormatter: ['A', 'B', 'C', 'D', 'E']
           }
         }
@@ -75,17 +75,36 @@ class RadarChartScreen extends React.Component {
     );
   }
 
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({...this.state, selectedEntry: null})
+    } else {
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <RadarChart
-          style={styles.chart}
-          data={this.state.data}
-          xAxis={this.state.xAxis}
-          description={{text: ''}}
-          legend={this.state.legend}
-          skipWebLineCount={1}
-        />
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
+          <Text> selected entry</Text>
+          <Text> {this.state.selectedEntry}</Text>
+        </View>
+
+        <View style={styles.container}>
+          <RadarChart
+            style={styles.chart}
+            data={this.state.data}
+            xAxis={this.state.xAxis}
+            description={{text: ''}}
+            legend={this.state.legend}
+            skipWebLineCount={1}
+            onSelect={this.handleSelect.bind(this)}
+          />
+        </View>
+
       </View>
     );
   }

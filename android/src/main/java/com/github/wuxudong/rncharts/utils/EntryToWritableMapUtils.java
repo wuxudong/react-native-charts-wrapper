@@ -44,7 +44,7 @@ public final class EntryToWritableMapUtils {
                     array.pushDouble(f);
                 }
 
-                map.putArray("yVals", array);
+                map.putArray("yValues", array);
             } else {
                 map.putDouble("y", entry.getY());
             }
