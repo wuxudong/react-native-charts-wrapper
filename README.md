@@ -117,6 +117,13 @@ protected List<ReactPackage> getPackages() {
 		#import "React/RCTViewManager.h"
 		#import "React/RCTUIManager.h"
 		#import "React/UIView+React.h"
+		#import "React/RCTBridgeModule.h"
+		#import "React/RCTEventDispatcher.h"
+		#import "React/RCTEventEmitter.h"
+
+
+You should make sure set this file in your target -> Build Settings -> Swift Compiler - General -> Object-C Bridging Header 
+
 
 #### 3. Add Charts and SwiftyJSON
 
@@ -222,6 +229,13 @@ Support value selection callBack.
 
 you can do whatever you want, even pop your own modal, or jump to another page.
 
+
+
+## Custom Marker Content 
+
+Support custom marker content. 
+
+check Example->TimeSeriesLineChart for details.
 
 ## Notice
 
