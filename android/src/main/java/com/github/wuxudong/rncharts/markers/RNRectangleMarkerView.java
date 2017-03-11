@@ -18,83 +18,103 @@ import com.github.wuxudong.rncharts.R;
 import java.util.Map;
 
 public class RNRectangleMarkerView extends MarkerView {
-
+    
     private RelativeLayout markerContent;
     private TextView tvContent;
-
+    
     private Drawable backgroundLeft = getResources().getDrawable(R.drawable.rectangle_marker_left);
     private Drawable background = getResources().getDrawable(R.drawable.rectangle_marker);
     private Drawable backgroundRight = getResources().getDrawable(R.drawable.rectangle_marker_right);
-
+    
+    private Drawable backgroundTopLeft = getResources().getDrawable(R.drawable.rectangle_marker_top_left);
+    private Drawable backgroundTop = getResources().getDrawable(R.drawable.rectangle_marker_top);
+    private Drawable backgroundTopRight = getResources().getDrawable(R.drawable.rectangle_marker_top_right);
+    
+    
     public RNRectangleMarkerView(Context context) {
         super(context, R.layout.rectangle_marker);
-
+        
         tvContent = (TextView) findViewById(R.id.rectangle_tvContent);
         markerContent = (RelativeLayout) findViewById(R.id.rectangle_markerContent);
     }
-
+    
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         String text = "";
-
+        
         if (e instanceof CandleEntry) {
             CandleEntry ce = (CandleEntry) e;
             text = Utils.formatNumber(ce.getClose(), 2, true);
         } else {
             text = Utils.formatNumber(e.getY(), 0, true);
         }
-
+        
         if (e.getData() instanceof Map) {
             if(((Map) e.getData()).containsKey("marker")) {
                 text = ((Map) e.getData()).get("marker").toString();
             }
         }
-
+        
         tvContent.setText(text);
-
+        
         super.refreshContent(e, highlight);
     }
-
+    
     @Override
     public MPPointF getOffset() {
         return new MPPointF( -(getWidth() / 2), -getHeight());
     }
-
+    
     @Override
     public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
-
+        
         MPPointF offset = getOffset();
-
+        
         MPPointF offset2 = new MPPointF();
-
+        
         offset2.x = offset.x;
         offset2.y = offset.y;
-
+        
         Chart chart = getChartView();
-
+        
         float width = getWidth();
         float height = getHeight();
-
+        
         if (posX + offset2.x < 0) {
             offset2.x = 0;
-
-            markerContent.setBackground(backgroundLeft);
-
+            
+            if (posY + offset2.y < 0) {
+                offset2.y = 0;
+                tvContent.setBackground(backgroundTopLeft);
+            } else {
+                tvContent.setBackground(backgroundLeft);
+            }
+            
         } else if (chart != null && posX + width + offset2.x > chart.getWidth()) {
             offset2.x = - width;
-
-            markerContent.setBackground(backgroundRight);
+            
+            if (posY + offset2.y < 0) {
+                offset2.y = 0;
+                tvContent.setBackground(backgroundTopRight);
+            } else {
+                tvContent.setBackground(backgroundRight);
+            }
         } else {
-            markerContent.setBackground(background);
+            if (posY + offset2.y < 0) {
+                offset2.y = 0;
+                tvContent.setBackground(backgroundTop);
+            } else {
+                tvContent.setBackground(background);
+            }
         }
-
+        
         return offset2;
     }
-
+    
     public TextView getTvContent() {
         return tvContent;
     }
-
+    
     public RelativeLayout getMarkerContent() {
         return markerContent;
     }
