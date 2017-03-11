@@ -29,7 +29,7 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.0.1) & Charts(v3.0.1),
 
 ## Setup
 
-A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/tree/master/Example)
+A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/Example/README.md)
 
 
 
