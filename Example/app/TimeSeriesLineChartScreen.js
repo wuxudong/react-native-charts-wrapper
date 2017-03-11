@@ -32,12 +32,11 @@ class TimeSeriesLineChartScreen extends React.Component {
         maxSizePercent: 0.5,
         custom: {
           colors: [processColor('red'), processColor('red')],
-          // labels: ['REFER', 'USER',]
+          labels: ['REFER', 'USER',]
         }
       },
       marker: {
         enabled: true,
-        // type: 'rectangle',
         markerColor: processColor('grey'),
         textColor: processColor('white'),
         markerFontSize: 14,
@@ -74,15 +73,18 @@ class TimeSeriesLineChartScreen extends React.Component {
                 }
               }
             }, {
-              values: [{x: 5, y: 90, marker: "eat eat eat, never\n stop eat"},
+              values: [
+                {x: 1, y: 11000, marker: "a very long long long long long long long long \nmarker at top left"},
+                {x: 5, y: 90, marker: "eat eat eat, never\n stop eat"},
                 {x: 10, y: 130},
+                {x: 15, y: 11000, marker: "test top center marker"},
                 {x: 50, y: 2000, marker: "eat more"},
-                {x: 90, y: 9000, marker: "your are overweight, eat less"}],
+                {x: 90, y: 9000, marker: "your are overweight, eat less"},
+                {x: 100, y: 11000, marker: "test top right marker"}],
+
               label: 'user',
               config: {
                 lineWidth: 1,
-                drawCubic: true,
-                drawCubicIntensity: 0.4,
                 circleRadius: 5,
                 highlightEnabled: true,
                 drawHighlightIndicators: true,
@@ -151,9 +153,11 @@ class TimeSeriesLineChartScreen extends React.Component {
 
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
-            yAxis={{left:{valueFormatter:"percent"}}}
+            yAxis={{left:{valueFormatter:"percent", axisMaximum:11000}}}
 
             keepPositionOnRotation={false}
+
+            xAxis={{position:'BOTTOM'}}
 
             onSelect={this.handleSelect.bind(this)}
 
