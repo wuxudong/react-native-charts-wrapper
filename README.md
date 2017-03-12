@@ -250,9 +250,9 @@ check Example->TimeSeriesLineChart for details.
 
   The font is a little different in android & ios, I don't know how to configure it in js in the same way.
   
-2. pie's entryLabelTextSize & entryLabel
+2. pie's entryLabelTextSize & entryLabelColor
 
-  MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabel can only work in android.
+  MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabelColor can only work in android.
   
 
 **size of chart**
