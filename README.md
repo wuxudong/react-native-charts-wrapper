@@ -257,7 +257,7 @@ check Example->TimeSeriesLineChart for details.
 
 **size of chart**
 
-you can set chart to fix width & height, or flex:1
+you can set chart to fixed width & height, or flex:1
   
 ## Need for help
 
