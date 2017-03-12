@@ -197,7 +197,7 @@ Android and IOS have different convention:
 			...
 			dataSets: [
 				{
-					value: [
+					values: [
 						{x: 5, y: 90},
 				        {x: 10, y: 130},
 				        {x: 50, y: 2000, marker: "eat more"},
