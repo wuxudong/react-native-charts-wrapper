@@ -37,7 +37,7 @@ class TimeSeriesLineChartScreen extends React.Component {
       },
       marker: {
         enabled: true,
-        markerColor: processColor('grey'),
+        markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
         markerFontSize: 14,
       },

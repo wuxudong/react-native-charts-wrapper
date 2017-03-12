@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class RNRectangleMarkerView extends MarkerView {
     
-    private RelativeLayout markerContent;
     private TextView tvContent;
     
     private Drawable backgroundLeft = getResources().getDrawable(R.drawable.rectangle_marker_left);
@@ -35,7 +34,6 @@ public class RNRectangleMarkerView extends MarkerView {
         super(context, R.layout.rectangle_marker);
         
         tvContent = (TextView) findViewById(R.id.rectangle_tvContent);
-        markerContent = (RelativeLayout) findViewById(R.id.rectangle_markerContent);
     }
     
     @Override
@@ -115,7 +113,4 @@ public class RNRectangleMarkerView extends MarkerView {
         return tvContent;
     }
     
-    public RelativeLayout getMarkerContent() {
-        return markerContent;
-    }
 }

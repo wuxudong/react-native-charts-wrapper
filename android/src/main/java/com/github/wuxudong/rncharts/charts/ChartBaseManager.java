@@ -229,7 +229,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
                 BridgeUtils.validate(propMap, ReadableType.Number, "markerColor")) {
-            marker.getMarkerContent()
+            marker.getTvContent()
                     .setBackgroundTintList(
                             ColorStateList.valueOf(propMap.getInt("markerColor"))
                     );
