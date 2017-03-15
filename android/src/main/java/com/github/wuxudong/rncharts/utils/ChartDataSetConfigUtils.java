@@ -6,6 +6,9 @@ import com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.LineRadarDataSet;
 import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.wuxudong.rncharts.charts.CustomFormatter;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
@@ -28,9 +31,30 @@ public class ChartDataSetConfigUtils {
             dataSet.setDrawValues(config.getBoolean("drawValues"));
         }
 
-        if(BridgeUtils.validate(config, ReadableType.Boolean, "highlightEnabled")) {
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "highlightEnabled")) {
             dataSet.setHighlightEnabled(config.getBoolean("highlightEnabled"));
         }
+
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "visible")) {
+            dataSet.setVisible(config.getBoolean("visible"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueTextSize")) {
+            dataSet.setValueTextSize((float) config.getDouble("valueTextSize"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.String, "valueFormatter")) {
+            String valueFormatter = config.getString("valueFormatter");
+
+            if ("largeValue".equals(valueFormatter)) {
+                dataSet.setValueFormatter(new LargeValueFormatter());
+            } else if ("percent".equals(valueFormatter)) {
+                dataSet.setValueFormatter(new PercentFormatter());
+            } else {
+                dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
+            }
+        }
+
 
     }
 
@@ -39,7 +63,7 @@ public class ChartDataSetConfigUtils {
             dataSet.setHighLightColor(config.getInt("highlightColor"));
         }
     }
-    
+
     public static void commonLineScatterCandleRadarConfig(LineScatterCandleRadarDataSet dataSet, ReadableMap config) {
         if (BridgeUtils.validate(config, ReadableType.Boolean, "drawHighlightIndicators")) {
             dataSet.setDrawHighlightIndicators(config.getBoolean("drawHighlightIndicators"));

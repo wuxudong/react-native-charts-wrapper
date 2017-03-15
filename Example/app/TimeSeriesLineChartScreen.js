@@ -48,7 +48,7 @@ class TimeSeriesLineChartScreen extends React.Component {
   }
 
   componentDidMount() {
-    const size = 100;
+    const size = 80;
 
     this.setState(
       reactAddonsUpdate(this.state, {
@@ -59,8 +59,8 @@ class TimeSeriesLineChartScreen extends React.Component {
               label: 'refer',
               config: {
                 lineWidth: 2,
+                drawValues: false,
                 drawCircles: false,
-                drawCubic: true,
                 highlightColor: processColor('red'),
                 color: processColor('red'),
                 drawFilled: true,
@@ -75,23 +75,26 @@ class TimeSeriesLineChartScreen extends React.Component {
             }, {
               values: [
                 {x: 1, y: 11000, marker: "a very long long long long long long long long \nmarker at top left"},
-                {x: 5, y: 90, marker: "eat eat eat, never\n stop eat"},
-                {x: 10, y: 130},
-                {x: 15, y: 11000, marker: "test top center marker"},
-                {x: 50, y: 2000, marker: "eat more"},
+                {x: 20, y: 90, marker: "eat eat eat, never\n stop eat"},
+                {x: 40, y: -130},
+                {x: 65, y: 11000, marker: "test top center marker"},
+                {x: 70, y: -2000, marker: "eat more"},
                 {x: 90, y: 9000, marker: "your are overweight, eat less"},
                 {x: 100, y: 11000, marker: "test top right marker"}],
 
               label: 'user',
               config: {
                 lineWidth: 1,
+                drawValues: true,
                 circleRadius: 5,
                 highlightEnabled: true,
                 drawHighlightIndicators: true,
                 color: processColor('red'),
                 drawFilled: true,
+                valueTextSize:10,
                 fillColor: processColor('red'),
                 fillAlpha: 45,
+                valueFormatter: "$###.0",
                 circleColor: processColor('red')
               }
             }],
@@ -153,7 +156,7 @@ class TimeSeriesLineChartScreen extends React.Component {
 
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
-            yAxis={{left:{valueFormatter:"percent", axisMaximum:11000}}}
+            yAxis={{left:{axisMaximum:12000}}}
 
             keepPositionOnRotation={false}
 

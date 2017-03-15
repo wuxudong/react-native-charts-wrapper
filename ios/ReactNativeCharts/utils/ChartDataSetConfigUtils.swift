@@ -29,6 +29,34 @@ class ChartDataSetConfigUtils: NSObject {
         if config["highlightEnabled"].bool != nil {
             dataSet.highlightEnabled = config["highlightEnabled"].boolValue;
         }
+
+        if config["valueTextSize"].number != nil {
+            dataSet.valueFont = dataSet.valueFont.withSize(CGFloat(config["valueTextSize"].numberValue))
+        }
+        
+        if config["visible"].bool != nil {
+            dataSet.visible = config["visible"].boolValue
+        }
+        
+        if config["valueFormatter"].string != nil {
+            if "largeValue" == config["valueFormatter"].stringValue {
+                dataSet.valueFormatter = LargeValueFormatter();
+            } else if "percent" == config["valueFormatter"].stringValue {
+                let percentFormatter = NumberFormatter()
+                percentFormatter.numberStyle = .percent
+                
+                dataSet.valueFormatter = DefaultValueFormatter(formatter: percentFormatter);
+            } else {
+                let customFormatter = NumberFormatter()
+                customFormatter.positiveFormat = config["valueFormatter"].stringValue
+                customFormatter.negativeFormat = config["valueFormatter"].stringValue
+                
+                dataSet.valueFormatter = DefaultValueFormatter(formatter: customFormatter);
+            }
+            
+        }
+        
+
     }
     
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {

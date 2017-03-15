@@ -124,7 +124,7 @@ class CandleStickChartScreen extends React.Component {
           yAxis: {
             $set: {
               left: {
-                valueFormatter: '$ %s',
+                valueFormatter: '$ #',
                 limitLines: [{
                   limit: 112.4,
                   lineColor: processColor('red')

@@ -333,7 +333,13 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                 percentFormatter.numberStyle = .percent
                 
                 axis.valueFormatter = DefaultAxisValueFormatter(formatter: percentFormatter);
-            }
+            } else {
+              let customFormatter = NumberFormatter()
+              customFormatter.positiveFormat = config["valueFormatter"].stringValue
+              customFormatter.negativeFormat = config["valueFormatter"].stringValue
+              
+              axis.valueFormatter = DefaultAxisValueFormatter(formatter: customFormatter);
+          }
         }
         
         if config["centerAxisLabels"].bool != nil {

@@ -35,8 +35,10 @@ class LineChartScreen extends React.Component {
       },
       marker: {
         enabled: true,
-        type: 'oval',
-        backgroundTint: processColor('teal')
+        backgroundTint: processColor('teal'),
+	      markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+
       }
     };
   }
@@ -52,12 +54,13 @@ class LineChartScreen extends React.Component {
               config: {
                 lineWidth: 2,
                 drawCircles: false,
-                drawCubic: true,
                 highlightColor: processColor('red'),
                 color: processColor('red'),
                 drawFilled: true,
                 fillColor: processColor('red'),
                 fillAlpha: 60,
+		            valueTextSize: 15,
+                valueFormatter: "##.000",
                 dashedLine: {
                   lineLength: 20,
                   spaceLength: 20
@@ -68,7 +71,6 @@ class LineChartScreen extends React.Component {
               label: 'Company Y',
               config: {
                 lineWidth: 1,
-                drawCubic: true,
                 drawCubicIntensity: 0.4,
                 circleRadius: 5,
                 drawHighlightIndicators: false,
@@ -84,7 +86,6 @@ class LineChartScreen extends React.Component {
               config: {
                 color: processColor('green'),
                 drawFilled: true,
-                drawCubic: true,
                 fillColor: processColor('green'),
                 fillAlpha: 50
               }
