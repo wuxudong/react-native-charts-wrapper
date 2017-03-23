@@ -64,8 +64,8 @@ class ChartDataSetConfigUtils: NSObject {
     }
     
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
-        if config["highlightColor"].string != nil {
-            dataSet.highlightColor = RCTConvert.uiColor(config["highlightColor"].stringValue);
+        if config["highlightColor"].int != nil {
+            dataSet.highlightColor = RCTConvert.uiColor(config["highlightColor"].intValue);
         }
     }
     
