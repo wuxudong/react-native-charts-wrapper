@@ -26,21 +26,21 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
         ReadableArray dataSets = propMap.getArray("dataSets");
         for (int i = 0; i < dataSets.size(); i++) {
-            ReadableMap dataSet = dataSets.getMap(i);
+            ReadableMap dataSetReadableMap = dataSets.getMap(i);
 
             // TODO validation
-            ReadableArray values = dataSet.getArray("values");
-            String label = dataSet.getString("label");
+            ReadableArray values = dataSetReadableMap.getArray("values");
+            String label = dataSetReadableMap.getString("label");
 
             ArrayList<U> entries = createEntries(values);
 
-            IDataSet<U> lineDataSet = createDataSet(entries, label);
+            IDataSet<U> dataSet = createDataSet(entries, label);
 
-            if (BridgeUtils.validate(dataSet, ReadableType.Map, "config")) {
-                dataSetConfig(lineDataSet, dataSet.getMap("config"));
+            if (BridgeUtils.validate(dataSetReadableMap, ReadableType.Map, "config")) {
+                dataSetConfig(dataSet, dataSetReadableMap.getMap("config"));
             }
 
-            chartData.addDataSet(lineDataSet);
+            chartData.addDataSet(dataSet);
         }
 
         if (BridgeUtils.validate(propMap, ReadableType.Map, "config")) {

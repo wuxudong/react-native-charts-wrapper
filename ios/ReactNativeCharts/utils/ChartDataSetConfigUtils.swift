@@ -55,6 +55,10 @@ class ChartDataSetConfigUtils: NSObject {
             }
             
         }
+
+        if config["axisDependency"].string != nil {
+            dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
+        }
         
 
     }

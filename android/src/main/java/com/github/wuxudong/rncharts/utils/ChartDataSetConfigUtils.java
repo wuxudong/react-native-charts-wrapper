@@ -2,6 +2,8 @@ package com.github.wuxudong.rncharts.utils;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.LineRadarDataSet;
@@ -55,7 +57,9 @@ public class ChartDataSetConfigUtils {
             }
         }
 
-
+        if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {
+            dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase()));
+        }
     }
 
     public static void commonBarLineScatterCandleBubbleConfig(BarLineScatterCandleBubbleDataSet dataSet, ReadableMap config) {

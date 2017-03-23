@@ -223,7 +223,23 @@ class BridgeUtils {
             return .linear
         }
     }
-    
+
+    static func parseAxisDependency(_ option: String) -> YAxis.AxisDependency {
+        let iosEnumString = androidEnumToIOSEnum(option)
+
+        switch iosEnumString {
+        case "left":
+            return .left
+
+        case "right":
+            return .right
+
+        default:
+            return .left
+        }
+
+    }
+        
     static func androidEnumToIOSEnum(_ desc: String) -> String {
         let components = desc.components(separatedBy: "_")
         
