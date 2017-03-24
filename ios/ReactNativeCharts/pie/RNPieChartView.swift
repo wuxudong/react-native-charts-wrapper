@@ -83,5 +83,8 @@ class RNPieChartView: RNChartViewBase {
     func setMaxAngle(_ maxAngle: NSNumber) {
         chart.maxAngle = CGFloat(maxAngle)
     }
-
+  
+    func setRotationEnabled(_ enabled: Bool) {
+        _chart.rotationEnabled = enabled
+    }
 }

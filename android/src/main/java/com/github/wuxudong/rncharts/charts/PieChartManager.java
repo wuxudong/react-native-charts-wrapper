@@ -6,6 +6,7 @@ import android.view.View;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.PieRadarChartBase;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
@@ -83,6 +84,11 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "maxAngle")
     public void setMaxAngle(PieChart chart, float maxAngle) {
         chart.setMaxAngle(maxAngle);
+    }
+
+    @ReactProp(name = "rotationEnabled")
+    public void setRotationEnabled(PieChart chart, boolean enabled) {
+        chart.setRotationEnabled(enabled);
     }
 
 

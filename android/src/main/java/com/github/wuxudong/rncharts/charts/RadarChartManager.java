@@ -45,5 +45,10 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
         chart.setSkipWebLineCount(count);
     }
 
+    @ReactProp(name = "rotationEnabled")
+    public void setRotationEnabled(RadarChart chart, boolean enabled) {
+        chart.setRotationEnabled(enabled);
+    }
+
 
 }

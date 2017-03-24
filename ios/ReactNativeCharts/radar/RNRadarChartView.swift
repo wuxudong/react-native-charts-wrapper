@@ -38,5 +38,7 @@ class RNRadarChartView: RNYAxisChartViewBase {
         _chart.skipWebLineCount = count
     }
     
-    
+    func setRotationEnabled(_ enabled: Bool) {
+        _chart.rotationEnabled = enabled
+    }
 }

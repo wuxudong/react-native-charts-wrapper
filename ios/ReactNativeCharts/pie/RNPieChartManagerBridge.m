@@ -20,5 +20,6 @@ RCT_EXPORT_VIEW_PROPERTY(entryLabelColor, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(entryLabelTextSize, NSNumber)
 
 RCT_EXPORT_VIEW_PROPERTY(maxAngle, NSNumber)
+RCT_EXPORT_VIEW_PROPERTY(rotationEnabled, BOOL)
 
 @end
