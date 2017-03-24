@@ -9,6 +9,7 @@ import com.github.wuxudong.rncharts.charts.BarChartManager;
 import com.github.wuxudong.rncharts.charts.BubbleChartManager;
 import com.github.wuxudong.rncharts.charts.CandleStickChartManager;
 import com.github.wuxudong.rncharts.charts.CombinedChartManager;
+import com.github.wuxudong.rncharts.charts.HorizontalBarChartManager;
 import com.github.wuxudong.rncharts.charts.LineChartManager;
 import com.github.wuxudong.rncharts.charts.PieChartManager;
 import com.github.wuxudong.rncharts.charts.RadarChartManager;
@@ -34,6 +35,7 @@ public class MPAndroidChartPackage implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
                 new BarChartManager(),
+                new HorizontalBarChartManager(),
                 new BubbleChartManager(),
                 new CandleStickChartManager(),
                 new LineChartManager(),

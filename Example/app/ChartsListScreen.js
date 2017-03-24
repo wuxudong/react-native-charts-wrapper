@@ -12,6 +12,7 @@ import {
 
 import AxisLineChartScreen from './AxisLineChartScreen';
 import BarChartScreen from './BarChartScreen';
+import HorizontalBarChartScreen from './HorizontalBarChartScreen';
 import BubbleChartScreen from './BubbleChartScreen';
 import CandleStickChartScreen from './CandleStickChartScreen';
 import CombinedChartScreen from './CombinedChartScreen';
@@ -129,7 +130,17 @@ const data = ds.cloneWithRows([
     id: 14,
     title: '<GroupBarChart>',
     description: 'Displays a group BarChart'
+  },{
+    id: 15,
+    title: '<HorizontalBarChart>',
+    description: 'Displays a HorizontalBarChart'
+  },{
+    id: 16,
+    title: '<AxisLineChart>',
+    description: 'Displays a AxisLineChart'
   }
+
+
 
 ]);
 
@@ -267,6 +278,16 @@ class ChartsExplorer extends React.Component {
       case 14:
         content = <GroupBarChartScreen/>;
         navText = 'GroupBarChart';
+        break;
+
+      case 15:
+        content = <HorizontalBarChartScreen/>;
+        navText = 'HorizontalBarChart';
+        break;
+
+      case 16:
+        content = <AxisLineChartScreen/>;
+        navText = 'AxisLineChart';
         break;
 
       default:

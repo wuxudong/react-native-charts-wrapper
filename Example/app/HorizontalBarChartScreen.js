@@ -7,9 +7,9 @@ import {
   processColor
 } from 'react-native';
 
-import {BarChart} from 'react-native-charts-wrapper';
+import {HorizontalBarChart} from 'react-native-charts-wrapper';
 
-class BarChartScreen extends React.Component {
+class HorizontalBarChartScreen extends React.Component {
 
   constructor() {
     super();
@@ -41,9 +41,11 @@ class BarChartScreen extends React.Component {
       },
       xAxis: {
         valueFormatter: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        position: 'BOTTOM',
         granularityEnabled: true,
-        granularity : 1,
-      }
+        granularity: 1,
+        labelCount: 10,
+      },
     };
   }
 
@@ -68,7 +70,7 @@ class BarChartScreen extends React.Component {
 
 
         <View style={styles.container}>
-          <BarChart
+          <HorizontalBarChart
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
@@ -96,4 +98,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BarChartScreen;
+export default HorizontalBarChartScreen;

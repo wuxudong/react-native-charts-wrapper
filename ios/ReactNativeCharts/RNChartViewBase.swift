@@ -302,7 +302,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if config["axisMinimum"].double != nil {
-            axis.axisMinValue = config["axisMinimum"].doubleValue
+            axis.axisMinimum = config["axisMinimum"].doubleValue
         }
         
         if config["granularity"].double != nil {
