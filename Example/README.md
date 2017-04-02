@@ -93,8 +93,8 @@ create Podfile in ios with following content
 	use_frameworks!
 	
 	target 'ForBeginner' do
-		pod 'SwiftyJSON', git: 'https://github.com/IBM-Swift/SwiftyJSON.git'
-		pod 'Charts', git: 'https://github.com/danielgindi/Charts.git'
+		pod 'SwiftyJSON', '3.1.4'
+		pod 'Charts', '3.0.1'
 	end
 		
 	post_install do |installer|

@@ -141,8 +141,8 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
   use_frameworks!
 
   target 'MyApp' do
-    pod 'SwiftyJSON', git: 'https://github.com/IBM-Swift/SwiftyJSON.git'
-    pod 'Charts', git: 'https://github.com/danielgindi/Charts.git'
+    pod 'SwiftyJSON', '3.1.4'
+    pod 'Charts', '3.0.1'
   end
   
   post_install do |installer|
