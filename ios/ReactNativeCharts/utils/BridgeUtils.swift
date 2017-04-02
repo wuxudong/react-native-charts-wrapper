@@ -21,7 +21,7 @@ class BridgeUtils {
     static func toJson(_ dict: NSDictionary) -> JSON {
         let json = try! JSONSerialization.data(withJSONObject: dict);
         
-        return JSON.parse(string: NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
+        return JSON.parse(NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
     }
     
     static func parseLineChartMode(_ mode: String) -> LineChartDataSet.Mode {
