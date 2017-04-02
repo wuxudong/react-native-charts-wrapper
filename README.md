@@ -179,9 +179,9 @@ Android and IOS have different convention:
 3. animation.duration in MpAndroidChart is milliseconds, in Charts is seconds.
 4. their enum case name is always different, for example XAxisPosition, in MpAndroidChart is BOTH_SIDED, in Charts is bothSided.
 
-##Here we use android Convention##
+**Here we use android Convention**
 
-##Always use processColor to set color##
+**Always use processColor to set color**
 
 
 
