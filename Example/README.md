@@ -1,5 +1,5 @@
 
-##How to run Example
+## How to run Example
 
 
 
@@ -32,7 +32,7 @@ react-native run-ios
 
 
 
-#A step by step tutorial to setup a new project
+# A step by step tutorial to setup a new project
 
 
 
