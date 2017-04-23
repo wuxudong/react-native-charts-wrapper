@@ -89,11 +89,10 @@ class RNPieChartView: RNChartViewBase {
     }
   
     override func didSetProps(_ changedProps: [String]!) {
-        super.didSetProps(changedProps);
         let pieChartDataSet = chart.data?.dataSets[0] as? PieChartDataSet
     
         pieChartDataSet?.entryLabelColor = chart.entryLabelColor
         pieChartDataSet?.entryLabelFont = chart.entryLabelFont
-  }  
+  }
   
 }
