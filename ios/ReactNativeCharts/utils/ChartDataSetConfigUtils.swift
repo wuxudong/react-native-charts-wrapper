@@ -34,6 +34,10 @@ class ChartDataSetConfigUtils: NSObject {
             dataSet.valueFont = dataSet.valueFont.withSize(CGFloat(config["valueTextSize"].numberValue))
         }
         
+        if config["valueTextColor"].int != nil {
+            dataSet.valueTextColor = RCTConvert.uiColor(config["valueTextColor"].intValue)
+        }
+        
         if config["visible"].bool != nil {
             dataSet.visible = config["visible"].boolValue
         }

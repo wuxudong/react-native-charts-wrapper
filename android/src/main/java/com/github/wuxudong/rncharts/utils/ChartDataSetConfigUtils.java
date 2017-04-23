@@ -45,6 +45,10 @@ public class ChartDataSetConfigUtils {
             dataSet.setValueTextSize((float) config.getDouble("valueTextSize"));
         }
 
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueTextColor")) {
+            dataSet.setValueTextColor(config.getInt("valueTextColor"));
+        }
+
         if (BridgeUtils.validate(config, ReadableType.String, "valueFormatter")) {
             String valueFormatter = config.getString("valueFormatter");
 

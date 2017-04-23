@@ -32,7 +32,8 @@ class PieChartScreen extends React.Component {
           label: 'Pie dataset',
           config: {
             colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('#8CEAFF'), processColor('#FF8C9D')],
-
+            valueTextSize: 20,
+            valueTextColor: processColor('green'),
             sliceSpace: 5,
             selectionShift: 13
           }
@@ -71,10 +72,15 @@ class PieChartScreen extends React.Component {
             style={styles.chart}
             logEnabled={true}
             chartBackgroundColor={processColor('pink')}
-            description={this.state.description}
+            chartDescription={this.state.description}
             data={this.state.data}
             legend={this.state.legend}
 
+            entryLabelColor = {processColor('black')}
+            entryLabelTextSize = {20}                 
+
+
+            rotationEnabled={false}
             drawSliceText={true}
             usePercentValues={false}
             centerText={'Pie center text!'}
@@ -83,10 +89,6 @@ class PieChartScreen extends React.Component {
             holeColor={processColor('#f0f0f0')}
             transparentCircleRadius={45}
             transparentCircleColor={processColor('#f0f0f088')}
-
-            entryLabelColor={processColor('black')}
-            entryLabelTextSize={8}
-
             maxAngle={350}
             onSelect={this.handleSelect.bind(this)}
           />

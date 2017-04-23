@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'Example' do
   pod 'SwiftyJSON', '3.1.4'
-  pod 'Charts', '3.0.1'
+  pod 'Charts', '3.0.2'
 end
 
 post_install do |installer|
