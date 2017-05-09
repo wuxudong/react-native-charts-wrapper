@@ -11,6 +11,9 @@ import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+import com.facebook.react.bridge.ReadableArray;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
@@ -88,8 +91,9 @@ public class ChartDataSetConfigUtils {
     }
 
     public static void commonLineRadarConfig(LineRadarDataSet dataSet, ReadableMap config) {
+
         if (BridgeUtils.validate(config, ReadableType.Number, "fillColor")) {
-            dataSet.setFillColor(config.getInt("fillColor"));
+			dataSet.setFillColor(config.getInt("fillColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "fillAlpha")) {
             dataSet.setFillAlpha(config.getInt("fillAlpha"));
@@ -104,6 +108,35 @@ public class ChartDataSetConfigUtils {
                 dataSet.setLineWidth(lineWidth);
             }
         }
+		if (BridgeUtils.validate(config, ReadableType.Array, "gradientColors")) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+				int gradientAlpha = 150;
+				float gradientCornerRadius = 10.5f;
+				if (BridgeUtils.validate(config, ReadableType.Number, "gradientAlpha")){
+					gradientAlpha = config.getInt("gradientAlpha");
+				}
+				if (BridgeUtils.validate(config, ReadableType.Number, "gradientCornerRadius")){
+					gradientCornerRadius = (float) config.getDouble("gradientCornerRadius");
+				}
+				setGradientForGraph(dataSet, convertToIntArray(config.getArray("gradientColors")), gradientAlpha, gradientCornerRadius);
+			}
+		}
+    }
+	
+	private static int[] convertToIntArray(ReadableArray array){
+        int[] intArray = new int[array.size()];
+    	for(int i = 0; i < array.size(); i++){
+    		intArray[i] = array.getInt(i);
+    	}
+    	return intArray;
+    }
+	
+	private static void setGradientForGraph(LineRadarDataSet lineDataSet, int[] gradientColors, int gradientAlpha, float gradientCornerRadius) {
+        GradientDrawable gradient = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, gradientColors);
+        gradient.setShape(GradientDrawable.RECTANGLE);
+        gradient.setAlpha(gradientAlpha);
+        gradient.setCornerRadius(gradientCornerRadius);
+        lineDataSet.setFillDrawable(gradient);
     }
 
 
