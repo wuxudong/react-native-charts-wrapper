@@ -6,7 +6,7 @@ import {
   View,
   processColor
 } from 'react-native';
-import reactAddonsUpdate from 'react-addons-update';
+import update from 'immutability-helper';
 
 import _ from 'lodash';
 import {CandleStickChart} from 'react-native-charts-wrapper';
@@ -23,9 +23,6 @@ class CandleStickChartScreen extends React.Component {
         form: 'CIRCLE',
         position: 'BELOW_CHART_RIGHT',
         wordWrapEnabled: true
-      },
-      animation: {
-        durationX: 3000
       },
       data: {
         dataSets: [{
@@ -104,7 +101,7 @@ class CandleStickChartScreen extends React.Component {
 
   componentDidMount() {
     this.setState(
-      reactAddonsUpdate(this.state, {
+      update(this.state, {
           xAxis: {
             $set: {
               drawLabels: false,
@@ -167,13 +164,12 @@ class CandleStickChartScreen extends React.Component {
             data={this.state.data}
             marker={this.state.marker}
             description={{text: ''}}
-            animation={this.state.animation}
             legend={this.state.legend}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
             maxVisibleValueCount={16}
             autoScaleMinMaxEnabled={true}
-            zoom={{scaleX: 4, scaleY: 1, xValue: 500, yValue: 1}}
+            zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
             onSelect={this.handleSelect.bind(this)}
           />
         </View>

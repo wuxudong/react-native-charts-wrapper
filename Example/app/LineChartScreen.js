@@ -5,7 +5,7 @@ import {
   Text,
   View, processColor
 } from 'react-native';
-import reactAddonsUpdate from 'react-addons-update';
+import update from 'immutability-helper';
 
 import {LineChart} from 'react-native-charts-wrapper';
 
@@ -45,7 +45,7 @@ class LineChartScreen extends React.Component {
 
   componentDidMount() {
     this.setState(
-      reactAddonsUpdate(this.state, {
+      update(this.state, {
         data: {
           $set: {
             dataSets: [{

@@ -6,7 +6,7 @@ import {
   View,
   processColor
 } from 'react-native';
-import reactAddonsUpdate from 'react-addons-update';
+import update from 'immutability-helper';
 
 import _ from 'lodash';
 import {ScatterChart} from 'react-native-charts-wrapper';
@@ -35,7 +35,7 @@ class ScatterChartScreen extends React.Component {
     const range = 20;
 
     this.setState(
-      reactAddonsUpdate(this.state, {
+      update(this.state, {
         data: {
           $set: {
             dataSets: [{

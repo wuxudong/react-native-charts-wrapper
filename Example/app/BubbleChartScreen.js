@@ -6,7 +6,7 @@ import {
   View,
   processColor
 } from 'react-native';
-import reactAddonsUpdate from 'react-addons-update';
+import update from 'immutability-helper';
 
 import _ from 'lodash';
 import {BubbleChart} from 'react-native-charts-wrapper';
@@ -34,7 +34,7 @@ class BubbleChartScreen extends React.Component {
   componentDidMount() {
     const size = 10;
     this.setState(
-      reactAddonsUpdate(this.state, {
+      update(this.state, {
         data: {
           $set: {
             dataSets: [{

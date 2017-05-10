@@ -6,7 +6,7 @@ import {
   View,
   processColor
 } from 'react-native';
-import reactAddonsUpdate from 'react-addons-update';
+import update from 'immutability-helper';
 
 import _ from 'lodash';
 import {LineChart} from 'react-native-charts-wrapper';
@@ -30,7 +30,7 @@ class AxisLineChartScreen extends React.Component {
     const size = 30;
 
     this.setState(
-      reactAddonsUpdate(this.state, {
+      update(this.state, {
         xAxis: {
           $set: {
             textColor: processColor('red'),
