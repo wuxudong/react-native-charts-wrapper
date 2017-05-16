@@ -117,10 +117,10 @@ run `pod install`
 open ForBeginner.xcworkspace/
 
 
-`Add Files to ForBeginner`,  then choose directory of `node_modules/react-native-charts-wrapper/ios/ReactNativeCharts`
+`Add Files to ForBeginner`,  then choose directory of `node_modules/react-native-charts-wrapper/ios/ReactNativeCharts`, add it under your project *top level*
 
 
-choose Group ForBeginner, `new File -> Header File`, create `ForBeginner-Bridging-Header.h`
+choose Group ForBeginner, create a empty swift file, the xcode will prompt creating a bridging file, let's name it `ForBeginner-Bridging-Header.h`
 
 
 replace content with 
