@@ -111,12 +111,12 @@ protected List<ReactPackage> getPackages() {
 
 #### 1. Add Source Files
 
- add directory node_modules/react-native-charts-wrapper/ReactNativeCharts. (In Xcode: File -> Add files to "App Name")
+ add directory node_modules/react-native-charts-wrapper/ReactNativeCharts under your project *top level*. (In Xcode: File -> Add files to "App Name")
 
 #### 2. Add Bridge File
 
- When you add the files XCode should prompt you to create a bridging header if you haven't done so already.  
- Create it and import the RCTViewManager.h. It should look something like this.
+ When you add the files XCode should prompt you to create a bridging header if you haven't done so already, or you can create empty swift file to trigger xcode prompt.
+ Create the bridging header and import the RCTViewManager.h. It should look something like this.
 
 		#import "React/RCTBridge.h"
 		#import "React/RCTViewManager.h"
