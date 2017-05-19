@@ -15,6 +15,7 @@ import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.wuxudong.rncharts.R;
 
+import java.util.List;
 import java.util.Map;
 
 public class RNRectangleMarkerView extends MarkerView {
@@ -49,7 +50,14 @@ public class RNRectangleMarkerView extends MarkerView {
         
         if (e.getData() instanceof Map) {
             if(((Map) e.getData()).containsKey("marker")) {
-                text = ((Map) e.getData()).get("marker").toString();
+
+                Object marker = ((Map) e.getData()).get("marker");
+                text = marker.toString();
+
+                if (highlight.getStackIndex() != -1 && marker instanceof List) {
+                    text = ((List) marker).get(highlight.getStackIndex()).toString();
+                }
+
             }
         }
         
@@ -114,3 +122,4 @@ public class RNRectangleMarkerView extends MarkerView {
     }
     
 }
+

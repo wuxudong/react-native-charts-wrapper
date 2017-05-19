@@ -60,12 +60,8 @@ open class BalloonMarker: MarkerView {
 
         var rect = CGRect(origin: point, size: _size)
         
-        
-        var invert = false
-        
         if point.y - _size.height < 0 {
-            invert = true
-            
+          
             if point.x - _size.width / 2.0 < 0 {
                 drawTopLeftRect(context: context, rect: rect)
             } else if (chart != nil && point.x + width - _size.width / 2.0 > (chart?.bounds.width)!) {
@@ -219,6 +215,10 @@ open class BalloonMarker: MarkerView {
         if let object = entry.data as? JSON {
             if object["marker"].exists() {
                 label = object["marker"].stringValue;
+              
+                if highlight.stackIndex != -1 && object["marker"].array != nil {
+                    label = object["marker"].arrayValue[highlight.stackIndex].stringValue
+                }
             }
         }
 
@@ -237,3 +237,4 @@ open class BalloonMarker: MarkerView {
 
     }
 }
+

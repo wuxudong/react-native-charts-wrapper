@@ -25,7 +25,7 @@ class StackedBarChartScreen extends React.Component {
       },
       data: {
         dataSets: [{
-          values: [[40, 30, 20], [10, 20, 10], [30, 20, 50], [30, 50, 10]],
+          values: [{y:[40, 30, 20], marker: "first"}, {y:[10, 20, 10], marker:"second"}, {y:[30, 20, 50], marker:"third"}, {y:[30, 50, 10], marker:"fourth"}],
           label: 'Stacked Bar dataset',
           config: {
             colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C')],
@@ -69,6 +69,12 @@ class StackedBarChartScreen extends React.Component {
             data={this.state.data}
             legend={this.state.legend}
             drawValueAboveBar={false}
+            marker={{
+        enabled: true,
+        markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+        markerFontSize: 14,
+      }}
             onSelect={this.handleSelect.bind(this)}
           />
         </View>
