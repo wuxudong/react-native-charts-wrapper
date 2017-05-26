@@ -60,7 +60,7 @@ const chartIface = {
 
     touchEnabled: PropTypes.bool,
     dragDecelerationEnabled: PropTypes.bool,
-    dragDecelerationFrictionCoef: (props, propName, componentName) => {
+    dragDecelerationFrictionCoef: (props: any, propName: string, componentName: string) => {
       let coef = props[propName];
       if (coef && (typeof coef !== 'number' || coef < 0 || coef > 1)) {
         return new Error(

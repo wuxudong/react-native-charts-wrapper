@@ -1,7 +1,8 @@
 import * as PropTypes from 'prop-types';
 import {
   requireNativeComponent,
-  View
+  View,
+  ViewProperties,
 } from 'react-native';
 
 import ChartBase from './ChartBase';

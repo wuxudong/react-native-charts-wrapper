@@ -27,7 +27,7 @@ declare const _default: React.ComponentClass<{
     noDataText: PropTypes.Requireable<any>;
     touchEnabled: PropTypes.Requireable<any>;
     dragDecelerationEnabled: PropTypes.Requireable<any>;
-    dragDecelerationFrictionCoef: (props: any, propName: any, componentName: any) => Error | undefined;
+    dragDecelerationFrictionCoef: (props: any, propName: string, componentName: string) => Error | undefined;
     chartDescription: PropTypes.Requireable<any>;
     legend: PropTypes.Requireable<any>;
     xAxis: PropTypes.Requireable<any>;

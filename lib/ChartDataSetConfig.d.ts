@@ -22,7 +22,7 @@ declare const chartDataSetConfig: {
         fillColor: PropTypes.Requireable<any>;
         fillAlpha: PropTypes.Requireable<any>;
         drawFilled: PropTypes.Requireable<any>;
-        lineWidth: (props: any, propName: any, componentName: any) => Error | undefined;
+        lineWidth: (props: any, propName: string, componentName: string) => Error | undefined;
     };
 };
 export default chartDataSetConfig;
