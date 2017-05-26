@@ -10,12 +10,20 @@
   "license": "MIT",
   "nativePackage": true,
   "homepage": "https://github.com/wuxudong/react-native-charts-wrapper",
-  "keywords":  [
+  "keywords": [
     "react native",
     "chart",
     "android",
     "MPAndroidChart",
     "ios",
     "Charts"
-  ]
+  ],
+  "scripts": {
+    "tsc": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/react": "^15.0.25",
+    "@types/react-native": "^0.44.4",
+    "typescript": "^2.3.3"
+  }
 }
