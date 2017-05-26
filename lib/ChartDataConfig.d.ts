@@ -1,0 +1,10 @@
+import * as PropTypes from 'prop-types';
+declare const lineData: PropTypes.Requireable<any>;
+declare const barData: PropTypes.Requireable<any>;
+declare const bubbleData: PropTypes.Requireable<any>;
+declare const candleData: PropTypes.Requireable<any>;
+declare const pieData: PropTypes.Requireable<any>;
+declare const radarData: PropTypes.Requireable<any>;
+declare const scatterData: PropTypes.Requireable<any>;
+declare const combinedData: PropTypes.Requireable<any>;
+export { lineData, barData, pieData, bubbleData, scatterData, candleData, radarData, combinedData };
