@@ -1,6 +1,7 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 import {
-  View
+  View,
+  ViewProperties,
 } from 'react-native';
 
 import ChartBase from './ChartBase';

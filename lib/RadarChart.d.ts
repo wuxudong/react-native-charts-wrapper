@@ -2,17 +2,9 @@
 import * as PropTypes from 'prop-types';
 import { ViewProperties } from 'react-native';
 declare const _default: React.ComponentClass<{
-    drawEntryLabels: PropTypes.Requireable<any>;
-    usePercentValues: PropTypes.Requireable<any>;
-    centerText: PropTypes.Requireable<any>;
-    centerTextRadiusPercent: PropTypes.Requireable<any>;
-    holeRadius: PropTypes.Requireable<any>;
-    holeColor: PropTypes.Requireable<any>;
-    transparentCircleRadius: PropTypes.Requireable<any>;
-    transparentCircleColor: PropTypes.Requireable<any>;
-    entryLabelColor: PropTypes.Requireable<any>;
-    entryLabelTextSize: PropTypes.Requireable<any>;
-    maxAngle: PropTypes.Requireable<any>;
+    yAxis: PropTypes.Requireable<any>;
+    drawWeb: PropTypes.Requireable<any>;
+    skipWebLineCount: PropTypes.Requireable<any>;
     data: PropTypes.Requireable<any>;
     rotationEnabled: PropTypes.Requireable<any>;
     animation: PropTypes.Requireable<any>;

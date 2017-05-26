@@ -1,4 +1,4 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 
 export const axisIface = {
   // what is drawn

@@ -1,9 +1,10 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 import {
-  View
+  View,
+  ViewProperties
 } from 'react-native';
 
-import {xAxisIface} from './AxisIface'
+import { xAxisIface } from './AxisIface'
 
 const descriptionIface = {
   text: PropTypes.string,

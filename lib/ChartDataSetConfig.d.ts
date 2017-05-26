@@ -1,27 +1,27 @@
-/// <reference types="react" />
+import * as PropTypes from 'prop-types';
 declare const chartDataSetConfig: {
     common: {
-        colors: React.Requireable<any>;
-        highlightEnabled: React.Requireable<any>;
-        drawValues: React.Requireable<any>;
-        valueTextSize: React.Requireable<any>;
-        valueTextColor: React.Requireable<any>;
-        visible: React.Requireable<any>;
-        valueFormatter: React.Requireable<any>;
-        axisDependency: React.Requireable<any>;
+        colors: PropTypes.Requireable<any>;
+        highlightEnabled: PropTypes.Requireable<any>;
+        drawValues: PropTypes.Requireable<any>;
+        valueTextSize: PropTypes.Requireable<any>;
+        valueTextColor: PropTypes.Requireable<any>;
+        visible: PropTypes.Requireable<any>;
+        valueFormatter: PropTypes.Requireable<any>;
+        axisDependency: PropTypes.Requireable<any>;
     };
     barLineScatterCandleBubble: {
-        highlightColor: React.Requireable<any>;
+        highlightColor: PropTypes.Requireable<any>;
     };
     lineScatterCandleRadar: {
-        drawVerticalHighlightIndicator: React.Requireable<any>;
-        drawHorizontalHighlightIndicator: React.Requireable<any>;
-        highlightLineWidth: React.Requireable<any>;
+        drawVerticalHighlightIndicator: PropTypes.Requireable<any>;
+        drawHorizontalHighlightIndicator: PropTypes.Requireable<any>;
+        highlightLineWidth: PropTypes.Requireable<any>;
     };
     lineRadar: {
-        fillColor: React.Requireable<any>;
-        fillAlpha: React.Requireable<any>;
-        drawFilled: React.Requireable<any>;
+        fillColor: PropTypes.Requireable<any>;
+        fillAlpha: PropTypes.Requireable<any>;
+        drawFilled: PropTypes.Requireable<any>;
         lineWidth: (props: any, propName: any, componentName: any) => Error | undefined;
     };
 };

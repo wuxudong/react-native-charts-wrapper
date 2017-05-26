@@ -1,7 +1,8 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 import {
   requireNativeComponent,
-  View
+  View,
+  ViewProperties,
 } from 'react-native';
 
 import BarLineChartBase from './BarLineChartBase';

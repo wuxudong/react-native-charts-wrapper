@@ -1,10 +1,11 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 import {
-  View
+  View,
+  ViewProperties,
 } from 'react-native';
 
 import ChartBase from './ChartBase';
-import {yAxisIface} from './AxisIface';
+import { yAxisIface } from './AxisIface';
 
 const iface = {
   propTypes: {

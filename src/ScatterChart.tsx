@@ -1,11 +1,12 @@
-import {PropTypes} from 'react';
+import * as PropTypes from 'prop-types';
 import {
   requireNativeComponent,
-  View
+  View,
+  ViewProperties,
 } from 'react-native';
 
 import BarLineChartBase from './BarLineChartBase';
-import {scatterData} from './ChartDataConfig';
+import { scatterData } from './ChartDataConfig';
 
 const iface = {
   name: 'ScatterChart',

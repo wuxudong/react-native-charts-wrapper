@@ -24,6 +24,10 @@
   "devDependencies": {
     "@types/react": "^15.0.25",
     "@types/react-native": "^0.44.4",
+    "@types/prop-types": "^15.5.1",
     "typescript": "^2.3.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10"
   }
 }
