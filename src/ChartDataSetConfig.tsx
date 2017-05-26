@@ -8,16 +8,16 @@ import {
 const chartDataSetConfig = {
   common: {
     colors: PropTypes.arrayOf(PropTypes.number),
-    highlightEnabled:PropTypes.bool,
+    highlightEnabled: PropTypes.bool,
     drawValues: PropTypes.bool,
-    valueTextSize:PropTypes.number,
-    valueTextColor:PropTypes.number,
-    visible:PropTypes.bool,
+    valueTextSize: PropTypes.number,
+    valueTextColor: PropTypes.number,
+    visible: PropTypes.bool,
     valueFormatter: PropTypes.oneOfType([
       PropTypes.oneOf(['largeValue', 'percent']),
       PropTypes.string
     ]),
-    axisDependency:PropTypes.string
+    axisDependency: PropTypes.string
   },
 
   barLineScatterCandleBubble: {
@@ -34,7 +34,7 @@ const chartDataSetConfig = {
     fillColor: PropTypes.number,
     fillAlpha: PropTypes.number,
     drawFilled: PropTypes.bool,
-    lineWidth: (props, propName, componentName) => {
+    lineWidth: (props: any, propName: string, componentName: string) => {
       let lineWidth = props[propName];
       if (lineWidth && (typeof lineWidth !== 'number' || lineWidth < 0.2 || lineWidth > 10)) {
         return new Error(
