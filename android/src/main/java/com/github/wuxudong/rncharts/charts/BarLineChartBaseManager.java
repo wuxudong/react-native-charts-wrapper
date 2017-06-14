@@ -119,4 +119,23 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             );
         }
     }
+
+    @ReactProp(name = "viewPortOffsets")
+    public void setViewPortOffsets(Chart chart, ReadableMap propMap) {
+        Integer left = 0, top = 0, right = 0, bottom = 0;
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "left")) {
+            left = propMap.getInt("left");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "top")) {
+            top = propMap.getInt("top");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "right")) {
+            right = propMap.getInt("right");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
+            bottom = propMap.getInt("bottom");
+        }
+        ((BarLineChartBase) chart).setViewPortOffsets(left, top, right, bottom);
+    }
 }
