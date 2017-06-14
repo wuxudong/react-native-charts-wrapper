@@ -120,6 +120,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         }
     }
 
+    // Note: Offset aren't updated until first touch event: https://github.com/PhilJay/MPAndroidChart/issues/892
     @ReactProp(name = "viewPortOffsets")
     public void setViewPortOffsets(Chart chart, ReadableMap propMap) {
         Integer left = 0, top = 0, right = 0, bottom = 0;
