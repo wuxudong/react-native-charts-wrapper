@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.util.Log;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -25,6 +26,7 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.markers.RNRectangleDateTimeMarkerView;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
@@ -224,7 +226,20 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             return;
         }
 
-        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
+        RNRectangleMarkerView marker;
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "type") &&
+                "dateTime".equals(propMap.getString("type")) &&
+                BridgeUtils.validate(propMap, ReadableType.String, "startTimeStamp") &&
+                BridgeUtils.validate(propMap, ReadableType.String, "format")) {
+            String format = propMap.getString("format");
+            String timeStamp = propMap.getString("startTimeStamp");
+            long tsn = Long.parseLong(timeStamp);
+            marker = new RNRectangleDateTimeMarkerView(chart.getContext(), tsn, format);
+        } else {
+            marker = new RNRectangleMarkerView(chart.getContext());
+        }
+
         marker.setChartView(chart);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
@@ -366,6 +381,21 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             }
         } else if (BridgeUtils.validate(propMap, ReadableType.Array, "valueFormatter")) {
             axis.setValueFormatter(new IndexAxisValueFormatter(BridgeUtils.convertToStringArray(propMap.getArray("valueFormatter"))));
+        } else if (BridgeUtils.validate(propMap, ReadableType.Map, "valueFormatter")) {
+            ReadableMap formatterMap = propMap.getMap("valueFormatter");
+            if (BridgeUtils.validate(formatterMap, ReadableType.Map.String, "type")) {
+                String formatType = formatterMap.getString("type");
+                if ("dateTime".equals(formatType)) {
+                    if (BridgeUtils.validate(formatterMap, ReadableType.Map.String, "format") &&
+                            BridgeUtils.validate(formatterMap, ReadableType.Map.String, "startTimeStamp")) {
+                        String format = formatterMap.getString("format");
+                        String timeStamp = formatterMap.getString("startTimeStamp");
+                        long tsn = Long.parseLong(timeStamp);
+
+                        axis.setValueFormatter(new DateTimeFormatter(tsn, format));
+                    }
+                }
+            }
         }
 
         if (BridgeUtils.validate(propMap, ReadableType.Boolean, "centerAxisLabels")) {
