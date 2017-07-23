@@ -17,5 +17,8 @@
     "MPAndroidChart",
     "ios",
     "Charts"
-  ]
+  ],
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  }
 }
