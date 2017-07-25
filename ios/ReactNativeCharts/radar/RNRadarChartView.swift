@@ -33,7 +33,18 @@ class RNRadarChartView: RNYAxisChartViewBase {
         fatalError("init(coder:) has not been implemented")
     }
     
- 
+    override func setYAxis(_ config: NSDictionary) {
+        let json = BridgeUtils.toJson(config)
+    
+        let yAxis = chart.yAxis;
+    
+        setCommonAxisConfig(yAxis, config: json)
+    
+        if json["position"].string != nil {
+            yAxis.labelPosition = BridgeUtils.parseYAxisLabelPosition(json["position"].stringValue)
+        }
+    }
+    
     func setSkipWebLineCount(_ count: Int) {
         _chart.skipWebLineCount = count
     }
