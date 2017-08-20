@@ -46,10 +46,7 @@ class ChartDataSetConfigUtils: NSObject {
             if "largeValue" == config["valueFormatter"].stringValue {
                 dataSet.valueFormatter = LargeValueFormatter();
             } else if "percent" == config["valueFormatter"].stringValue {
-                let percentFormatter = NumberFormatter()
-                percentFormatter.numberStyle = .percent
-                
-                dataSet.valueFormatter = DefaultValueFormatter(formatter: percentFormatter);
+                dataSet.valueFormatter = PercentValueFormatter();
             } else {
                 let customFormatter = NumberFormatter()
                 customFormatter.positiveFormat = config["valueFormatter"].stringValue
