@@ -56,6 +56,9 @@ public class ChartDataSetConfigUtils {
                 dataSet.setValueFormatter(new LargeValueFormatter());
             } else if ("percent".equals(valueFormatter)) {
                 dataSet.setValueFormatter(new PercentFormatter());
+            } else if ("date".equals(valueFormatter)) {
+                String valueFormatterPattern = config.getString("valueFormatterPattern");
+                dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern));
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
