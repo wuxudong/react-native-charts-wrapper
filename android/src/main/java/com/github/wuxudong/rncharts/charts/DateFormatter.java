@@ -24,15 +24,15 @@ public class DateFormatter implements IAxisValueFormatter, IValueFormatter {
 
     @Override
     public String getFormattedValue(float value, AxisBase yAxis) {
-        return format(value);
+        return format((long) value);
     }
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        return format(value);
+        return format((long) value);
     }
 
-    private String format(Number number) {
-        return mFormat.format(new Date((long) number));
+    private String format(long millis) {
+        return mFormat.format(new Date(millis));
     }
 }
