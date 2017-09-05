@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
+import com.github.wuxudong.rncharts.charts.DateFormatter;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
