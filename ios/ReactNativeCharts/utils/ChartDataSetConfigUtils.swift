@@ -41,19 +41,23 @@ class ChartDataSetConfigUtils: NSObject {
         if config["visible"].bool != nil {
             dataSet.visible = config["visible"].boolValue
         }
-        
-        if config["valueFormatter"].string != nil {
-            if "largeValue" == config["valueFormatter"].stringValue {
+      
+        let valueFormatter = config["valueFormatter"];
+        if valueFormatter.string != nil {
+            if "largeValue" == valueFormatter.stringValue {
                 dataSet.valueFormatter = LargeValueFormatter();
-            } else if "percent" == config["valueFormatter"].stringValue {
+            } else if "percent" == valueFormatter.stringValue {
                 let percentFormatter = NumberFormatter()
                 percentFormatter.numberStyle = .percent
                 
                 dataSet.valueFormatter = DefaultValueFormatter(formatter: percentFormatter);
+            } else if "date" == valueFormatter.stringValue {
+                let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
+                dataSet.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
             } else {
                 let customFormatter = NumberFormatter()
-                customFormatter.positiveFormat = config["valueFormatter"].stringValue
-                customFormatter.negativeFormat = config["valueFormatter"].stringValue
+                customFormatter.positiveFormat = valueFormatter.stringValue
+                customFormatter.negativeFormat = valueFormatter.stringValue
                 
                 dataSet.valueFormatter = DefaultValueFormatter(formatter: customFormatter);
             }
