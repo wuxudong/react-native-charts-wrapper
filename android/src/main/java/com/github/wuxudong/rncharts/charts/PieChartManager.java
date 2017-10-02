@@ -24,7 +24,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     protected View createViewInstance(ThemedReactContext reactContext) {
         PieChart pieChart =  new PieChart(reactContext);
         pieChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(pieChart));
-        pieChart.setOnChartGestureListener(new OnChartGestureListener(pieChart));
+        pieChart.setOnChartGestureListener(new RNOnChartGestureListener(pieChart));
         return pieChart;
     }
 

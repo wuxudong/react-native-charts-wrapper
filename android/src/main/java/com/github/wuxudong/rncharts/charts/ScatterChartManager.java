@@ -32,7 +32,7 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
     protected ScatterChart createViewInstance(ThemedReactContext reactContext) {
         ScatterChart scatterChart = new ScatterChart(reactContext);
         scatterChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(scatterChart));
-        scatterChart.setOnChartGestureListener(new OnChartGestureListener(scatterChart));
+        scatterChart.setOnChartGestureListener(new RNOnChartGestureListener(scatterChart));
         return scatterChart;
     }
 

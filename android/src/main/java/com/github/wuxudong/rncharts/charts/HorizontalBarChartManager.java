@@ -23,7 +23,7 @@ public class HorizontalBarChartManager extends BarChartManager {
     protected View createViewInstance(ThemedReactContext reactContext) {
         HorizontalBarChart horizontalBarChart = new HorizontalBarChart(reactContext);
         horizontalBarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(horizontalBarChart));
-        horizontalBarChart.setOnChartGestureListener(new OnChartGestureListener(horizontalBarChart));
+        horizontalBarChart.setOnChartGestureListener(new RNOnChartGestureListener(horizontalBarChart));
         return horizontalBarChart;
     }
 }

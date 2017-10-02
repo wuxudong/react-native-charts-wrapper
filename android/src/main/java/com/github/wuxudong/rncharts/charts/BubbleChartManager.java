@@ -20,7 +20,7 @@ public class BubbleChartManager extends ChartBaseManager<BubbleChart, BubbleEntr
     protected BubbleChart createViewInstance(ThemedReactContext reactContext) {
         BubbleChart bubbleChart =  new BubbleChart(reactContext);
         bubbleChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(bubbleChart));
-        bubbleChart.setOnChartGestureListener(new OnChartGestureListener(bubbleChart));
+        bubbleChart.setOnChartGestureListener(new RNOnChartGestureListener(bubbleChart));
         return bubbleChart;
     }
 

@@ -23,7 +23,7 @@ public class CombinedChartManager extends BarLineChartBaseManager<CombinedChart,
     protected CombinedChart createViewInstance(ThemedReactContext reactContext) {
         CombinedChart combinedChart = new CombinedChart(reactContext);
         combinedChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(combinedChart));
-        combinedChart.setOnChartGestureListener(new OnChartGestureListener(combinedChart));
+        combinedChart.setOnChartGestureListener(new RNOnChartGestureListener(combinedChart));
         return combinedChart;
     }
 

@@ -19,7 +19,7 @@ public class CandleStickChartManager extends BarLineChartBaseManager<CandleStick
     protected CandleStickChart createViewInstance(ThemedReactContext reactContext) {
         CandleStickChart candleStickChart = new CandleStickChart(reactContext);
         candleStickChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(candleStickChart));
-        candleStickChart.setOnChartGestureListener(new OnChartGestureListener(candleStickChart));
+        candleStickChart.setOnChartGestureListener(new RNOnChartGestureListener(candleStickChart));
         return candleStickChart;
     }
 

@@ -24,7 +24,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     protected RadarChart createViewInstance(ThemedReactContext reactContext) {
         RadarChart radarChart =  new RadarChart(reactContext);
         radarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(radarChart));
-        radarChart.setOnChartGestureListener(new OnChartGestureListener(radarChart));
+        radarChart.setOnChartGestureListener(new RNOnChartGestureListener(radarChart));
         return radarChart;
     }
 
