@@ -26,107 +26,46 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
         mWeakChart = new WeakReference<>(chart);
     }
 
-    // @Override
-    // public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    }
 
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
       if (mWeakChart != null) {
+          WritableMap event = Arguments.createMap();
+          event.putInt("onChartGestureEnd", lastPerformedGesture.ordinal()); // TODO: Not yet working
           Chart chart = mWeakChart.get();
 
           ReactContext reactContext = (ReactContext) chart.getContext();
           reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                   chart.getId(),
-                  "onChartGestureEnd",
-                  lastPerformedGesture);
+                  "topSelect",
+                  event);
       }
     }
 
-    // @Override
-    // public void onChartLongPressed(MotionEvent me) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
-    //
-    // @Override
-    // public void onChartDoubleTapped(MotionEvent me) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
-    //
-    // @Override
-    // public void onChartSingleTapped(MotionEvent me) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
-    //
-    // @Override
-    // public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
-    //
-    // @Override
-    // public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
-    //
-    // @Override
-    // public void onChartTranslate(MotionEvent me, float dX, float dY) {
-    //   if (mWeakChart != null) {
-    //       Chart chart = mWeakChart.get();
-    //
-    //       ReactContext reactContext = (ReactContext) chart.getContext();
-    //       reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-    //               chart.getId(),
-    //               "topSelect",
-    //               EntryToWritableMapUtils.convertEntryToWritableMap(entry));
-    //   }
-    // }
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+    }
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me) {
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+    }
 }

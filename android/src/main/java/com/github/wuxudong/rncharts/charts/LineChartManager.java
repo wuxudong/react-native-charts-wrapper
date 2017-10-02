@@ -20,7 +20,7 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
     protected LineChart createViewInstance(ThemedReactContext reactContext) {
         LineChart lineChart =  new LineChart(reactContext);
         lineChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(lineChart));
-        lineChart.setOnChartGestureListener(new OnChartGestureListener(lineChart));
+        lineChart.setOnChartGestureListener(new RNOnChartGestureListener(lineChart));
         return lineChart;
     }
 
