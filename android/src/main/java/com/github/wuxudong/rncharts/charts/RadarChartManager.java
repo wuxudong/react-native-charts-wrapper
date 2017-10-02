@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.RadarEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.RadarDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
@@ -23,6 +24,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     protected RadarChart createViewInstance(ThemedReactContext reactContext) {
         RadarChart radarChart =  new RadarChart(reactContext);
         radarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(radarChart));
+        radarChart.setOnChartGestureListener(new OnChartGestureListener(radarChart));
         return radarChart;
     }
 
