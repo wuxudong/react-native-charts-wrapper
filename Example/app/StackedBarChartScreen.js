@@ -76,6 +76,7 @@ class StackedBarChartScreen extends React.Component {
         markerFontSize: 14,
       }}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)} // Android only!
           />
         </View>
 

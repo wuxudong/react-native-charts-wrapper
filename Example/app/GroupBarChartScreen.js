@@ -94,6 +94,7 @@ class StackedBarChartScreen extends React.Component {
             legend={this.state.legend}
             drawValueAboveBar={false}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)} // Android only!
           />
         </View>
 

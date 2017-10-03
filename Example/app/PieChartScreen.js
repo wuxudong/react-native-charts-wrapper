@@ -77,7 +77,7 @@ class PieChartScreen extends React.Component {
             legend={this.state.legend}
 
             entryLabelColor = {processColor('black')}
-            entryLabelTextSize = {20}                 
+            entryLabelTextSize = {20}
 
 
             rotationEnabled={false}
@@ -91,6 +91,7 @@ class PieChartScreen extends React.Component {
             transparentCircleColor={processColor('#f0f0f088')}
             maxAngle={350}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)} // Android only!
           />
         </View>
 
