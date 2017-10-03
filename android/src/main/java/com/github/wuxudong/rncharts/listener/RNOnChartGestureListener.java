@@ -34,13 +34,14 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
       if (mWeakChart != null) {
           WritableMap event = Arguments.createMap();
-          event.putInt("onChartGestureEnd", lastPerformedGesture.ordinal()); // TODO: Not yet working
+          event.putString("method", "onChartGestureEnd");
+          event.putString("gesture", lastPerformedGesture.name());
           Chart chart = mWeakChart.get();
 
           ReactContext reactContext = (ReactContext) chart.getContext();
           reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                   chart.getId(),
-                  "topSelect",
+                  "topChange",
                   event);
       }
     }
