@@ -31,7 +31,7 @@ open class ChartDateFormatter: NSObject, IValueFormatter, IAxisValueFormatter {
   
   fileprivate func format(_ value: Double) -> String
   {
-    let date = Date(timeIntervalSince1970: value);
+    let date = Date(timeIntervalSince1970: value / 1000.0);
     return self.dateFormatter.string(from: date);
   }
 
