@@ -26,7 +26,6 @@ public class MPAndroidChartPackage implements ReactPackage {
         return Arrays.<NativeModule>asList();
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
