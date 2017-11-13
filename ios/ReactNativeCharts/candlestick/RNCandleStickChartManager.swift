@@ -10,5 +10,9 @@ open class RNCandleStickChartManager: RCTViewManager {
     let ins = RNCandleStickChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }

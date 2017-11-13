@@ -10,5 +10,9 @@ open class RNLineChartManager: RCTViewManager {
     let ins = RNLineChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }
