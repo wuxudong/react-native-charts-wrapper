@@ -235,6 +235,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     );
         }
 
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "digits")) {
+            marker.setDigits(propMap.getInt("digits"));
+        }
+
         if (BridgeUtils.validate(propMap, ReadableType.Number, "textColor")) {
             marker.getTvContent().setTextColor(propMap.getInt("textColor"));
         }

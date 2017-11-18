@@ -95,7 +95,8 @@ class CandleStickChartScreen extends React.Component {
         enabled: true,
         markerColor: processColor('#2c3e50'),
         textColor: processColor('white'),
-      }
+      },
+      zoomXValue : 0
     };
   }
 
@@ -134,6 +135,9 @@ class CandleStickChartScreen extends React.Component {
                 enabled: false
               }
             }
+          },
+          zoomXValue: {
+            $set: 99999
           }
         }
       ));
@@ -169,7 +173,8 @@ class CandleStickChartScreen extends React.Component {
             yAxis={this.state.yAxis}
             maxVisibleValueCount={16}
             autoScaleMinMaxEnabled={true}
-            zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
+            // zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
+            zoom={{scaleX: 2, scaleY: 1, xValue:  this.state.zoomXValue, yValue: 1, axisDependency: 'RIGHT'}}
             onSelect={this.handleSelect.bind(this)}
           />
         </View>

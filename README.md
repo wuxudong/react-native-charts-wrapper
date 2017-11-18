@@ -6,7 +6,7 @@ This library is React Native wrapper of popular Native charting library [MPAndro
 
 Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-native-mp-android-chart) and [react-native-ios-charts](https://github.com/Jpadilla1/react-native-ios-charts)
 
-React Native Charts Wrapper is built on MPAndroidChart(v3.0.1) & Charts(v3.0.1), support both android & ios.
+React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.4), support both android & ios.
 
 
 ### ANDROID  [Download Example Apk](https://goo.gl/5sg2JQ)
@@ -142,7 +142,7 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
 
   target 'MyApp' do
     pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.1'
+    pod 'Charts', '3.0.4'
   end
   
   post_install do |installer|

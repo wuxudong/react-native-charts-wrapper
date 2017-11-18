@@ -35,6 +35,7 @@ class LineChartScreen extends React.Component {
       },
       marker: {
         enabled: true,
+        digits: 2,
         backgroundTint: processColor('teal'),
 	      markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
@@ -49,7 +50,7 @@ class LineChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: [{y: 100}, {y: 110}, {y: 105}, {y: 115}],
+              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
               label: 'Company X',
               config: {
                 lineWidth: 2,

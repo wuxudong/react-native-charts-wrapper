@@ -30,22 +30,27 @@ public class RNRectangleMarkerView extends MarkerView {
     private Drawable backgroundTop = getResources().getDrawable(R.drawable.rectangle_marker_top);
     private Drawable backgroundTopRight = getResources().getDrawable(R.drawable.rectangle_marker_top_right);
     
-    
+    private int digits = 0;
+
     public RNRectangleMarkerView(Context context) {
         super(context, R.layout.rectangle_marker);
         
         tvContent = (TextView) findViewById(R.id.rectangle_tvContent);
     }
-    
+
+    public void setDigits(int digits) {
+        this.digits = digits;
+    }
+
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         String text = "";
         
         if (e instanceof CandleEntry) {
             CandleEntry ce = (CandleEntry) e;
-            text = Utils.formatNumber(ce.getClose(), 2, true);
+            text = Utils.formatNumber(ce.getClose(), digits, true);
         } else {
-            text = Utils.formatNumber(e.getY(), 0, true);
+            text = Utils.formatNumber(e.getY(), digits, true);
         }
         
         if (e.getData() instanceof Map) {
