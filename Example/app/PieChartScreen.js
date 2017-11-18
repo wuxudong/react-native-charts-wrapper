@@ -4,8 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  processColor
+  processColor,
 } from 'react-native';
+
+import {StackNavigator, SafeAreaView} from 'react-navigation';
 
 import {PieChart} from 'react-native-charts-wrapper';
 
@@ -59,42 +61,41 @@ class PieChartScreen extends React.Component {
 
   render() {
     return (
+      <SafeAreaView style={{flex: 1}}>
+          <View>
+            <Text>selected:</Text>
+            <Text> {this.state.selectedEntry}</Text>
+          </View>
 
-      <View style={{flex: 1}}>
+          <View style={styles.container}>
+            <PieChart
+              style={styles.chart}
+              logEnabled={true}
+              chartBackgroundColor={processColor('pink')}
+              chartDescription={this.state.description}
+              data={this.state.data}
+              legend={this.state.legend}
 
-        <View style={{height:80}}>
-          <Text> selected entry</Text>
-          <Text> {this.state.selectedEntry}</Text>
-        </View>
-
-        <View style={styles.container}>
-          <PieChart
-            style={styles.chart}
-            logEnabled={true}
-            chartBackgroundColor={processColor('pink')}
-            chartDescription={this.state.description}
-            data={this.state.data}
-            legend={this.state.legend}
-
-            entryLabelColor = {processColor('black')}
-            entryLabelTextSize = {20}                 
+              entryLabelColor={processColor('black')}
+              entryLabelTextSize={20}
 
 
-            rotationEnabled={false}
-            drawSliceText={true}
-            usePercentValues={false}
-            centerText={'Pie center text!'}
-            centerTextRadiusPercent={100}
-            holeRadius={40}
-            holeColor={processColor('#f0f0f0')}
-            transparentCircleRadius={45}
-            transparentCircleColor={processColor('#f0f0f088')}
-            maxAngle={350}
-            onSelect={this.handleSelect.bind(this)}
-          />
-        </View>
+              rotationEnabled={false}
+              drawSliceText={true}
+              usePercentValues={false}
+              centerText={'Pie center text!'}
+              centerTextRadiusPercent={100}
+              holeRadius={40}
+              holeColor={processColor('#f0f0f0')}
+              transparentCircleRadius={45}
+              transparentCircleColor={processColor('#f0f0f088')}
+              maxAngle={350}
+              onSelect={this.handleSelect.bind(this)}
+            />
+          </View>
 
-      </View>
+        </SafeAreaView>
+
     );
   }
 }
@@ -108,4 +109,10 @@ const styles = StyleSheet.create({
   }
 });
 
+const SimpleStack = StackNavigator({
+  Home: {
+    screen: PieChartScreen,
+  }
+});
 export default PieChartScreen;
+
