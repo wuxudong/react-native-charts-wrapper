@@ -39,7 +39,6 @@ class LineChartScreen extends React.Component {
         backgroundTint: processColor('teal'),
 	      markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
-
       }
     };
   }
