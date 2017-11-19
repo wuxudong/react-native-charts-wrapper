@@ -45,6 +45,16 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
         chart.setSkipWebLineCount(count);
     }
 
+    @ReactProp(name = "drawWeb")
+    public void setDrawWeb(RadarChart chart, boolean enabled) {
+        chart.setDrawWeb(enabled);
+    }
+
+    @ReactProp(name = "minOffset")
+    public void setMinOffset(RadarChart chart, float minOffset) {
+        chart.setMinOffset(minOffset);
+    }
+
     @ReactProp(name = "rotationEnabled")
     public void setRotationEnabled(RadarChart chart, boolean enabled) {
         chart.setRotationEnabled(enabled);

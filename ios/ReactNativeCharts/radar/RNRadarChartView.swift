@@ -45,4 +45,8 @@ class RNRadarChartView: RNYAxisChartViewBase {
     func setRotationEnabled(_ enabled: Bool) {
         _chart.rotationEnabled = enabled
     }
+
+    func setDrawWeb(_ enabled: Bool) {
+        _chart.drawWeb = enabled
+    }
 }
