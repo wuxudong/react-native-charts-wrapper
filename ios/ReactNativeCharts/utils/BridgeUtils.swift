@@ -154,7 +154,7 @@ class BridgeUtils {
     }
     
     static func parseEasingOption(_ option: String) -> ChartEasingOption {
-        let iosEnumString = androidEnumToIOSEnum(option)
+        let iosEnumString = String(option.first!).lowercased() + String(option.dropFirst())
         
         switch iosEnumString {
         case "linear":
