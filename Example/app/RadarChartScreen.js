@@ -98,6 +98,7 @@ class RadarChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
+            yAxis={{drawLabels:true}}
             chartDescription={{text: ''}}
             legend={this.state.legend}
             drawWeb={true}

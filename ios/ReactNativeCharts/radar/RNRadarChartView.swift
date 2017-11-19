@@ -18,6 +18,14 @@ class RNRadarChartView: RNYAxisChartViewBase {
         return _dataExtract
     }
 
+    override func setYAxis(_ config: NSDictionary) {
+        let json = BridgeUtils.toJson(config)
+        let yAxis = _chart.yAxis
+
+        setCommonAxisConfig(yAxis, config: json)
+        setYAxisConfig(yAxis, config: json)
+    }
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = RadarChartView(frame: frame)
@@ -32,7 +40,6 @@ class RNRadarChartView: RNYAxisChartViewBase {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 
     func setSkipWebLineCount(_ count: Int) {
         _chart.skipWebLineCount = count
