@@ -60,5 +60,10 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
         chart.setRotationEnabled(enabled);
     }
 
+    @ReactProp(name = "rotationAngle")
+    public void setRotationAngle(RadarChart chart, float angle) {
+        chart.setRotationAngle(angle);
+    }
+
 
 }

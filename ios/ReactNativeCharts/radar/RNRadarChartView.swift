@@ -53,6 +53,10 @@ class RNRadarChartView: RNYAxisChartViewBase {
         _chart.rotationEnabled = enabled
     }
 
+    func setRotationAngle(_ angle: NSNumber) {
+        chart.rotationAngle = CGFloat(angle)
+    }
+
     func setDrawWeb(_ enabled: Bool) {
         _chart.drawWeb = enabled
     }

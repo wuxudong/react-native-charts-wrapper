@@ -22,5 +22,6 @@ RCT_EXPORT_VIEW_PROPERTY(entryLabelTextSize, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(maxAngle, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(minOffset, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(rotationEnabled, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(rotationAngle, NSNumber)
 
 @end

@@ -92,6 +92,10 @@ class RNPieChartView: RNChartViewBase {
         chart.rotationEnabled = enabled
     }
 
+    func setRotationAngle(_ angle: NSNumber) {
+        chart.rotationAngle = CGFloat(angle)
+    }
+
     override func didSetProps(_ changedProps: [String]!) {
         let pieChartDataSet = chart.data?.dataSets[0] as? PieChartDataSet
 

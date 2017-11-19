@@ -80,7 +80,8 @@ class PieChartScreen extends React.Component {
               entryLabelTextSize={20}
 
 
-              rotationEnabled={false}
+              rotationEnabled={true}
+              rotationAngle={45}
               drawSliceText={true}
               usePercentValues={false}
               centerText={'Pie center text!'}
