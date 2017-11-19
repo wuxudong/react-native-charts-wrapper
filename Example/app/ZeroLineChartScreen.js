@@ -72,7 +72,7 @@ class ZeroLineChartScreen extends React.Component {
             data={this.state.data}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
-            description={{text: ''}}
+            chartDescription={{text: ''}}
             legend={{enabled: false}}
             onSelect={this.handleSelect.bind(this)}
           />

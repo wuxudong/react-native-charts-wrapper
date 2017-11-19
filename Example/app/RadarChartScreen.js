@@ -98,7 +98,7 @@ class RadarChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
-            description={{text: ''}}
+            chartDescription={{text: ''}}
             legend={this.state.legend}
             skipWebLineCount={1}
             onSelect={this.handleSelect.bind(this)}

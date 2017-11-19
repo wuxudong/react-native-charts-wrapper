@@ -123,7 +123,7 @@ class LineChartScreen extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            description={{text: ''}}
+            chartDescription={{text: ''}}
             legend={this.state.legend}
             marker={this.state.marker}
             xAxis={this.state.xAxis}

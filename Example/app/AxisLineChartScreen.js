@@ -114,7 +114,7 @@ class AxisLineChartScreen extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            description={{text: ''}}
+            chartDescription={{text: ''}}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
             legend={{enabled: false}}

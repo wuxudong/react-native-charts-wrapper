@@ -167,7 +167,7 @@ class CandleStickChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             marker={this.state.marker}
-            description={{text: ''}}
+            chartDescription={{text: 'CandleStick'}}
             legend={this.state.legend}
             xAxis={this.state.xAxis}
             yAxis={this.state.yAxis}
