@@ -107,7 +107,10 @@ protected List<ReactPackage> getPackages() {
 ```
 
 
-### IOS [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
+### IOS
+
+
+Your may be interested in this artile [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
 
 #### 1. Add Source Files
 
