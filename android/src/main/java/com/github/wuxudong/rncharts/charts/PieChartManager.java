@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
@@ -23,6 +24,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     protected View createViewInstance(ThemedReactContext reactContext) {
         PieChart pieChart =  new PieChart(reactContext);
         pieChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(pieChart));
+        pieChart.setOnChartGestureListener(new RNOnChartGestureListener(pieChart));
         return pieChart;
     }
 

@@ -192,6 +192,7 @@ export default class Combined extends Component {
           data={this.state.data}
           xAxis={this.state.xAxis}
           onSelect={this.handleSelect.bind(this)}
+          onChange={(event) => console.log(event.nativeEvent)} // Android only!
           style={styles.container}/>
 
       </View>

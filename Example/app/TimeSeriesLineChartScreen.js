@@ -163,6 +163,7 @@ class TimeSeriesLineChartScreen extends React.Component {
             xAxis={{position:'BOTTOM'}}
 
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)} // Android only!
 
           />
         </View>

@@ -102,6 +102,7 @@ class ScatterChartScreen extends React.Component {
             legend={this.state.legend}
             marker={this.state.marker}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)} // Android only!
           />
         </View>
 
