@@ -68,6 +68,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7EBFC7C3EB1BF07B4AEEBC12 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EBC6CE748463BA2F750E31 /* Pods_Example.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,34 @@
 			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
 			remoteInfo = "double-conversion-tvOS";
 		};
+		9D90C4971FC2BC1F00E1F1DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		9D90C4991FC2BC1F00E1F1DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		9D90C4A91FC2BC1F00E1F1DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F3131F5F2E4B0010BF04;
+			remoteInfo = privatedata;
+		};
+		9D90C4AB1FC2BC1F00E1F1DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9936F32F1F5F2E5B0010BF04;
+			remoteInfo = "privatedata-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -350,6 +379,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9709CA5BA4B35D031398D32E /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartDateFormatter.swift; path = formatters/ChartDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +461,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				9D90C4981FC2BC1F00E1F1DB /* libfishhook.a */,
+				9D90C49A1FC2BC1F00E1F1DB /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -465,6 +497,8 @@
 				9D6A8D371F70AA6200CBA7FC /* libthird-party.a */,
 				9D6A8D391F70AA6200CBA7FC /* libdouble-conversion.a */,
 				9D6A8D3B1F70AA6200CBA7FC /* libdouble-conversion.a */,
+				9D90C4AA1FC2BC1F00E1F1DB /* libprivatedata.a */,
+				9D90C4AC1FC2BC1F00E1F1DB /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -482,6 +516,7 @@
 		424CA3EB1E851A1000E2422D /* ReactNativeCharts */ = {
 			isa = PBXGroup;
 			children = (
+				9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */,
 				424CA3EC1E851A1000E2422D /* BalloonMarker.swift */,
 				424CA3ED1E851A1000E2422D /* bar */,
 				424CA3F61E851A1000E2422D /* bubble */,
@@ -1005,6 +1040,34 @@
 			remoteRef = 9D6A8D3A1F70AA6200CBA7FC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9D90C4981FC2BC1F00E1F1DB /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = 9D90C4971FC2BC1F00E1F1DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9D90C49A1FC2BC1F00E1F1DB /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = 9D90C4991FC2BC1F00E1F1DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9D90C4AA1FC2BC1F00E1F1DB /* libprivatedata.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libprivatedata.a;
+			remoteRef = 9D90C4A91FC2BC1F00E1F1DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9D90C4AC1FC2BC1F00E1F1DB /* libprivatedata-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libprivatedata-tvOS.a";
+			remoteRef = 9D90C4AB1FC2BC1F00E1F1DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1133,6 +1196,7 @@
 				424CA4321E851A1000E2422D /* RNBubbleChartManagerBridge.m in Sources */,
 				424CA4421E851A1000E2422D /* PieDataExtract.swift in Sources */,
 				424CA42B1E851A1000E2422D /* RNBarChartView.swift in Sources */,
+				9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */,
 				424CA44B1E851A1000E2422D /* RNChartViewBase.swift in Sources */,
 				424CA4341E851A1000E2422D /* CandleDataExtract.swift in Sources */,
 				424CA4381E851A1000E2422D /* CombinedDataExtract.swift in Sources */,
