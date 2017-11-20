@@ -9,7 +9,7 @@ Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-nativ
 React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.4), support both android & ios.
 
 
-### ANDROID  [Download Example Apk](https://goo.gl/5sg2JQ)
+### ANDROID 
 ![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/Android%20ScreenShot.png)
 
 ### IOS
@@ -107,7 +107,7 @@ protected List<ReactPackage> getPackages() {
 ```
 
 
-### IOS
+### IOS [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
 
 #### 1. Add Source Files
 
