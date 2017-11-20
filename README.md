@@ -111,7 +111,7 @@ protected List<ReactPackage> getPackages() {
 
 #### 1. Add Source Files
 
- add directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts under your project *top level*. (In Xcode: File -> Add files to "App Name")
+ create a group under your project *top level* and add files under directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts
 
 #### 2. Add Bridge File
 
