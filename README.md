@@ -145,7 +145,7 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
 
   target 'MyApp' do
     pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.4'
+    pod 'Charts', '3.0.3'
   end
   
   post_install do |installer|
