@@ -323,20 +323,24 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
         // formatting
         // TODO: other formatting options
-        if config["valueFormatter"].array != nil {
-            axis.valueFormatter = IndexAxisValueFormatter(values: config["valueFormatter"].arrayValue.map({ $0.stringValue }))
-        } else if config["valueFormatter"].string != nil {
-            if "largeValue" == config["valueFormatter"].stringValue {
+        let valueFormatter = config["valueFormatter"];
+        if valueFormatter.array != nil {
+            axis.valueFormatter = IndexAxisValueFormatter(values: valueFormatter.arrayValue.map({ $0.stringValue }))
+        } else if valueFormatter.string != nil {
+            if "largeValue" == valueFormatter.stringValue {
                 axis.valueFormatter = LargeValueFormatter();
-            } else if "percent" == config["valueFormatter"].stringValue {
+            } else if "percent" == valueFormatter.stringValue {
                 let percentFormatter = NumberFormatter()
                 percentFormatter.numberStyle = .percent
                 
                 axis.valueFormatter = DefaultAxisValueFormatter(formatter: percentFormatter);
+            } else if "date" == valueFormatter.stringValue {
+              let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
+              axis.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
             } else {
               let customFormatter = NumberFormatter()
-              customFormatter.positiveFormat = config["valueFormatter"].stringValue
-              customFormatter.negativeFormat = config["valueFormatter"].stringValue
+              customFormatter.positiveFormat = valueFormatter.stringValue
+              customFormatter.negativeFormat = valueFormatter.stringValue
               
               axis.valueFormatter = DefaultAxisValueFormatter(formatter: customFormatter);
           }
