@@ -10,5 +10,9 @@ open class RNPieChartManager: RCTViewManager {
     let ins = RNPieChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }

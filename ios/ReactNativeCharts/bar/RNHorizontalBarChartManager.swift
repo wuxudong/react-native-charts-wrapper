@@ -10,5 +10,9 @@ open class RNHorizontalBarChartManager: RCTViewManager {
     let ins = RNHorizontalBarChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }

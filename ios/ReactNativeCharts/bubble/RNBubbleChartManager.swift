@@ -10,5 +10,9 @@ open class RNBubbleChartManager: RCTViewManager {
     let ins = RNBubbleChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }

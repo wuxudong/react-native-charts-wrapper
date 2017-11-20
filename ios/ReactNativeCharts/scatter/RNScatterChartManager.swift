@@ -10,5 +10,9 @@ class RNScatterChartManager: RCTViewManager {
     let ins = RNScatterChartView()
     return ins;
   }
-  
+
+  override open static func requiresMainQueueSetup() -> Bool {
+    return true;
+  }
+
 }
