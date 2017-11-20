@@ -94,7 +94,7 @@ create Podfile in ios with following content
 	
 	target 'ForBeginner' do
 		pod 'SwiftyJSON', '3.1.4'
-		pod 'Charts', '3.0.1'
+		pod 'Charts', '3.0.3'
 	end
 		
 	post_install do |installer|
@@ -116,9 +116,7 @@ run `pod install`
 
 open ForBeginner.xcworkspace/
 
-
-`Add Files to ForBeginner`,  then choose directory of `node_modules/react-native-charts-wrapper/ios/ReactNativeCharts`, add it under your project *top level*
-
+create a group `ReactNativeCharts` under your project *top level* and add files under directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts
 
 choose Group ForBeginner, create a empty swift file, the xcode will prompt creating a bridging file, let's name it `ForBeginner-Bridging-Header.h`
 
