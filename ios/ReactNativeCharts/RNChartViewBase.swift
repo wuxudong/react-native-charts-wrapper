@@ -329,10 +329,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             if "largeValue" == config["valueFormatter"].stringValue {
                 axis.valueFormatter = LargeValueFormatter();
             } else if "percent" == config["valueFormatter"].stringValue {
-                let percentFormatter = NumberFormatter()
-                percentFormatter.numberStyle = .percent
-                
-                axis.valueFormatter = DefaultAxisValueFormatter(formatter: percentFormatter);
+                axis.valueFormatter = PercentAxisFormatter();
             } else {
               let customFormatter = NumberFormatter()
               customFormatter.positiveFormat = config["valueFormatter"].stringValue
