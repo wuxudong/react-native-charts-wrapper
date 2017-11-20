@@ -110,10 +110,5 @@ const styles = StyleSheet.create({
   }
 });
 
-const SimpleStack = StackNavigator({
-  Home: {
-    screen: PieChartScreen,
-  }
-});
 export default PieChartScreen;
 
