@@ -16,8 +16,7 @@ class RNPieChartView: RNChartViewBase {
     override var dataExtract: DataExtract {
         return _dataExtract
     }
-
-
+  
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = PieChartView(frame: frame)
@@ -48,6 +47,45 @@ class RNPieChartView: RNChartViewBase {
         chart.centerText = text
     }
 
+    func setStyledCenterText(_ data: NSDictionary) {
+        let json = BridgeUtils.toJson(data)
+
+        var attrString: NSMutableAttributedString?
+        if json["text"].string == nil
+        {
+            attrString = nil
+        }
+        else
+        {
+            #if os(OSX)
+                let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+            #else
+                let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            #endif
+            paragraphStyle.lineBreakMode = NSLineBreakMode.byTruncatingTail
+            paragraphStyle.alignment = .center
+
+
+            var color : NSUIColor?
+            if json["color"].int != nil {
+                color = RCTConvert.uiColor(json["color"].intValue)
+            } else {
+                color = UIColor.black
+            }
+
+            let fontSize = json["size"].number != nil ? CGFloat(json["size"].numberValue) : CGFloat(12)
+
+            attrString = NSMutableAttributedString(string: json["text"].stringValue)
+            attrString?.setAttributes([
+                NSForegroundColorAttributeName: color!,
+                NSFontAttributeName: NSUIFont.systemFont(ofSize: fontSize),
+                NSParagraphStyleAttributeName: paragraphStyle
+                ], range: NSMakeRange(0, attrString!.length))
+        }
+
+        chart.centerAttributedText = attrString
+
+    }
 
     func setCenterTextRadiusPercent(_ radiusPercent: NSNumber) {
         chart.centerTextRadiusPercent = CGFloat(radiusPercent) / 100.0
@@ -101,6 +139,5 @@ class RNPieChartView: RNChartViewBase {
 
         pieChartDataSet?.entryLabelColor = chart.entryLabelColor
         pieChartDataSet?.entryLabelFont = chart.entryLabelFont
-  }
-
+    }
 }

@@ -3,6 +3,8 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.view.View;
 
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.PieChart;
@@ -11,6 +13,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.PieDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
 
@@ -44,6 +47,23 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     @ReactProp(name = "centerText")
     public void setCenterText(PieChart chart, String text) {
         chart.setCenterText(text);
+    }
+
+    @ReactProp(name = "styledCenterText")
+    public void setStyledCenterText(PieChart chart, ReadableMap propMap) {
+        if (BridgeUtils.validate(propMap, ReadableType.String, "text")) {
+            chart.setCenterText(propMap.getString("text"));
+        } else {
+            chart.setCenterText("");
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "color")) {
+            chart.setCenterTextColor(propMap.getInt("color"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "size")) {
+            chart.setCenterTextSize((float) propMap.getDouble("size"));
+        }
     }
 
     @ReactProp(name = "centerTextRadiusPercent")
