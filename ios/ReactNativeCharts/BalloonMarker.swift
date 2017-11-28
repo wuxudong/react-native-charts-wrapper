@@ -184,7 +184,7 @@ open class BalloonMarker: MarkerView {
 
 
     open override func draw(context: CGContext, point: CGPoint) {
-        if (labelns == nil) {
+        if (labelns == nil || labelns?.length == 0) {
             return
         }
 

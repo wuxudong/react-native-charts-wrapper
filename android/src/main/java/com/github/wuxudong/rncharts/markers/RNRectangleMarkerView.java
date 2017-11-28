@@ -66,7 +66,12 @@ public class RNRectangleMarkerView extends MarkerView {
             }
         }
         
-        tvContent.setText(text);
+        if (TextUtils.isEmpty(text)) {
+            tvContent.setVisibility(INVISIBLE);
+        } else {
+            tvContent.setText(text);
+            tvContent.setVisibility(VISIBLE);
+        }
         
         super.refreshContent(e, highlight);
     }
