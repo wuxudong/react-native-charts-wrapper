@@ -41,6 +41,7 @@ class PieChartScreen extends React.Component {
           }
         }],
       },
+      highlights: [{x:2}],
       description: {
         text: 'This is Pie chart description',
         textSize: 15,
@@ -75,6 +76,7 @@ class PieChartScreen extends React.Component {
               chartDescription={this.state.description}
               data={this.state.data}
               legend={this.state.legend}
+              highlights={this.state.highlights}
 
               entryLabelColor={processColor('black')}
               entryLabelTextSize={20}

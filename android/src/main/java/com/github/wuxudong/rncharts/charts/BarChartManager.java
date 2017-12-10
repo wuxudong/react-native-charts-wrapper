@@ -18,7 +18,7 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     }
 
     @Override
-    protected View createViewInstance(ThemedReactContext reactContext) {
+    protected BarChart createViewInstance(ThemedReactContext reactContext) {
         BarChart barChart = new BarChart(reactContext);
         barChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(barChart));
         return barChart;

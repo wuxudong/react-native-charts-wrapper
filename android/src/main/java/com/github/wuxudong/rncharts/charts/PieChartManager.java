@@ -23,7 +23,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     }
 
     @Override
-    protected View createViewInstance(ThemedReactContext reactContext) {
+    protected PieChart createViewInstance(ThemedReactContext reactContext) {
         PieChart pieChart =  new PieChart(reactContext);
         pieChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(pieChart));
         return pieChart;

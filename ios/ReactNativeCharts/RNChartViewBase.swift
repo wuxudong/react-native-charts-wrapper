@@ -378,7 +378,29 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
     }
     
-        
+    func setHighlights(_ config: NSArray) {        
+        var highlights : [Highlight] = []
+        for object in config {
+            if let dict = object as? NSDictionary {
+                let json = BridgeUtils.toJson(dict)
+                
+                if json["x"].double != nil {
+                    let dataSetIndex = json["dataSetIndex"].int != nil ? json["dataSetIndex"].intValue : 0
+                    let y = json["y"].double != nil ? json["y"].doubleValue : 0
+                    
+                    if json["stackIndex"].int != nil {
+                        highlights.append(Highlight(x: json["x"].doubleValue, dataSetIndex: dataSetIndex, stackIndex: json["stackIndex"].intValue))
+
+                    } else {
+                        highlights.append(Highlight(x: json["x"].doubleValue, y: y, dataSetIndex: dataSetIndex))
+
+                    }
+                }
+            }
+        }
+        chart.highlightValues(highlights)
+    }
+    
     @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         if self.onSelect == nil {

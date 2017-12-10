@@ -33,6 +33,7 @@ class StackedBarChartScreen extends React.Component {
           }
         }],
       },
+      highlights: [{x: 1, stackIndex: 2}, {x: 2, stackIndex: 1}],
       xAxis: {
         valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4'],
         granularityEnabled: true,
@@ -70,11 +71,12 @@ class StackedBarChartScreen extends React.Component {
             legend={this.state.legend}
             drawValueAboveBar={false}
             marker={{
-        enabled: true,
-        markerColor: processColor('#F0C0FF8C'),
-        textColor: processColor('white'),
-        markerFontSize: 14,
-      }}
+              enabled: true,
+              markerColor: processColor('#F0C0FF8C'),
+              textColor: processColor('white'),
+              markerFontSize: 14,
+            }}
+            highlights={this.state.highlights}
             onSelect={this.handleSelect.bind(this)}
           />
         </View>

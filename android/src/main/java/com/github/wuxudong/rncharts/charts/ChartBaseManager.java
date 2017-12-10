@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -23,12 +24,16 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
-public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
 
 
     abstract DataExtract getDataExtract();
@@ -109,8 +114,6 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
         // TODO resetCustom function
         // TODO extra
-
-        chart.invalidate();     // TODO is this necessary? Looks like enabled is not refreshing without it
     }
 
     @ReactProp(name = "logEnabled")
@@ -386,8 +389,40 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     @ReactProp(name = "data")
     public void setData(Chart chart, ReadableMap propMap) {
         chart.setData(getDataExtract().extract(propMap));
-        chart.invalidate();
+    }
+
+    @ReactProp(name = "highlights")
+    public void setHighlights(T chart, ReadableArray array) {
+        List<Highlight> highlights = new ArrayList<>();
+
+        for (int i = 0; i < array.size(); i++) {
+            if (!ReadableType.Map.equals(array.getType(i))) {
+                continue;
+            }
+
+            ReadableMap highlightMap = array.getMap(i);
+
+            if (BridgeUtils.validate(highlightMap, ReadableType.Number, "x")) {
+
+                int dataSetIndex = BridgeUtils.validate(highlightMap, ReadableType.Number, "dataSetIndex") ? highlightMap.getInt("dataSetIndex") : 0;
+
+                float y = BridgeUtils.validate(highlightMap, ReadableType.Number, "y") ? (float)highlightMap.getDouble("y") : 0;
+
+                if(BridgeUtils.validate(highlightMap, ReadableType.Number, "stackIndex")) {
+                    highlights.add(new Highlight((float)highlightMap.getDouble("x"), dataSetIndex, highlightMap.getInt("stackIndex")));
+                } else {
+                    highlights.add(new Highlight((float)highlightMap.getDouble("x"), y, dataSetIndex));
+                }
+            }
+        }
+
+        chart.highlightValues(highlights.toArray(new Highlight[highlights.size()]));
     }
 
 
+    @Override
+    protected void onAfterUpdateTransaction(T chart) {
+        super.onAfterUpdateTransaction(chart);
+        chart.invalidate();
+    }
 }

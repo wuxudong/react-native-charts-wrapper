@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.markers;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
