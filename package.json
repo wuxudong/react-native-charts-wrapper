@@ -19,6 +19,8 @@
     "Charts"
   ],
   "dependencies": {
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react": "16.1.1"
+
   }
 }

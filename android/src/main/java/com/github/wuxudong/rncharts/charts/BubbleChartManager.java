@@ -8,7 +8,7 @@ import com.github.wuxudong.rncharts.data.BubbleDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
-public class BubbleChartManager extends ChartBaseManager<BubbleChart, BubbleEntry> {
+public class BubbleChartManager extends BarLineChartBaseManager<BubbleChart, BubbleEntry> {
 
     @Override
     public String getName() {

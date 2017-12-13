@@ -164,6 +164,7 @@ class TimeSeriesLineChartScreen extends React.Component {
 
             onSelect={this.handleSelect.bind(this)}
 
+            ref="chart"
           />
         </View>
       </View>

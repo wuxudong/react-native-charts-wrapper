@@ -1,13 +1,19 @@
 package com.github.wuxudong.rncharts.charts;
 
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
+
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
@@ -100,9 +106,9 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     @ReactProp(name = "zoom")
     public void setZoom(BarLineChartBase chart, ReadableMap propMap) {
         if (BridgeUtils.validate(propMap, ReadableType.Number, "scaleX") &&
-            BridgeUtils.validate(propMap, ReadableType.Number, "scaleY") &&
-            BridgeUtils.validate(propMap, ReadableType.Number, "xValue") &&
-            BridgeUtils.validate(propMap, ReadableType.Number, "yValue")) {
+                BridgeUtils.validate(propMap, ReadableType.Number, "scaleY") &&
+                BridgeUtils.validate(propMap, ReadableType.Number, "xValue") &&
+                BridgeUtils.validate(propMap, ReadableType.Number, "yValue")) {
 
             YAxis.AxisDependency axisDependency = YAxis.AxisDependency.LEFT;
             if (propMap.hasKey("axisDependency") &&
@@ -137,6 +143,39 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
             bottom = propMap.getDouble("bottom");
         }
-        chart.setViewPortOffsets((float)left, (float)top, (float)right, (float)bottom);
+        chart.setViewPortOffsets((float) left, (float) top, (float) right, (float) bottom);
     }
+
+    @Nullable
+    @Override
+    public Map<String, Integer> getCommandsMap() {
+        Map<String, Integer> commandsMap = super.getCommandsMap();
+
+        Map<String, Integer> map = MapBuilder.of("moveViewTo", MOVE_VIEW_TO, "moveViewToX", MOVE_VIEW_TO_X, "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED);
+
+        if (commandsMap != null) {
+            map.putAll(commandsMap);
+        }
+        return map;
+    }
+
+    @Override
+    public void receiveCommand(T root, int commandId, @Nullable ReadableArray args) {
+        switch (commandId) {
+            case MOVE_VIEW_TO:
+                root.moveViewTo((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equals("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT);
+                return;
+
+            case MOVE_VIEW_TO_X:
+                root.moveViewToX((float) args.getDouble(0));
+                return;
+
+            case MOVE_VIEW_TO_ANIMATED:
+                root.moveViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equals("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
+                return;
+        }
+
+        super.receiveCommand(root, commandId, args);
+    }
+
 }

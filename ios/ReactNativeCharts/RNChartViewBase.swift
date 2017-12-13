@@ -283,7 +283,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     if (limitLineConfig["lineColor"].int != nil) {
                         limitLine.lineColor = RCTConvert.uiColor(limitLineConfig["lineColor"].intValue)
                     }
-                    
+                                        
                     if limitLineConfig["lineWidth"].number != nil {
                         limitLine.lineWidth = CGFloat(limitLineConfig["lineWidth"].numberValue)
                     }

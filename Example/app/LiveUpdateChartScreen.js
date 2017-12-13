@@ -75,7 +75,7 @@ export default class LiveUpdating extends Component {
     const {values, colorIndex} = this.state;
     const config = this.next(values, colorIndex);
     return (
-      <LineChart data={config.data} xAxis={config.xAxis} style={styles.container}/>
+      <LineChart data={config.data} xAxis={config.xAxis} style={styles.container} ref="chart"/>
     );
   }
 }

@@ -32,9 +32,15 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
 
+    protected static final int MOVE_VIEW_TO = 1;
+    protected static final int MOVE_VIEW_TO_X = 2;
+    protected static final int MOVE_VIEW_TO_ANIMATED = 3;
 
     abstract DataExtract getDataExtract();
 
@@ -406,12 +412,12 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
                 int dataSetIndex = BridgeUtils.validate(highlightMap, ReadableType.Number, "dataSetIndex") ? highlightMap.getInt("dataSetIndex") : 0;
 
-                float y = BridgeUtils.validate(highlightMap, ReadableType.Number, "y") ? (float)highlightMap.getDouble("y") : 0;
+                float y = BridgeUtils.validate(highlightMap, ReadableType.Number, "y") ? (float) highlightMap.getDouble("y") : 0;
 
-                if(BridgeUtils.validate(highlightMap, ReadableType.Number, "stackIndex")) {
-                    highlights.add(new Highlight((float)highlightMap.getDouble("x"), dataSetIndex, highlightMap.getInt("stackIndex")));
+                if (BridgeUtils.validate(highlightMap, ReadableType.Number, "stackIndex")) {
+                    highlights.add(new Highlight((float) highlightMap.getDouble("x"), dataSetIndex, highlightMap.getInt("stackIndex")));
                 } else {
-                    highlights.add(new Highlight((float)highlightMap.getDouble("x"), y, dataSetIndex));
+                    highlights.add(new Highlight((float) highlightMap.getDouble("x"), y, dataSetIndex));
                 }
             }
         }
@@ -425,4 +431,5 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         super.onAfterUpdateTransaction(chart);
         chart.invalidate();
     }
+
 }
