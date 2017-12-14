@@ -157,7 +157,7 @@ class CandleStickChartScreen extends React.Component {
 
 
   move() {
-    this.refs.chart.moveViewToAnimated(this.x++, 0, 'left', 1000)
+    this.refs.chart.moveViewToAnimated(this.x++, 0, 'left', 100)
   }
 
   render() {

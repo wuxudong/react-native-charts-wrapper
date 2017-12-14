@@ -23,6 +23,8 @@ RCT_EXPORT_VIEW_PROPERTY(scaleYEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(pinchZoom, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(doubleTapToZoomEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(zoom, NSDictionary) \
-RCT_EXPORT_VIEW_PROPERTY(viewPortOffsets, NSDictionary)
+RCT_EXPORT_VIEW_PROPERTY(viewPortOffsets, NSDictionary) \
+RCT_EXTERN_METHOD(moveViewToAnimated:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency duration:(nonnull NSNumber *)duration)
+
 
 #endif /* RNBarLineChartManagerBridge_h */

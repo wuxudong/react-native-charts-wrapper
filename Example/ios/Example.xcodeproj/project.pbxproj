@@ -69,6 +69,7 @@
 		7EBFC7C3EB1BF07B4AEEBC12 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EBC6CE748463BA2F750E31 /* Pods_Example.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */; };
+		9D9E904A1FE2326200827C9B /* RNBarLineChartBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +381,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9709CA5BA4B35D031398D32E /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartDateFormatter.swift; path = formatters/ChartDateFormatter.swift; sourceTree = "<group>"; };
+		9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBarLineChartBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,6 +532,7 @@
 				424CA4131E851A1000E2422D /* radar */,
 				424CA4181E851A1000E2422D /* RNBarLineChartManagerBridge.h */,
 				424CA4191E851A1000E2422D /* RNBarLineChartViewBase.swift */,
+				9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */,
 				424CA41A1E851A1000E2422D /* RNChartManagerBridge.h */,
 				424CA41B1E851A1000E2422D /* RNChartViewBase.swift */,
 				424CA41C1E851A1000E2422D /* RNYAxisChartManagerBridge.h */,
@@ -1189,6 +1192,7 @@
 				424CA4351E851A1000E2422D /* RNCandleStickChartManager.swift in Sources */,
 				424CA44D1E851A1000E2422D /* RNScatterChartManager.swift in Sources */,
 				424CA4481E851A1000E2422D /* RNRadarChartManagerBridge.m in Sources */,
+				9D9E904A1FE2326200827C9B /* RNBarLineChartBaseManager.swift in Sources */,
 				424CA44C1E851A1000E2422D /* RNYAxisChartViewBase.swift in Sources */,
 				424CA43C1E851A1000E2422D /* DataExtract.swift in Sources */,
 				424CA44A1E851A1000E2422D /* RNBarLineChartViewBase.swift in Sources */,
