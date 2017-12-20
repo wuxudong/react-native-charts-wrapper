@@ -32,6 +32,20 @@ extension RNBarLineChartBaseManager {
     }
   }
   
+  func _centerViewTo(_ reactTag: NSNumber, xValue: NSNumber, yValue: NSNumber, axisDependency: NSString) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+      (view.chart as! BarLineChartViewBase).centerViewTo(xValue: xValue.doubleValue, yValue: yValue.doubleValue, axis: BridgeUtils.parseAxisDependency(axisDependency as String));
+    }
+  }
+  
+  func _centerViewToAnimated(_ reactTag: NSNumber, xValue: NSNumber, yValue: NSNumber, axisDependency: NSString, duration: NSNumber) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+      (view.chart as! BarLineChartViewBase).centerViewToAnimated(xValue: xValue.doubleValue, yValue: yValue.doubleValue, axis: BridgeUtils.parseAxisDependency(axisDependency as String), duration: duration.doubleValue / 1000.0);
+    }
+  }
+  
   func _fitScreen(_ reactTag: NSNumber) {
     _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
       let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;

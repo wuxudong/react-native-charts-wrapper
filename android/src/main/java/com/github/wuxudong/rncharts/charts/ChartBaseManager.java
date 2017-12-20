@@ -41,7 +41,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int MOVE_VIEW_TO = 1;
     protected static final int MOVE_VIEW_TO_X = 2;
     protected static final int MOVE_VIEW_TO_ANIMATED = 3;
-    protected static final int FIT_SCREEN = 4;
+    protected static final int CENTER_VIEW_TO = 4;
+    protected static final int CENTER_VIEW_TO_ANIMATED = 6;
+    protected static final int FIT_SCREEN = 7;
 
     abstract DataExtract getDataExtract();
 

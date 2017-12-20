@@ -160,8 +160,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             }
 
             chart.zoom(
-                    (float) propMap.getDouble("scaleX"),
-                    (float) propMap.getDouble("scaleY"),
+                    (float) propMap.getDouble("scaleX") / chart.getScaleX(),
+                    (float) propMap.getDouble("scaleY") / chart.getScaleY(),
                     (float) propMap.getDouble("xValue"),
                     (float) propMap.getDouble("yValue"),
                     axisDependency
@@ -210,7 +210,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     public void receiveCommand(T root, int commandId, @Nullable ReadableArray args) {
         switch (commandId) {
             case MOVE_VIEW_TO:
-                root.moveViewTo((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equals("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT);
+                root.moveViewTo((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT);
                 return;
 
             case MOVE_VIEW_TO_X:
@@ -218,7 +218,15 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 return;
 
             case MOVE_VIEW_TO_ANIMATED:
-                root.moveViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equals("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
+                root.moveViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
+                return;
+
+            case CENTER_VIEW_TO:
+                root.centerViewTo((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT);
+                return;
+
+            case CENTER_VIEW_TO_ANIMATED:
+                root.centerViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
                 return;
 
             case FIT_SCREEN:

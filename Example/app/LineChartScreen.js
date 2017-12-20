@@ -108,6 +108,8 @@ class LineChartScreen extends React.Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
+
+    console.log(event.nativeEvent)
   }
 
   render() {

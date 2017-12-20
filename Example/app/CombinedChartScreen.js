@@ -176,25 +176,29 @@ export default class Combined extends Component {
     } else {
       this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
+
+    console.log(event.nativeEvent)
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height:80}}>
+        <View style={{height: 80}}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
 
 
-        <CombinedChart
-          data={this.state.data}
-          xAxis={this.state.xAxis}
-          onSelect={this.handleSelect.bind(this)}
-          onChange={(event) => console.log(event.nativeEvent)}
-          style={styles.container}/>
+        <View style={styles.container}>
+          <CombinedChart
+            data={this.state.data}
+            xAxis={this.state.xAxis}
+            onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
+            style={styles.container}/>
 
+        </View>
       </View>
     );
   }
