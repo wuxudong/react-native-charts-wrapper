@@ -15,6 +15,8 @@ import SwiftyJSON
 open class RNChartViewBase: UIView, ChartViewDelegate {
     open var onSelect:RCTBubblingEventBlock?
     
+    open var onChange:RCTBubblingEventBlock?
+    
     override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
@@ -421,9 +423,34 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     }
     
     @objc public func chartScaled(_ chartView: ChartViewBase, scaleX: CoreGraphics.CGFloat, scaleY: CoreGraphics.CGFloat) {
+        sendEvent("chartScaled")
     }
     
     @objc public func chartTranslated(_ chartView: ChartViewBase, dX: CoreGraphics.CGFloat, dY: CoreGraphics.CGFloat) {
+        sendEvent("chartTranslated")
+    }
+    
+    func sendEvent(_ action:String) {
+        var dict = [AnyHashable: Any]()
+        
+        dict["action"] = action
+        if chart is BarLineChartViewBase {
+            let viewPortHandler = chart.viewPortHandler
+            let barLineChart = chart as! BarLineChartViewBase
+            
+            dict["scaleX"] = barLineChart.scaleX
+            dict["scaleY"] = barLineChart.scaleY
+            
+            let point = barLineChart.valueForTouchPoint(point: (viewPortHandler?.contentCenter)!, axis: YAxis.AxisDependency.left)
+            dict["centerX"] = point.x
+            dict["centerY"] = point.y
+        }
+        
+        if self.onChange == nil {
+            return
+        } else {
+            self.onChange!(dict)
+        }
     }
     
     

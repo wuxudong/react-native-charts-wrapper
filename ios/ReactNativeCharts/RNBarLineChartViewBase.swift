@@ -130,7 +130,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             if json["axisDependency"].string != nil && json["axisDependency"].stringValue == "RIGHT" {
                 axisDependency = YAxis.AxisDependency.right
             }
-
+            
             barLineChart.zoom(scaleX: CGFloat(json["scaleX"].numberValue),
                     scaleY: CGFloat(json["scaleY"].numberValue),
                     xValue: json["xValue"].doubleValue,

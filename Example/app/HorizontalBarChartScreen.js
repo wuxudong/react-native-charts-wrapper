@@ -83,6 +83,7 @@ class HorizontalBarChartScreen extends React.Component {
             drawValueAboveBar={true}
             drawHighlightArrow={true}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
       </View>

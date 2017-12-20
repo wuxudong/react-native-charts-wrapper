@@ -98,6 +98,7 @@ class BubbleChartScreen extends React.Component {
             legend={this.state.legend}
             animation={this.state.animation}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

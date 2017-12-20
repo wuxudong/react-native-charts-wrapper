@@ -145,6 +145,7 @@ class LineChartScreen extends React.Component {
 
             keepPositionOnRotation={false}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

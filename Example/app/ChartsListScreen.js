@@ -11,6 +11,8 @@ import {
 import {StackNavigator, SafeAreaView} from 'react-navigation';
 
 import AxisLineChartScreen from './AxisLineChartScreen';
+import MultipleChartScreen from './MultipleChartScreen';
+import MovingWindowChartScreen from './MovingWindowChartScreen';
 import BarChartScreen from './BarChartScreen';
 import HorizontalBarChartScreen from './HorizontalBarChartScreen';
 import BubbleChartScreen from './BubbleChartScreen';
@@ -128,7 +130,19 @@ var ExampleRoutes = {
     name: 'AxisLineChart',
     screen: AxisLineChartScreen,
     description: 'Displays a AxisLineChart',
+  },
+  MultipleChartScreen: {
+    name: 'MultipleChartScreen',
+    screen: MultipleChartScreen,
+    description: 'Displays a correlated MultipleChartScreen',
+  },
+  MovingWindowChartScreen: {
+    name: 'MovingWindowChartScreen',
+    screen: MovingWindowChartScreen,
+    description: 'Displays a MovingWindowChartScreen',
   }
+
+
 };
 
 const MainScreen = ({navigation}) => (

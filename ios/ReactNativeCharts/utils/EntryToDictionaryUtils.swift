@@ -18,8 +18,7 @@ class EntryToDictionaryUtils: NSObject {
         dict["data"] = (entry.data as! JSON).dictionaryObject!
     }
     
-    if type(of:entry) == BarChartDataEntry.self {
-        
+    if entry is BarChartDataEntry {        
         let barEntry = entry as! BarChartDataEntry;
 
         dict["x"] = barEntry.x
@@ -29,7 +28,7 @@ class EntryToDictionaryUtils: NSObject {
         } else {
             dict["y"] = barEntry.y
         }
-    } else if type(of:entry) == BubbleChartDataEntry.self {
+    } else if entry is BubbleChartDataEntry {
         
         let bubbleEntry = entry as! BubbleChartDataEntry;
         
@@ -37,7 +36,7 @@ class EntryToDictionaryUtils: NSObject {
         dict["y"] = bubbleEntry.y
         
         dict["size"] = bubbleEntry.size
-    } else if type(of:entry) == CandleChartDataEntry.self {
+    } else if entry is CandleChartDataEntry {
         let candleEntry = entry as! CandleChartDataEntry;
         
         dict["x"] = candleEntry.x
@@ -45,7 +44,7 @@ class EntryToDictionaryUtils: NSObject {
         dict["close"] = candleEntry.close
         dict["low"] = candleEntry.low
         dict["high"] = candleEntry.high
-    } else if type(of:entry) == PieChartDataEntry.self {
+    } else if entry is PieChartDataEntry {
         let pieEntry = entry as! PieChartDataEntry;
         
         dict["value"] = pieEntry.value
@@ -53,7 +52,7 @@ class EntryToDictionaryUtils: NSObject {
         if pieEntry.label != nil {
             dict["label"] = pieEntry.label!
         }            
-    } else if type(of:entry) == RadarChartDataEntry.self {
+    } else if entry is RadarChartDataEntry {
         let radarEntry = entry as! RadarChartDataEntry;
         
         dict["value"] = radarEntry.value

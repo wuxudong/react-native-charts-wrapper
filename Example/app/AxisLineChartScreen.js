@@ -119,6 +119,7 @@ class AxisLineChartScreen extends React.Component {
             yAxis={this.state.yAxis}
             legend={{enabled: false}}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
       </View>

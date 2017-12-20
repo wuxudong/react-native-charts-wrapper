@@ -78,6 +78,7 @@ class StackedBarChartScreen extends React.Component {
             }}
             highlights={this.state.highlights}
             onSelect={this.handleSelect.bind(this)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

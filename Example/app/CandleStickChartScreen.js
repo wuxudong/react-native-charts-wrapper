@@ -108,8 +108,8 @@ class CandleStickChartScreen extends React.Component {
       update(this.state, {
           xAxis: {
             $set: {
-              drawLabels: false,
-              drawGridLines: false,
+              drawLabels: true,
+              drawGridLines: true,
               position: 'BOTTOM',
 
               limitLines: _.times(this.state.data.dataSets[0].values.length / 5, (i) => {
@@ -155,11 +155,6 @@ class CandleStickChartScreen extends React.Component {
     }
   }
 
-
-  move() {
-    this.refs.chart.moveViewToAnimated(this.x++, 0, 'left', 100)
-  }
-
   render() {
     return (
 
@@ -168,7 +163,6 @@ class CandleStickChartScreen extends React.Component {
         <View style={{height:80}}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
-          <Button onPress={this.move.bind(this)} title="move"/>
         </View>
 
         <View style={styles.container}>
@@ -183,10 +177,10 @@ class CandleStickChartScreen extends React.Component {
             maxVisibleValueCount={16}
             autoScaleMinMaxEnabled={true}
             // zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
-            zoom={{scaleX: 2, scaleY: 1, xValue:  this.state.zoomXValue, yValue: 1, axisDependency: 'RIGHT'}}
+            zoom={{scaleX: 15.41, scaleY: 1, xValue:  40, yValue: 916, axisDependency: 'LEFT'}}
             onSelect={this.handleSelect.bind(this)}
-
             ref="chart"
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
 

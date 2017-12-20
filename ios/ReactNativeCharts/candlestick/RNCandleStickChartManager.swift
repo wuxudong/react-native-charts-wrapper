@@ -29,4 +29,7 @@ open class RNCandleStickChartManager: RCTViewManager, RNBarLineChartBaseManager 
     (self as RNBarLineChartBaseManager)._moveViewToAnimated(reactTag, xValue: xValue, yValue: yValue, axisDependency: axisDependency, duration: duration)
   }
   
+  func fitScreen(_ reactTag: NSNumber) {
+    (self as RNBarLineChartBaseManager)._fitScreen(reactTag)
+  }
 }

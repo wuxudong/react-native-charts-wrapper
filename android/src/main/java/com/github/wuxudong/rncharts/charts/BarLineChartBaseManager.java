@@ -1,5 +1,7 @@
 package com.github.wuxudong.rncharts.charts;
 
+import android.graphics.Matrix;
+
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -9,6 +11,7 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.Map;
@@ -191,7 +194,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     public Map<String, Integer> getCommandsMap() {
         Map<String, Integer> commandsMap = super.getCommandsMap();
 
-        Map<String, Integer> map = MapBuilder.of("moveViewTo", MOVE_VIEW_TO, "moveViewToX", MOVE_VIEW_TO_X, "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED);
+        Map<String, Integer> map = MapBuilder.of(
+                "moveViewTo", MOVE_VIEW_TO,
+                "moveViewToX", MOVE_VIEW_TO_X,
+                "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
+                "fitScreen", FIT_SCREEN);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -212,6 +219,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             case MOVE_VIEW_TO_ANIMATED:
                 root.moveViewToAnimated((float) args.getDouble(0), (float) args.getDouble(1), args.getString(2).equals("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT, args.getInt(3));
+                return;
+
+            case FIT_SCREEN:
+                root.fitScreen();
                 return;
         }
 
