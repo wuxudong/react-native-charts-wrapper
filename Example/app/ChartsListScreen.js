@@ -140,9 +140,7 @@ var ExampleRoutes = {
     name: 'MovingWindowChartScreen',
     screen: MovingWindowChartScreen,
     description: 'Displays a MovingWindowChartScreen',
-  }
-
-
+  },
 };
 
 const MainScreen = ({navigation}) => (

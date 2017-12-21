@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.wuxudong.rncharts.charts.YAxisChartBase;
 import com.github.wuxudong.rncharts.utils.EntryToWritableMapUtils;
@@ -94,8 +95,17 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             event.putDouble("scaleX", chart.getScaleX());
             event.putDouble("scaleY", chart.getScaleY());
 
-            event.putDouble("centerX", ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.getContentCenter().getX(), viewPortHandler.getContentCenter().getY(), YAxis.AxisDependency.LEFT).x);
-            event.putDouble("centerY", ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.getContentCenter().getX(), viewPortHandler.getContentCenter().getY(), YAxis.AxisDependency.LEFT).y);
+            MPPointD center = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.getContentCenter().getX(), viewPortHandler.getContentCenter().getY(), YAxis.AxisDependency.LEFT);
+            event.putDouble("centerX", center.x);
+            event.putDouble("centerY", center.y);
+
+            MPPointD leftBottom = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentLeft(), viewPortHandler.contentBottom(), YAxis.AxisDependency.LEFT);
+            MPPointD rightTop = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentRight(), viewPortHandler.contentTop(), YAxis.AxisDependency.LEFT);
+
+            event.putDouble("left", leftBottom.x);
+            event.putDouble("bottom", leftBottom.y);
+            event.putDouble("right", rightTop.x);
+            event.putDouble("top", rightTop.y);
         }
         return event;
     }

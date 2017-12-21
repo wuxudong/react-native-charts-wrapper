@@ -441,10 +441,20 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             dict["scaleX"] = barLineChart.scaleX
             dict["scaleY"] = barLineChart.scaleY
             
-            let center = barLineChart.valueForTouchPoint(point: (viewPortHandler?.contentCenter)!, axis: YAxis.AxisDependency.left)
-            dict["centerX"] = center.x
-            dict["centerY"] = center.y
-                        
+            if let handler = viewPortHandler {
+                let center = barLineChart.valueForTouchPoint(point: handler.contentCenter, axis: YAxis.AxisDependency.left)
+                dict["centerX"] = center.x
+                dict["centerY"] = center.y
+                
+                let leftBottom = barLineChart.valueForTouchPoint(point: CGPoint(x: handler.contentLeft, y: handler.contentBottom), axis: YAxis.AxisDependency.left)
+                
+                let rightTop = barLineChart.valueForTouchPoint(point: CGPoint(x: handler.contentRight, y: handler.contentTop), axis: YAxis.AxisDependency.left)
+                
+                dict["left"] = leftBottom.x
+                dict["bottom"] = leftBottom.y
+                dict["right"] = rightTop.x
+                dict["top"] = rightTop.y
+            }
         }
         
         if self.onChange == nil {
