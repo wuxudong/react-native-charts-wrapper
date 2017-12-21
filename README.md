@@ -188,13 +188,10 @@ Android and IOS have different convention:
 
 
 
-
-
-
-
 ## Data Format
 
 - Complete Form
+
 
 		data : {
 			...
@@ -202,12 +199,12 @@ Android and IOS have different convention:
 				{
 					values: [
 						{x: 5, y: 90},
-				        {x: 10, y: 130},
-				        {x: 50, y: 2000, marker: "eat more"},
-				        {x: 80, y: 9000, marker: "eat less"}
-			    	]
-			    },
-			    ...
+						{x: 10, y: 130},
+						{x: 50, y: 2000, marker: "eat more"},
+						{x: 80, y: 9000, marker: "eat less"}
+					]
+				},
+				...
 			]
 		}
 
@@ -233,10 +230,21 @@ check Example->TimeSeriesLineChart for details
 
 ## Callback
 
-Support value selection callBack. 
+**Support value selection callBack.**
 
 you can do whatever you want, even pop your own modal, or jump to another page.
 
+**Support gesture callBack.**
+
+check Example->MultipleChart for details.
+
+## Direct Function Call
+
+Support direct function call.
+
+You can use `chart.moveViewToX(...)` or other functions directly.
+
+check Example->MovingWindowChart for details.
 
 
 ## Custom Marker Content 
@@ -253,11 +261,6 @@ check Example->TimeSeriesLineChart for details.
 
   The font is a little different in android & ios, I don't know how to configure it in js in the same way.
   
-2. pie's entryLabelTextSize & entryLabelColor
-
-  MpAndroidChart & Charts are dealing pie's entryLabel in a different way, currently the settings of pie's entryLabelTextSize & entryLabelColor can only work in android.
-  
-
 **size of chart**
 
 you can set chart to fixed width & height, or flex:1
