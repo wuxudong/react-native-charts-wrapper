@@ -74,7 +74,7 @@ class MultipleChartScreen extends React.Component {
             scaleYEnabled={true}
             pinchZoom={true}
             doubleTapToZoomEnabled={true}
-            dragDecelerationEnabled={false}
+            dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
             zoom={this.state.chart1Zoom}
 
