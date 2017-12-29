@@ -277,19 +277,56 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                 if limitLineConfig["limit"].double != nil {
                     
                     let limitLine = ChartLimitLine(limit: limitLineConfig["limit"].doubleValue)
-                    
-                    if limitLineConfig["label"].string != nil {
-                        limitLine.label = limitLineConfig["label"].stringValue
+                  
+                    // default drawLabelEnabled=true in ChartLimitLine.swift
+                    if limitLineConfig["drawLabelEnabled"].bool == nil || limitLineConfig["drawLabelEnabled"].boolValue == true {
+                        if limitLineConfig["label"].string != nil {
+                          limitLine.label = limitLineConfig["label"].stringValue
+                        }
                     }
                     
                     if (limitLineConfig["lineColor"].int != nil) {
                         limitLine.lineColor = RCTConvert.uiColor(limitLineConfig["lineColor"].intValue)
                     }
-                                        
+                  
+                    if (limitLineConfig["valueTextColor"].int != nil) {
+                      limitLine.valueTextColor = RCTConvert.uiColor(limitLineConfig["valueTextColor"].intValue)
+                    }
+                  
+                    if (limitLineConfig["valueFont"].int != nil) {
+                      limitLine.valueFont = NSUIFont.systemFont(ofSize: CGFloat(limitLineConfig["valueFont"].intValue))
+                    }
+                    
                     if limitLineConfig["lineWidth"].number != nil {
                         limitLine.lineWidth = CGFloat(limitLineConfig["lineWidth"].numberValue)
                     }
-                    
+                  
+                    if limitLineConfig["labelPosition"].string != nil {
+                      switch limitLineConfig["labelPosition"].stringValue {
+                      case "RIGHT_BOTTOM":
+                        limitLine.labelPosition = ChartLimitLine.LabelPosition.rightBottom;
+                        break;
+                      case "LEFT_BOTTOM":
+                        limitLine.labelPosition = ChartLimitLine.LabelPosition.leftBottom;
+                        break;
+                      case "RIGHT_TOP":
+                        limitLine.labelPosition = ChartLimitLine.LabelPosition.rightTop;
+                        break;
+                      case "LEFT_TOP":
+                        limitLine.labelPosition = ChartLimitLine.LabelPosition.leftTop;
+                        break;
+                      default:
+                        break;
+                      }
+                    }
+                  
+                    if limitLineConfig["lineDashPhase"].float != nil {
+                      limitLine.lineDashPhase = CGFloat(limitLineConfig["lineDashPhase"].floatValue);
+                    }
+                    if limitLineConfig["lineDashLengths"].arrayObject != nil {
+                      limitLine.lineDashLengths = limitLineConfig["lineDashLengths"].arrayObject as? [CGFloat];
+                    }
+
                     axis.addLimitLine(limitLine)
                 }
             }
