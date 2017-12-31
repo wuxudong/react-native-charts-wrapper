@@ -417,11 +417,18 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
                 float y = BridgeUtils.validate(highlightMap, ReadableType.Number, "y") ? (float) highlightMap.getDouble("y") : 0;
 
+                Highlight e = null;
                 if (BridgeUtils.validate(highlightMap, ReadableType.Number, "stackIndex")) {
-                    highlights.add(new Highlight((float) highlightMap.getDouble("x"), dataSetIndex, highlightMap.getInt("stackIndex")));
+                    e = new Highlight((float) highlightMap.getDouble("x"), dataSetIndex, highlightMap.getInt("stackIndex"));
                 } else {
-                    highlights.add(new Highlight((float) highlightMap.getDouble("x"), y, dataSetIndex));
+                    e = new Highlight((float) highlightMap.getDouble("x"), y, dataSetIndex);
                 }
+
+                if (BridgeUtils.validate(highlightMap, ReadableType.Number, "dataIndex")) {
+                    e.setDataIndex(highlightMap.getInt("dataIndex"));
+                }
+
+                highlights.add(e);
             }
         }
 

@@ -390,13 +390,18 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     let dataSetIndex = json["dataSetIndex"].int != nil ? json["dataSetIndex"].intValue : 0
                     let y = json["y"].double != nil ? json["y"].doubleValue : 0
                     
+                    var highlight : Highlight
                     if json["stackIndex"].int != nil {
-                        highlights.append(Highlight(x: json["x"].doubleValue, dataSetIndex: dataSetIndex, stackIndex: json["stackIndex"].intValue))
-
+                        highlight = Highlight(x: json["x"].doubleValue, dataSetIndex: dataSetIndex, stackIndex: json["stackIndex"].intValue)
                     } else {
-                        highlights.append(Highlight(x: json["x"].doubleValue, y: y, dataSetIndex: dataSetIndex))
-
+                        highlight = Highlight(x: json["x"].doubleValue, y: y, dataSetIndex: dataSetIndex)
                     }
+                    
+                    if json["dataIndex"].int != nil {
+                        highlight.dataIndex = json["dataIndex"].intValue
+                    }
+                    
+                    highlights.append(highlight)
                 }
             }
         }
