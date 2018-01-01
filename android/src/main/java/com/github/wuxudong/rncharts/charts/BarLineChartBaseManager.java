@@ -89,7 +89,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 }
 
                 if (BridgeUtils.validate(left, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("min"), YAxis.AxisDependency.LEFT);
+                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.LEFT);
                 }
             }
 
@@ -100,7 +100,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 }
 
                 if (BridgeUtils.validate(right, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("min"), YAxis.AxisDependency.RIGHT);
+                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.RIGHT);
                 }
             }
         }
