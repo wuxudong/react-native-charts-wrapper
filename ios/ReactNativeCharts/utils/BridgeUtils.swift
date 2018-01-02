@@ -268,4 +268,21 @@ class BridgeUtils {
         }
         return nil;
     }
+    
+      static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
+      let iosEnumString = androidEnumToIOSEnum(position)
+//      NSLog("this label position %@", iosEnumString)
+      switch iosEnumString {
+      case "rightBottom":
+        return .rightBottom
+      case "leftBottom":
+        return .leftBottom
+      case "rightTop":
+        return .rightTop
+      case "leftTop":
+        return .leftTop
+      default:
+        return .rightTop
+      }
+    }
 }
