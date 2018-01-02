@@ -302,22 +302,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     }
                   
                     if limitLineConfig["labelPosition"].string != nil {
-                      switch limitLineConfig["labelPosition"].stringValue {
-                      case "RIGHT_BOTTOM":
-                        limitLine.labelPosition = ChartLimitLine.LabelPosition.rightBottom;
-                        break;
-                      case "LEFT_BOTTOM":
-                        limitLine.labelPosition = ChartLimitLine.LabelPosition.leftBottom;
-                        break;
-                      case "RIGHT_TOP":
-                        limitLine.labelPosition = ChartLimitLine.LabelPosition.rightTop;
-                        break;
-                      case "LEFT_TOP":
-                        limitLine.labelPosition = ChartLimitLine.LabelPosition.leftTop;
-                        break;
-                      default:
-                        break;
-                      }
+                      limitLine.labelPosition = BridgeUtils.parseLimitlineLabelPosition(limitLineConfig["labelPosition"].stringValue);
                     }
                   
                     if limitLineConfig["lineDashPhase"].float != nil {
