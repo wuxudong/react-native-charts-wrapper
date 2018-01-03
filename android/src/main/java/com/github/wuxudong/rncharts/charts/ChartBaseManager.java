@@ -339,6 +339,25 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineWidth")) {
                         limitLine.setLineWidth((float) limitLineMap.getDouble("lineWidth"));
                     }
+                    
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueTextColor")) {
+                        limitLine.setTextColor(limitLineMap.getInt("valueTextColor"));
+                    }
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueFont")) {
+                        limitLine.setTextSize(limitLineMap.getInt("valueFont"));
+                    }
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.String, "labelPosition")) {
+                        limitLine.setLabelPosition(LimitLine.LimitLabelPosition.valueOf(limitLineMap.getString("labelPosition")));
+                    }
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineDashPhase")
+                            && BridgeUtils.validate(limitLineMap, ReadableType.Array, "lineDashLengths")) {
+                        if (limitLineMap.getArray("lineDashLengths").size()>1) {
+                            float lineDashPhase = (float) limitLineMap.getDouble("lineDashPhase");
+                            float lineLength =  limitLineMap.getArray("lineDashLengths").getInt(0);
+                            float spaceLength = limitLineMap.getArray("lineDashLengths").getInt(1);
+                            limitLine.enableDashedLine(lineLength,spaceLength, lineDashPhase);
+                        }
+                    }
 
                     axis.addLimitLine(limitLine);
                 }
