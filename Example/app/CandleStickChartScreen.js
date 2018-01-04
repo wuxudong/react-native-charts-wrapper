@@ -136,7 +136,8 @@ class CandleStickChartScreen extends React.Component {
               },
               right: {
                 enabled: false
-              }
+              },
+
             }
           },
           zoomXValue: {

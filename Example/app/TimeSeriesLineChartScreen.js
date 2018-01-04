@@ -162,7 +162,7 @@ class TimeSeriesLineChartScreen extends React.Component {
 
             keepPositionOnRotation={false}
 
-            xAxis={{valueFormatter: '$#.##', position:'BOTTOM'}}
+            xAxis={{valueFormatter: 'percent', position:'BOTTOM'}}
 
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}

@@ -64,8 +64,25 @@ class StackedBarChartScreen extends React.Component {
         centerAxisLabels: true
       },
 
+      marker: {
+        enabled: true,
+        markerColor: processColor('#F0C0FF8C'),
+        textColor: processColor('white'),
+        markerFontSize: 14,
+      },
 
     };
+  }
+
+    componentDidMount() {
+    // in this example, there are line, bar, candle, scatter, bubble in this combined chart.
+    // according to MpAndroidChart, the default data sequence is line, bar, scatter, candle, bubble.
+    // so 4 should be used as dataIndex to highlight bubble data.
+
+    // if there is only bar, bubble in this combined chart.
+    // 1 should be used as dataIndex to highlight bubble data.
+
+    this.setState({...this.state, highlights: [{x: 1, y:40}, {x: 2, y:50}]})
   }
 
   handleSelect(event) {
@@ -97,6 +114,8 @@ class StackedBarChartScreen extends React.Component {
             drawValueAboveBar={false}
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
+            highlights={this.state.highlights}
+            marker={this.state.marker}
           />
         </View>
 
