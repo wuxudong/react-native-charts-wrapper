@@ -278,11 +278,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     
                     let limitLine = ChartLimitLine(limit: limitLineConfig["limit"].doubleValue)
                   
-                    // default drawLabelEnabled=true in ChartLimitLine.swift
-                    if limitLineConfig["drawLabelEnabled"].bool == nil || limitLineConfig["drawLabelEnabled"].boolValue == true {
-                        if limitLineConfig["label"].string != nil {
-                          limitLine.label = limitLineConfig["label"].stringValue
-                        }
+                    if limitLineConfig["label"].string != nil {
+                        limitLine.label = limitLineConfig["label"].stringValue
                     }
                     
                     if (limitLineConfig["lineColor"].int != nil) {
@@ -290,11 +287,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     }
                   
                     if (limitLineConfig["valueTextColor"].int != nil) {
-                      limitLine.valueTextColor = RCTConvert.uiColor(limitLineConfig["valueTextColor"].intValue)
+                        limitLine.valueTextColor = RCTConvert.uiColor(limitLineConfig["valueTextColor"].intValue)
                     }
                   
                     if (limitLineConfig["valueFont"].int != nil) {
-                      limitLine.valueFont = NSUIFont.systemFont(ofSize: CGFloat(limitLineConfig["valueFont"].intValue))
+                        limitLine.valueFont = NSUIFont.systemFont(ofSize: CGFloat(limitLineConfig["valueFont"].intValue))
                     }
                     
                     if limitLineConfig["lineWidth"].number != nil {
@@ -302,14 +299,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     }
                   
                     if limitLineConfig["labelPosition"].string != nil {
-                      limitLine.labelPosition = BridgeUtils.parseLimitlineLabelPosition(limitLineConfig["labelPosition"].stringValue);
+                        limitLine.labelPosition = BridgeUtils.parseLimitlineLabelPosition(limitLineConfig["labelPosition"].stringValue);
                     }
                   
                     if limitLineConfig["lineDashPhase"].float != nil {
-                      limitLine.lineDashPhase = CGFloat(limitLineConfig["lineDashPhase"].floatValue);
+                        limitLine.lineDashPhase = CGFloat(limitLineConfig["lineDashPhase"].floatValue);
                     }
                     if limitLineConfig["lineDashLengths"].arrayObject != nil {
-                      limitLine.lineDashLengths = limitLineConfig["lineDashLengths"].arrayObject as? [CGFloat];
+                        limitLine.lineDashLengths = limitLineConfig["lineDashLengths"].arrayObject as? [CGFloat];
                     }
 
                     axis.addLimitLine(limitLine)
