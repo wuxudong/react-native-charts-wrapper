@@ -32,6 +32,7 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -76,10 +77,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
         // Customizing
         if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
-            legend.setPosition(LegendPosition.valueOf(propMap.getString("position").toUpperCase()));
+            legend.setPosition(LegendPosition.valueOf(propMap.getString("position").toUpperCase(Locale.ENGLISH)));
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "form")) {
-            legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase()));
+            legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase(Locale.ENGLISH)));
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "formSize")) {
             legend.setFormSize((float) propMap.getDouble("formSize"));

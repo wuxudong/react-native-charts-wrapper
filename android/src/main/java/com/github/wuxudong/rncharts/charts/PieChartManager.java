@@ -33,7 +33,7 @@ public class PieChartManager extends ChartBaseManager<PieChart, PieEntry> {
     }
 
     @ReactProp(name = "drawEntryLabels")
-    public void setDrawSliceText(PieChart chart, boolean enabled) {
+    public void setDrawEntryLabels(PieChart chart, boolean enabled) {
         chart.setDrawEntryLabels(enabled);
     }
 

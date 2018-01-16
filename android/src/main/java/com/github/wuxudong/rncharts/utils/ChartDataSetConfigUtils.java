@@ -13,6 +13,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
 
+import java.util.Locale;
+
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
  * https://github.com/PhilJay/MPAndroidChart/wiki/DataSet-classes-in-detail
@@ -66,7 +68,7 @@ public class ChartDataSetConfigUtils {
         }
 
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {
-            dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase()));
+            dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase(Locale.ENGLISH)));
         }
     }
 
