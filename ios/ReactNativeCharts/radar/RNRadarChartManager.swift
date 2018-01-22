@@ -11,7 +11,7 @@ open class RNRadarChartManager: RCTViewManager {
     return ins;
   }
 
-  override open static func requiresMainQueueSetup() -> Bool {
+  open static func requiresMainQueueSetup() -> Bool {
     return true;
   }
 
