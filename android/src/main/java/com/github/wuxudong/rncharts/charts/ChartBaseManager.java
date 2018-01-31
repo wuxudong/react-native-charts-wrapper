@@ -400,6 +400,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             } else if ("date".equals(valueFormatter)) {
                 String valueFormatterPattern = propMap.getString("valueFormatterPattern");
                 axis.setValueFormatter(new DateFormatter(valueFormatterPattern));
+            } else if ("dateSince".equals(valueFormatter)) {
+                String valueFormatterPattern = propMap.getString("valueFormatterPattern");
+                long millsecSinceThen = (long)propMap.getDouble("millsecSince");
+                axis.setValueFormatter(new DateSinceFormatter(valueFormatterPattern, millsecSinceThen));
             } else {
                 axis.setValueFormatter(new CustomFormatter(valueFormatter));
             }
