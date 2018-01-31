@@ -18,24 +18,24 @@ public class DateSinceFormatter implements IAxisValueFormatter, IValueFormatter 
 
     private static int MILLSECONDS = 1000;
     private DateFormat mFormat;
-    private long mMillsecSinceThen;
+    private long mStartingTimestamp;
 
-    public DateSinceFormatter(String pattern, long millsecSinceThen) {
+    public DateSinceFormatter(String pattern, long startingTimestamp) {
         mFormat = new SimpleDateFormat(pattern);
-        mMillsecSinceThen = millsecSinceThen;
+        mStartingTimestamp = startingTimestamp;
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase yAxis) {
-        return format((long) (value * MILLSECONDS + mMillsecSinceThen));
+        return format((long) value * MILLSECONDS + mStartingTimestamp);
     }
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        return format((long) (value * MILLSECONDS + mMillsecSinceThen));
+        return format((long) value * MILLSECONDS + mStartingTimestamp);
     }
 
     private String format(long seconds) {
-        return mFormat.format(new Date(seconds * MILLSECONDS + mMillsecSinceThen));
+        return mFormat.format(new Date(seconds));
     }
 }
