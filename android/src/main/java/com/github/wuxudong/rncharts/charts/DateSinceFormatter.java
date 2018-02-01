@@ -15,8 +15,6 @@ import java.util.Date;
  */
 
 public class DateSinceFormatter implements IAxisValueFormatter, IValueFormatter {
-
-    private static int MILLSECONDS = 1000;
     private DateFormat mFormat;
     private long mStartingTimestamp;
 
@@ -27,15 +25,15 @@ public class DateSinceFormatter implements IAxisValueFormatter, IValueFormatter 
 
     @Override
     public String getFormattedValue(float value, AxisBase yAxis) {
-        return format((long) value * MILLSECONDS + mStartingTimestamp);
+        return format((long) value + mStartingTimestamp);
     }
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        return format((long) value * MILLSECONDS + mStartingTimestamp);
+        return format((long) value + mStartingTimestamp);
     }
 
-    private String format(long seconds) {
-        return mFormat.format(new Date(seconds));
+    private String format(long millSeconds) {
+        return mFormat.format(new Date(millSeconds));
     }
 }
