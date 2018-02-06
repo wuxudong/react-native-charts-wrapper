@@ -30,6 +30,13 @@ class PieDataExtract : DataExtract {
             pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
         }
         
+        if config["xValuePosition"].number != nil {
+          pieDataSet.xValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["xValuePosition"].numberValue))!
+        }
+      
+        if config["yValuePosition"].number != nil {
+          pieDataSet.yValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["yValuePosition"].numberValue))!
+        }
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {
