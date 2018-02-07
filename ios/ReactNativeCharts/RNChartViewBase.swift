@@ -20,6 +20,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
+        
+        let chartFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         chart.reactSetFrame(frame);
     }
     
