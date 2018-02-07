@@ -49,9 +49,9 @@ public class RNRectangleMarkerView extends MarkerView {
         
         if (e instanceof CandleEntry) {
             CandleEntry ce = (CandleEntry) e;
-            text = Utils.formatNumber(ce.getClose(), digits, true);
+            text = Utils.formatNumber(ce.getClose(), digits, false);
         } else {
-            text = Utils.formatNumber(e.getY(), digits, true);
+            text = Utils.formatNumber(e.getY(), digits, false);
         }
         
         if (e.getData() instanceof Map) {
