@@ -26,6 +26,9 @@ class BubbleDataExtract : DataExtract {
         if config["highlightCircleWidth"].number != nil {
             bubbleDataSet.highlightCircleWidth = CGFloat(config["highlightCircleWidth"].numberValue)
         }
+        if config["normalizeSizeEnabled"].number != nil {
+            bubbleDataSet.normalizeSizeEnabled = config["normalizeSizeEnabled"].boolValue
+        }
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

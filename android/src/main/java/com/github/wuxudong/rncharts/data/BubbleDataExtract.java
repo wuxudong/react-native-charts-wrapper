@@ -40,6 +40,9 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
         if (BridgeUtils.validate(config, ReadableType.Number, "highlightCircleWidth")) {
             bubbleDataSet.setHighlightCircleWidth((float) config.getDouble("highlightCircleWidth"));
         }
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "normalizeSizeEnabled")) {
+            bubbleDataSet.setNormalizeSizeEnabled(config.getBoolean("normalizeSizeEnabled"));
+        }
     }
 
     @Override
