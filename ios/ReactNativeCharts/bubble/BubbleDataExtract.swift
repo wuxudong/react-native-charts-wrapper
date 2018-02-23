@@ -26,7 +26,7 @@ class BubbleDataExtract : DataExtract {
         if config["highlightCircleWidth"].number != nil {
             bubbleDataSet.highlightCircleWidth = CGFloat(config["highlightCircleWidth"].numberValue)
         }
-        if config["normalizeSizeEnabled"].number != nil {
+        if config["normalizeSizeEnabled"].bool != nil {
             bubbleDataSet.normalizeSizeEnabled = config["normalizeSizeEnabled"].boolValue
         }
     }
