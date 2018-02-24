@@ -2,7 +2,6 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
-import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -26,16 +25,12 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
-import javax.annotation.Nullable;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
 
@@ -76,9 +71,29 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
 
         // Customizing
-        if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
-            legend.setPosition(LegendPosition.valueOf(propMap.getString("position").toUpperCase(Locale.ENGLISH)));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "horizontalAlignment")) {
+            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.valueOf(propMap.getString("horizontalAlignment").toUpperCase(Locale.ENGLISH)));
         }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "verticalAlignment")) {
+            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.valueOf(propMap.getString("verticalAlignment").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "orientation")) {
+            legend.setOrientation(Legend.LegendOrientation.valueOf(propMap.getString("orientation").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Boolean, "drawInside")) {
+            legend.setDrawInside(propMap.getBoolean("drawInside"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "direction")) {
+            legend.setDirection(Legend.LegendDirection.valueOf(propMap.getString("direction").toUpperCase(Locale.ENGLISH)));
+        }
+
+
+
+
         if (BridgeUtils.validate(propMap, ReadableType.String, "form")) {
             legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase(Locale.ENGLISH)));
         }

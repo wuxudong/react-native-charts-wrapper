@@ -5,8 +5,8 @@ import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.wuxudong.rncharts.data.CandleDataExtract;
 import com.github.wuxudong.rncharts.data.DataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class CandleStickChartManager extends BarLineChartBaseManager<CandleStickChart, CandleEntry> {
 

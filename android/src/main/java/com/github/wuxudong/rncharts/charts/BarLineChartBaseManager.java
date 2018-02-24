@@ -1,7 +1,5 @@
 package com.github.wuxudong.rncharts.charts;
 
-import android.graphics.Matrix;
-
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -11,7 +9,6 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.Map;

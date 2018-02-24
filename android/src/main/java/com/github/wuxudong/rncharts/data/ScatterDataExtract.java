@@ -18,7 +18,6 @@ import java.util.Locale;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     @Override
     ScatterData createData() {

@@ -10,8 +10,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.RadarDataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
