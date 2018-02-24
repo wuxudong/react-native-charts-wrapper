@@ -237,7 +237,21 @@ class BridgeUtils {
         default:
             return .left
         }
-
+    }
+  
+    static func parsePieChartDataSetValuePosition(_ option: String) -> PieChartDataSet.ValuePosition {
+      let iosEnumString = androidEnumToIOSEnum(option)
+      
+      switch iosEnumString {
+      case "insideSlice":
+        return .insideSlice
+        
+      case "outsideSlice":
+        return .outsideSlice
+        
+      default:
+        return .insideSlice
+      }
     }
         
     static func androidEnumToIOSEnum(_ desc: String) -> String {

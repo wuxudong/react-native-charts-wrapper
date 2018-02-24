@@ -414,7 +414,9 @@ type pieData {
         ...ConfigTypes.common,
 
         sliceSpace: number,
-        selectionShift: number
+        selectionShift: number,
+        xValuePosition: string,
+        yValuePosition: string
       }
     }
   ]

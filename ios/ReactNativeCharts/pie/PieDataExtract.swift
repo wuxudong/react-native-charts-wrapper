@@ -30,12 +30,12 @@ class PieDataExtract : DataExtract {
             pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
         }
         
-        if config["xValuePosition"].number != nil {
-          pieDataSet.xValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["xValuePosition"].numberValue))!
+        if config["xValuePosition"].string != nil {
+          pieDataSet.xValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["xValuePosition"].stringValue)
         }
       
-        if config["yValuePosition"].number != nil {
-          pieDataSet.yValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["yValuePosition"].numberValue))!
+        if config["yValuePosition"].string != nil {
+          pieDataSet.yValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["yValuePosition"].stringValue)
         }
     }
     
