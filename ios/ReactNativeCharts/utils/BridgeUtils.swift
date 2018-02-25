@@ -9,7 +9,7 @@ import Charts
 
 class BridgeUtils {
     static func toIOSAlpha(_ alpha: NSNumber) -> CGFloat {
-        return CGFloat(Double(alpha) / 255.0);
+        return CGFloat(Double(truncating: alpha) / 255.0);
     }
     
     static func parseColors(_ array: [JSON]) -> [NSUIColor] {
@@ -21,7 +21,7 @@ class BridgeUtils {
     static func toJson(_ dict: NSDictionary) -> JSON {
         let json = try! JSONSerialization.data(withJSONObject: dict);
         
-        return JSON.init(NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
+        return JSON.init(parseJSON: NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
     }
     
     static func parseLineChartMode(_ mode: String) -> LineChartDataSet.Mode {

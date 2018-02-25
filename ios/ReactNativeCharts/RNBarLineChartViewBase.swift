@@ -124,15 +124,15 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     func setZoom(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
 
-        if json["scaleX"].number != nil && json["scaleY"].number != nil && json["xValue"].double != nil && json["yValue"].double != nil {
+        if json["scaleX"].float != nil && json["scaleY"].float != nil && json["xValue"].double != nil && json["yValue"].double != nil {
             var axisDependency = YAxis.AxisDependency.left
 
             if json["axisDependency"].string != nil && json["axisDependency"].stringValue == "RIGHT" {
                 axisDependency = YAxis.AxisDependency.right
             }
             
-            barLineChart.zoom(scaleX: CGFloat(json["scaleX"].numberValue),
-                    scaleY: CGFloat(json["scaleY"].numberValue),
+            barLineChart.zoom(scaleX: CGFloat(json["scaleX"].floatValue),
+                    scaleY: CGFloat(json["scaleY"].floatValue),
                     xValue: json["xValue"].doubleValue,
                     yValue: json["yValue"].doubleValue,
                     axis: axisDependency)
