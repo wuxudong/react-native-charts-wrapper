@@ -128,6 +128,7 @@ Your may be interested in this article [Detail Guide provided by contributor](ht
 		#import "React/RCTBridgeModule.h"
 		#import "React/RCTEventDispatcher.h"
 		#import "React/RCTEventEmitter.h"
+        #import "React/RCTFont.h"
 
 
 You should make sure set this file in your target -> Build Settings -> Swift Compiler - General -> Object-C Bridging Header 
