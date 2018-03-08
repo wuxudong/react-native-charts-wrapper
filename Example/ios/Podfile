@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'Example' do
-  pod 'SwiftyJSON', '3.1.4'
+  pod 'SwiftyJSON', :tag => '3.1.4', :git => 'https://github.com/SwiftyJSON/SwiftyJSON'
   pod 'Charts', :tag => 'v3.0.3', :git => 'https://github.com/danielgindi/Charts.git'
 end
 
