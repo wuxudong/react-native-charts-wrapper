@@ -4,6 +4,7 @@ import Charts
 open class DateSinceFormatter: NSObject, IValueFormatter, IAxisValueFormatter {
 
   open var dateFormatter = DateFormatter();
+  open var startingTimestamp = 0;
   
   public override init() {
     
