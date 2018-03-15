@@ -54,6 +54,10 @@ class ChartDataSetConfigUtils: NSObject {
             } else if "date" == valueFormatter.stringValue {
                 let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
                 dataSet.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
+            } else if "dateSince" == valueFormatter.stringValue {
+                let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
+                let startingTimestamp = config["startingTimestamp"].intValue;
+                dataSet.valueFormatter = DateSinceFormatter(pattern: valueFormatterPattern, startingTimestamp: startingTimestamp);
             } else {
                 let customFormatter = NumberFormatter()
                 customFormatter.positiveFormat = valueFormatter.stringValue
