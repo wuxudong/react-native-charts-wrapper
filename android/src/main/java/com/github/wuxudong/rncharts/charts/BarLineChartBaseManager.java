@@ -85,22 +85,22 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             if (BridgeUtils.validate(y, ReadableType.Map, "left")) {
                 ReadableMap left = y.getMap("left");
                 if (BridgeUtils.validate(left, ReadableType.Number, "min")) {
-                    chart.setVisibleYRangeMinimum((float) y.getDouble("min"), YAxis.AxisDependency.LEFT);
+                    chart.setVisibleYRangeMinimum((float) left.getDouble("min"), YAxis.AxisDependency.LEFT);
                 }
 
                 if (BridgeUtils.validate(left, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.LEFT);
+                    chart.setVisibleYRangeMaximum((float) left.getDouble("max"), YAxis.AxisDependency.LEFT);
                 }
             }
 
             if (BridgeUtils.validate(y, ReadableType.Map, "right")) {
                 ReadableMap right = y.getMap("right");
                 if (BridgeUtils.validate(right, ReadableType.Number, "min")) {
-                    chart.setVisibleYRangeMinimum((float) y.getDouble("min"), YAxis.AxisDependency.RIGHT);
+                    chart.setVisibleYRangeMinimum((float) right.getDouble("min"), YAxis.AxisDependency.RIGHT);
                 }
 
                 if (BridgeUtils.validate(right, ReadableType.Number, "max")) {
-                    chart.setVisibleYRangeMaximum((float) y.getDouble("max"), YAxis.AxisDependency.RIGHT);
+                    chart.setVisibleYRangeMaximum((float) right.getDouble("max"), YAxis.AxisDependency.RIGHT);
                 }
             }
         }
