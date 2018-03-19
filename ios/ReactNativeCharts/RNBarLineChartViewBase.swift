@@ -76,7 +76,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             barLineChart.leftAxis.axisMinimum = y["left"]["min"].doubleValue
         }
         if y["left"]["max"].double != nil {
-            barLineChart.leftAxis.axisMaximum = y["left"]["min"].doubleValue
+            barLineChart.leftAxis.axisMaximum = y["left"]["max"].doubleValue
         }
         
         if y["right"]["min"].double != nil {
