@@ -12,11 +12,11 @@ import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     @Override
     PieData createData() {
@@ -43,10 +43,10 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         }
 
         if (BridgeUtils.validate(config, ReadableType.String, "xValuePosition")) {
-            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("xValuePosition")));
+            pieDataSet.setXValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("xValuePosition").toUpperCase(Locale.ENGLISH)));
         }
         if (BridgeUtils.validate(config, ReadableType.String, "yValuePosition")) {
-            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("yValuePosition")));
+            pieDataSet.setYValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("yValuePosition").toUpperCase(Locale.ENGLISH)));
         }
     }
 

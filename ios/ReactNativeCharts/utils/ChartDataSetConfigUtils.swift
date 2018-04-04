@@ -30,8 +30,8 @@ class ChartDataSetConfigUtils: NSObject {
             dataSet.highlightEnabled = config["highlightEnabled"].boolValue;
         }
 
-        if config["valueTextSize"].number != nil {
-            dataSet.valueFont = dataSet.valueFont.withSize(CGFloat(config["valueTextSize"].numberValue))
+        if config["valueTextSize"].float != nil {
+            dataSet.valueFont = dataSet.valueFont.withSize(CGFloat(config["valueTextSize"].floatValue))
         }
         
         if config["valueTextColor"].int != nil {
@@ -91,8 +91,8 @@ class ChartDataSetConfigUtils: NSObject {
             dataSet.drawHorizontalHighlightIndicatorEnabled = config["drawHorizontalHighlightIndicator"].boolValue;
         }
         
-        if config["highlightLineWidth"].number != nil {
-            dataSet.highlightLineWidth = CGFloat(config["highlightLineWidth"].numberValue);
+        if config["highlightLineWidth"].float != nil {
+            dataSet.highlightLineWidth = CGFloat(config["highlightLineWidth"].floatValue);
         }
     }
     
@@ -109,8 +109,8 @@ class ChartDataSetConfigUtils: NSObject {
             dataSet.drawFilledEnabled = config["drawFilled"].boolValue;
         }
         
-        if config["lineWidth"].number != nil {
-            dataSet.lineWidth = CGFloat(config["lineWidth"].numberValue);
+        if config["lineWidth"].float != nil {
+            dataSet.lineWidth = CGFloat(config["lineWidth"].floatValue);
         }
     }
     

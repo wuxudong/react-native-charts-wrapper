@@ -17,12 +17,12 @@ class RNYAxisChartViewBase: RNChartViewBase {
             axis.inverted = config["inverted"].boolValue
         }
 
-        if config["spaceTop"].number != nil {
-            axis.spaceTop = CGFloat(config["spaceTop"].numberValue)
+        if config["spaceTop"].float != nil {
+            axis.spaceTop = CGFloat(config["spaceTop"].floatValue)
         }
 
-        if config["spaceBottom"].number != nil {
-            axis.spaceBottom = CGFloat(config["spaceBottom"].numberValue)
+        if config["spaceBottom"].float != nil {
+            axis.spaceBottom = CGFloat(config["spaceBottom"].floatValue)
         }
 
 
@@ -40,8 +40,8 @@ class RNYAxisChartViewBase: RNChartViewBase {
             }
 
 
-            if zeroLineConfig["lineWidth"].number != nil {
-                axis.zeroLineWidth = CGFloat(zeroLineConfig["lineWidth"].numberValue);
+            if zeroLineConfig["lineWidth"].float != nil {
+                axis.zeroLineWidth = CGFloat(zeroLineConfig["lineWidth"].floatValue);
             }
 
             if zeroLineConfig["lineColor"].int != nil {

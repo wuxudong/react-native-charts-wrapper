@@ -13,7 +13,6 @@ import java.util.Date;
 /**
  * Created by dougl on 05/09/2017.
  */
-
 public class DateFormatter implements IAxisValueFormatter, IValueFormatter {
 
     private DateFormat mFormat;

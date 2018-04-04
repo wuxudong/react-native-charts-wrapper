@@ -19,7 +19,6 @@ import java.util.Locale;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     @Override
     CandleData createData() {

@@ -22,12 +22,12 @@ class PieDataExtract : DataExtract {
         ChartDataSetConfigUtils.commonConfig(pieDataSet, config: config);
         
         // PieDataSet only config
-        if config["sliceSpace"].number != nil {
-            pieDataSet.sliceSpace = CGFloat(config["sliceSpace"].numberValue)
+        if config["sliceSpace"].float != nil {
+            pieDataSet.sliceSpace = CGFloat(config["sliceSpace"].floatValue)
         }
         
-        if config["selectionShift"].number != nil {
-            pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
+        if config["selectionShift"].float != nil {
+            pieDataSet.selectionShift = CGFloat(config["selectionShift"].floatValue)
         }
         
         if config["xValuePosition"].string != nil {

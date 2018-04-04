@@ -5,6 +5,7 @@
 import UIKit
 
 @objc(RNCandleStickChartManager)
+@objcMembers
 open class RNCandleStickChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   

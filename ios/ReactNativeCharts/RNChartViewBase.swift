@@ -12,6 +12,7 @@ import SwiftyJSON
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
+@objcMembers
 open class RNChartViewBase: UIView, ChartViewDelegate {
     open var onSelect:RCTBubblingEventBlock?
     
@@ -53,7 +54,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if json["textSize"].number != nil {
-            legend.font = legend.font.withSize(CGFloat(json["textSize"].numberValue))
+            legend.font = legend.font.withSize(CGFloat(truncating: json["textSize"].numberValue))
         }
         
         // Wrapping / clipping avoidance
@@ -62,11 +63,27 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if json["maxSizePercent"].number != nil {
-            legend.maxSizePercent = CGFloat(json["maxSizePercent"].numberValue)
+            legend.maxSizePercent = CGFloat(truncating: json["maxSizePercent"].numberValue)
         }
         
-        if json["position"].string != nil {
-            legend.position = BridgeUtils.parseLegendPosition(json["position"].stringValue)
+        if json["horizontalAlignment"].string != nil {
+            legend.horizontalAlignment = BridgeUtils.parseLegendHorizontalAlignment(json["horizontalAlignment"].stringValue)
+        }
+        
+        if json["verticalAlignment"].string != nil {
+            legend.verticalAlignment = BridgeUtils.parseLegendVerticalAlignment(json["verticalAlignment"].stringValue)
+        }
+        
+        if json["orientation"].string != nil {
+            legend.orientation = BridgeUtils.parseLegendOrientation(json["orientation"].stringValue)
+        }
+        
+        if json["drawInside"].bool != nil {
+            legend.drawInside = json["drawInside"].boolValue
+        }
+        
+        if json["direction"].string != nil {
+            legend.direction = BridgeUtils.parseLegendDirection(json["direction"].stringValue)
         }
         
         
@@ -75,19 +92,19 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if json["formSize"].number != nil {
-            legend.formSize = CGFloat(json["formSize"].numberValue)
+            legend.formSize = CGFloat(truncating: json["formSize"].numberValue)
         }
         
         if json["xEntrySpace"].number != nil {
-            legend.xEntrySpace = CGFloat(json["xEntrySpace"].numberValue)
+            legend.xEntrySpace = CGFloat(truncating: json["xEntrySpace"].numberValue)
         }
         
         if json["yEntrySpace"].number != nil {
-            legend.yEntrySpace = CGFloat(json["yEntrySpace"].numberValue)
+            legend.yEntrySpace = CGFloat(truncating: json["yEntrySpace"].numberValue)
         }
         
         if json["formToTextSpace"].number != nil {
-            legend.formToTextSpace = CGFloat(json["formToTextSpace"].numberValue)
+            legend.formToTextSpace = CGFloat(truncating: json["formToTextSpace"].numberValue)
         }
         
         
@@ -103,7 +120,17 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     // TODO null label should start a group
                     // TODO -2 color should avoid drawing a form
                     
-                    legend.setCustom(colors: BridgeUtils.parseColors(colorsArray), labels: labelsArray.map({ return $0.stringValue }))
+                    var legendEntries = [LegendEntry]();
+                    
+                    for i in 0..<labelsArray.count {
+                        let legendEntry = LegendEntry()
+                        legendEntry.formColor =  RCTConvert.uiColor(colorsArray[i].intValue);
+                        legendEntry.label = labelsArray[i].stringValue;
+                        
+                        legendEntries.append(legendEntry)
+                    }
+                    
+                    legend.setCustom(entries: legendEntries)
                 }
             }
         }

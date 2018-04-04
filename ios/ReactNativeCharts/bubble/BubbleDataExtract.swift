@@ -23,8 +23,8 @@ class BubbleDataExtract : DataExtract {
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(bubbleDataSet, config: config)
         
         // BubbleDataSet only config
-        if config["highlightCircleWidth"].number != nil {
-            bubbleDataSet.highlightCircleWidth = CGFloat(config["highlightCircleWidth"].numberValue)
+        if config["highlightCircleWidth"].float != nil {
+            bubbleDataSet.highlightCircleWidth = CGFloat(config["highlightCircleWidth"].floatValue)
         }
         if config["normalizeSizeEnabled"].bool != nil {
             bubbleDataSet.normalizeSizeEnabled = config["normalizeSizeEnabled"].boolValue

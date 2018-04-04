@@ -28,10 +28,10 @@ class MultipleChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: Array.from(new Array(100), (val, index) => index),
+              values: Array.from(new Array(600), (val, index) => index),
               label: 'Company X',
             }, {
-              values: Array.from(new Array(100), (val, index) => index + 5),
+              values: Array.from(new Array(600), (val, index) => index + 5),
               label: 'Company Y',
             }]
           }
@@ -73,9 +73,6 @@ class MultipleChartScreen extends React.Component {
             scaleXEnabled={true}
             scaleYEnabled={true}
             pinchZoom={true}
-            doubleTapToZoomEnabled={true}
-            dragDecelerationEnabled={true}
-            dragDecelerationFrictionCoef={0.99}
             zoom={this.state.chart1Zoom}
 
             ref="chart1"
@@ -96,10 +93,7 @@ class MultipleChartScreen extends React.Component {
             scaleXEnabled={true}
             scaleYEnabled={true}
             pinchZoom={true}
-            doubleTapToZoomEnabled={true}
-            dragDecelerationEnabled={false}
-            dragDecelerationFrictionCoef={0.99}
-
+            
             ref="chart2"
 
             zoom={this.state.chart2Zoom}

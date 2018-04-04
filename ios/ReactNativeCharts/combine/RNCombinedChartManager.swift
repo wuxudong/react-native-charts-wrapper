@@ -5,6 +5,7 @@
 import UIKit
 
 @objc(RNCombinedChartManager)
+@objcMembers
 open class RNCombinedChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   

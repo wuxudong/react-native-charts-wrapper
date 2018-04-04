@@ -73,9 +73,29 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
 
         // Customizing
-        if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
-            legend.setPosition(LegendPosition.valueOf(propMap.getString("position").toUpperCase(Locale.ENGLISH)));
+        if (BridgeUtils.validate(propMap, ReadableType.String, "horizontalAlignment")) {
+            legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.valueOf(propMap.getString("horizontalAlignment").toUpperCase(Locale.ENGLISH)));
         }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "verticalAlignment")) {
+            legend.setVerticalAlignment(Legend.LegendVerticalAlignment.valueOf(propMap.getString("verticalAlignment").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "orientation")) {
+            legend.setOrientation(Legend.LegendOrientation.valueOf(propMap.getString("orientation").toUpperCase(Locale.ENGLISH)));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Boolean, "drawInside")) {
+            legend.setDrawInside(propMap.getBoolean("drawInside"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "direction")) {
+            legend.setDirection(Legend.LegendDirection.valueOf(propMap.getString("direction").toUpperCase(Locale.ENGLISH)));
+        }
+
+
+
+
         if (BridgeUtils.validate(propMap, ReadableType.String, "form")) {
             legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase(Locale.ENGLISH)));
         }

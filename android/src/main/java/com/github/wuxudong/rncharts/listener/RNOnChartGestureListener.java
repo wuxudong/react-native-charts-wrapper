@@ -10,24 +10,16 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.github.wuxudong.rncharts.charts.YAxisChartBase;
-import com.github.wuxudong.rncharts.utils.EntryToWritableMapUtils;
 
 import java.lang.ref.WeakReference;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by xudong on 07/03/2017.
  */
-
 public class RNOnChartGestureListener implements OnChartGestureListener {
 
     private WeakReference<Chart> mWeakChart;
