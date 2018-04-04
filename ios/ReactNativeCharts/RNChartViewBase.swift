@@ -387,6 +387,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             } else if "date" == valueFormatter.stringValue {
               let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
               axis.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
+            } else if "dateSince" == valueFormatter.stringValue {
+              let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
+              let startingTimestamp = config["startingTimestamp"].intValue;
+              axis.valueFormatter = DateSinceFormatter(pattern: valueFormatterPattern, startingTimestamp: startingTimestamp);
             } else {
               let customFormatter = NumberFormatter()
               customFormatter.positiveFormat = valueFormatter.stringValue

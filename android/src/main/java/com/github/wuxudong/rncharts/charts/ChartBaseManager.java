@@ -415,6 +415,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             } else if ("date".equals(valueFormatter)) {
                 String valueFormatterPattern = propMap.getString("valueFormatterPattern");
                 axis.setValueFormatter(new DateFormatter(valueFormatterPattern));
+            } else if ("dateSince".equals(valueFormatter)) {
+                String valueFormatterPattern = propMap.getString("valueFormatterPattern");
+                long startingTimestamp = (long)propMap.getDouble("startingTimestamp");
+                axis.setValueFormatter(new DateSinceFormatter(valueFormatterPattern, startingTimestamp));
             } else {
                 axis.setValueFormatter(new CustomFormatter(valueFormatter));
             }
