@@ -94,6 +94,9 @@ class LineChartScreen extends React.Component {
         },
         xAxis: {
           $set: {
+            fontFamily:"HelveticaNeue-Medium",
+            fontWeight:"bold",
+            fontStyle:"italic",
             valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4']
           }
         }

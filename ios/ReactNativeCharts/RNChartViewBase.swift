@@ -252,6 +252,18 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         // style
+        if config["fontFamily"].string != nil {
+            axis.labelFont = RCTFont.update(nil, withFamily: config["fontFamily"].string)
+        }
+        
+        if config["fontStyle"].string != nil {
+            axis.labelFont = RCTFont.update(axis.labelFont, withStyle: config["fontStyle"].string)
+        }
+        
+        if config["fontWeight"].string != nil {
+            axis.labelFont = RCTFont.update(axis.labelFont, withWeight: config["fontWeight"].string)
+        }
+        
         if config["textColor"].int != nil {
             axis.labelTextColor = RCTConvert.uiColor(config["textColor"].intValue)
         }
