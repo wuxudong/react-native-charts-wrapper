@@ -27,6 +27,17 @@ export default class Combined extends Component {
         granularity: 1
       },
 
+      yAxis: {
+        left: {      
+          granularityEnabled: true,
+          granularity: 10
+        },
+        right: {
+          granularityEnabled: true,
+          granularity: 100
+        }
+      },
+
       marker: {
         enabled: true,
         markerColor: processColor('#F0C0FF8C'),
@@ -37,12 +48,13 @@ export default class Combined extends Component {
       data: {
         barData: {
           dataSets: [{
-            values: [40, 5, 50, 23, 79],
+            values: [400, 5000, 5000, 2300, 7900],
             label: 'Company B',
 
             config: {
               drawValues: false,
               colors: [processColor('red')],
+              axisDependency: "left",
             }
 
           }]
@@ -58,6 +70,7 @@ export default class Combined extends Component {
               mode: "CUBIC_BEZIER",
               drawCircles: false,
               lineWidth: 2,
+              axisDependency: "right",
             }
           }, {
             values: [100, 50, 100, 50, 100],
@@ -97,6 +110,7 @@ export default class Combined extends Component {
             config: {
               drawValues: false,
               colors: [processColor('pink')],
+              axisDependency: "right",
             }
           }],
         },
@@ -130,7 +144,7 @@ export default class Combined extends Component {
 
             config: {
               drawValues: false,
-
+              axisDependency: "right",
               highlightColor: processColor('darkgray'),
 
               shadowColor: processColor('black'),
@@ -168,6 +182,7 @@ export default class Combined extends Component {
 
             config: {
               drawValues: false,
+              axisDependency: "right",
               colors: [processColor('brown')],
               scatterShape: 'TRIANGLE',
             }

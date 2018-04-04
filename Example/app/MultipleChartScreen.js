@@ -28,10 +28,10 @@ class MultipleChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: Array.from(new Array(100), (val, index) => index),
+              values: Array.from(new Array(600), (val, index) => index),
               label: 'Company X',
             }, {
-              values: Array.from(new Array(100), (val, index) => index + 5),
+              values: Array.from(new Array(600), (val, index) => index + 5),
               label: 'Company Y',
             }]
           }
