@@ -33,7 +33,7 @@ open class BalloonMarker: MarkerView {
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _size: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
-    fileprivate var _drawAttributes = [String: AnyObject]()
+    fileprivate var _drawAttributes = [NSAttributedStringKey: Any]()
 
 
     public init(color: UIColor, font: UIFont, textColor: UIColor) {
@@ -225,11 +225,11 @@ open class BalloonMarker: MarkerView {
         labelns = label as NSString
 
         _drawAttributes.removeAll()
-        _drawAttributes[NSFontAttributeName] = self.font
-        _drawAttributes[NSParagraphStyleAttributeName] = _paragraphStyle
-        _drawAttributes[NSForegroundColorAttributeName] = self.textColor
+        _drawAttributes[NSAttributedStringKey.font] = self.font
+        _drawAttributes[NSAttributedStringKey.paragraphStyle] = _paragraphStyle
+        _drawAttributes[NSAttributedStringKey.foregroundColor] = self.textColor
 
-        _labelSize = labelns?.size(attributes: _drawAttributes) ?? CGSize.zero
+        _labelSize = labelns?.size(withAttributes: _drawAttributes) ?? CGSize.zero
         _size.width = _labelSize.width + self.insets.left + self.insets.right
         _size.height = _labelSize.height + self.insets.top + self.insets.bottom
         _size.width = max(minimumSize.width, _size.width)

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class BarDataExtract extends DataExtract<BarData, BarEntry> {
 
 

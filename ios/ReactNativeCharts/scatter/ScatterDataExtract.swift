@@ -28,8 +28,8 @@ class ScatterDataExtract : DataExtract {
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(scatterDataSet, config: config);
         
         // ScatterDataSet only config
-        if config["scatterShapeSize"].number != nil {
-            scatterDataSet.scatterShapeSize = CGFloat(config["scatterShapeSize"].numberValue)
+        if config["scatterShapeSize"].float != nil {
+            scatterDataSet.scatterShapeSize = CGFloat(config["scatterShapeSize"].floatValue)
         }
         if config["scatterShape"].string != nil {
             scatterDataSet.setScatterShape(BridgeUtils.parseScatterShape(config["scatterShape"].stringValue))
@@ -39,8 +39,8 @@ class ScatterDataExtract : DataExtract {
             scatterDataSet.scatterShapeHoleColor = RCTConvert.uiColor(config["scatterShapeHoleColor"].intValue);
         }
         
-        if config["scatterShapeHoleRadius"].number != nil {
-            scatterDataSet.scatterShapeHoleRadius = CGFloat(config["scatterShapeHoleRadius"].numberValue)
+        if config["scatterShapeHoleRadius"].float != nil {
+            scatterDataSet.scatterShapeHoleRadius = CGFloat(config["scatterShapeHoleRadius"].floatValue)
         }
         
     }
