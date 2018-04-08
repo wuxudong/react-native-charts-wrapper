@@ -161,14 +161,14 @@ add a `Podfile` to your ios directory with the following content. Then run `pod 
   use_frameworks!
 
   target 'MyApp' do
-    pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.3'
+    pod 'SwiftyJSON', '3.1.4'      # 4.0.0
+    pod 'Charts', '3.0.3'          # 3.1.1
   end
   
   post_install do |installer|
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '3.0'
+        config.build_settings['SWIFT_VERSION'] = '3.0'    # 4.0
       end
     end
   end
