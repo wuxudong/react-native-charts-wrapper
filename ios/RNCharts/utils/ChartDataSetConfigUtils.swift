@@ -94,7 +94,14 @@ class ChartDataSetConfigUtils: NSObject {
     }
     
     static func commonLineRadarConfig( _ dataSet:LineRadarChartDataSet,  config:JSON) {
-        if config["fillColor"].int != nil {
+        if let fillGradient = config["fillGradient"].dictionary {
+            let colors = fillGradient["colors"]?.array!.map { $0.int! }
+            let positions = fillGradient["positions"]?.array!.map { CGFloat($0.float!) }
+            
+            let gradientColors = colors!.map { RCTConvert.uiColor($0)!.cgColor }
+            let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors as CFArray, locations: positions) // Gradient Object
+            dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
+        } else if config["fillColor"].int != nil {
             dataSet.fillColor = RCTConvert.uiColor(config["fillColor"].intValue);
         }
         

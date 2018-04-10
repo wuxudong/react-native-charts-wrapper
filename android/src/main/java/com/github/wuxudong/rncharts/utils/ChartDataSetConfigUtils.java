@@ -11,7 +11,7 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
-
+import android.graphics.drawable.GradientDrawable;
 import java.util.Locale;
 
 /**
@@ -93,7 +93,18 @@ public class ChartDataSetConfigUtils {
     }
 
     public static void commonLineRadarConfig(LineRadarDataSet dataSet, ReadableMap config) {
-        if (BridgeUtils.validate(config, ReadableType.Number, "fillColor")) {
+
+        if (BridgeUtils.validate(config, ReadableType.Map, "fillGradient")) {
+            int [] colors = BridgeUtils.convertToIntArray( config.getMap("fillGradient").getArray("colors"));
+
+            GradientDrawable gd = new GradientDrawable(
+                    GradientDrawable.Orientation.BOTTOM_TOP,
+                    colors);
+            gd.setCornerRadius(0f);
+
+            dataSet.setFillDrawable(gd);
+        }
+        else if (BridgeUtils.validate(config, ReadableType.Number, "fillColor")) {
             dataSet.setFillColor(config.getInt("fillColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "fillAlpha")) {
