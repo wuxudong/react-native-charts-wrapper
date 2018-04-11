@@ -95,12 +95,17 @@ class ChartDataSetConfigUtils: NSObject {
     
     static func commonLineRadarConfig( _ dataSet:LineRadarChartDataSet,  config:JSON) {
         if let fillGradient = config["fillGradient"].dictionary {
-            let colors = fillGradient["colors"]?.array!.map { $0.int! }
-            let positions = fillGradient["positions"]?.array!.map { CGFloat($0.float!) }
+            let colors = fillGradient["colors"]?.array!.map { RCTConvert.uiColor($0.int)!.cgColor }
+            let locations = fillGradient["positions"]?.array!.map { CGFloat($0.float!) }
             
-            let gradientColors = colors!.map { RCTConvert.uiColor($0)!.cgColor }
-            let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors as CFArray, locations: positions) // Gradient Object
-            dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0)
+            let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors! as CFArray, locations: locations)
+            
+            var angle = 90.0
+            if fillGradient["angle"] != nil {
+                angle = fillGradient["angle"]!.doubleValue
+            }
+            
+            dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: CGFloat(angle))
         } else if config["fillColor"].int != nil {
             dataSet.fillColor = RCTConvert.uiColor(config["fillColor"].intValue);
         }
