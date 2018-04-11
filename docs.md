@@ -263,6 +263,14 @@ type lineScatterCandleRadar {
 
 ```
 type lineRadar 	{
+  fillGradient: {
+    colors: [number],
+    // iOS
+    positions: [numbers],
+    angle: number,
+    //Android
+    direction: 'TOP_BOTTOM' | 'TR_BL' | 'RIGHT_LEFT' | 'BR_TL' | 'BOTTOM_TOP' | 'BL_TR' | 'LEFT_RIGHT' | 'TL_BR',
+  },
   fillColor: number,
   fillAlpha: number,
   drawFilled: function

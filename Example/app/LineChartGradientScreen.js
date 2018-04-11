@@ -126,7 +126,7 @@ class LineChartScreen extends React.Component {
               y: {
                left: {
                  min: 0,
-                 max: 120, // TODO compute this value
+                 max: 120,
                },
               },
             }}
