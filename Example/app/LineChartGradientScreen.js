@@ -84,6 +84,7 @@ class LineChartScreen extends React.Component {
                   fillGradient: {
                     colors: [processColor(petrel), processColor(greenBlue)],
                     positions: [0, 0.5],
+                    orientation: 'TOP_BOTTOM',
                   },
                   fillAlpha: 1000,
                   valueTextSize: 15,

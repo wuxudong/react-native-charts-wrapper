@@ -97,8 +97,37 @@ public class ChartDataSetConfigUtils {
         if (BridgeUtils.validate(config, ReadableType.Map, "fillGradient")) {
             int [] colors = BridgeUtils.convertToIntArray( config.getMap("fillGradient").getArray("colors"));
 
+            GradientDrawable.Orientation orientation = GradientDrawable.Orientation.BOTTOM_TOP;
+
+            switch (config.getMap("fillGradient").getString("orientation")) {
+                case "TOP_BOTTOM":
+                    orientation = GradientDrawable.Orientation.BOTTOM_TOP;
+                    break;
+                case "TR_BL":
+                    orientation = GradientDrawable.Orientation.TR_BL;
+                    break;
+                case "RIGHT_LEFT":
+                    orientation = GradientDrawable.Orientation.RIGHT_LEFT;
+                    break;
+                case "BR_TL":
+                    orientation = GradientDrawable.Orientation.BR_TL;
+                    break;
+                case "BOTTOM_TOP":
+                    orientation = GradientDrawable.Orientation.BOTTOM_TOP;
+                    break;
+                case "BL_TR":
+                    orientation = GradientDrawable.Orientation.BL_TR;
+                    break;
+                case "LEFT_RIGHT":
+                    orientation = GradientDrawable.Orientation.LEFT_RIGHT;
+                    break;
+                case "TL_BR":
+                    orientation = GradientDrawable.Orientation.TL_BR;
+                    break;
+            }
+
             GradientDrawable gd = new GradientDrawable(
-                    GradientDrawable.Orientation.BOTTOM_TOP,
+                    orientation,
                     colors);
             gd.setCornerRadius(0f);
 
