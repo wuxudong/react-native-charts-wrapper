@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9BFA538F207E139E004D83EC /* DataExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA537C207E139D004D83EC /* DataExtract.swift */; };
+		9BFA5390207E139E004D83EC /* RNChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA537D207E139D004D83EC /* RNChartViewBase.swift */; };
+		9BFA5391207E139E004D83EC /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA537F207E139D004D83EC /* BalloonMarker.swift */; };
+		9BFA5392207E139E004D83EC /* RNBarLineChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA5385207E139E004D83EC /* RNBarLineChartViewBase.swift */; };
+		9BFA5393207E139E004D83EC /* RNYAxisChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA5386207E139E004D83EC /* RNYAxisChartViewBase.swift */; };
+		9BFA5394207E139E004D83EC /* RNBarLineChartBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA538D207E139E004D83EC /* RNBarLineChartBaseManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9BFA5370207E134A004D83EC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9BFA5372207E134A004D83EC /* libRNCharts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNCharts.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BFA537C207E139D004D83EC /* DataExtract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtract.swift; sourceTree = "<group>"; };
+		9BFA537D207E139D004D83EC /* RNChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNChartViewBase.swift; sourceTree = "<group>"; };
+		9BFA537E207E139D004D83EC /* combine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = combine; sourceTree = "<group>"; };
+		9BFA537F207E139D004D83EC /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		9BFA5380207E139D004D83EC /* utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = utils; sourceTree = "<group>"; };
+		9BFA5381207E139D004D83EC /* bar */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bar; sourceTree = "<group>"; };
+		9BFA5382207E139D004D83EC /* RNChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNChartManagerBridge.h; sourceTree = "<group>"; };
+		9BFA5383207E139E004D83EC /* bubble */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bubble; sourceTree = "<group>"; };
+		9BFA5384207E139E004D83EC /* pie */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pie; sourceTree = "<group>"; };
+		9BFA5385207E139E004D83EC /* RNBarLineChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNBarLineChartViewBase.swift; sourceTree = "<group>"; };
+		9BFA5386207E139E004D83EC /* RNYAxisChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNYAxisChartViewBase.swift; sourceTree = "<group>"; };
+		9BFA5387207E139E004D83EC /* candlestick */ = {isa = PBXFileReference; lastKnownFileType = folder; path = candlestick; sourceTree = "<group>"; };
+		9BFA5388207E139E004D83EC /* formatters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = formatters; sourceTree = "<group>"; };
+		9BFA5389207E139E004D83EC /* radar */ = {isa = PBXFileReference; lastKnownFileType = folder; path = radar; sourceTree = "<group>"; };
+		9BFA538A207E139E004D83EC /* RNBarLineChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBarLineChartManagerBridge.h; sourceTree = "<group>"; };
+		9BFA538B207E139E004D83EC /* RNYAxisChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNYAxisChartManagerBridge.h; sourceTree = "<group>"; };
+		9BFA538C207E139E004D83EC /* scatter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scatter; sourceTree = "<group>"; };
+		9BFA538D207E139E004D83EC /* RNBarLineChartBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNBarLineChartBaseManager.swift; sourceTree = "<group>"; };
+		9BFA538E207E139E004D83EC /* line */ = {isa = PBXFileReference; lastKnownFileType = folder; path = line; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9BFA536F207E134A004D83EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9BFA5369207E134A004D83EC = {
+			isa = PBXGroup;
+			children = (
+				9BFA5374207E134A004D83EC /* RNCharts */,
+				9BFA5373207E134A004D83EC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9BFA5373207E134A004D83EC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9BFA5372207E134A004D83EC /* libRNCharts.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9BFA5374207E134A004D83EC /* RNCharts */ = {
+			isa = PBXGroup;
+			children = (
+				9BFA537F207E139D004D83EC /* BalloonMarker.swift */,
+				9BFA5381207E139D004D83EC /* bar */,
+				9BFA5383207E139E004D83EC /* bubble */,
+				9BFA5387207E139E004D83EC /* candlestick */,
+				9BFA537E207E139D004D83EC /* combine */,
+				9BFA537C207E139D004D83EC /* DataExtract.swift */,
+				9BFA5388207E139E004D83EC /* formatters */,
+				9BFA538E207E139E004D83EC /* line */,
+				9BFA5384207E139E004D83EC /* pie */,
+				9BFA5389207E139E004D83EC /* radar */,
+				9BFA538D207E139E004D83EC /* RNBarLineChartBaseManager.swift */,
+				9BFA538A207E139E004D83EC /* RNBarLineChartManagerBridge.h */,
+				9BFA5385207E139E004D83EC /* RNBarLineChartViewBase.swift */,
+				9BFA5382207E139D004D83EC /* RNChartManagerBridge.h */,
+				9BFA537D207E139D004D83EC /* RNChartViewBase.swift */,
+				9BFA538B207E139E004D83EC /* RNYAxisChartManagerBridge.h */,
+				9BFA5386207E139E004D83EC /* RNYAxisChartViewBase.swift */,
+				9BFA538C207E139E004D83EC /* scatter */,
+				9BFA5380207E139D004D83EC /* utils */,
+			);
+			path = RNCharts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9BFA5371207E134A004D83EC /* RNCharts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BFA5379207E134A004D83EC /* Build configuration list for PBXNativeTarget "RNCharts" */;
+			buildPhases = (
+				9BFA536E207E134A004D83EC /* Sources */,
+				9BFA536F207E134A004D83EC /* Frameworks */,
+				9BFA5370207E134A004D83EC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RNCharts;
+			productName = RNCharts;
+			productReference = 9BFA5372207E134A004D83EC /* libRNCharts.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9BFA536A207E134A004D83EC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = dcvz;
+				TargetAttributes = {
+					9BFA5371207E134A004D83EC = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = 9BFA536D207E134A004D83EC /* Build configuration list for PBXProject "RNCharts" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9BFA5369207E134A004D83EC;
+			productRefGroup = 9BFA5373207E134A004D83EC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9BFA5371207E134A004D83EC /* RNCharts */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9BFA536E207E134A004D83EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BFA538F207E139E004D83EC /* DataExtract.swift in Sources */,
+				9BFA5394207E139E004D83EC /* RNBarLineChartBaseManager.swift in Sources */,
+				9BFA5390207E139E004D83EC /* RNChartViewBase.swift in Sources */,
+				9BFA5393207E139E004D83EC /* RNYAxisChartViewBase.swift in Sources */,
+				9BFA5392207E139E004D83EC /* RNBarLineChartViewBase.swift in Sources */,
+				9BFA5391207E139E004D83EC /* BalloonMarker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9BFA5377207E134A004D83EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9BFA5378207E134A004D83EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9BFA537A207E134A004D83EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9BFA537B207E134A004D83EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9BFA536D207E134A004D83EC /* Build configuration list for PBXProject "RNCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BFA5377207E134A004D83EC /* Debug */,
+				9BFA5378207E134A004D83EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9BFA5379207E134A004D83EC /* Build configuration list for PBXNativeTarget "RNCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BFA537A207E134A004D83EC /* Debug */,
+				9BFA537B207E134A004D83EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9BFA536A207E134A004D83EC /* Project object */;
+}
