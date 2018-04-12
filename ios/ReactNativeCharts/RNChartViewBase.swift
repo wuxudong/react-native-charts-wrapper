@@ -23,7 +23,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         super.reactSetFrame(frame);
         
         let chartFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        chart.reactSetFrame(chartFrame);
+        chart.reactSetFrame(chartFrame)
     }
     
     var chart: ChartViewBase {
