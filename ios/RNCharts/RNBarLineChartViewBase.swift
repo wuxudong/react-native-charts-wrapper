@@ -4,8 +4,7 @@
 //
 
 import Foundation
-import Charts
-import SwiftyJSON
+import CoreGraphics
 
 class RNBarLineChartViewBase: RNYAxisChartViewBase {
     fileprivate var barLineChart: BarLineChartViewBase {

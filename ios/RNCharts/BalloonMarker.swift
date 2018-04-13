@@ -12,11 +12,9 @@
 //  https://github.com/danielgindi/Charts/blob/1788e53f22eb3de79eb4f08574d8ea4b54b5e417/ChartsDemo/Classes/Components/BalloonMarker.swift
 //  Edit: Added textColor
 
-import Foundation;
-
-import Charts;
-
-import SwiftyJSON;
+import UIKit
+import Foundation
+import CoreGraphics
 
 open class BalloonMarker: MarkerView {
     open var color: UIColor?

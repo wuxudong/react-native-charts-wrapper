@@ -2,8 +2,8 @@
 //  Copyright wuxudong
 //
 
-import Charts
-import SwiftyJSON
+import Foundation
+import CoreGraphics
 
 class RNLineChartView: RNBarLineChartViewBase {
     let _chart: LineChartView;
@@ -17,7 +17,7 @@ class RNLineChartView: RNBarLineChartViewBase {
         return _dataExtract
     }
     
-    override init(frame: CoreGraphics.CGRect) {
+    override init(frame: CGRect) {
         
         self._chart = LineChartView(frame: frame)
         self._dataExtract = LineDataExtract()

@@ -3,9 +3,7 @@
 //
 
 import Foundation
-
-import SwiftyJSON
-import Charts
+import CoreGraphics
 
 class PieDataExtract : DataExtract {
     override func createData() -> ChartData {

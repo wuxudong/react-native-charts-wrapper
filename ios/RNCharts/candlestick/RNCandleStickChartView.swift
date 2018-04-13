@@ -2,8 +2,8 @@
 //  Copyright wuxudong
 //
 
-import Charts
-import SwiftyJSON
+import CoreGraphics
+import Foundation
 
 class RNCandleStickChartView: RNBarLineChartViewBase {
     
@@ -19,7 +19,7 @@ class RNCandleStickChartView: RNBarLineChartViewBase {
     }
     
     
-    override init(frame: CoreGraphics.CGRect) {
+    override init(frame: CGRect) {
         
         self._chart = CandleStickChartView(frame: frame)
         self._dataExtract = CandleDataExtract()

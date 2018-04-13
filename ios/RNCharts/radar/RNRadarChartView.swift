@@ -2,8 +2,8 @@
 //  Copyright wuxudong
 //
 
-import Charts
-import SwiftyJSON
+import Foundation
+import CoreGraphics
 
 class RNRadarChartView: RNYAxisChartViewBase {
 

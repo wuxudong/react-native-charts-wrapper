@@ -7,9 +7,7 @@
 //
 
 import Foundation
-
-import SwiftyJSON
-import Charts
+import CoreGraphics
 
 class ScatterDataExtract : DataExtract {
     override func createData() -> ChartData {

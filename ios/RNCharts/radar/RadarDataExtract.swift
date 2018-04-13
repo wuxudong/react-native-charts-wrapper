@@ -4,9 +4,6 @@
 
 import Foundation
 
-import SwiftyJSON
-import Charts
-
 class RadarDataExtract : DataExtract {
     override func createData() -> ChartData {
         return RadarChartData();

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Charts
-import SwiftyJSON
 
 class EntryToDictionaryUtils: NSObject {
   static func entryToDictionary(_ entry: ChartDataEntry) -> [AnyHashable: Any]{

@@ -4,9 +4,6 @@
 
 import Foundation
 
-import SwiftyJSON
-import Charts
-
 class BarDataExtract : DataExtract {
     override open func createData() -> ChartData {
         return BarChartData();

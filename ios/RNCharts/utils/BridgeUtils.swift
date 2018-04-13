@@ -4,8 +4,7 @@
 //
 
 import Foundation
-import SwiftyJSON
-import Charts
+import CoreGraphics
 
 class BridgeUtils {
     static func toIOSAlpha(_ alpha: NSNumber) -> CGFloat {

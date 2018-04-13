@@ -2,8 +2,8 @@
 //  Copyright wuxudong
 //
 
-import Charts
-import SwiftyJSON
+import Foundation
+import CoreGraphics
 
 class RNHorizontalBarChartView: RNBarChartViewBase {
 
@@ -18,7 +18,7 @@ class RNHorizontalBarChartView: RNBarChartViewBase {
         return _dataExtract
     }
     
-    override init(frame: CoreGraphics.CGRect) {
+    override init(frame: CGRect) {
         
         self._chart = HorizontalBarChartView(frame: frame)
         self._dataExtract = BarDataExtract()

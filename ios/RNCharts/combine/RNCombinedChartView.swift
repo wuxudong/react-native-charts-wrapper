@@ -2,8 +2,8 @@
 //  Copyright wuxudong
 //
 
-import Charts
-import SwiftyJSON
+import Foundation
+import CoreGraphics
 
 class RNCombinedChartView: RNBarLineChartViewBase {
 
@@ -18,7 +18,7 @@ class RNCombinedChartView: RNBarLineChartViewBase {
         return _dataExtract
     }    
 
-    override init(frame: CoreGraphics.CGRect) {
+    override init(frame: CGRect) {
 
         self._chart = CombinedChartView(frame: frame)
         self._dataExtract = CombinedDataExtract()

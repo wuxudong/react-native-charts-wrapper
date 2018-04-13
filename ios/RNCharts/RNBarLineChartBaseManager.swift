@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Charts
+
 
 protocol RNBarLineChartBaseManager {
   weak var _bridge : RCTBridge? {get}
