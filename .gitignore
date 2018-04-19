@@ -13,3 +13,5 @@ Example.xcworkspace
 node_modules
 *.iml
 xcuserdata
+/ios/RNCharts.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/ios/RNCharts.xcodeproj/project.xcworkspace/contents.xcworkspacedata
