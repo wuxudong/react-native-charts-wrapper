@@ -186,6 +186,25 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         chart.setViewPortOffsets((float) left, (float) top, (float) right, (float) bottom);
     }
 
+    @ReactProp(name = "extraOffsets")
+    public void setExtraOffsets(BarLineChartBase chart, ReadableMap propMap) {
+        double left = 0, top = 0, right = 0, bottom = 0;
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "left")) {
+            left = propMap.getDouble("left");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "top")) {
+            top = propMap.getDouble("top");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "right")) {
+            right = propMap.getDouble("right");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
+            bottom = propMap.getDouble("bottom");
+        }
+        chart.setExtraOffsets((float) left, (float) top, (float) right, (float) bottom);
+    }
+
     @Nullable
     @Override
     public Map<String, Integer> getCommandsMap() {
