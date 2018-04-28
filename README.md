@@ -124,7 +124,7 @@ Version 0.4.3 use Charts(v3.1.1) & swift 4.1
 Version 0.4.2 use Charts(v3.0.3) & swift 3
 
 
-Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
+Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6), but some configure in it is outdated, like missing `#import "React/RCTFont.h"` in Bridge Header.
 
 
 
