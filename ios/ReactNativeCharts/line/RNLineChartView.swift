@@ -17,6 +17,14 @@ class RNLineChartView: RNBarLineChartViewBase {
         return _dataExtract
     }
     
+    override func setData(_ data: NSDictionary) {
+    let json = BridgeUtils.toJson(data)
+    chart.data = dataExtract.extract(json)
+    
+    chart.setVisibleXRange(minXRange: 500, maxXRange: 9000)
+    
+    }
+    
     override init(frame: CoreGraphics.CGRect) {
         
         self._chart = LineChartView(frame: frame)
