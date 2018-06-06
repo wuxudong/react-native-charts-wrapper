@@ -21,7 +21,7 @@ class RNLineChartView: RNBarLineChartViewBase {
     let json = BridgeUtils.toJson(data)
     chart.data = dataExtract.extract(json)
     
-    chart.setVisibleXRange(minXRange: 500, maxXRange: 9000)
+    chart.setVisibleXRange(minXRange: 2, maxXRange: 9000)
     
     }
     
