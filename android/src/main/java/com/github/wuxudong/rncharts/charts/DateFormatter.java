@@ -32,6 +32,6 @@ public class DateFormatter implements IAxisValueFormatter, IValueFormatter {
     }
 
     private String format(long millis) {
-        return mFormat.format(new Date(millis));
+        return mFormat.format(new Date(millis*1000));
     }
 }
