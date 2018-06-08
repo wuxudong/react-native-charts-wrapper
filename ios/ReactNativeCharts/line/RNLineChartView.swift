@@ -20,21 +20,30 @@ class RNLineChartView: RNBarLineChartViewBase {
     override func setData(_ data: NSDictionary) {
     let json = BridgeUtils.toJson(data)
     chart.data = dataExtract.extract(json)
-    
     chart.setVisibleXRange(minXRange: 3, maxXRange: 9000)
     
     }
     
     override init(frame: CoreGraphics.CGRect) {
-        
+      
+      
         self._chart = LineChartView(frame: frame)
         self._dataExtract = LineDataExtract()
-        
+      
         super.init(frame: frame);
-        
+      
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(chartViewLongPress(gesture:)))
+        gestureRecognizer.minimumPressDuration = 1.2;
+
+        self.addGestureRecognizer(gestureRecognizer);
+      
+
         self._chart.delegate = self
         self.addSubview(_chart);
-        
+      
+      
+      
+      
     }
     
     required init?(coder aDecoder: NSCoder) {
