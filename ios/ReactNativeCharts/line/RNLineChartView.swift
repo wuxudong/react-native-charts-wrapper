@@ -20,7 +20,7 @@ class RNLineChartView: RNBarLineChartViewBase {
     override func setData(_ data: NSDictionary) {
     let json = BridgeUtils.toJson(data)
     chart.data = dataExtract.extract(json)
-    chart.setVisibleXRange(minXRange: 3, maxXRange: 9000)
+    chart.setVisibleXRangeMinimum(600)
     
     }
     
