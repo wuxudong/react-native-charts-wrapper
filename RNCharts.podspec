@@ -14,11 +14,8 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
 
   s.source       = { :git => "https://github.com/wuxudong/react-native-charts-wrapper.git", :tag => "#{s.version}" }
-  s.source_files = "ios/ReactNativeCharts/**/*.{h,swift}"
+  s.source_files = "ios/ReactNativeCharts/**/*.{h,m,swift}"
   s.static_framework = true
-  s.pod_target_xcconfig = {
-    'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/Headers/Public/React"'
-  }
 
   s.swift_version= '4.1'
 
