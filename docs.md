@@ -50,7 +50,7 @@
 | `axisLineColor`            | `bool`                                                                                   |         |                                                                                                                             |
 | `axisLineWidth`            | `bool`                                                                                   |         |                                                                                                                             |
 | `gridDashedLine`           | `{`<br />`lineLength: number,`<br />`spaceLength: number,`<br />`phase: number`<br />`}` |         |                                                                                                                             |
-| `limitLines`               | `number`                                                                                 |         |                                                                                                                             |
+| `limitLines`               | array : `[{ limit: number, label: string, lineColor: number, lineWidth: number, valueTextColor: number, valueFont: number, labelPosition: string, lineDashPhase: number, lineDashLengths: [number] }]`                                                                                 |         |                                                                                                                             |
 | `drawLimitLinesBehindData` | `bool`                                                                                   |         |                                                                                                                             |
 | `axisMaximum`              | `number`                                                                                 |         |                                                                                                                             |
 | `axisMinimum`              | `number`                                                                                 |         |                                                                                                                             |
@@ -70,7 +70,7 @@
 | ------------------------ | -------- | ------- | ---- |
 | `labelRotationAngle`     | `number` |         |      |
 | `avoidFirstLastClipping` | `bool`   |         |      |
-| `position`               | `string` |         |      |
+| `position`               | `string` |         | Should be in upper case. you will get an error in android if the position is in lower case      |
 | `valueFormatterPattern`  | `string` |         |      |
 
 ## yAksis
@@ -81,7 +81,7 @@
 | ------------- | ------------------------------------------------------------------------------------- | ------- | ---- |
 | `inverted`    | `number`                                                                              |         |      |
 | `spaceTop`    | `bool`                                                                                |         |      |
-| `spaceBottom` | `string`                                                                              |         |      |
+| `spaceBottom` | `number`                                                                              |         |      |
 | `position`    | `number`                                                                              |         |      |
 | `maxWidth`    | `bool`                                                                                |         |      |
 | `minWidth`    | `string`                                                                              |         |      |
@@ -423,8 +423,8 @@ type pieData {
 
         sliceSpace: number,
         selectionShift: number,
-        xValuePosition: string,
-        yValuePosition: string
+        xValuePosition: string, // INSIDE_SLICE,OUTSIDE_SLICE
+        yValuePosition: string // INSIDE_SLICE,OUTSIDE_SLICE
       }
     }
   ]
