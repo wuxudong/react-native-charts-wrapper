@@ -68,6 +68,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		7EBFC7C3EB1BF07B4AEEBC12 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EBC6CE748463BA2F750E31 /* Pods_Example.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		9D3543562108484300F9CB0F /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3543552108484300F9CB0F /* FontUtils.swift */; };
 		9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */; };
 		9D9E904A1FE2326200827C9B /* RNBarLineChartBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */; };
 /* End PBXBuildFile section */
@@ -394,6 +395,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9709CA5BA4B35D031398D32E /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		9D3543552108484300F9CB0F /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartDateFormatter.swift; path = formatters/ChartDateFormatter.swift; sourceTree = "<group>"; };
 		9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBarLineChartBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -542,7 +544,6 @@
 				424CA4001E851A1000E2422D /* combine */,
 				424CA4051E851A1000E2422D /* DataExtract.swift */,
 				424CA4061E851A1000E2422D /* formatters */,
-				424CA4081E851A1000E2422D /* json */,
 				424CA4091E851A1000E2422D /* line */,
 				424CA40E1E851A1000E2422D /* pie */,
 				424CA4131E851A1000E2422D /* radar */,
@@ -616,13 +617,6 @@
 			path = formatters;
 			sourceTree = "<group>";
 		};
-		424CA4081E851A1000E2422D /* json */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
 		424CA4091E851A1000E2422D /* line */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +667,7 @@
 				424CA4241E851A1000E2422D /* BridgeUtils.swift */,
 				424CA4251E851A1000E2422D /* ChartDataSetConfigUtils.swift */,
 				424CA4261E851A1000E2422D /* EntryToDictionaryUtils.swift */,
+				9D3543552108484300F9CB0F /* FontUtils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1217,6 +1212,7 @@
 				424CA42B1E851A1000E2422D /* RNBarChartView.swift in Sources */,
 				9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */,
 				424CA44B1E851A1000E2422D /* RNChartViewBase.swift in Sources */,
+				9D3543562108484300F9CB0F /* FontUtils.swift in Sources */,
 				424CA4341E851A1000E2422D /* CandleDataExtract.swift in Sources */,
 				424CA4381E851A1000E2422D /* CombinedDataExtract.swift in Sources */,
 				424CA4491E851A1000E2422D /* RNRadarChartView.swift in Sources */,

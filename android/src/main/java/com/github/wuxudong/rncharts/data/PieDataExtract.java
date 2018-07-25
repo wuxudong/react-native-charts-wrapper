@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -29,10 +30,10 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<PieEntry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<PieEntry> dataSet, ReadableMap config) {
         PieDataSet pieDataSet = (PieDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(pieDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, pieDataSet, config);
 
         // PieDataSet only config
         if (BridgeUtils.validate(config, ReadableType.Number, "sliceSpace")) {

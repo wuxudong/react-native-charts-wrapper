@@ -10,8 +10,6 @@
 | `textSize`   | `number` |         |      |
 | `positionX`  | `number` |         |      |
 | `positionY`  | `number` |         |      |
-| `fontFamily` | `string` |         |      |
-| `fontStyle`  | `number` |         |      |
 
 ## Legend (prop for all charts)
 

@@ -2,6 +2,8 @@ package com.github.wuxudong.rncharts.utils;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.views.text.ReactFontManager;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.data.DataSet;
@@ -11,6 +13,8 @@ import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
+
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import java.util.Locale;
 
@@ -20,7 +24,7 @@ import java.util.Locale;
  */
 public class ChartDataSetConfigUtils {
 
-    public static void commonConfig(DataSet dataSet, ReadableMap config) {
+    public static void commonConfig(Chart chart, DataSet dataSet, ReadableMap config) {
         // Setting main color
         if (BridgeUtils.validate(config, ReadableType.Number, "color")) {
             dataSet.setColor(config.getInt("color"));
@@ -69,6 +73,11 @@ public class ChartDataSetConfigUtils {
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {
             dataSet.setAxisDependency(YAxis.AxisDependency.valueOf(config.getString("axisDependency").toUpperCase(Locale.ENGLISH)));
         }
+
+        if (BridgeUtils.validate(config, ReadableType.String, "fontFamily")) {
+            dataSet.setValueTypeface(TypefaceUtils.getTypeface(chart, config));
+        }
+
     }
 
     public static void commonBarLineScatterCandleBubbleConfig(BarLineScatterCandleBubbleDataSet dataSet, ReadableMap config) {
@@ -150,6 +159,5 @@ public class ChartDataSetConfigUtils {
             }
         }
     }
-
 
 }

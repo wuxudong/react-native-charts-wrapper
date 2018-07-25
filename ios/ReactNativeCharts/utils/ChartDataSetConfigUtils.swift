@@ -67,8 +67,10 @@ class ChartDataSetConfigUtils: NSObject {
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
-
-
+        
+        if let font = FontUtils.getFont(config) {
+            dataSet.valueFont = font
+        }
     }
 
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {
