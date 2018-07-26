@@ -38,4 +38,9 @@ public class BarChartManager extends BarLineChartBaseManager<BarChart, BarEntry>
     public void setDrawBarShadow(BarChart chart, boolean enabled) {
         chart.setDrawBarShadow(enabled);
     }
+
+    @ReactProp(name = "highlightFullBarEnabled")
+    public void setHighlightFullBarEnabled(BarChart chart, boolean enabled) {
+        chart.setHighlightFullBarEnabled(enabled);
+    }
 }
