@@ -13,6 +13,8 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             return chart as! BarLineChartViewBase
         }
     }
+    
+    var savedVisibleRange : NSDictionary?
 
     override func setYAxis(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
@@ -61,29 +63,34 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     }
     
     func setVisibleRange(_ config: NSDictionary) {
+        // delay visibleRange handling until chart data is set
+        savedVisibleRange = config
+    }
+    
+    func updateVisibleRange(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
         
         let x = json["x"]
         if x["min"].double != nil {
-            barLineChart.xAxis.axisMinimum = x["min"].doubleValue
+            barLineChart.setVisibleXRangeMinimum(x["min"].doubleValue)
         }
         if x["max"].double != nil {
-            barLineChart.xAxis.axisMaximum = x["max"].doubleValue
+            barLineChart.setVisibleXRangeMaximum(x["max"].doubleValue)
         }
         
         let y = json["y"]
         if y["left"]["min"].double != nil {
-            barLineChart.leftAxis.axisMinimum = y["left"]["min"].doubleValue
+            barLineChart.setVisibleYRangeMinimum(y["left"]["min"].doubleValue, axis: YAxis.AxisDependency.left)
         }
         if y["left"]["max"].double != nil {
-            barLineChart.leftAxis.axisMaximum = y["left"]["max"].doubleValue
+            barLineChart.setVisibleYRangeMaximum(y["left"]["max"].doubleValue, axis: YAxis.AxisDependency.left)
         }
         
         if y["right"]["min"].double != nil {
-            barLineChart.rightAxis.axisMinimum = y["right"]["min"].doubleValue
+            barLineChart.setVisibleYRangeMinimum(y["right"]["min"].doubleValue, axis: YAxis.AxisDependency.right)
         }
         if y["right"]["max"].double != nil {
-            barLineChart.rightAxis.axisMaximum = y["right"]["max"].doubleValue
+            barLineChart.setVisibleYRangeMaximum(y["right"]["max"].doubleValue, axis: YAxis.AxisDependency.right)
         }
     }
     
@@ -160,4 +167,13 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     
         barLineChart.setExtraOffsets(left: left, top: top, right: right, bottom: bottom)
     }
+    
+    override func didSetProps(_ changedProps: [String]!) {
+        super.didSetProps(changedProps)
+        
+        if let config = savedVisibleRange {
+            updateVisibleRange(config)
+        }        
+    }
+    
 }

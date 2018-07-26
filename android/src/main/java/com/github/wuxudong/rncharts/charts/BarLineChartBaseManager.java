@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
+    private ReadableMap savedVisibleRange = null;
+
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
         BarLineChartBase barLineChart = (BarLineChartBase) chart;
@@ -65,6 +67,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
     @ReactProp(name = "visibleRange")
     public void setVisibleXRangeMinimum(BarLineChartBase chart, ReadableMap propMap) {
+        // delay visibleRange handling until chart data is set
+        savedVisibleRange = propMap;
+    }
+
+    private void updateVisibleRange(BarLineChartBase chart, ReadableMap propMap) {
         if (BridgeUtils.validate(propMap, ReadableType.Map, "x")) {
             ReadableMap x = propMap.getMap("x");
             if (BridgeUtils.validate(x, ReadableType.Number, "min")) {
@@ -258,4 +265,13 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         super.receiveCommand(root, commandId, args);
     }
 
+    @Override
+    protected void onAfterUpdateTransaction(T chart) {
+        super.onAfterUpdateTransaction(chart);
+
+        if (savedVisibleRange != null) {
+            updateVisibleRange(chart, savedVisibleRange);
+            savedVisibleRange = null;
+        }
+    }
 }
