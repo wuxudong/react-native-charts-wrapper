@@ -214,7 +214,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewTo", MOVE_VIEW_TO,
                 "moveViewToX", MOVE_VIEW_TO_X,
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
-                "fitScreen", FIT_SCREEN);
+                "fitScreen", FIT_SCREEN,
+                "highlights", HIGHLIGHTS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -247,6 +248,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             case FIT_SCREEN:
                 root.fitScreen();
+                return;
+
+            case HIGHLIGHTS:
+                this.setHighlights(root, args.getArray(0));
                 return;
         }
 
