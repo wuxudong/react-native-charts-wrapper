@@ -49,6 +49,31 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
         if (BridgeUtils.validate(config, ReadableType.String, "yValuePosition")) {
             pieDataSet.setYValuePosition(PieDataSet.ValuePosition.valueOf(config.getString("yValuePosition").toUpperCase(Locale.ENGLISH)));
         }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1Length")) {
+            pieDataSet.setValueLinePart1Length((float) config.getDouble("valueLinePart1Length"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart2Length")) {
+            pieDataSet.setValueLinePart2Length((float) config.getDouble("valueLinePart2Length"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLineColor")) {
+            pieDataSet.setValueLineColor(config.getInt("valueLineColor"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLineWidth")) {
+            pieDataSet.setValueLineWidth((float) config.getDouble("valueLineWidth"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Number, "valueLinePart1OffsetPercentage")) {
+            pieDataSet.setValueLinePart1OffsetPercentage((float) config.getDouble("valueLinePart1OffsetPercentage"));
+        }
+
+        if (BridgeUtils.validate(config, ReadableType.Boolean, "valueLineVariableLength")) {
+            pieDataSet.setValueLineVariableLength(config.getBoolean("valueLineVariableLength"));
+        }
+
     }
 
     @Override

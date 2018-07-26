@@ -37,7 +37,11 @@ class PieChartScreen extends React.Component {
             valueTextSize: 20,
             valueTextColor: processColor('green'),
             sliceSpace: 5,
-            selectionShift: 13
+            selectionShift: 13,
+            xValuePosition: "OUTSIDE_SLICE",
+            yValuePosition: "OUTSIDE_SLICE",
+            valueLineColor: processColor('green'),
+            valueLinePart1Length: 0.5
           }
         }],
       },
@@ -80,7 +84,7 @@ class PieChartScreen extends React.Component {
             legend={this.state.legend}
             highlights={this.state.highlights}
 
-            entryLabelColor={processColor('black')}
+            entryLabelColor={processColor('green')}
             entryLabelTextSize={20}
             drawEntryLabels={true}
 
