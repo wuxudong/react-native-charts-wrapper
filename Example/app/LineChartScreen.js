@@ -20,7 +20,6 @@ class LineChartScreen extends React.Component {
         enabled: true,
         textColor: processColor('blue'),
         textSize: 12,
-        position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,

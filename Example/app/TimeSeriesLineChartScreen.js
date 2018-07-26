@@ -22,7 +22,6 @@ class TimeSeriesLineChartScreen extends React.Component {
         enabled: true,
         textColor: processColor('red'),
         textSize: 12,
-        position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,

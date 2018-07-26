@@ -22,7 +22,6 @@ class CandleStickChartScreen extends React.Component {
         enabled: true,
         textSize: 14,
         form: 'CIRCLE',
-        position: 'BELOW_CHART_RIGHT',
         wordWrapEnabled: true
       },
       data: {

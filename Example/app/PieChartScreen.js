@@ -19,9 +19,12 @@ class PieChartScreen extends React.Component {
     this.state = {
       legend: {
         enabled: true,
-        textSize: 8,
+        textSize: 15,
         form: 'CIRCLE',
-        position: 'RIGHT_OF_CHART',
+
+        horizontalAlignment: "RIGHT",
+        verticalAlignment: "CENTER",
+        orientation: "VERTICAL",
         wordWrapEnabled: true
       },
       data: {
@@ -38,8 +41,8 @@ class PieChartScreen extends React.Component {
             valueTextColor: processColor('green'),
             sliceSpace: 5,
             selectionShift: 13,
-            xValuePosition: "OUTSIDE_SLICE",
-            yValuePosition: "OUTSIDE_SLICE",
+            // xValuePosition: "OUTSIDE_SLICE",
+            // yValuePosition: "OUTSIDE_SLICE",
             valueLineColor: processColor('green'),
             valueLinePart1Length: 0.5
           }
