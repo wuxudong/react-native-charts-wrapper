@@ -49,7 +49,7 @@ class LineChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
+              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 135}],
               label: 'Company X',
               config: {
                 lineWidth: 2,
@@ -60,7 +60,7 @@ class LineChartScreen extends React.Component {
                 fillColor: processColor('red'),
                 fillAlpha: 60,
 		            valueTextSize: 15,
-                valueFormatter: "##.000",
+                valueFormatter: ["","min","","max"],
                 dashedLine: {
                   lineLength: 20,
                   spaceLength: 20

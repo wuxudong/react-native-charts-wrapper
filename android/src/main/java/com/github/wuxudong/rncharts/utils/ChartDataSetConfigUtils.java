@@ -9,10 +9,12 @@ import com.github.mikephil.charting.data.BarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.LineRadarDataSet;
 import com.github.mikephil.charting.data.LineScatterCandleRadarDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
+import com.github.wuxudong.rncharts.charts.IndexValueFormatter;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -68,6 +70,8 @@ public class ChartDataSetConfigUtils {
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
+        } else if (BridgeUtils.validate(config, ReadableType.Array, "valueFormatter")) {
+            dataSet.setValueFormatter(new IndexValueFormatter(BridgeUtils.convertToStringArray(config.getArray("valueFormatter"))));
         }
 
         if (BridgeUtils.validate(config, ReadableType.String, "axisDependency")) {

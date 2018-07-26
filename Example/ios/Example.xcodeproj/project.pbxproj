@@ -70,6 +70,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9D3543562108484300F9CB0F /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3543552108484300F9CB0F /* FontUtils.swift */; };
 		9D35438621094DEC00F9CB0F /* HighlightUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D35438521094DEC00F9CB0F /* HighlightUtils.swift */; };
+		9D36BB902109C4C100205601 /* IndexValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D36BB8F2109C4C100205601 /* IndexValueFormatter.swift */; };
 		9D90C4AD1FC2BC1F00E1F1DB /* ChartDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */; };
 		9D9E904A1FE2326200827C9B /* RNBarLineChartBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */; };
 /* End PBXBuildFile section */
@@ -398,6 +399,7 @@
 		9709CA5BA4B35D031398D32E /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		9D3543552108484300F9CB0F /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		9D35438521094DEC00F9CB0F /* HighlightUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightUtils.swift; sourceTree = "<group>"; };
+		9D36BB8F2109C4C100205601 /* IndexValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexValueFormatter.swift; sourceTree = "<group>"; };
 		9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartDateFormatter.swift; path = formatters/ChartDateFormatter.swift; sourceTree = "<group>"; };
 		9D9E90491FE2326200827C9B /* RNBarLineChartBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNBarLineChartBaseManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -538,6 +540,7 @@
 		424CA3EB1E851A1000E2422D /* ReactNativeCharts */ = {
 			isa = PBXGroup;
 			children = (
+				9D36BB8F2109C4C100205601 /* IndexValueFormatter.swift */,
 				9D90C4831FC2BC1F00E1F1DB /* ChartDateFormatter.swift */,
 				424CA3EC1E851A1000E2422D /* BalloonMarker.swift */,
 				424CA3ED1E851A1000E2422D /* bar */,
@@ -1190,6 +1193,7 @@
 				424CA43D1E851A1000E2422D /* LargeValueFormatter.swift in Sources */,
 				424CA43E1E851A1000E2422D /* LineDataExtract.swift in Sources */,
 				424CA4441E851A1000E2422D /* RNPieChartManagerBridge.m in Sources */,
+				9D36BB902109C4C100205601 /* IndexValueFormatter.swift in Sources */,
 				424CA4311E851A1000E2422D /* RNBubbleChartManager.swift in Sources */,
 				424CA4291E851A1000E2422D /* RNBarChartManager.swift in Sources */,
 				424CA42E1E851A1000E2422D /* RNHorizontalBarChartManagerBridge.m in Sources */,
