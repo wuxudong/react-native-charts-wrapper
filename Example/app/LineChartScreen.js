@@ -98,6 +98,13 @@ class LineChartScreen extends React.Component {
             fontStyle:"italic",
             valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4']
           }
+        },
+        yAxis: {
+          $set: {
+            left: {
+              valueFormatter: "#.#%"
+            }
+          }
         }
       })
     );
@@ -131,6 +138,7 @@ class LineChartScreen extends React.Component {
             legend={this.state.legend}
             marker={this.state.marker}
             xAxis={this.state.xAxis}
+            yAxis={this.state.yAxis}
             drawGridBackground={false}
             borderColor={processColor('teal')}
             borderWidth={1}
@@ -143,6 +151,9 @@ class LineChartScreen extends React.Component {
             scaleYEnabled={true}
             pinchZoom={true}
             doubleTapToZoomEnabled={true}
+            highlightPerTapEnabled={false}
+            highlightPerDragEnabled={false}
+            highlights={[{x:3, y:135}]}
 
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}

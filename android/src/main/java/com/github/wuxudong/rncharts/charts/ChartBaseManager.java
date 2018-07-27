@@ -156,6 +156,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         chart.setBackgroundColor(color);
     }
 
+    @ReactProp(name = "highlightPerTapEnabled")
+    public void setHighlightPerTapEnabled(Chart chart, boolean enabled) {
+        chart.setHighlightPerTapEnabled(enabled);
+    }
+
     @ReactProp(name = "chartDescription")
     public void setChartDescription(Chart chart, ReadableMap propMap) {
 

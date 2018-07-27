@@ -123,6 +123,9 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         barLineChart.pinchZoomEnabled = enabled
     }
 
+    func setHighlightPerDragEnabled(_  enabled: Bool) {
+        barLineChart.highlightPerDragEnabled = enabled
+    }
 
     func setDoubleTapToZoomEnabled(_  enabled: Bool) {
         barLineChart.doubleTapToZoomEnabled = enabled

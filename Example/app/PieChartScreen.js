@@ -29,7 +29,7 @@ class PieChartScreen extends React.Component {
       },
       data: {
         dataSets: [{
-          values: [{value: 40, label: 'Sandwiches'},
+          values: [{value: 45, label: 'Sandwiches'},
             {value: 21, label: 'Salads'},
             {value: 15, label: 'Soup'},
             {value: 9, label: 'Beverages'},
@@ -43,6 +43,7 @@ class PieChartScreen extends React.Component {
             selectionShift: 13,
             // xValuePosition: "OUTSIDE_SLICE",
             // yValuePosition: "OUTSIDE_SLICE",
+            valueFormatter: "#.#'%'",
             valueLineColor: processColor('green'),
             valueLinePart1Length: 0.5
           }
@@ -93,7 +94,7 @@ class PieChartScreen extends React.Component {
 
             rotationEnabled={true}
             rotationAngle={45}
-            usePercentValues={false}
+            usePercentValues={true}
             styledCenterText={{text:'Pie center text!', color: processColor('pink'), size: 20}}
             centerTextRadiusPercent={100}
             holeRadius={40}
