@@ -11,8 +11,8 @@
   "dependencies": {
     "immutability-helper": "2.4.0",
     "lodash": "4.17.4",
-    "react": "16.4.1",
-    "react-native": "0.56.0",
+    "react": "^16.4.1",
+    "react-native": "^0.56.0",
     "react-native-charts-wrapper": "file:../",
     "react-navigation": "^1.0.0-beta.19"
   },
