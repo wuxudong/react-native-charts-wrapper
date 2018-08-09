@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "immutability-helper": "2.4.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.5",
     "react": "^16.4.1",
     "react-native": "^0.56.0",
     "react-native-charts-wrapper": "file:../",
