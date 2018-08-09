@@ -1,14 +1,36 @@
+platform :ios, '9.0'
+
 use_frameworks!
 
 target 'Example' do
-  pod 'SwiftyJSON', '4.0.0'
-  pod 'Charts', '3.1.1'
+    pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/'
+    pod 'React', path: '../node_modules/react-native/', :subspecs => [
+    'Core',
+    'ART',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTLinkingIOS',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+    'DevSupport',
+    'CxxBridge',
+    ]
+    
+    pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+    pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+    
+    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '4.0'
+      config.build_settings['SWIFT_VERSION'] = '4.1'
     end
   end
 end
