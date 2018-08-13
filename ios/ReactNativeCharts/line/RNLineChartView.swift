@@ -34,7 +34,7 @@ class RNLineChartView: RNBarLineChartViewBase {
         super.init(frame: frame);
       
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(chartViewLongPress(gesture:)))
-        gestureRecognizer.minimumPressDuration = 0.7;
+        gestureRecognizer.minimumPressDuration = 0.25;
 
         self.addGestureRecognizer(gestureRecognizer);
       
