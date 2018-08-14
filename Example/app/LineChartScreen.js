@@ -151,7 +151,7 @@ class LineChartScreen extends React.Component {
             scaleYEnabled={true}
             pinchZoom={true}
             doubleTapToZoomEnabled={true}
-            highlightPerTapEnabled={false}
+            highlightPerTapEnabled={true}
             highlightPerDragEnabled={false}
             highlights={[{x:3, y:135}]}
 

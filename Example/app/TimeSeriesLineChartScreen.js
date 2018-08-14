@@ -41,13 +41,19 @@ class TimeSeriesLineChartScreen extends React.Component {
         markerFontSize: 14,
       },
 
-      selectedEntry: ""
+      selectedEntry: "",
+      yAxis: {left:{axisMaximum:12000}}
     }
 
   }
 
   componentDidMount() {
     const size = 80;
+
+    let _this =  this
+    setTimeout( function() {
+      _this.setState({...this.state, yAxis:{left:{axisMaximum:6000}}})
+    }, 5000)    
 
     this.setState(
       update(this.state, {
@@ -157,7 +163,7 @@ class TimeSeriesLineChartScreen extends React.Component {
 
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
-            yAxis={{left:{axisMaximum:12000}}}
+            yAxis={this.state.yAxis}
 
             keepPositionOnRotation={false}
 
