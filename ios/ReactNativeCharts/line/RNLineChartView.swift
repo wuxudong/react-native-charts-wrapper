@@ -25,9 +25,7 @@ class RNLineChartView: RNBarLineChartViewBase {
       let minRange = min(chartRange, 10*60)
       chart.setVisibleXRangeMinimum(minRange) // 10mn
       chart.setVisibleXRangeMaximum(12*3600) // 12h
-     }
-    }
-    
+     } 
     }
     
     override init(frame: CoreGraphics.CGRect) {
