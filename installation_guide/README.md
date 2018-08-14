@@ -217,7 +217,7 @@ react-native run-android, that is it.
 * run `yarn install` again
 * link subproject
 
-	*   **use cocoapods**
+	*   **use cocoapods(suggested)**
 
 		* create ios/Podfile
 
@@ -268,6 +268,10 @@ react-native run-android, that is it.
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/create-oc-bridging-header.png)
 
 		* run it from XCode or run `react-native run-ios`, that is it.
+
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
+
+
 	* **manual setup**
 
 		Sometime `use_frameworks!` in Podfile conflict with other libs like  react-native-maps.  In this case, you can link this lib manually.
@@ -325,4 +329,4 @@ react-native run-android, that is it.
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
-		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
+		
