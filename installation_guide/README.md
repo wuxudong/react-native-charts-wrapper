@@ -271,6 +271,14 @@ react-native run-android, that is it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
 
+		* if you can't open development menu in iOS simulator, you can remove other libraries except Pods_demo.framework, and delete other targets except demo.
+
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/ios_project_settings.png)
+
+
+
+		
+
 
 	* **manual setup**
 
