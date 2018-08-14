@@ -217,7 +217,7 @@ react-native run-android, that is it.
 * run `yarn install` again
 * link subproject
 
-	*   **use cocoapods(suggested)**
+	*   **use cocoapods**
 
 		* create ios/Podfile
 
@@ -264,6 +264,9 @@ react-native run-android, that is it.
 		* cd ios && pod install
 		* open demo.xcworkspace
 		* create a empty swift file, the xcode will prompt a message 'Would you like to configure an Objective-C bridging header?' to Create Bridging Header, accept it.
+
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/create-oc-bridging-header.png)
+
 		* run it from XCode or run `react-native run-ios`, that is it.
 	* **manual setup**
 
@@ -321,3 +324,5 @@ react-native run-android, that is it.
      	  update `Swift Language Version` in `Build Settings` to 4.1
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
+
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
