@@ -1,4 +1,4 @@
-# React Native Charts Wrapper
+G# React Native Charts Wrapper
 This library is React Native wrapper of popular Native charting library [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) and [Charts](https://github.com/danielgindi/Charts)
 
 
@@ -132,17 +132,6 @@ check Example->TimeSeriesLineChart for details.
 
 you can set chart to fixed width & height, or flex:1
   
-## Need for help
-
-I spent serveral days to learn swift and ios, but I am still quite new to it.
-
-It is not quite elegant to copy source files to your project, but I haven't figure out how to build it as a framework like others.
-
-Here is the [question](http://stackoverflow.com/questions/42570599/how-to-create-react-native-framework-using-swift) in stackoverflow. 
-
-It is appreciated if you can answer the question or create a issue/PR.
-
-
 
 
 
