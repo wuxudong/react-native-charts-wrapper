@@ -32,5 +32,5 @@ RCT_EXTERN_METHOD(moveViewToAnimated:(nonnull NSNumber *)node xValue:(nonnull NS
 RCT_EXTERN_METHOD(centerViewTo:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency) \
 RCT_EXTERN_METHOD(centerViewToAnimated:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency duration:(nonnull NSNumber *)duration) \
 RCT_EXTERN_METHOD(highlights:(nonnull NSNumber *)node config:(nonnull NSArray *)config) \
-RCT_EXTERN_METHOD(fitScreen)
+RCT_EXTERN_METHOD(fitScreen:(nonnull NSNumber *)node)
 #endif /* RNBarLineChartManagerBridge_h */
