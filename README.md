@@ -1,4 +1,4 @@
-G# React Native Charts Wrapper
+# React Native Charts Wrapper
 This library is React Native wrapper of popular Native charting library [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) and [Charts](https://github.com/danielgindi/Charts)
 
 
