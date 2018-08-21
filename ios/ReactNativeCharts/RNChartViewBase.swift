@@ -15,7 +15,7 @@ import SwiftyJSON
 @objcMembers
 open class RNChartViewBase: UIView, ChartViewDelegate {
     open var onSelect:RCTBubblingEventBlock?
-    
+    open var onLongSelect: RCTBubblingEventBlock?
     open var onChange:RCTBubblingEventBlock?
     
     override open func reactSetFrame(_ frame: CGRect)
@@ -452,6 +452,21 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             
         }
     }
+  
+
+  @objc public func chartViewLongPress(gesture: UILongPressGestureRecognizer) {
+    if self.onLongSelect == nil {
+      return
+    } else {
+      if gesture.state == .began {
+        let point = gesture.location(in: self.chart)
+        let h = self.chart.getHighlightByTouchPoint(point);
+        guard let highlight = h else {return}
+        let entry = ChartDataEntry(x: highlight.x, y: highlight.y)
+        self.onLongSelect!(EntryToDictionaryUtils.entryToDictionary(entry))
+      }
+    }
+  }
     
     @objc public func chartValueNothingSelected(_ chartView: ChartViewBase) {
         if self.onSelect == nil {

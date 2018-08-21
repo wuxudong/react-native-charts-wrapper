@@ -25,7 +25,7 @@ RCT_EXPORT_VIEW_PROPERTY(xAxis, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(marker, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTDirectEventBlock) \
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
-
+RCT_EXPORT_VIEW_PROPERTY(onLongSelect, RCTBubblingEventBlock)
 
 
 #endif /* RNChartManagerBridge_h */
