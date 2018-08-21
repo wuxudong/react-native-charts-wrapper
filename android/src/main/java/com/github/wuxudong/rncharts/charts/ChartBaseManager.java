@@ -29,6 +29,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
+import com.github.wuxudong.rncharts.utils.TypefaceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int CENTER_VIEW_TO = 4;
     protected static final int CENTER_VIEW_TO_ANIMATED = 6;
     protected static final int FIT_SCREEN = 7;
+    protected static final int HIGHLIGHTS = 8;
 
     abstract DataExtract getDataExtract();
 
@@ -93,8 +95,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             legend.setDirection(Legend.LegendDirection.valueOf(propMap.getString("direction").toUpperCase(Locale.ENGLISH)));
         }
 
-
-
+        if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
+            legend.setTypeface(TypefaceUtils.getTypeface(chart, propMap));
+        }
 
         if (BridgeUtils.validate(propMap, ReadableType.String, "form")) {
             legend.setForm(LegendForm.valueOf(propMap.getString("form").toUpperCase(Locale.ENGLISH)));
@@ -151,6 +154,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     @ReactProp(name = "chartBackgroundColor")
     public void setChartBackgroundColor(Chart chart, Integer color) {
         chart.setBackgroundColor(color);
+    }
+
+    @ReactProp(name = "highlightPerTapEnabled")
+    public void setHighlightPerTapEnabled(Chart chart, boolean enabled) {
+        chart.setHighlightPerTapEnabled(enabled);
     }
 
     @ReactProp(name = "chartDescription")
@@ -305,28 +313,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             axis.setTextSize((float) propMap.getDouble("textSize"));
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
-            String fontFamily = propMap.getString("fontFamily");
-            boolean italic = false;
-            boolean bold = false;
-            int style = Typeface.NORMAL;
-            if (BridgeUtils.validate(propMap, ReadableType.String, "fontStyle")) {
-                italic = "italic".equals(propMap.getString("fontStyle"));
-            }
-            if (BridgeUtils.validate(propMap, ReadableType.String, "fontWeight")) {
-                bold = "bold".equals(propMap.getString("fontWeight"));
-            }
-
-            if (italic && bold) {
-                style = Typeface.BOLD_ITALIC;
-            } else if (italic) {
-                style = Typeface.ITALIC;
-            } else if (bold) {
-                style = Typeface.BOLD;
-            }
-
-            axis.setTypeface(ReactFontManager.getInstance().getTypeface(fontFamily,
-                    style,
-                    chart.getContext().getAssets()));
+            axis.setTypeface(TypefaceUtils.getTypeface(chart, propMap));
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "gridColor")) {
             axis.setGridColor(propMap.getInt("gridColor"));
@@ -453,12 +440,14 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
     }
 
+
+
     /**
      * Dataset config details: https://github.com/PhilJay/MPAndroidChart/wiki/DataSet-classes-in-detail
      */
     @ReactProp(name = "data")
-    public void setData(Chart chart, ReadableMap propMap) {
-        chart.setData(getDataExtract().extract(propMap));
+    public void setData(T chart, ReadableMap propMap) {
+        chart.setData(getDataExtract().extract(chart, propMap));
     }
 
     @ReactProp(name = "highlights")
@@ -495,7 +484,6 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
 
         chart.highlightValues(highlights.toArray(new Highlight[highlights.size()]));
     }
-
 
     @Override
     protected void onAfterUpdateTransaction(T chart) {

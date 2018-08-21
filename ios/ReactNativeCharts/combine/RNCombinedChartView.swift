@@ -41,4 +41,8 @@ class RNCombinedChartView: RNBarLineChartViewBase {
         _chart.drawBarShadowEnabled = enabled
     }
 
+    func setHighlightFullBarEnabled(_ enabled: Bool) {
+        _chart.highlightFullBarEnabled = enabled
+    }
+
 }

@@ -61,14 +61,17 @@ class ChartDataSetConfigUtils: NSObject {
 
                 dataSet.valueFormatter = DefaultValueFormatter(formatter: customFormatter);
             }
-
+        } else if valueFormatter.array != nil {
+            dataSet.valueFormatter = IndexValueFormatter(values: valueFormatter.arrayValue.map({ $0.stringValue }))
         }
 
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
         }
-
-
+        
+        if let font = FontUtils.getFont(config) {
+            dataSet.valueFont = font
+        }
     }
 
     static func commonBarLineScatterCandleBubbleConfig(_ dataSet: BarLineScatterCandleBubbleChartDataSet, config: JSON) {

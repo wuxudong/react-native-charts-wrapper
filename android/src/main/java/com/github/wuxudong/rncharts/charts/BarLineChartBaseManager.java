@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
+    private ReadableMap savedVisibleRange = null;
+
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
         BarLineChartBase barLineChart = (BarLineChartBase) chart;
@@ -65,6 +67,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
     @ReactProp(name = "visibleRange")
     public void setVisibleXRangeMinimum(BarLineChartBase chart, ReadableMap propMap) {
+        // delay visibleRange handling until chart data is set
+        savedVisibleRange = propMap;
+    }
+
+    private void updateVisibleRange(BarLineChartBase chart, ReadableMap propMap) {
         if (BridgeUtils.validate(propMap, ReadableType.Map, "x")) {
             ReadableMap x = propMap.getMap("x");
             if (BridgeUtils.validate(x, ReadableType.Number, "min")) {
@@ -121,6 +128,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     @ReactProp(name = "dragEnabled")
     public void setDragEnabled(BarLineChartBase chart, boolean enabled) {
         chart.setDragEnabled(enabled);
+    }
+
+    @ReactProp(name = "highlightPerDragEnabled")
+    public void setHighlightPerDragEnabled(BarLineChartBase chart, boolean enabled) {
+        chart.setHighlightPerDragEnabled(enabled);
     }
 
     @ReactProp(name = "scaleXEnabled")
@@ -214,7 +226,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewTo", MOVE_VIEW_TO,
                 "moveViewToX", MOVE_VIEW_TO_X,
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
-                "fitScreen", FIT_SCREEN);
+                "fitScreen", FIT_SCREEN,
+                "highlights", HIGHLIGHTS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -248,9 +261,22 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case FIT_SCREEN:
                 root.fitScreen();
                 return;
+
+            case HIGHLIGHTS:
+                this.setHighlights(root, args.getArray(0));
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
     }
 
+    @Override
+    protected void onAfterUpdateTransaction(T chart) {
+        super.onAfterUpdateTransaction(chart);
+
+        if (savedVisibleRange != null) {
+            updateVisibleRange(chart, savedVisibleRange);
+            savedVisibleRange = null;
+        }
+    }
 }

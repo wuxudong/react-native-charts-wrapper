@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
-    public D extract(ReadableMap propMap) {
+    public D extract(Chart chart, ReadableMap propMap) {
         if (!BridgeUtils.validate(propMap, ReadableType.Array, "dataSets")) {
             return null;
         }
@@ -37,7 +38,7 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
             IDataSet<U> dataSet = createDataSet(entries, label);
 
             if (BridgeUtils.validate(dataSetReadableMap, ReadableType.Map, "config")) {
-                dataSetConfig(dataSet, dataSetReadableMap.getMap("config"));
+                dataSetConfig(chart, dataSet, dataSetReadableMap.getMap("config"));
             }
 
             chartData.addDataSet(dataSet);
@@ -53,11 +54,12 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
     abstract D createData();
 
-    void dataConfig(D data, ReadableMap config) {}
+    void dataConfig(D data, ReadableMap config) {
+    }
 
     abstract IDataSet<U> createDataSet(ArrayList<U> entries, String label);
 
-    abstract void dataSetConfig(IDataSet<U> dataSet, ReadableMap config);
+    abstract void dataSetConfig(Chart chart, IDataSet<U> dataSet, ReadableMap config);
 
     ArrayList<U> createEntries(ReadableArray yValues) {
         ArrayList<U> entries = new ArrayList<>(yValues.size());
@@ -70,7 +72,6 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
     }
 
     abstract U createEntry(ReadableArray values, int index);
-
 
 
 }

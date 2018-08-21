@@ -32,7 +32,6 @@ class HorizontalBarChartScreen extends React.Component {
           label: 'Bar dataSet',
           config: {
             color: processColor('teal'),
-            barSpacePercent: 40,
             barShadowColor: processColor('lightgrey'),
             highlightAlpha: 90,
             highlightColor: processColor('red'),

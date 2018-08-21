@@ -85,7 +85,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if json["direction"].string != nil {
             legend.direction = BridgeUtils.parseLegendDirection(json["direction"].stringValue)
         }
-        
+                
+        if let font = FontUtils.getFont(json) {
+            legend.font = font
+        }
         
         if json["form"].string != nil {
             legend.form = BridgeUtils.parseLegendForm(json["form"].stringValue)
@@ -162,7 +165,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
         
         if json["positionX"].number != nil && json["positionY"].number != nil {
-            chartDescription.position = CGPoint(x: CGFloat(json["positionX"].numberValue), y: CGFloat(json["positionY"].numberValue))
+            chartDescription.position = CGPoint(x: CGFloat(truncating: json["positionX"].numberValue), y: CGFloat(truncating: json["positionY"].numberValue))
         }
         
         chart.chartDescription = chartDescription
@@ -176,12 +179,16 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         chart.isUserInteractionEnabled = touchEnabled
     }
     
+    func setHighlightPerTapEnabled(_ enabled: Bool) {
+        chart.highlightPerTapEnabled = enabled
+    }
+    
     func setDragDecelerationEnabled(_ dragDecelerationEnabled: Bool) {
         chart.dragDecelerationEnabled = dragDecelerationEnabled
     }
     
     func setDragDecelerationFrictionCoef(_ dragDecelerationFrictionCoef: NSNumber) {
-        chart.dragDecelerationFrictionCoef = CGFloat(dragDecelerationFrictionCoef)
+        chart.dragDecelerationFrictionCoef = CGFloat(truncating: dragDecelerationFrictionCoef)
     }
     
     func setAnimation(_ config: NSDictionary) {
@@ -220,7 +227,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         setCommonAxisConfig(xAxis, config: json)
         
         if json["labelRotationAngle"].number != nil {
-            xAxis.labelRotationAngle = CGFloat(json["labelRotationAngle"].numberValue)
+            xAxis.labelRotationAngle = CGFloat(truncating: json["labelRotationAngle"].numberValue)
         }
         
         if json["avoidFirstLastClipping"].bool != nil {
@@ -252,16 +259,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         // style
-        if config["fontFamily"].string != nil {
-            axis.labelFont = RCTFont.update(nil, withFamily: config["fontFamily"].string)
-        }
-        
-        if config["fontStyle"].string != nil {
-            axis.labelFont = RCTFont.update(axis.labelFont, withStyle: config["fontStyle"].string)
-        }
-        
-        if config["fontWeight"].string != nil {
-            axis.labelFont = RCTFont.update(axis.labelFont, withWeight: config["fontWeight"].string)
+        if let font = FontUtils.getFont(config) {
+            axis.labelFont  = font
         }
         
         if config["textColor"].int != nil {
@@ -277,7 +276,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if config["gridLineWidth"].number != nil {
-            axis.gridLineWidth = CGFloat(config["gridLineWidth"].numberValue)
+            axis.gridLineWidth = CGFloat(truncating: config["gridLineWidth"].numberValue)
         }
         
         if config["axisLineColor"].int != nil {
@@ -285,7 +284,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
         
         if config["axisLineWidth"].number != nil {
-            axis.axisLineWidth = CGFloat(config["axisLineWidth"].numberValue)
+            axis.axisLineWidth = CGFloat(truncating: config["axisLineWidth"].numberValue)
         }
         
         if config["gridDashedLine"].exists() {
@@ -295,15 +294,15 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             var spaceLength = CGFloat(0)
             
             if gridDashedLine["lineLength"].number != nil {
-                lineLength = CGFloat(gridDashedLine["lineLength"].numberValue)
+                lineLength = CGFloat(truncating: gridDashedLine["lineLength"].numberValue)
             }
             
             if gridDashedLine["spaceLength"].number != nil {
-                spaceLength = CGFloat(gridDashedLine["spaceLength"].numberValue)
+                spaceLength = CGFloat(truncating: gridDashedLine["spaceLength"].numberValue)
             }
             
             if gridDashedLine["phase"].number != nil {
-                axis.gridLineDashPhase = CGFloat(gridDashedLine["phase"].numberValue)
+                axis.gridLineDashPhase = CGFloat(truncating: gridDashedLine["phase"].numberValue)
             }
             
             axis.gridLineDashLengths = [lineLength, spaceLength]
@@ -336,7 +335,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                     }
                     
                     if limitLineConfig["lineWidth"].number != nil {
-                        limitLine.lineWidth = CGFloat(limitLineConfig["lineWidth"].numberValue)
+                        limitLine.lineWidth = CGFloat(truncating: limitLineConfig["lineWidth"].numberValue)
                     }
                   
                     if limitLineConfig["labelPosition"].string != nil {
@@ -440,32 +439,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         
     }
     
-    func setHighlights(_ config: NSArray) {        
-        var highlights : [Highlight] = []
-        for object in config {
-            if let dict = object as? NSDictionary {
-                let json = BridgeUtils.toJson(dict)
-                
-                if json["x"].double != nil {
-                    let dataSetIndex = json["dataSetIndex"].int != nil ? json["dataSetIndex"].intValue : 0
-                    let y = json["y"].double != nil ? json["y"].doubleValue : 0
-                    
-                    var highlight : Highlight
-                    if json["stackIndex"].int != nil {
-                        highlight = Highlight(x: json["x"].doubleValue, dataSetIndex: dataSetIndex, stackIndex: json["stackIndex"].intValue)
-                    } else {
-                        highlight = Highlight(x: json["x"].doubleValue, y: y, dataSetIndex: dataSetIndex)
-                    }
-                    
-                    if json["dataIndex"].int != nil {
-                        highlight.dataIndex = json["dataIndex"].intValue
-                    }
-                    
-                    highlights.append(highlight)
-                }
-            }
-        }
-        chart.highlightValues(highlights)
+    func setHighlights(_ config: NSArray) {
+        chart.highlightValues(HighlightUtils.getHighlights(config))
     }
     
     @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
