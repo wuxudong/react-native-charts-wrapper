@@ -28,8 +28,8 @@ class LineChartScreen extends React.Component {
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
         custom: {
-          colors: [processColor('red'), processColor('blue'), processColor('green')],
-          labels: ['Company X', 'Company Y', 'Company Dashed']
+          colors: [processColor('red'), -2, processColor('green')],
+          labels: ['Company X', '', 'Company Dashed']
         }
       },
       marker: {

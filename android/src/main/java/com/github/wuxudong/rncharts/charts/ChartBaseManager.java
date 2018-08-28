@@ -253,6 +253,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
             axis.setPosition(XAxisPosition.valueOf(propMap.getString("position")));
         }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
+            axis.setYOffset((float)(propMap.getDouble("yOffset")));
+        }
+
     }
 
     @ReactProp(name = "marker")

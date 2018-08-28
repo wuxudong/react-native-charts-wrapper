@@ -110,6 +110,7 @@ class CandleStickChartScreen extends React.Component {
               drawLabels: true,
               drawGridLines: true,
               position: 'BOTTOM',
+              yOffset: 5,
 
               limitLines: _.times(this.state.data.dataSets[0].values.length / 5, (i) => {
                 return {

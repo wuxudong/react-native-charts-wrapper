@@ -237,6 +237,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if json["position"].string != nil {
             xAxis.labelPosition = BridgeUtils.parseXAxisLabelPosition(json["position"].stringValue)
         }
+
+        if json["yOffset"].number != nil {
+            xAxis.yOffset = CGFloat(truncating: json["yOffset"].numberValue)
+        }
     }
     
     func setCommonAxisConfig(_ axis: AxisBase, config: JSON) {
