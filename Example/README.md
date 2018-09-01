@@ -3,7 +3,7 @@
 
 cd Example
 
-npm install 
+yarn install 
 
 
 
