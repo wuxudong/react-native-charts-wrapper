@@ -508,5 +508,9 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         }
     }
     
+    override open func didSetProps(_ changedProps: [String]!) {
+        super.didSetProps(changedProps)        
+        chart.notifyDataSetChanged()
+    }
     
 }

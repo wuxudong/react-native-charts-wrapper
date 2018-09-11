@@ -176,6 +176,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         
         if let config = savedVisibleRange {
             updateVisibleRange(config)
+            savedVisibleRange = nil
         }        
     }
     

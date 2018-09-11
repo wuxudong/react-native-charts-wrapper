@@ -492,6 +492,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     @Override
     protected void onAfterUpdateTransaction(T chart) {
         super.onAfterUpdateTransaction(chart);
+        chart.notifyDataSetChanged();
         chart.invalidate();
     }
 
