@@ -20,7 +20,6 @@ class LineChartScreen extends React.Component {
         enabled: true,
         textColor: processColor('blue'),
         textSize: 12,
-        position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,
@@ -29,8 +28,8 @@ class LineChartScreen extends React.Component {
         wordWrapEnabled: true,
         maxSizePercent: 0.5,
         custom: {
-          colors: [processColor('red'), processColor('blue'), processColor('green')],
-          labels: ['Company X', 'Company Y', 'Company Dashed']
+          colors: [processColor('red'), -2, processColor('green')],
+          labels: ['Company X', '', 'Company Dashed']
         }
       },
       marker: {
@@ -49,7 +48,7 @@ class LineChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
+              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 135}],
               label: 'Company X',
               config: {
                 lineWidth: 2,
@@ -60,7 +59,7 @@ class LineChartScreen extends React.Component {
                 fillColor: processColor('red'),
                 fillAlpha: 60,
 		            valueTextSize: 15,
-                valueFormatter: "##.000",
+                valueFormatter: ["","min","","max"],
                 dashedLine: {
                   lineLength: 20,
                   spaceLength: 20
@@ -99,6 +98,13 @@ class LineChartScreen extends React.Component {
             fontStyle:"italic",
             valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4']
           }
+        },
+        yAxis: {
+          $set: {
+            left: {
+              valueFormatter: "#.#%"
+            }
+          }
         }
       })
     );
@@ -132,6 +138,7 @@ class LineChartScreen extends React.Component {
             legend={this.state.legend}
             marker={this.state.marker}
             xAxis={this.state.xAxis}
+            yAxis={this.state.yAxis}
             drawGridBackground={false}
             borderColor={processColor('teal')}
             borderWidth={1}
@@ -144,6 +151,9 @@ class LineChartScreen extends React.Component {
             scaleYEnabled={true}
             pinchZoom={true}
             doubleTapToZoomEnabled={true}
+            highlightPerTapEnabled={true}
+            highlightPerDragEnabled={false}
+            highlights={[{x:3, y:135}]}
 
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}

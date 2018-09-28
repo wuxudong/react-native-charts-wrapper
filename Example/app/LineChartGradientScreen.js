@@ -99,6 +99,62 @@ class LineChartScreen extends React.Component {
                     fillAlpha: 1000,
                     valueTextSize: 15
                   }
+                },
+
+                {
+                  values: [
+                    {
+                      y: 35,
+                      x: 0,
+                      marker: "35 kg"
+                    },
+                    {
+                      y: 47,
+                      x: 1,
+                      marker: "47 kg"
+                    },
+                    {
+                      y: 46,
+                      x: 2,
+                      marker: "46 kg"
+                    },
+                    {
+                      y: 44,
+                      x: 3,
+                      marker: "44 kg"
+                    },
+                    {
+                      y: 46,
+                      x: 4,
+                      marker: "46 kg"
+                    },
+                    {
+                      y: 35,
+                      x: 5,
+                      marker: "Today: 35 kg"
+                    }
+                  ],
+                  label: "",
+                  config: {
+                    mode: "CUBIC_BEZIER",
+                    drawValues: false,
+                    lineWidth: 2,
+                    drawCircles: true,
+                    circleColor: processColor(petrel),
+                    drawCircleHole: false,
+                    circleRadius: 5,
+                    highlightColor: processColor("transparent"),
+                    color: processColor(petrel),
+                    drawFilled: true,
+                    fillGradient: {
+                      colors: [processColor('red'), processColor('yellow')],
+                      positions: [0, 0.5],
+                      angle: 90,
+                      orientation: "TOP_BOTTOM"
+                    },
+                    fillAlpha: 1000,
+                    valueTextSize: 15
+                  }
                 }
               ]
             }}

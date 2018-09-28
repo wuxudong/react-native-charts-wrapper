@@ -33,5 +33,9 @@ class RNScatterChartManager: RCTViewManager, RNBarLineChartBaseManager {
   func fitScreen(_ reactTag: NSNumber) {
     (self as RNBarLineChartBaseManager)._fitScreen(reactTag)
   }
+  
+  func highlights(_ reactTag: NSNumber, config: NSArray) {
+    (self as RNBarLineChartBaseManager)._highlights(reactTag, config: config)
+  }
 
 }

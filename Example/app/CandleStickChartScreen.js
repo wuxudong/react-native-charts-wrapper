@@ -22,7 +22,6 @@ class CandleStickChartScreen extends React.Component {
         enabled: true,
         textSize: 14,
         form: 'CIRCLE',
-        position: 'BELOW_CHART_RIGHT',
         wordWrapEnabled: true
       },
       data: {
@@ -111,6 +110,7 @@ class CandleStickChartScreen extends React.Component {
               drawLabels: true,
               drawGridLines: true,
               position: 'BOTTOM',
+              yOffset: 5,
 
               limitLines: _.times(this.state.data.dataSets[0].values.length / 5, (i) => {
                 return {
@@ -128,10 +128,14 @@ class CandleStickChartScreen extends React.Component {
                 valueFormatter: '$ #',
                 limitLines: [{
                   limit: 112.4,
-                  lineColor: processColor('red')
+                  lineColor: processColor('red'),
+                  lineDashPhase: 2,
+                  lineDashLengths: [10,20]
                 }, {
                   limit: 89.47,
-                  lineColor: processColor('red')
+                  lineColor: processColor('red'),
+                  lineDashPhase: 2,
+                  lineDashLengths: [10,20]
                 }]
               },
               right: {

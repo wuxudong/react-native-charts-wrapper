@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
@@ -31,10 +32,10 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<CandleEntry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<CandleEntry> dataSet, ReadableMap config) {
         CandleDataSet candleDataSet = (CandleDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(candleDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, candleDataSet, config);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(candleDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(candleDataSet, config);
 

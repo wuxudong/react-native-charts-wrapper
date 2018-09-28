@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.BubbleData;
 import com.github.mikephil.charting.data.BubbleDataSet;
 import com.github.mikephil.charting.data.BubbleEntry;
@@ -29,10 +30,10 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<BubbleEntry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<BubbleEntry> dataSet, ReadableMap config) {
         BubbleDataSet bubbleDataSet = (BubbleDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(bubbleDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, bubbleDataSet, config);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(bubbleDataSet, config);
 
         // BubbleDataSet only config

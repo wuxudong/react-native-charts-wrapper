@@ -32,12 +32,15 @@ class BarChartScreen extends React.Component {
           label: 'Bar dataSet',
           config: {
             color: processColor('teal'),
-            barSpacePercent: 40,
             barShadowColor: processColor('lightgrey'),
             highlightAlpha: 90,
             highlightColor: processColor('red'),
           }
         }],
+
+        config: {
+          barWidth: 0.7,
+        }
       },
       highlights: [{x: 3}, {x: 6}],
       xAxis: {
@@ -78,6 +81,7 @@ class BarChartScreen extends React.Component {
             animation={{durationX: 2000}}
             legend={this.state.legend}
             gridBackgroundColor={processColor('#ffffff')}
+            visibleRange={{x: { min: 5, max: 5 }}}
             drawBarShadow={false}
             drawValueAboveBar={true}
             drawHighlightArrow={true}

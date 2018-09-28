@@ -48,16 +48,13 @@ export default class Combined extends Component {
       data: {
         barData: {
           dataSets: [{
-            values: [400, 5000, 5000, 2300, 7900],
-            label: 'Company B',
-
+            values: [{y:[40, 30, 20], marker: ["row1", "row2", "row3"]}, {y:[10, 20, 10], marker:"second"}, {y:[30, 20, 50], marker:["hello", "world","third"]}, {y:[30, 50, 10], marker:"fourth"}],
+            label: 'Stacked Bar dataset',
             config: {
-              drawValues: false,
-              colors: [processColor('red')],
-              axisDependency: "left",
+              colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C')],
+              stackLabels: ['Engineering', 'Sales', 'Marketing']
             }
-
-          }]
+          }],
         },
         lineData: {
           dataSets: [{
@@ -236,6 +233,7 @@ export default class Combined extends Component {
             onChange={(event) => console.log(event.nativeEvent)}
             marker={this.state.marker}
             highlights={this.state.highlights}
+            highlightFullBarEnabled={false}
             style={styles.container}/>
 
         </View>

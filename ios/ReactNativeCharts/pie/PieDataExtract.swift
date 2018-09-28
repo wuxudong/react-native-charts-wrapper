@@ -31,12 +31,37 @@ class PieDataExtract : DataExtract {
         }
         
         if config["xValuePosition"].string != nil {
-          pieDataSet.xValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["xValuePosition"].stringValue)
+            pieDataSet.xValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["xValuePosition"].stringValue)
         }
       
         if config["yValuePosition"].string != nil {
-          pieDataSet.yValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["yValuePosition"].stringValue)
+            pieDataSet.yValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["yValuePosition"].stringValue)
         }
+        
+        if config["valueLinePart1Length"].float != nil {
+            pieDataSet.valueLinePart1Length = CGFloat(config["valueLinePart1Length"].floatValue)
+        }
+        
+        if config["valueLinePart2Length"].float != nil {
+            pieDataSet.valueLinePart2Length = CGFloat(config["valueLinePart2Length"].floatValue)
+        }
+        
+        if config["valueLineColor"].int != nil {
+            pieDataSet.valueLineColor = RCTConvert.uiColor(config["valueLineColor"].intValue);
+        }
+
+        if config["valueLineWidth"].float != nil {
+            pieDataSet.valueLineWidth = CGFloat(config["valueLineWidth"].floatValue)
+        }
+        
+        if config["valueLinePart1OffsetPercentage"].float != nil {
+            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(config["valueLinePart1OffsetPercentage"].floatValue)
+        }
+        
+        if config["valueLineVariableLength"].bool != nil {
+            pieDataSet.valueLineVariableLength = config["valueLineVariableLength"].boolValue
+        }
+                
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

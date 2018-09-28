@@ -104,6 +104,13 @@ class RadarChartScreen extends React.Component {
             chartDescription={{text: ''}}
             legend={this.state.legend}
             drawWeb={true}
+
+            webLineWidth={5}
+            webLineWidthInner={5}
+            webAlpha={255}
+            webColor={processColor("red")}
+            webColorInner={processColor("green")}
+
             skipWebLineCount={1}
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
