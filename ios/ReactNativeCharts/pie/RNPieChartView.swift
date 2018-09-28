@@ -77,9 +77,9 @@ class RNPieChartView: RNChartViewBase {
 
             attrString = NSMutableAttributedString(string: json["text"].stringValue)
             attrString?.setAttributes([
-                NSAttributedStringKey.foregroundColor: color!,
-                NSAttributedStringKey.font: NSUIFont.systemFont(ofSize: fontSize),
-                NSAttributedStringKey.paragraphStyle: paragraphStyle
+                NSAttributedString.Key.foregroundColor: color!,
+                NSAttributedString.Key.font: NSUIFont.systemFont(ofSize: fontSize),
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
                 ], range: NSMakeRange(0, attrString!.length))
         }
 
