@@ -1,6 +1,7 @@
 package com.github.wuxudong.rncharts.listener;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.facebook.react.bridge.Arguments;
@@ -59,6 +60,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
 
     @Override
     public void onChartTranslate(MotionEvent me, float dX, float dY) {
+        Log.d("SCROLL", "me " + me + " dx " + dX + " dy " + dY);
         sendEvent("chartTranslated");
     }
 
@@ -98,6 +100,13 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             event.putDouble("bottom", leftBottom.y);
             event.putDouble("right", rightTop.x);
             event.putDouble("top", rightTop.y);
+
+            Log.d("GESTURE", "position center x " + center.x + " y" + center.y);
+            Log.d("GESTURE", "contentRect " + viewPortHandler.getContentRect());
+
+            Log.d("GESTURE", "ValueMatrix" + ((BarLineChartBase) chart).getTransformer(YAxis.AxisDependency.LEFT).getValueMatrix().toString());
+            Log.d("GESTURE", "matrixTouch" + viewPortHandler.getMatrixTouch().toString());
+            Log.d("GESTURE", "OffsetMatrix" + ((BarLineChartBase) chart).getTransformer(YAxis.AxisDependency.LEFT).getOffsetMatrix().toString());
         }
         return event;
     }

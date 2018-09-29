@@ -28,6 +28,7 @@ import StackedBarChartScreen from './StackedBarChartScreen';
 import ZeroLineChartScreen from './ZeroLineChartScreen';
 import LiveUpdateChartScreen from './LiveUpdateChartScreen';
 import GroupBarChartScreen from './GroupBarChartScreen';
+import InfiniteScrollLineChartScreen from './InfiniteScrollLineChartScreen';
 
 
 const styles = StyleSheet.create({
@@ -146,6 +147,11 @@ var ExampleRoutes = {
     name: 'MovingWindowChartScreen',
     screen: MovingWindowChartScreen,
     description: 'Displays a MovingWindowChartScreen',
+  },
+  InfiniteScrollLineChartScreen: {
+    name: 'InfiniteScrollLineChartScreen',
+    screen: InfiniteScrollLineChartScreen,
+    description: 'Displays a InfiniteScrollChartScreen',
   },
 };
 
