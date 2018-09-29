@@ -46,14 +46,15 @@ class InfiniteScrollLineChartScreen extends React.Component {
         _this.xMin = from
         _this.xMax = to
 
+        console.log("load data from " + from + " to " + to)
         resolve({
           dataSets: [{
-            values: Array.from(new Array(to - from), (val, index) => ({
+            values: Array.from(new Array(parseInt(to - from)), (val, index) => ({
               x: from + index,
               y: Math.sin(0.1 * (from + index))
             })), label: 'sin', config: {color: processColor('blue')}
           }, {
-            values: Array.from(new Array(to - from), (val, index) => ({
+            values: Array.from(new Array(parseInt(to - from)), (val, index) => ({
               x: from + index,
               y: Math.cos(0.1 * (from + index))
             })), label: 'cos', config: {color: processColor('green')}

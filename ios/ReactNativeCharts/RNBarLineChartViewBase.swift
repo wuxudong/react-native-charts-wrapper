@@ -179,5 +179,42 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             savedVisibleRange = nil
         }        
     }
+
+    func setDataAndLockIndex(_ data: NSDictionary) {
+        let json = BridgeUtils.toJson(data)
+
+        let axis = barLineChart.getAxis(YAxis.AxisDependency.left).enabled ? YAxis.AxisDependency.left : YAxis.AxisDependency.right
+
+        let contentRect = barLineChart.contentRect
+
+        let originCenterValue = barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.midX, y: contentRect.midY), axis: axis)
+
+        let originalVisibleXRange = barLineChart.visibleXRange
+        let originalVisibleYRange = getVisibleYRange(axis)
+
+        barLineChart.fitScreen()
+        barLineChart.data = dataExtract.extract(json)
+
+        if let config = savedVisibleRange {
+            updateVisibleRange(config)
+        }
+
+        barLineChart.notifyDataSetChanged()
+
+
+        let newVisibleXRange = barLineChart.visibleXRange
+        let newVisibleYRange = getVisibleYRange(axis)
+
+        let scaleX = newVisibleXRange / originalVisibleXRange
+        let scaleY = newVisibleYRange / originalVisibleYRange
+
+        barLineChart.zoom(scaleX: CGFloat(scaleX), scaleY: CGFloat(scaleY), xValue: Double(originCenterValue.x), yValue: Double(originCenterValue.y), axis: axis)
+    }
+
+    func getVisibleYRange(_ axis: YAxis.AxisDependency) -> CGFloat {
+        let contentRect = barLineChart.contentRect
+
+        return barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.maxX, y:contentRect.minY), axis: axis).y - barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.minX, y:contentRect.maxY), axis: axis).y
+    }
     
 }

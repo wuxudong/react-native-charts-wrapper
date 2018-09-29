@@ -29,7 +29,7 @@ class LineChartScreen extends React.Component {
         granularityEnabled: true,
         granularity: 1,
       },
-      visibleRange: {x: {min: 1, max: 2}}
+      // visibleRange: {x: {min: 1, max: 2}}
     };
   }
 
@@ -142,7 +142,7 @@ class LineChartScreen extends React.Component {
             doubleTapToZoomEnabled={true}
             highlightPerTapEnabled={true}
             highlightPerDragEnabled={false}
-            visibleRange={this.state.visibleRange}
+            // visibleRange={this.state.visibleRange}
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
             ref="chart"

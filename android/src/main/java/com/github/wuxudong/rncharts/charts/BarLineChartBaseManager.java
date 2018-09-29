@@ -295,6 +295,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         double originalVisibleXRange = root.getVisibleXRange();
         double originalVisibleYRange = getVisibleYRange(root, axisDependency);
 
+        root.fitScreen();
         root.setData((getDataExtract().extract(root, map)));
         if (savedVisibleRange != null) {
             updateVisibleRange(root, savedVisibleRange);
