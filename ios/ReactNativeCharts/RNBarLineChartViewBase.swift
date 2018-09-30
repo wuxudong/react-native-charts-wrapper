@@ -171,13 +171,12 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         barLineChart.setExtraOffsets(left: left, top: top, right: right, bottom: bottom)
     }
     
-    override func didSetProps(_ changedProps: [String]!) {
-        super.didSetProps(changedProps)
-        
+    override func onAfterDataSetChanged() {
+        super.onAfterDataSetChanged()
+
         if let config = savedVisibleRange {
             updateVisibleRange(config)
-            savedVisibleRange = nil
-        }        
+        }
     }
 
     func setDataAndLockIndex(_ data: NSDictionary) {
@@ -193,14 +192,10 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         let originalVisibleYRange = getVisibleYRange(axis)
 
         barLineChart.fitScreen()
+        
         barLineChart.data = dataExtract.extract(json)
-
-        if let config = savedVisibleRange {
-            updateVisibleRange(config)
-        }
-
         barLineChart.notifyDataSetChanged()
-
+        
 
         let newVisibleXRange = barLineChart.visibleXRange
         let newVisibleYRange = getVisibleYRange(axis)
@@ -208,7 +203,17 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         let scaleX = newVisibleXRange / originalVisibleXRange
         let scaleY = newVisibleYRange / originalVisibleYRange
 
+        // in iOS Charts chart.zoom(scaleX, scaleY, ...) the scale is absolute scale, it will overwrite touchMatrix scale directly
+        // but in android MpAndroidChart, chart.zoom(scaleX, scaleY, ...) the scale is relative scale, touchMatrix.scaleX = touchMatrix.scaleX * scaleX
+        // so in iOS, we updateVisibleRange after zoom
+
+        
         barLineChart.zoom(scaleX: CGFloat(scaleX), scaleY: CGFloat(scaleY), xValue: Double(originCenterValue.x), yValue: Double(originCenterValue.y), axis: axis)
+        
+        if let config = savedVisibleRange {
+            updateVisibleRange(config)
+        }
+        barLineChart.notifyDataSetChanged()        
     }
 
     func getVisibleYRange(_ axis: YAxis.AxisDependency) -> CGFloat {

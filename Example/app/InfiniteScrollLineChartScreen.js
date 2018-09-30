@@ -25,7 +25,6 @@ class InfiniteScrollLineChartScreen extends React.Component {
 
     this.state = {
       data: {},
-      visibleRange: {x: {min: 25, max: 50}}
     };
   }
 
@@ -34,7 +33,8 @@ class InfiniteScrollLineChartScreen extends React.Component {
     this.mockLoadDataFromServer(-pageSize, pageSize).then(function (data) {
       _this.setState(
         {
-          data: data, visibleRange: {x: {min: 25, max: 50}}
+          data: data,
+          visibleRange: {x: {min: 25, max: 50}}
         })
     })
   }
@@ -52,12 +52,12 @@ class InfiniteScrollLineChartScreen extends React.Component {
             values: Array.from(new Array(parseInt(to - from)), (val, index) => ({
               x: from + index,
               y: Math.sin(0.1 * (from + index))
-            })), label: 'sin', config: {color: processColor('blue')}
+            })), label: 'sin', config: {color: processColor('blue'), drawCircles: false}
           }, {
             values: Array.from(new Array(parseInt(to - from)), (val, index) => ({
               x: from + index,
               y: Math.cos(0.1 * (from + index))
-            })), label: 'cos', config: {color: processColor('green')}
+            })), label: 'cos', config: {color: processColor('green'), drawCircles: false}
           }],
         })
       }, 50);
@@ -96,11 +96,6 @@ class InfiniteScrollLineChartScreen extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-
-        <View style={{height: 80}}>
-          <Text> selected entry</Text>
-          <Text> {this.state.selectedEntry}</Text>
-        </View>
 
         <View style={styles.container}>
           <LineChart

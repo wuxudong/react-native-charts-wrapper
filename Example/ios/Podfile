@@ -24,7 +24,7 @@ target 'Example' do
     pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
     pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
     
-    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
+    pod 'RNCharts', :path => '../../'
 end
 
 post_install do |installer|
