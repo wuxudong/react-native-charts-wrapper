@@ -80,6 +80,11 @@ class InfiniteScrollLineChartScreen extends React.Component {
 
           _this.isLoading = true
 
+          // Because of the implementation of MpAndroidChart, if the action of setDataAndLockIndex is triggered by user dragging,
+          // then the size of new data should be equal to original data, otherwise the calculation of position transition won't be accurate,
+          // use may find the chart suddenly blink to another position.          
+          // This restriction only exists in android, in iOS, we have no such problem.
+          
           _this.mockLoadDataFromServer(centerX - pageSize, centerX + pageSize).then(function (data) {
 
             console.log(_this.refs.chart)
