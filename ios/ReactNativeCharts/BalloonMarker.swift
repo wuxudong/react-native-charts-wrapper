@@ -26,14 +26,14 @@ open class BalloonMarker: MarkerView {
     open var minimumSize = CGSize()
 
     
-    fileprivate var insets = UIEdgeInsetsMake(8.0, 8.0, 20.0, 8.0)
-    fileprivate var topInsets = UIEdgeInsetsMake(20.0, 8.0, 8.0, 8.0)
+    fileprivate var insets = UIEdgeInsets(top: 8.0,left: 8.0,bottom: 20.0,right: 8.0)
+    fileprivate var topInsets = UIEdgeInsets(top: 20.0,left: 8.0,bottom: 8.0,right: 8.0)
     
     fileprivate var labelns: NSString?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _size: CGSize = CGSize()
     fileprivate var _paragraphStyle: NSMutableParagraphStyle?
-    fileprivate var _drawAttributes = [NSAttributedStringKey: Any]()
+    fileprivate var _drawAttributes = [NSAttributedString.Key: Any]()
 
 
     public init(color: UIColor, font: UIFont, textColor: UIColor) {
@@ -225,9 +225,9 @@ open class BalloonMarker: MarkerView {
         labelns = label as NSString
 
         _drawAttributes.removeAll()
-        _drawAttributes[NSAttributedStringKey.font] = self.font
-        _drawAttributes[NSAttributedStringKey.paragraphStyle] = _paragraphStyle
-        _drawAttributes[NSAttributedStringKey.foregroundColor] = self.textColor
+        _drawAttributes[NSAttributedString.Key.font] = self.font
+        _drawAttributes[NSAttributedString.Key.paragraphStyle] = _paragraphStyle
+        _drawAttributes[NSAttributedString.Key.foregroundColor] = self.textColor
 
         _labelSize = labelns?.size(withAttributes: _drawAttributes) ?? CGSize.zero
         _size.width = _labelSize.width + self.insets.left + self.insets.right
