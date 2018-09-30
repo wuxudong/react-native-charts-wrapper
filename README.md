@@ -8,6 +8,15 @@ Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-nativ
 
 React Native Charts Wrapper is built on MPAndroidChart(v3.0.3) & Charts(v3.1.1), support both android & iOS.
 
+## WARNING
+
+As Swift evolves, if you are not using latest Swift compiler, you shouldn't check out master branch. Instead, you should go to release page and pick up whatever suits you.
+
+* Xcode 10.0 / Swift 4.2 (master branch)
+* iOS >= 8.0 (Use as an **Embedded** Framework)
+* tvOS >= 9.0
+* macOS >= 10.11
+
 
 ### ANDROID 
 ![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/Android%20ScreenShot.png)
