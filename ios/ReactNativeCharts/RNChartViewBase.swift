@@ -507,10 +507,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             self.onChange!(dict)
         }
     }
+
+    func onAfterDataSetChanged() {
+    }
     
     override open func didSetProps(_ changedProps: [String]!) {
         super.didSetProps(changedProps)        
         chart.notifyDataSetChanged()
+        onAfterDataSetChanged()
     }
     
 }
