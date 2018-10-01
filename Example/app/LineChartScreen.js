@@ -34,7 +34,6 @@ class LineChartScreen extends React.Component {
   }
 
   componentDidMount() {
-    console.log("did mount")
 
     this.setState(
       update(this.state, {

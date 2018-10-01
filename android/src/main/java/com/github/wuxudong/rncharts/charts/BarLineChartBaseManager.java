@@ -13,9 +13,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Transformer;
+import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.lang.reflect.Field;
@@ -26,6 +28,13 @@ import javax.annotation.Nullable;
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
     private ReadableMap savedVisibleRange = null;
+
+    protected String group = null;
+
+    protected String identifier = null;
+
+    protected boolean syncX = true;
+    protected boolean syncY = false;
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
@@ -225,6 +234,26 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         chart.setExtraOffsets((float) left, (float) top, (float) right, (float) bottom);
     }
 
+    @ReactProp(name = "group")
+    public void setGroup(BarLineChartBase chart, String group) {
+        this.group = group;
+    }
+
+    @ReactProp(name = "identifier")
+    public void setIdentifier(BarLineChartBase chart, String identifier) {
+        this.identifier = identifier;
+    }
+
+    @ReactProp(name = "syncX")
+    public void setSyncX(BarLineChartBase chart, boolean syncX) {
+        this.syncX = syncX;
+    }
+
+    @ReactProp(name = "syncY")
+    public void setSyncY(BarLineChartBase chart, boolean syncY) {
+        this.syncY = syncY;
+    }
+
     @Nullable
     @Override
     public Map<String, Integer> getCommandsMap() {
@@ -344,6 +373,18 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
         if (savedVisibleRange != null) {
             updateVisibleRange(chart, savedVisibleRange);
+        }
+
+        if (group != null && identifier != null) {
+            OnChartGestureListener onChartGestureListener = chart.getOnChartGestureListener();
+
+            if (onChartGestureListener != null && onChartGestureListener instanceof RNOnChartGestureListener) {
+                RNOnChartGestureListener rnOnChartGestureListener = (RNOnChartGestureListener) onChartGestureListener;
+                rnOnChartGestureListener.setGroup(group);
+                rnOnChartGestureListener.setIdentifier(identifier);
+            }
+
+            ChartGroupHolder.addChart(group, identifier, chart, syncX, syncY);
         }
     }
 }
