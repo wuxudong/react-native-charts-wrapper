@@ -30,6 +30,10 @@ class LinkageChartScreen extends React.Component {
   // unfortunately, doubleTapToZoomEnabled is not supported in linkage chart,
   // because in iOS Charts, the double tap event is handled by Charts itself, and no callback/custom listener
   // so it is not possible to sync double tap event to other charts in the same group
+
+  // charts will broadcast their operation to other charts in the same group
+  // different chart should have different identifier
+  // synX is enabled by default, and syncY is disabled by default
   render() {
     return (
       <View style={{flex: 1}}>
