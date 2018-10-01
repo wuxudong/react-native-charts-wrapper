@@ -55,8 +55,8 @@ open class ChartGroupHolder {
                         
                         let originalCenterValue = chart.valueForTouchPoint(point: CGPoint(x: contentRect.midX, y: contentRect.midY), axis: axis)
 
-                        let finalScaleX = chartHolder.syncX ? scaleX / chart.scaleX : 1
-                        let finalScaleY = chartHolder.syncY ? scaleY / chart.scaleY : 1
+                        let finalScaleX = chartHolder.syncX ? scaleX : chart.scaleX
+                        let finalScaleY = chartHolder.syncY ? scaleY : chart.scaleY
                         
                         let finalCenterX = chartHolder.syncX ? centerX : originalCenterValue.x;
                         let finalCenterY = chartHolder.syncY ? centerY : originalCenterValue.y;
