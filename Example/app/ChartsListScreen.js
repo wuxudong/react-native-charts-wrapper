@@ -29,6 +29,7 @@ import ZeroLineChartScreen from './ZeroLineChartScreen';
 import LiveUpdateChartScreen from './LiveUpdateChartScreen';
 import GroupBarChartScreen from './GroupBarChartScreen';
 import InfiniteScrollLineChartScreen from './InfiniteScrollLineChartScreen';
+import LinkageChartScreen from './LinkageChartScreen';
 
 
 const styles = StyleSheet.create({
@@ -152,6 +153,11 @@ var ExampleRoutes = {
     name: 'InfiniteScrollLineChartScreen',
     screen: InfiniteScrollLineChartScreen,
     description: 'Displays a InfiniteScrollChartScreen',
+  },
+  LinkageChartScreen: {
+    name: 'LinkageChartScreen',
+    screen: LinkageChartScreen,
+    description: 'Displays a LinkageChartScreen',
   },
 };
 

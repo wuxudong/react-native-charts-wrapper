@@ -87,7 +87,6 @@ class InfiniteScrollLineChartScreen extends React.Component {
           
           _this.mockLoadDataFromServer(centerX - pageSize, centerX + pageSize).then(function (data) {
 
-            console.log(_this.refs.chart)
             _this.refs.chart.setDataAndLockIndex(data)
 
             _this.isLoading = false

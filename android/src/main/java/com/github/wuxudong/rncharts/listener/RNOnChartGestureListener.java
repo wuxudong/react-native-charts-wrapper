@@ -11,10 +11,13 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.MPPointD;
+import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.github.wuxudong.rncharts.charts.ChartGroupHolder;
 
 import java.lang.ref.WeakReference;
 
@@ -25,8 +28,20 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
 
     private WeakReference<Chart> mWeakChart;
 
+    private String group = null;
+
+    private String identifier = null;
+
     public RNOnChartGestureListener(Chart chart) {
-        mWeakChart = new WeakReference<>(chart);
+        this.mWeakChart = new WeakReference<>(chart);
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     @Override
@@ -43,6 +58,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
 
     @Override
     public void onChartDoubleTapped(MotionEvent me) {
+        sendEvent("doubleTapped", me);
     }
 
     @Override
@@ -55,20 +71,19 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
 
     @Override
     public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
-        sendEvent("chartScaled");
+        sendEvent("chartScaled", me);
     }
 
     @Override
     public void onChartTranslate(MotionEvent me, float dX, float dY) {
-        Log.d("SCROLL", "me " + me + " dx " + dX + " dy " + dY);
-        sendEvent("chartTranslated");
+        sendEvent("chartTranslated", me);
     }
 
-    private void sendEvent(String action) {
-        if (mWeakChart != null) {
-            Chart chart = mWeakChart.get();
+    private void sendEvent(String action, MotionEvent me) {
+        Chart chart = mWeakChart.get();
+        if (chart != null) {
 
-            WritableMap event = getEvent(action, chart);
+            WritableMap event = getEvent(action, me, chart);
 
             ReactContext reactContext = (ReactContext) chart.getContext();
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
@@ -79,12 +94,13 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
     }
 
     @NonNull
-    private WritableMap getEvent(String action, Chart chart) {
+    private WritableMap getEvent(String action, MotionEvent me, Chart chart) {
         WritableMap event = Arguments.createMap();
 
         event.putString("action", action);
 
         if (chart instanceof BarLineChartBase) {
+            BarLineChartBase barLineChart = (BarLineChartBase) chart;
             ViewPortHandler viewPortHandler = chart.getViewPortHandler();
             event.putDouble("scaleX", chart.getScaleX());
             event.putDouble("scaleY", chart.getScaleY());
@@ -101,12 +117,10 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             event.putDouble("right", rightTop.x);
             event.putDouble("top", rightTop.y);
 
-            Log.d("GESTURE", "position center x " + center.x + " y" + center.y);
-            Log.d("GESTURE", "contentRect " + viewPortHandler.getContentRect());
+            if (group != null && identifier != null) {
+                ChartGroupHolder.sync(group, identifier, chart.getScaleX(), chart.getScaleY(), (float) center.x, (float) center.y);
 
-            Log.d("GESTURE", "ValueMatrix" + ((BarLineChartBase) chart).getTransformer(YAxis.AxisDependency.LEFT).getValueMatrix().toString());
-            Log.d("GESTURE", "matrixTouch" + viewPortHandler.getMatrixTouch().toString());
-            Log.d("GESTURE", "OffsetMatrix" + ((BarLineChartBase) chart).getTransformer(YAxis.AxisDependency.LEFT).getOffsetMatrix().toString());
+            }
         }
         return event;
     }
