@@ -118,23 +118,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             event.putDouble("top", rightTop.y);
 
             if (group != null && identifier != null) {
-
-                switch (action) {
-                    case "doubleTapped":
-
-                        // in MpAndroidChart, scale is changed after OnChartGestureListener being called, so we can't get correct scaleX here
-                        // compute scaleX manually
-                        if (barLineChart.isDoubleTapToZoomEnabled() && barLineChart.getData().getEntryCount() > 0) {
-                            MPPointF trans = ((BarLineChartTouchListener) barLineChart.getOnTouchListener()).getTrans(me.getX(), me.getY());
-                            ChartGroupHolder.sync(group, identifier, (barLineChart.isScaleXEnabled() ? 1.4f : 1f) * chart.getScaleX(), (barLineChart.isScaleYEnabled() ? 1.4f : 1f) * chart.getScaleY(), trans.x, trans.y, false);
-                            MPPointF.recycleInstance(trans);
-                        }
-                        break;
-
-                    default:
-                        ChartGroupHolder.sync(group, identifier, chart.getScaleX(), chart.getScaleY(), (float) center.x, (float) center.y, true);
-
-                }
+                ChartGroupHolder.sync(group, identifier, chart.getScaleX(), chart.getScaleY(), (float) center.x, (float) center.y);
 
             }
         }

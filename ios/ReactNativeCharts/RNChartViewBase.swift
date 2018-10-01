@@ -18,6 +18,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     
     open var onChange:RCTBubblingEventBlock?
     
+    private var group: String?
+    
+    private  var identifier: String?
+    
+    private  var syncX = true
+    
+    private  var syncY = false
+    
     override open func reactSetFrame(_ frame: CGRect)
     {
         super.reactSetFrame(frame);
@@ -498,6 +506,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                 dict["bottom"] = leftBottom.y
                 dict["right"] = rightTop.x
                 dict["top"] = rightTop.y
+                
+                if self.group != nil && self.identifier != nil {
+                    ChartGroupHolder.sync(group: self.group!, identifier: self.identifier!, scaleX: barLineChart.scaleX, scaleY: barLineChart.scaleY, centerX: center.x, centerY: center.y, performImmediately: true)
+                }
             }
         }
         
@@ -507,6 +519,22 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             self.onChange!(dict)
         }
     }
+    
+    func setGroup(_ group: String) {
+        self.group = group
+    }
+    
+    func setIdentifier(_ identifier: String) {
+        self.identifier = identifier
+    }
+    
+    func setSyncX(_ syncX: Bool) {
+        self.syncX = syncX
+    }
+    
+    func setSyncY(_ syncY: Bool) {
+        self.syncY = syncY
+    }
 
     func onAfterDataSetChanged() {
     }
@@ -515,6 +543,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         super.didSetProps(changedProps)        
         chart.notifyDataSetChanged()
         onAfterDataSetChanged()
+        
+        if self.group != nil && self.identifier != nil && chart is BarLineChartViewBase {
+            ChartGroupHolder.addChart(group: self.group!, identifier: self.identifier!, chart: chart as! BarLineChartViewBase, syncX: syncX, syncY: syncY);
+        }
+        
     }
     
 }
