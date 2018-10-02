@@ -185,6 +185,9 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-all.zip
 Add following code to MainApplication.java for RN >= 0.54, check [#229](https://github.com/wuxudong/react-native-charts-wrapper/issues/229) and the code in android example.
 
 ```java
+  import com.facebook.react.bridge.ReadableNativeArray;
+  import com.facebook.react.bridge.ReadableNativeMap;
+  
   @Override
   public void onCreate() {
     super.onCreate();
