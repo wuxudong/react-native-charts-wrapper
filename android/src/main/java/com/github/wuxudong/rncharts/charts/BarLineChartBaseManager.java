@@ -22,19 +22,35 @@ import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.lang.reflect.Field;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
+class ChartExtraProperties {
+    public ReadableMap savedVisibleRange = null;
+    public String group = null;
+    public String identifier = null;
+    public boolean syncX = true;
+    public boolean syncY = false;
+}
+
+class ExtraPropertiesHolder {
+
+
+    private WeakHashMap<BarLineChartBase, ChartExtraProperties> extraProperties = new WeakHashMap<>();
+
+    public synchronized ChartExtraProperties getExtraProperties(BarLineChartBase chart) {
+        if (!extraProperties.containsKey(chart)) {
+            extraProperties.put(chart, new ChartExtraProperties());
+        }
+
+        return extraProperties.get(chart);
+    }
+}
+
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
-    private ReadableMap savedVisibleRange = null;
-
-    protected String group = null;
-
-    protected String identifier = null;
-
-    protected boolean syncX = true;
-    protected boolean syncY = false;
+    private ExtraPropertiesHolder extraPropertiesHolder = new ExtraPropertiesHolder();
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
@@ -85,7 +101,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     @ReactProp(name = "visibleRange")
     public void setVisibleXRangeMinimum(BarLineChartBase chart, ReadableMap propMap) {
         // delay visibleRange handling until chart data is set
-        savedVisibleRange = propMap;
+        extraPropertiesHolder.getExtraProperties(chart).savedVisibleRange = propMap;
+
     }
 
     private void updateVisibleRange(BarLineChartBase chart, ReadableMap propMap) {
@@ -236,22 +253,22 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
     @ReactProp(name = "group")
     public void setGroup(BarLineChartBase chart, String group) {
-        this.group = group;
+        extraPropertiesHolder.getExtraProperties(chart).group = group;
     }
 
     @ReactProp(name = "identifier")
     public void setIdentifier(BarLineChartBase chart, String identifier) {
-        this.identifier = identifier;
+        extraPropertiesHolder.getExtraProperties(chart).identifier = identifier;
     }
 
     @ReactProp(name = "syncX")
     public void setSyncX(BarLineChartBase chart, boolean syncX) {
-        this.syncX = syncX;
+        extraPropertiesHolder.getExtraProperties(chart).syncX = syncX;
     }
 
     @ReactProp(name = "syncY")
     public void setSyncY(BarLineChartBase chart, boolean syncY) {
-        this.syncY = syncY;
+        extraPropertiesHolder.getExtraProperties(chart).syncY = syncY;
     }
 
     @Nullable
@@ -325,6 +342,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         double originalVisibleYRange = getVisibleYRange(root, axisDependency);
 
         root.setData((getDataExtract().extract(root, map)));
+        ReadableMap savedVisibleRange = extraPropertiesHolder.getExtraProperties(root).savedVisibleRange;
         if (savedVisibleRange != null) {
             updateVisibleRange(root, savedVisibleRange);
         }
@@ -370,20 +388,23 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     protected void onAfterDataSetChanged(T chart) {
         super.onAfterDataSetChanged(chart);
 
-        if (savedVisibleRange != null) {
-            updateVisibleRange(chart, savedVisibleRange);
+        ChartExtraProperties extraProperties = extraPropertiesHolder.getExtraProperties(chart);
+
+        if (extraProperties.savedVisibleRange != null) {
+            updateVisibleRange(chart, extraProperties.savedVisibleRange);
         }
 
-        if (group != null && identifier != null) {
+
+        if (extraProperties.group != null && extraProperties.identifier != null) {
             OnChartGestureListener onChartGestureListener = chart.getOnChartGestureListener();
 
             if (onChartGestureListener != null && onChartGestureListener instanceof RNOnChartGestureListener) {
                 RNOnChartGestureListener rnOnChartGestureListener = (RNOnChartGestureListener) onChartGestureListener;
-                rnOnChartGestureListener.setGroup(group);
-                rnOnChartGestureListener.setIdentifier(identifier);
+                rnOnChartGestureListener.setGroup(extraProperties.group);
+                rnOnChartGestureListener.setIdentifier(extraProperties.identifier);
             }
 
-            ChartGroupHolder.addChart(group, identifier, chart, syncX, syncY);
+            ChartGroupHolder.addChart(extraProperties.group, extraProperties.identifier, chart, extraProperties.syncX, extraProperties.syncY);
         }
     }
 }
