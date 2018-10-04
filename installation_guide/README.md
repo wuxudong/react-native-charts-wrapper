@@ -262,7 +262,7 @@ react-native run-android, that is it.
 		post_install do |installer|
 		  installer.pods_project.targets.each do |target|
 		    target.build_configurations.each do |config|
-		      config.build_settings['SWIFT_VERSION'] = '4.1'
+		      config.build_settings['SWIFT_VERSION'] = '4.2'
 		    end
 		  end
 		end
@@ -348,7 +348,7 @@ react-native run-android, that is it.
 
 		* update project setting
 		
-     	  update `Swift Language Version` in `Build Settings` to 4.1
+     	  update `Swift Language Version` in `Build Settings` to 4.2
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
