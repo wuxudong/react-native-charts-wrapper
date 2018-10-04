@@ -28,6 +28,7 @@ $ pod --version
 -  cd demo
  
 -  yarn add react-native-charts-wrapper
+-  yarn add @babel/runtime
  
 -  update your App.js 
 
@@ -291,6 +292,13 @@ react-native run-android, that is it.
 		
 		create a group under your project top level and add files under directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts
 		
+		Groups are required, not folder reference!
+		The folder color should be yellow! not blue!
+		
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/add_source_files.png)
+		
+		
+		
 		* Add Bridge File
 		
 		When you add the files XCode should prompt you to create a bridging header if you haven't done so already, or you can create empty swift file to trigger xcode prompt. Create the bridging header and import the RCTViewManager.h. It should look something like this.
@@ -305,7 +313,7 @@ react-native run-android, that is it.
 		#import "React/RCTEventEmitter.h"
 		#import "React/RCTFont.h"
 		```
-		
+				
 		* Add Charts and SwiftyJSON, you can do it by cocoapods or link them manually.
 			* use cocoapods
 			
@@ -315,12 +323,12 @@ react-native run-android, that is it.
 			```
 			target 'demo' do
 			  pod 'SwiftyJSON', '4.0.0'      
-			  pod 'Charts', '3.1.1'         
+			  pod 'Charts', '3.2.0'         
 			end
 			post_install do |installer|
 			  installer.pods_project.targets.each do |target|
 			    target.build_configurations.each do |config|
-			      config.build_settings['SWIFT_VERSION'] = '4.0'
+			      config.build_settings['SWIFT_VERSION'] = '4.2'
 			    end
 			  end
 			end 
