@@ -16,6 +16,10 @@ react-native-cli: 2.0.1
 $ pod --version
 1.5.3
 
+Xcode 10.0
+
+swift 4.2
+
 ```
 
 
