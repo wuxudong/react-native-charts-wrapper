@@ -1,7 +1,6 @@
 package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
-import android.graphics.Typeface;
 import android.os.Build;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -9,14 +8,12 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.views.text.ReactFontManager;
 import com.github.mikephil.charting.animation.Easing.EasingOption;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
-import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -34,6 +31,7 @@ import com.github.wuxudong.rncharts.utils.TypefaceUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
 
@@ -433,7 +431,18 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                 axis.setValueFormatter(new PercentFormatter());
             } else if ("date".equals(valueFormatter)) {
                 String valueFormatterPattern = propMap.getString("valueFormatterPattern");
-                axis.setValueFormatter(new DateFormatter(valueFormatterPattern));
+
+                long since = 0;
+                if (BridgeUtils.validate(propMap, ReadableType.Number, "since")) {
+                    since = (long) propMap.getDouble("since");
+                }
+
+                TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+
+                if (BridgeUtils.validate(propMap, ReadableType.String, "timeUnit")) {
+                    timeUnit = TimeUnit.valueOf(propMap.getString("timeUnit").toUpperCase());
+                }
+                axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit));
             } else {
                 axis.setValueFormatter(new CustomFormatter(valueFormatter));
             }

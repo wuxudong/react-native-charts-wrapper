@@ -9,6 +9,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by dougl on 05/09/2017.
@@ -17,8 +18,16 @@ public class DateFormatter implements IAxisValueFormatter, IValueFormatter {
 
     private DateFormat mFormat;
 
-    public DateFormatter(String pattern) {
+    private long since = 0;
+
+    private TimeUnit timeUnit;
+
+    public DateFormatter(String pattern, long since, TimeUnit timeUnit) {
         mFormat = new SimpleDateFormat(pattern);
+
+        this.since = since;
+
+        this.timeUnit = timeUnit;
     }
 
     @Override
@@ -31,7 +40,7 @@ public class DateFormatter implements IAxisValueFormatter, IValueFormatter {
         return format((long) value);
     }
 
-    private String format(long millis) {
-        return mFormat.format(new Date(millis));
+    private String format(long span) {
+        return mFormat.format(new Date(since + timeUnit.toMillis(span)));
     }
 }

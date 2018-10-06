@@ -18,7 +18,9 @@ import com.github.wuxudong.rncharts.charts.IndexValueFormatter;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * https://github.com/PhilJay/MPAndroidChart/wiki/The-DataSet-class
@@ -66,7 +68,18 @@ public class ChartDataSetConfigUtils {
                 dataSet.setValueFormatter(new PercentFormatter());
             } else if ("date".equals(valueFormatter)) {
                 String valueFormatterPattern = config.getString("valueFormatterPattern");
-                dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern));
+
+                long since = 0;
+                if (BridgeUtils.validate(config, ReadableType.Number, "since")) {
+                    since = (long) config.getDouble("since");
+                }
+
+                TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+
+                if (BridgeUtils.validate(config, ReadableType.String, "timeUnit")) {
+                    timeUnit = TimeUnit.valueOf(config.getString("timeUnit").toUpperCase());
+                }
+                dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit));
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
@@ -108,7 +121,7 @@ public class ChartDataSetConfigUtils {
     public static void commonLineRadarConfig(LineRadarDataSet dataSet, ReadableMap config) {
 
         if (BridgeUtils.validate(config, ReadableType.Map, "fillGradient")) {
-            int [] colors = BridgeUtils.convertToIntArray( config.getMap("fillGradient").getArray("colors"));
+            int[] colors = BridgeUtils.convertToIntArray(config.getMap("fillGradient").getArray("colors"));
 
             GradientDrawable.Orientation orientation = GradientDrawable.Orientation.BOTTOM_TOP;
 
@@ -145,8 +158,7 @@ public class ChartDataSetConfigUtils {
             gd.setCornerRadius(0f);
 
             dataSet.setFillDrawable(gd);
-        }
-        else if (BridgeUtils.validate(config, ReadableType.Number, "fillColor")) {
+        } else if (BridgeUtils.validate(config, ReadableType.Number, "fillColor")) {
             dataSet.setFillColor(config.getInt("fillColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "fillAlpha")) {

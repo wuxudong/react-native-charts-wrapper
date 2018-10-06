@@ -53,7 +53,9 @@ class ChartDataSetConfigUtils: NSObject {
                 dataSet.valueFormatter = DefaultValueFormatter(formatter: percentFormatter);
             } else if "date" == valueFormatter.stringValue {
                 let valueFormatterPattern = config["valueFormatterPattern"].stringValue;
-                dataSet.valueFormatter = ChartDateFormatter(pattern: valueFormatterPattern);
+                let since = config["since"].double != nil ? config["since"].doubleValue : 0
+                let timeUnit = config["timeUnit"].string != nil ? config["timeUnit"].stringValue : "MILLISECONDS"
+                dataSet.valueFormatter = CustomChartDateFormatter(pattern: valueFormatterPattern, since: since, timeUnit: timeUnit);
             } else {
                 let customFormatter = NumberFormatter()
                 customFormatter.positiveFormat = valueFormatter.stringValue

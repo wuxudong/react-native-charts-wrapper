@@ -30,6 +30,7 @@ import LiveUpdateChartScreen from './LiveUpdateChartScreen';
 import GroupBarChartScreen from './GroupBarChartScreen';
 import InfiniteScrollLineChartScreen from './InfiniteScrollLineChartScreen';
 import LinkageChartScreen from './LinkageChartScreen';
+import StockChartScreen from './StockChartScreen';
 
 
 const styles = StyleSheet.create({
@@ -103,6 +104,11 @@ var ExampleRoutes = {
     name: 'CandleStickChart',
     screen: CandleStickChartScreen,
     description: 'Displays a CandleStickChart',
+  },
+  StockChartScreen: {
+    name: 'StockChartScreen',
+    screen: StockChartScreen,
+    description: 'Displays a StockChartScreen',
   },
   TimeSeriesLineChartScreen: {
     name: 'TimeSeriesLineChart',
