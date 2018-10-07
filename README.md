@@ -106,11 +106,11 @@ check Example->TimeSeriesLineChart for details
 
 ## Callback
 
-**Support value selection callBack.**
+**Support value selection callBack: onSelect**
 
 you can do whatever you want, even pop your own modal, or jump to another page.
 
-**Support gesture callBack.**
+**Support gesture callBack: onChange**
 
 check Example->MultipleChart for details.
 
@@ -122,6 +122,43 @@ You can use `chart.moveViewToX(...)` or other functions directly.
 
 check Example->MovingWindowChart for details.
 
+supported functions:
+
+1. highlights([...]) 
+
+   it can be used to highlight entries programmatically, or clear already highlighted entries if you pass empty array to it: highlights([])
+
+2. moveViewTo/moveViewToX/moveViewToAnimated/centerViewTo/centerViewToAnimated
+3. fitScreen
+4. setDataAndLockIndex
+
+   It will rescale and move to the begining of your data when new data is set by default, this is not expected when you want to load more data when user scrolls.  
+   setDataAndLockIndex will remain x/y/zoom when you load more data.  
+   Because of the implementation of MpAndroidChart, if the action of setDataAndLockIndex is triggered by user dragging,  
+   then the range of new data (xMax - xMin) should be equal to original data(this basicly means size of new data equals to old one), otherwise the calculation of position transition won't be accurate,  
+   use may find the chart suddenly blink to another position.         
+   This restriction only exists in android, in iOS, we have no such problem.
+   
+   You can check the example InfiniteScrollLineChartScreen.
+
+## Special properties
+
+Several extra properties are introduced:
+
+1. group&identifier&syncX&syncY
+
+   They are useful when you want to implement linkage charts.
+   
+   Charts will sync its operation to other charts in the same group. All these sync jobs are done at native side.
+   
+   You can check the example LinkageChartScreen.
+   
+   Another way of syncing charts is to use onChange, but the performace is poor. 
+   You can check the example MultipleChartScreen.
+   
+   
+   There is a stock kLine chart in example, it combines group&identifier and setDataAndLockIndex together.
+      
 
 ## Custom Marker Content 
 
