@@ -67,7 +67,7 @@ export default class Combined extends Component {
               mode: "CUBIC_BEZIER",
               drawCircles: false,
               lineWidth: 2,
-              axisDependency: "right",
+              axisDependency: "RIGHT",
             }
           }, {
             values: [100, 50, 100, 50, 100],
@@ -107,7 +107,7 @@ export default class Combined extends Component {
             config: {
               drawValues: false,
               colors: [processColor('pink')],
-              axisDependency: "right",
+              axisDependency: "RIGHT",
             }
           }],
         },
@@ -141,14 +141,14 @@ export default class Combined extends Component {
 
             config: {
               drawValues: false,
-              axisDependency: "right",
+              axisDependency: "RIGHT",
               highlightColor: processColor('darkgray'),
 
               shadowColor: processColor('black'),
               shadowWidth: 1,
               shadowColorSameAsCandle: true,
               increasingColor: processColor('yellow'),
-              increasingPaintStyle: 'fill',
+              increasingPaintStyle: 'FILL',
               decreasingColor: processColor('green')
             }
           }],
@@ -179,7 +179,7 @@ export default class Combined extends Component {
 
             config: {
               drawValues: false,
-              axisDependency: "right",
+              axisDependency: "RIGHT",
               colors: [processColor('brown')],
               scatterShape: 'TRIANGLE',
             }

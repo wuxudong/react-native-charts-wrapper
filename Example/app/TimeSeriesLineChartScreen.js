@@ -50,11 +50,6 @@ class TimeSeriesLineChartScreen extends React.Component {
   componentDidMount() {
     const size = 80;
 
-    let _this =  this
-    setTimeout( function() {
-      _this.setState({...this.state, yAxis:{left:{axisMaximum:6000}, right: {enabled: false}}})
-    }, 5000)    
-
     this.setState(
       update(this.state, {
         data: {

@@ -54,7 +54,7 @@ class LinkageChartScreen extends React.Component {
             syncY={true}
 
             visibleRange={{x:{min:1, max:100}}}
-
+            dragDecelerationEnabled={false}
             doubleTapToZoomEnabled={false}  // it has to be false!!
 
           />
@@ -71,7 +71,7 @@ class LinkageChartScreen extends React.Component {
             syncY={true}
 
             visibleRange={{x:{min:1, max:100}}}
-
+            dragDecelerationEnabled={false}
             doubleTapToZoomEnabled={false}  // it has to be false!!
           />
 

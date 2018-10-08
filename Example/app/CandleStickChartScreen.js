@@ -84,7 +84,7 @@ class CandleStickChartScreen extends React.Component {
             shadowWidth: 1,
             shadowColorSameAsCandle: true,
             increasingColor: processColor('#71BD6A'),
-            increasingPaintStyle: 'fill',
+            increasingPaintStyle: 'FILL',
             decreasingColor: processColor('#D14B5A')
           },
           xAxis: {},
