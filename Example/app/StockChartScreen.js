@@ -12,7 +12,7 @@ import moment from 'moment'
 import {BarChart, CombinedChart} from 'react-native-charts-wrapper';
 
 
-const era = moment('1970-1-1')
+const era = moment('1970-01-01', 'YYYY-MM-DD')
 const distanceToLoadMore = 10
 const pageSize = 60
 
@@ -53,7 +53,7 @@ class StockChartScreen extends React.Component {
   }
 
   getIndexOfDay(day) {
-    return moment(day).diff(era, 'days')
+    return moment(day, 'YYYY-MM-DD').diff(era, 'days')
   }
 
   generateNewData(from, to, data) {
@@ -201,7 +201,7 @@ class StockChartScreen extends React.Component {
     let start = moment().add(-2 * pageSize, 'days').format('YYYY-MM-DD')
 
     // for example, this company ipo at 2017-1-1, you can get this information from your server
-    let axisMinimum = this.getIndexOfDay(moment('2017-01-01').format('YYYY-MM-DD')) - 0.5;
+    let axisMinimum = this.getIndexOfDay('2017-01-01') - 0.5;
     let axisMaximum = this.getIndexOfDay(today) + 0.5;
 
 
