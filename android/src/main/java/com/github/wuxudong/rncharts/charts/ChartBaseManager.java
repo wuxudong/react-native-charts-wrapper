@@ -354,6 +354,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.Array, "limitLines")) {
             ReadableArray limitLines = propMap.getArray("limitLines");
 
+            axis.removeAllLimitLines();
             for (int i = 0; i < limitLines.size(); i++) {
                 if (!ReadableType.Map.equals(limitLines.getType(i))) {
                     continue;

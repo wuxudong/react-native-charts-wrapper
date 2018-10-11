@@ -324,6 +324,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if config["limitLines"].array != nil {
             let limitLinesConfig = config["limitLines"].arrayValue
             
+            axis.removeAllLimitLines()
             for limitLineConfig in limitLinesConfig {
                 
                 if limitLineConfig["limit"].double != nil {
