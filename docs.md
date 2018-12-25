@@ -31,7 +31,7 @@
 | `formToTextSpace` | `number`                                                      |         |      |
 | `custom`          | `{`<br />`colors: [number],`<br />`labels: [string]`<br />`}` |         |      |
 
-## Common Props for xAksis and yAxis
+## Common Props for xAxis and yAxis
 
 | Prop                       | Type                                                                                     | Default | Note                                                                                                                        |
 | -------------------------- | ---------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@
 | `valueFormatter`           | one of `'largeValue', 'percent', 'date', string, [string]`                               |         |                                                                                                                             |
 | `valueFormatterPattern`    | `string`                                                                                 |         |
 
-## xAksis
+## xAxis
 
 #### Common props plus props below.
 
@@ -71,7 +71,7 @@
 | `position`               | `string` |         | Should be in upper case. you will get an error in android if the position is in lower case      |
 | `valueFormatterPattern`  | `string` |         |      |
 
-## yAksis
+## yAxis
 
 #### Common props plus props below.
 
