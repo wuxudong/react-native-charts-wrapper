@@ -25,6 +25,8 @@ target 'Example' do
     pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
     
     pod 'RNCharts', :path => '../../'
+    pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
 end
 
 swift4 = ['Charts']
@@ -33,7 +35,7 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       if swift4.include?(target.name)
-        config.build_settings['SWIFT_VERSION'] = '4.1'
+        config.build_settings['SWIFT_VERSION'] = '4.2'
       end
     end
   end
