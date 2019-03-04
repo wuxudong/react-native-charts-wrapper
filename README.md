@@ -6,7 +6,7 @@ This library is React Native wrapper of popular Native charting library [MPAndro
 
 Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-native-mp-android-chart) and [react-native-ios-charts](https://github.com/Jpadilla1/react-native-ios-charts)
 
-React Native Charts Wrapper is built on MPAndroidChart(v3.0.3) & Charts(v3.1.1), support both android & iOS.
+React Native Charts Wrapper is built on MPAndroidChart(v3.0.3) & Charts(v3.2.2), support both android & iOS.
 
 ## WARNING
 
