@@ -16,9 +16,9 @@ react-native-cli: 2.0.1
 $ pod --version
 1.5.3
 
-Xcode 10.1
+Xcode 10.2
 
-swift 4.2
+swift 5
 
 ```
 
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
             }
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.1.3'  // UPGRADE VERSION TO 3.x
+            classpath 'com.android.tools.build:gradle:3.3.1'  // UPGRADE VERSION TO 3.x
 
             // NOTE: Do not place your application dependencies here; they belong
             // in the individual module build.gradle files
@@ -121,8 +121,7 @@ const styles = StyleSheet.create({
         }
     }
 
-    ext {
-        buildToolsVersion = "27.0.3"   // UPGRADE VERSION
+    ext {        
         minSdkVersion = 16
         compileSdkVersion = 26
         targetSdkVersion = 26
@@ -130,10 +129,10 @@ const styles = StyleSheet.create({
     }
 
 
-#### 2. update gradle version >= 4.4 in android/gradle/wrapper/gradle-wrapper.properties 
+#### 2. update gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
 
 ```
-distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-all.zip	
+distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip	
 ```
 
 

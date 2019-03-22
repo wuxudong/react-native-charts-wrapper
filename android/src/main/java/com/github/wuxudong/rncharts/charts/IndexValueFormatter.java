@@ -1,15 +1,19 @@
 package com.github.wuxudong.rncharts.charts;
 
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.BubbleEntry;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.RadarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.Collection;
 
 /**
  * This formatter is used for passing an array of x-axis labels, on whole x steps.
  */
-public class IndexValueFormatter implements IValueFormatter {
+public class IndexValueFormatter extends ValueFormatter {
     private String[] mValues = new String[]{};
     private int mValueCount = 0;
 
@@ -53,7 +57,41 @@ public class IndexValueFormatter implements IValueFormatter {
     }
 
     @Override
-    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+    public String getBarLabel(BarEntry barEntry) {
+        return getFormattedValue(barEntry);
+    }
+
+    @Override
+    public String getBarStackedLabel(float value, BarEntry stackedEntry) {
+        return getFormattedValue(stackedEntry);
+    }
+
+    @Override
+    public String getPointLabel(Entry entry) {
+        return getFormattedValue(entry);
+    }
+
+    @Override
+    public String getPieLabel(float value, PieEntry pieEntry) {
+        return getFormattedValue(pieEntry);
+    }
+
+    @Override
+    public String getRadarLabel(RadarEntry radarEntry) {
+        return getFormattedValue(radarEntry);
+    }
+
+    @Override
+    public String getBubbleLabel(BubbleEntry bubbleEntry) {
+        return getFormattedValue(bubbleEntry);
+    }
+
+    @Override
+    public String getCandleLabel(CandleEntry candleEntry) {
+        return getFormattedValue(candleEntry);
+    }
+
+    private String getFormattedValue(Entry entry) {
         int index = Math.round(entry.getX());
 
         if (index < 0 || index >= mValueCount || index != (int) entry.getX())

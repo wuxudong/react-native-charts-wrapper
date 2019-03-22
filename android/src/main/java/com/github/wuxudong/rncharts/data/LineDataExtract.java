@@ -58,7 +58,7 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
             lineDataSet.setCircleColors(BridgeUtils.convertToIntArray(config.getArray("circleColors")));
         }
         if (BridgeUtils.validate(config, ReadableType.Number, "circleHoleColor")) {
-            lineDataSet.setCircleColorHole(config.getInt("circleHoleColor"));
+            lineDataSet.setCircleHoleColor(config.getInt("circleHoleColor"));
         }
         if (BridgeUtils.validate(config, ReadableType.Boolean, "drawCircleHole")) {
             lineDataSet.setDrawCircleHole(config.getBoolean("drawCircleHole"));

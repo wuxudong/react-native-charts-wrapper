@@ -8,7 +8,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.github.mikephil.charting.animation.Easing.EasingOption;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -26,6 +26,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
+import com.github.wuxudong.rncharts.utils.EasingFunctionHelper;
 import com.github.wuxudong.rncharts.utils.TypefaceUtils;
 
 import java.util.ArrayList;
@@ -210,8 +211,8 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     public void setAnimation(Chart chart, ReadableMap propMap) {
         Integer durationX = null;
         Integer durationY = null;
-        EasingOption easingX = EasingOption.Linear;
-        EasingOption easingY = EasingOption.Linear;
+        Easing.EasingFunction easingX = Easing.Linear;
+        Easing.EasingFunction easingY = Easing.Linear;
 
         if (BridgeUtils.validate(propMap, ReadableType.Number, "durationX")) {
             durationX = propMap.getInt("durationX");
@@ -220,10 +221,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             durationY = propMap.getInt("durationY");
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "easingX")) {
-            easingX = EasingOption.valueOf(propMap.getString("easingX"));
+             easingX = EasingFunctionHelper.getEasingFunction(propMap.getString("easingX"));
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "easingY")) {
-            easingY = EasingOption.valueOf(propMap.getString("easingY"));
+             easingY = EasingFunctionHelper.getEasingFunction(propMap.getString("easingY"));
         }
 
         if (durationX != null && durationY != null) {

@@ -13,11 +13,11 @@
     "immutability-helper": "2.8.1",
     "lodash": "4.17.11",
     "moment": "^2.22.2",
-    "react": "16.8.3",
-    "react-native": "0.59.4",
+    "react": "^16.8.6",
+    "react-native": "^0.59.4",
     "react-native-charts-wrapper": "file:../",
-    "react-native-gesture-handler": "^1.0.17",
-    "react-navigation": "3.3.2"
+    "react-native-gesture-handler": "^1.1.0",
+    "react-navigation": "3.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
