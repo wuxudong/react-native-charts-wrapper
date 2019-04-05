@@ -8,7 +8,7 @@ This is my environment.
 
 ```
 $ yarn -v
-1.3.2
+1.9.4
 
 $ react-native -v
 react-native-cli: 2.0.1
@@ -16,7 +16,7 @@ react-native-cli: 2.0.1
 $ pod --version
 1.5.3
 
-Xcode 10.0
+Xcode 10.1
 
 swift 4.2
 
