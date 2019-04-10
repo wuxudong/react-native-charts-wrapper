@@ -298,6 +298,7 @@ type lineData {
         circleRadius: number,
         drawCircles: bool,
         mode: bool,
+        lineWidth: number, // min: 0, max: 10
         drawCubicIntensity: number,
         circleColor: number,
         circleColors: [number],
