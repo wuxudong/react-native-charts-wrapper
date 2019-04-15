@@ -24,7 +24,7 @@ class ChartHolder {
 open class ChartGroupHolder {
     static var chartGroup: Dictionary<String, Dictionary<String, ChartHolder>> = [:]
     
-    open static func addChart(group: String, identifier: String ,  chart: BarLineChartViewBase,  syncX: Bool, syncY: Bool) {
+    public static func addChart(group: String, identifier: String ,  chart: BarLineChartViewBase,  syncX: Bool, syncY: Bool) {
         objc_sync_enter(chartGroup)
         defer { objc_sync_exit(chartGroup) }
         
@@ -39,7 +39,7 @@ open class ChartGroupHolder {
     
     
     // sync gesture to other chart in the same group
-    open static func sync( group: String,  identifier: String,  scaleX: CGFloat,  scaleY:CGFloat,  centerX: CGFloat,  centerY:CGFloat,  performImmediately: Bool) {
+    public static func sync( group: String,  identifier: String,  scaleX: CGFloat,  scaleY:CGFloat,  centerX: CGFloat,  centerY:CGFloat,  performImmediately: Bool) {
         
         objc_sync_enter(chartGroup)
         defer { objc_sync_exit(chartGroup) }
