@@ -303,15 +303,15 @@ class BridgeUtils {
 //      NSLog("this label position %@", iosEnumString)
       switch iosEnumString {
       case "rightBottom":
-        return .rightBottom
+        return .bottomRight
       case "leftBottom":
-        return .leftBottom
+        return .bottomLeft
       case "rightTop":
-        return .rightTop
+        return .topRight
       case "leftTop":
-        return .leftTop
+        return .topLeft
       default:
-        return .rightTop
+        return .topRight
       }
     }
 }

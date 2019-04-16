@@ -13,7 +13,7 @@ class PieDataExtract : DataExtract {
     }
     
     override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
-        return PieChartDataSet(values: entries, label: label)
+        return PieChartDataSet(entries: entries, label: label)
     }
     
     override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
