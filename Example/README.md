@@ -1,26 +1,20 @@
+## Example
 
-## How to run Example
-
+```sh
 cd Example
-
-yarn install 
-
-
-
-
+yarn install
+``` 
 
 ### android
 
-react-native link
-
+```sh
 react-native run-android
-
+```
 
 ### ios
 
-
+```sh
 cd ios
-
 pod install 
-
 react-native run-ios
+```

@@ -18,8 +18,15 @@
     "ios",
     "Charts"
   ],
+  "files": [
+    "android",
+    "ios",
+    "lib",
+    "index.js",
+    "RNCharts.podspec"
+  ],
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react": "16.1.1"
+    "react": "16.8.3"
   }
 }
