@@ -216,7 +216,7 @@ react-native run-android, that is it.
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",        
-    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h && rm -rf node_modules/react-native-charts-wrapper/Example"
+    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h"
 
   }
 
@@ -336,7 +336,7 @@ react-native run-android, that is it.
 
 		* update project setting
 		
-     	  update `Swift Language Version` in `Build Settings` to 5,0
+     	  update `Swift Language Version` in `Build Settings` to 5.0
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
