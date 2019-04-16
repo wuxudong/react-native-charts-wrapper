@@ -215,8 +215,9 @@ react-native run-android, that is it.
 ```
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h"
+    "test": "jest",        
+    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h && rm -rf node_modules/react-native-charts-wrapper/Example"
+
   }
 
 ```
@@ -258,17 +259,6 @@ react-native run-android, that is it.
 		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 		end
 			
-		swift4 = ['Charts']
-
-        post_install do |installer|
-          installer.pods_project.targets.each do |target|
-            target.build_configurations.each do |config|
-              if swift4.include?(target.name)
-                config.build_settings['SWIFT_VERSION'] = '4.2'
-              end
-            end
-          end
-        end
 
 		```
 
@@ -330,21 +320,10 @@ react-native run-android, that is it.
 
 			```
 			target 'demo' do
-			  pod 'SwiftyJSON', '4.0.0'      
-			  pod 'Charts', '3.2.2'         
+			  pod 'SwiftyJSON', '5.0'      
+			  pod 'Charts', '3.3'         
 			end
 
-			swift4 = ['Charts']
-
-            post_install do |installer|
-              installer.pods_project.targets.each do |target|
-                target.build_configurations.each do |config|
-                  if swift4.include?(target.name)
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                  end
-                end
-              end
-            end
 			```
 			
 			* manual install
@@ -357,7 +336,7 @@ react-native run-android, that is it.
 
 		* update project setting
 		
-     	  update `Swift Language Version` in `Build Settings` to 4.2
+     	  update `Swift Language Version` in `Build Settings` to 5,0
 		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
