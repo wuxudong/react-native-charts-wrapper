@@ -257,6 +257,19 @@ react-native run-android, that is it.
 		    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 		    
 		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
+
+		    swift5 = ['Charts', 'SwiftyJSON']
+
+		    post_install do |installer|
+		      installer.pods_project.targets.each do |target|
+		        target.build_configurations.each do |config|
+		          if swift5.include?(target.name)
+		            config.build_settings['SWIFT_VERSION'] = '5.0'
+		          end
+		        end
+		      end
+		    end
+
 		end
 			
 
