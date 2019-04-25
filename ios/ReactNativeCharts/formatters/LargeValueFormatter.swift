@@ -31,7 +31,7 @@ open class LargeValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter
     fileprivate func format(_ value: Double) -> String
     {
         var sig = abs(value)
-        let sign = value < 0 ? "-" : "+"
+        let sign = value < 0 ? "-" : ""
         var length = 0
         let maxLength = suffix.count - 1
 
