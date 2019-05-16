@@ -36,6 +36,10 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     }
 
 
+    func setMaxHighlightDistance(_  maxHighlightDistance: CGFloat) {
+        barLineChart.maxHighlightDistance = maxHighlightDistance;
+    }
+
     func setDrawGridBackground(_  enabled: Bool) {
         barLineChart.drawGridBackgroundEnabled = enabled;
     }
