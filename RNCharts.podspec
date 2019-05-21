@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.source_files = "ios/ReactNativeCharts/**/*.{h,m,swift}"
   s.static_framework = true
 
+  s.swift_version = '5.0'
   s.dependency 'React'
   s.dependency 'SwiftyJSON', '5.0'
   s.dependency 'Charts', '3.3.0'
