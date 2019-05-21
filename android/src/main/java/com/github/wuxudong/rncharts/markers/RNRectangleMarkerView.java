@@ -2,7 +2,7 @@ package com.github.wuxudong.rncharts.markers;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import androidx.core.content.res.ResourcesCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.widget.TextView;
 
