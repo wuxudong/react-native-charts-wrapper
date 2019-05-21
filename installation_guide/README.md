@@ -90,9 +90,7 @@ make sure compileSdkVersion >= 28
 
 #### 2. make sure gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
 
-#### 3. add `android.useAndroidX=true` and `android.enableJetifier=true` in gradle.properties
-
-#### 4. link subproject
+#### 3. link subproject
 
 *   **Mostly automatic install with react-native**
 
@@ -139,7 +137,7 @@ make sure compileSdkVersion >= 28
 	}
 	```
 
-#### 5. Run
+#### 4. Run
 
 react-native run-android, that is it.
 
