@@ -193,12 +193,11 @@ react-native run-android, that is it.
 		    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 		    
 		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
-
 		    pre_install do |installer|
-				installer.analysis_result.specifications.each do |s|
-					s.swift_version = '5.0' unless s.swift_version
-				end
-			end
+		        installer.analysis_result.specifications.each do |s|
+		            s.swift_version = '5.0' unless s.swift_version
+		        end
+		    end
 
 		end
 			
