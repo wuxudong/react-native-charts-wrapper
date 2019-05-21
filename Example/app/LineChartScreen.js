@@ -125,8 +125,7 @@ class LineChartScreen extends React.Component {
             chartDescription={{text: ''}}
             legend={this.state.legend}
             marker={this.state.marker}
-            xAxis={this.state.xAxis}
-            yAxis={this.state.yAxis}
+            xAxis={this.state.xAxis}            
             drawGridBackground={false}
             borderColor={processColor('teal')}
             borderWidth={1}

@@ -48,7 +48,7 @@ class BridgeUtils {
         case "right":
             return .right
         case "center":
-          return .center
+            return .center
         default:
             return .left
         }
@@ -90,7 +90,7 @@ class BridgeUtils {
     }
     
     
-
+    
     static func parseYAxisLabelPosition(_ position: String) -> YAxis.LabelPosition {
         let iosEnumString = androidEnumToIOSEnum(position)
         
@@ -238,37 +238,37 @@ class BridgeUtils {
             return .linear
         }
     }
-
+    
     static func parseAxisDependency(_ option: String) -> YAxis.AxisDependency {
         let iosEnumString = androidEnumToIOSEnum(option)
-
+        
         switch iosEnumString {
         case "left":
             return .left
-
+            
         case "right":
             return .right
-
+            
         default:
             return .left
         }
     }
-  
+    
     static func parsePieChartDataSetValuePosition(_ option: String) -> PieChartDataSet.ValuePosition {
-      let iosEnumString = androidEnumToIOSEnum(option)
-      
-      switch iosEnumString {
-      case "insideSlice":
-        return .insideSlice
+        let iosEnumString = androidEnumToIOSEnum(option)
         
-      case "outsideSlice":
-        return .outsideSlice
-        
-      default:
-        return .insideSlice
-      }
+        switch iosEnumString {
+        case "insideSlice":
+            return .insideSlice
+            
+        case "outsideSlice":
+            return .outsideSlice
+            
+        default:
+            return .insideSlice
+        }
     }
-        
+    
     static func androidEnumToIOSEnum(_ desc: String) -> String {
         let components = desc.components(separatedBy: "_")
         
@@ -298,20 +298,36 @@ class BridgeUtils {
         return nil;
     }
     
-      static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
-      let iosEnumString = androidEnumToIOSEnum(position)
-//      NSLog("this label position %@", iosEnumString)
-      switch iosEnumString {
-      case "rightBottom":
-        return .bottomRight
-      case "leftBottom":
-        return .bottomLeft
-      case "rightTop":
-        return .topRight
-      case "leftTop":
-        return .topLeft
-      default:
-        return .topRight
-      }
+    static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
+        let iosEnumString = androidEnumToIOSEnum(position)
+        //      NSLog("this label position %@", iosEnumString)
+        switch iosEnumString {
+        case "rightBottom":
+            return .bottomRight
+        case "leftBottom":
+            return .bottomLeft
+        case "rightTop":
+            return .topRight
+        case "leftTop":
+            return .topLeft
+        default:
+            return .topRight
+        }
+    }
+    
+    static func parseDrawOrder(_ drawOrder: String) -> CombinedChartView.DrawOrder{
+        let iosEnumString = androidEnumToIOSEnum(drawOrder)        
+        switch iosEnumString {
+        case "bar":
+            return .bar
+        case "bubble":
+            return .bubble
+        case "candle":
+            return .candle
+        case "scatter":
+            return .scatter
+        default:
+            return .line
+        }
     }
 }

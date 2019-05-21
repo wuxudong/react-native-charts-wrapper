@@ -334,7 +334,7 @@ react-native run-android, that is it.
 			```
 			target 'demo' do
 			  pod 'SwiftyJSON', '5.0'      
-			  pod 'Charts', '3.3'         
+			  pod 'Charts', '3.3.0'         
 			end
 
 			```

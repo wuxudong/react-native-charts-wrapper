@@ -234,6 +234,7 @@ export default class Combined extends Component {
             marker={this.state.marker}
             highlights={this.state.highlights}
             highlightFullBarEnabled={false}
+            drawOrder={['SCATTER','LINE','BAR']}
             style={styles.container}/>
 
         </View>
