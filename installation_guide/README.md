@@ -14,7 +14,7 @@ $ react-native -v
 react-native-cli: 2.0.1
 
 $ pod --version
-1.5.3
+1.6.1
 
 Xcode 10.2
 
@@ -84,59 +84,15 @@ const styles = StyleSheet.create({
 
 #### 1. update android/build.gradle, upgrade gradle tools version, add jitpack.io
 
+add `maven { url "https://jitpack.io" }` under allprojects -> repositories, IT IS USED BY MPAndroidChart
 
+make sure compileSdkVersion >= 28
 
+#### 2. make sure gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
 
-    // Top-level build file where you can add configuration options common to all sub-projects/modules.
+#### 3. add `android.useAndroidX=true` and `android.enableJetifier=true` in gradle.properties
 
-    buildscript {
-        repositories {
-            jcenter()
-            maven {
-                url 'https://maven.google.com/'
-                name 'Google'
-            }
-        }
-        dependencies {
-            classpath 'com.android.tools.build:gradle:3.3.1'  // UPGRADE VERSION TO 3.x
-
-            // NOTE: Do not place your application dependencies here; they belong
-            // in the individual module build.gradle files
-        }
-    }
-
-    allprojects {
-        repositories {
-            mavenLocal()
-            jcenter()
-            maven {
-                // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-                url "$rootDir/../node_modules/react-native/android"
-            }
-            maven {
-                url 'https://maven.google.com/'
-                name 'Google'
-            }
-            maven { url "https://jitpack.io" }    // ADD jitpack.io, IT IS USED BY MPAndroidChart
-        }
-    }
-
-    ext {        
-        minSdkVersion = 16
-        compileSdkVersion = 26
-        targetSdkVersion = 26
-        supportLibVersion = "26.1.0"
-    }
-
-
-#### 2. update gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
-
-```
-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip	
-```
-
-
-#### 3. link subproject
+#### 4. link subproject
 
 *   **Mostly automatic install with react-native**
 
@@ -182,26 +138,6 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip
 	    );
 	}
 	```
-
-
-#### 4.  **Additional setting**
-   
-Add following code to MainApplication.java for RN >= 0.54, check [#229](https://github.com/wuxudong/react-native-charts-wrapper/issues/229) and the code in android example.
-
-```java
-  import com.facebook.react.bridge.ReadableNativeArray;
-  import com.facebook.react.bridge.ReadableNativeMap;
-  
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-    ReadableNativeArray.setUseNativeAccessor(true);
-    ReadableNativeMap.setUseNativeAccessor(true);
-  }
-```
-
-
 
 #### 5. Run
 
@@ -258,17 +194,11 @@ react-native run-android, that is it.
 		    
 		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 
-		    swift5 = ['Charts', 'SwiftyJSON']
-
-		    post_install do |installer|
-		      installer.pods_project.targets.each do |target|
-		        target.build_configurations.each do |config|
-		          if swift5.include?(target.name)
-		            config.build_settings['SWIFT_VERSION'] = '5.0'
-		          end
-		        end
-		      end
-		    end
+		    pre_install do |installer|
+				installer.analysis_result.specifications.each do |s|
+					s.swift_version = '5.0' unless s.swift_version
+				end
+			end
 
 		end
 			
@@ -282,17 +212,13 @@ react-native run-android, that is it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/create-oc-bridging-header.png)
 
-		* run it from XCode or run `react-native run-ios`, that is it.
-
-		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
-
 		* if you can't open development menu in iOS simulator, you can remove other libraries except Pods_demo.framework, and delete other targets except demo.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/ios_project_settings.png)
 
+		* run it from XCode or run `react-native run-ios`, that is it.
 
-
-		
+		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
 
 
 	* **manual setup**
