@@ -68,6 +68,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         }
     }
 
+    @ReactProp(name = "maxHighlightDistance")
+    public void setMaxHighlightDistance(BarLineChartBase chart, float maxHighlightDistance) {
+        chart.setMaxHighlightDistance(maxHighlightDistance);
+    }
+
     @ReactProp(name = "drawGridBackground")
     public void setDrawGridBackground(BarLineChartBase chart, boolean enabled) {
         chart.setDrawGridBackground(enabled);
