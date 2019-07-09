@@ -42,22 +42,42 @@ class RNRadarChartView: RNYAxisChartViewBase {
     }
 
     func setSkipWebLineCount(_ count: Int) {
-        _chart.skipWebLineCount = count
+        chart.skipWebLineCount = count
     }
 
     func setMinOffset(_ minOffset: NSNumber) {
-        _chart.minOffset = CGFloat(minOffset)
+        chart.minOffset = CGFloat(truncating: minOffset)
     }
 
     func setRotationEnabled(_ enabled: Bool) {
-        _chart.rotationEnabled = enabled
+        chart.rotationEnabled = enabled
     }
 
     func setRotationAngle(_ angle: NSNumber) {
-        chart.rotationAngle = CGFloat(angle)
+        chart.rotationAngle = CGFloat(truncating: angle)
     }
 
     func setDrawWeb(_ enabled: Bool) {
-        _chart.drawWeb = enabled
+        chart.drawWeb = enabled
+    }
+    
+    func setWebLineWidth(_ width: NSNumber) {
+        chart.webLineWidth = CGFloat(truncating: width)
+    }
+
+    func setWebLineWidthInner(_ width: NSNumber) {
+        chart.innerWebLineWidth = CGFloat(truncating: width)
+    }
+
+    func setWebAlpha(_ alpha: NSNumber) {
+        chart.webAlpha = CGFloat(truncating: alpha)
+    }
+
+    func setWebColor(_ color: NSNumber) {
+        chart.webColor = RCTConvert.uiColor(color.intValue)
+    }
+
+    func setWebColorInner(_ color: NSNumber) {
+        chart.innerWebColor = RCTConvert.uiColor(color.intValue)
     }
 }

@@ -5,6 +5,7 @@
 import UIKit
 
 @objc(RNBarChartManager)
+@objcMembers
 open class RNBarChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   
@@ -13,7 +14,7 @@ open class RNBarChartManager: RCTViewManager, RNBarLineChartBaseManager {
     return ins;
   }
 
-  override open static func requiresMainQueueSetup() -> Bool {
+  override public static func requiresMainQueueSetup() -> Bool {
     return true;
   }
   
@@ -39,6 +40,14 @@ open class RNBarChartManager: RCTViewManager, RNBarLineChartBaseManager {
   
   func fitScreen(_ reactTag: NSNumber) {
     (self as RNBarLineChartBaseManager)._fitScreen(reactTag)
+  }
+  
+  func highlights(_ reactTag: NSNumber, config: NSArray) {
+    (self as RNBarLineChartBaseManager)._highlights(reactTag, config: config)
+  }
+
+  func setDataAndLockIndex(_ reactTag: NSNumber, data: NSDictionary) {
+    (self as RNBarLineChartBaseManager)._setDataAndLockIndex(reactTag, data: data)
   }
 
 }

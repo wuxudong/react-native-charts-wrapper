@@ -9,7 +9,7 @@ import Charts
 
 class BridgeUtils {
     static func toIOSAlpha(_ alpha: NSNumber) -> CGFloat {
-        return CGFloat(Double(alpha) / 255.0);
+        return CGFloat(Double(truncating: alpha) / 255.0);
     }
     
     static func parseColors(_ array: [JSON]) -> [NSUIColor] {
@@ -21,7 +21,7 @@ class BridgeUtils {
     static func toJson(_ dict: NSDictionary) -> JSON {
         let json = try! JSONSerialization.data(withJSONObject: dict);
         
-        return JSON.parse(NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
+        return JSON.init(parseJSON: NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
     }
     
     static func parseLineChartMode(_ mode: String) -> LineChartDataSet.Mode {
@@ -41,40 +41,55 @@ class BridgeUtils {
         }
     }
     
-    static func parseLegendPosition(_ position: String) -> Legend.Position {
-        let iosEnumString = androidEnumToIOSEnum(position)
+    static func parseLegendHorizontalAlignment(_ horizontalAlignment: String) -> Legend.HorizontalAlignment {
+        let iosEnumString = androidEnumToIOSEnum(horizontalAlignment)
         
         switch iosEnumString {
-        case "rightOfChart":
-            return .rightOfChart
-        case "rightOfChartCenter":
-            return .rightOfChartCenter
-        case "rightOfChartInside":
-            return .rightOfChartInside
-        case "leftOfChart":
-            return .leftOfChart
-        case "leftOfChartCenter":
-            return .leftOfChartCenter
-        case "leftOfChartInside":
-            return .leftOfChartInside
-        case "belowChartLeft":
-            return .belowChartLeft
-        case "belowChartRight":
-            return .belowChartRight
-        case "belowChartCenter":
-            return .belowChartCenter
-        case "aboveChartLeft":
-            return .aboveChartLeft
-        case "aboveChartRight":
-            return .aboveChartRight
-        case "aboveChartCenter":
-            return .aboveChartCenter
-        case "piechartCenter":
-            return .piechartCenter
+        case "right":
+            return .right
+        case "center":
+            return .center
         default:
-            return .belowChartLeft
+            return .left
         }
     }
+    
+    static func parseLegendVerticalAlignment(_ verticalAlignment: String) -> Legend.VerticalAlignment {
+        let iosEnumString = androidEnumToIOSEnum(verticalAlignment)
+        
+        switch iosEnumString {
+        case "top":
+            return .top
+        case "center":
+            return .center
+        default:
+            return .bottom
+        }
+    }
+    
+    static func parseLegendOrientation(_ orientation: String) -> Legend.Orientation {
+        let iosEnumString = androidEnumToIOSEnum(orientation)
+        
+        switch iosEnumString {
+        case "vertical":
+            return .vertical
+        default:
+            return .horizontal
+        }
+    }
+    
+    static func parseLegendDirection(_ direction: String) -> Legend.Direction {
+        let iosEnumString = androidEnumToIOSEnum(direction)
+        
+        switch iosEnumString {
+        case "rightToLeft":
+            return .rightToLeft
+        default:
+            return .leftToRight
+        }
+    }
+    
+    
     
     static func parseYAxisLabelPosition(_ position: String) -> YAxis.LabelPosition {
         let iosEnumString = androidEnumToIOSEnum(position)
@@ -223,23 +238,37 @@ class BridgeUtils {
             return .linear
         }
     }
-
+    
     static func parseAxisDependency(_ option: String) -> YAxis.AxisDependency {
         let iosEnumString = androidEnumToIOSEnum(option)
-
+        
         switch iosEnumString {
         case "left":
             return .left
-
+            
         case "right":
             return .right
-
+            
         default:
             return .left
         }
-
     }
+    
+    static func parsePieChartDataSetValuePosition(_ option: String) -> PieChartDataSet.ValuePosition {
+        let iosEnumString = androidEnumToIOSEnum(option)
         
+        switch iosEnumString {
+        case "insideSlice":
+            return .insideSlice
+            
+        case "outsideSlice":
+            return .outsideSlice
+            
+        default:
+            return .insideSlice
+        }
+    }
+    
     static func androidEnumToIOSEnum(_ desc: String) -> String {
         let components = desc.components(separatedBy: "_")
         
@@ -269,20 +298,36 @@ class BridgeUtils {
         return nil;
     }
     
-      static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
-      let iosEnumString = androidEnumToIOSEnum(position)
-//      NSLog("this label position %@", iosEnumString)
-      switch iosEnumString {
-      case "rightBottom":
-        return .rightBottom
-      case "leftBottom":
-        return .leftBottom
-      case "rightTop":
-        return .rightTop
-      case "leftTop":
-        return .leftTop
-      default:
-        return .rightTop
-      }
+    static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
+        let iosEnumString = androidEnumToIOSEnum(position)
+        //      NSLog("this label position %@", iosEnumString)
+        switch iosEnumString {
+        case "rightBottom":
+            return .bottomRight
+        case "leftBottom":
+            return .bottomLeft
+        case "rightTop":
+            return .topRight
+        case "leftTop":
+            return .topLeft
+        default:
+            return .topRight
+        }
+    }
+    
+    static func parseDrawOrder(_ drawOrder: String) -> CombinedChartView.DrawOrder{
+        let iosEnumString = androidEnumToIOSEnum(drawOrder)        
+        switch iosEnumString {
+        case "bar":
+            return .bar
+        case "bubble":
+            return .bubble
+        case "candle":
+            return .candle
+        case "scatter":
+            return .scatter
+        default:
+            return .line
+        }
     }
 }

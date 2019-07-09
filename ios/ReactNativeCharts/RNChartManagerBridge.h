@@ -17,13 +17,18 @@ RCT_EXPORT_VIEW_PROPERTY(chartBackgroundColor, NSInteger) \
 RCT_EXPORT_VIEW_PROPERTY(chartDescription, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(noDataText, NSString) \
 RCT_EXPORT_VIEW_PROPERTY(touchEnabled, BOOL) \
+RCT_EXPORT_VIEW_PROPERTY(highlightPerTapEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(dragDecelerationEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(dragDecelerationFrictionCoef, NSNumber) \
 RCT_EXPORT_VIEW_PROPERTY(animation, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(xAxis, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(marker, NSDictionary) \
-RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTBubblingEventBlock) \
-RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onSelect, RCTDirectEventBlock) \
+RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock) \
+RCT_EXPORT_VIEW_PROPERTY(group, NSString) \
+RCT_EXPORT_VIEW_PROPERTY(identifier, NSString) \
+RCT_EXPORT_VIEW_PROPERTY(syncX, BOOL) \
+RCT_EXPORT_VIEW_PROPERTY(syncY, BOOL) 
 
 
 

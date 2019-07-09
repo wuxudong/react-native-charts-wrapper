@@ -10,8 +10,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.RadarDataExtract;
-import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
@@ -22,7 +22,7 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
     @Override
     protected RadarChart createViewInstance(ThemedReactContext reactContext) {
-        RadarChart radarChart =  new RadarChart(reactContext);
+        RadarChart radarChart = new RadarChart(reactContext);
         radarChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(radarChart));
         radarChart.setOnChartGestureListener(new RNOnChartGestureListener(radarChart));
         return radarChart;
@@ -45,6 +45,32 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     @ReactProp(name = "skipWebLineCount")
     public void setSkipWebLineCount(RadarChart chart, int count) {
         chart.setSkipWebLineCount(count);
+    }
+
+    @ReactProp(name = "webLineWidth")
+    public void setWebLineWidth(RadarChart chart, float width) {
+        chart.setWebLineWidth(width);
+    }
+
+    @ReactProp(name = "webLineWidthInner")
+    public void setWebLineWidthInner(RadarChart chart, float width) {
+        chart.setWebLineWidthInner(width);
+    }
+
+    @ReactProp(name = "webAlpha")
+    public void setWebAlpha(RadarChart chart, int alpha) {
+        chart.setWebAlpha(alpha);
+    }
+
+    @ReactProp(name = "webColor")
+    public void setWebColor(RadarChart chart, int color) {
+        chart.setWebColor(color);
+    }
+
+
+    @ReactProp(name = "webColorInner")
+    public void setWebColorInner(RadarChart chart, int color) {
+        chart.setWebColorInner(color);
     }
 
     @ReactProp(name = "drawWeb")

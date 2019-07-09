@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
-  BackAndroid,
-  Navigator,
+  StyleSheet,
   Text,
   View
 } from 'react-native';
@@ -18,5 +17,7 @@ class Example extends React.Component {
     );
   }
 }
+
+export default Example;
 
 AppRegistry.registerComponent('Example', () => Example);

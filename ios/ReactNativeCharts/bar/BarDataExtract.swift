@@ -32,7 +32,7 @@ class BarDataExtract : DataExtract {
     }
     
     override open func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
-        return BarChartDataSet(values: entries, label: label)
+        return BarChartDataSet(entries: entries, label: label)
     }
     
     override open func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {

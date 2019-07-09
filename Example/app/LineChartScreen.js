@@ -3,6 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Button,
   View, processColor
 } from 'react-native';
 import update from 'immutability-helper';
@@ -16,89 +17,83 @@ class LineChartScreen extends React.Component {
 
     this.state = {
       data: {},
-      legend: {
-        enabled: true,
-        textColor: processColor('blue'),
-        textSize: 12,
-        position: 'BELOW_CHART_RIGHT',
-        form: 'SQUARE',
-        formSize: 14,
-        xEntrySpace: 10,
-        yEntrySpace: 5,
-        formToTextSpace: 5,
-        wordWrapEnabled: true,
-        maxSizePercent: 0.5,
-        custom: {
-          colors: [processColor('red'), processColor('blue'), processColor('green')],
-          labels: ['Company X', 'Company Y', 'Company Dashed']
-        }
-      },
+
       marker: {
         enabled: true,
         digits: 2,
         backgroundTint: processColor('teal'),
-	      markerColor: processColor('#F0C0FF8C'),
+        markerColor: processColor('#F0C0FF8C'),
         textColor: processColor('white'),
-      }
+      },
+      xAxis: {
+        granularityEnabled: true,
+        granularity: 1,
+      },
+      // visibleRange: {x: {min: 1, max: 2}}
     };
   }
 
   componentDidMount() {
+
     this.setState(
       update(this.state, {
         data: {
           $set: {
             dataSets: [{
-              values: [{y: 0.88}, {y: 0.77}, {y: 105}, {y: 115}],
-              label: 'Company X',
-              config: {
-                lineWidth: 2,
-                drawCircles: false,
-                highlightColor: processColor('red'),
-                color: processColor('red'),
-                drawFilled: true,
-                fillColor: processColor('red'),
-                fillAlpha: 60,
-		            valueTextSize: 15,
-                valueFormatter: "##.000",
-                dashedLine: {
-                  lineLength: 20,
-                  spaceLength: 20
-                }
-              }
+              values: [{x: 4, y: 135}, {x: 5, y: 0.88}, {x: 6, y: 0.77}, {x: 7, y: 105}], label: 'A',
             }, {
-              values: [{y: 90}, {y: 130}, {y: 100}, {y: 105}],
-              label: 'Company Y',
-              config: {
-                lineWidth: 1,
-                drawCubicIntensity: 0.4,
-                circleRadius: 5,
-                drawHighlightIndicators: false,
-                color: processColor('blue'),
-                drawFilled: true,
-                fillColor: processColor('blue'),
-                fillAlpha: 45,
-                circleColor: processColor('blue')
-              }
+              values: [{x: 4, y: 105}, {x: 5, y: 90}, {x: 6, y: 130}, {x: 7, y: 100}], label: 'B',
             }, {
-              values: [{y: 110}, {y: 105}, {y: 115}, {y: 110}],
-              label: 'Company Dashed',
-              config: {
-                color: processColor('green'),
-                drawFilled: true,
-                fillColor: processColor('green'),
-                fillAlpha: 50
-              }
+              values: [{x: 4, y: 110}, {x: 5, y: 110}, {x: 6, y: 105}, {x: 7, y: 115}], label: 'C',
             }],
-          }
-        },
-        xAxis: {
-          $set: {
-            valueFormatter: ['Q1', 'Q2', 'Q3', 'Q4']
           }
         }
       })
     );
+
+
+  }
+
+  onPressLearnMore() {
+
+    this.refs.chart.setDataAndLockIndex({
+      dataSets: [{
+        values: [
+          {x: 1, y: 0.88},
+          {x: 2, y: 0.77},
+          {x: 3, y: 105},
+          {x: 4, y: 135},
+          {x: 5, y: 0.88},
+          {x: 6, y: 0.77},
+          {x: 7, y: 105},
+          {x: 8, y: 135}
+        ],
+        label: 'A',
+      }, {
+        values: [
+          {x: 1, y: 90},
+          {x: 2, y: 130},
+          {x: 3, y: 100},
+          {x: 4, y: 105},
+          {x: 5, y: 90},
+          {x: 6, y: 130},
+          {x: 7, y: 100},
+          {x: 8, y: 105}
+        ],
+        label: 'B',
+      }, {
+        values: [
+          {x: 1, y: 110},
+          {x: 2, y: 105},
+          {x: 3, y: 115},
+          {x: 4, y: 110},
+          {x: 5, y: 110},
+          {x: 6, y: 105},
+          {x: 7, y: 115},
+          {x: 8, y: 110}],
+        label: 'C',
+      }],
+    })
   }
 
   handleSelect(event) {
@@ -116,7 +111,9 @@ class LineChartScreen extends React.Component {
     return (
       <View style={{flex: 1}}>
 
-        <View style={{height:80}}>
+        <Button onPress={this.onPressLearnMore.bind(this)} title="Press to load more"/>
+
+        <View style={{height: 80}}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
@@ -128,12 +125,12 @@ class LineChartScreen extends React.Component {
             chartDescription={{text: ''}}
             legend={this.state.legend}
             marker={this.state.marker}
-            xAxis={this.state.xAxis}
+            xAxis={this.state.xAxis}            
             drawGridBackground={false}
             borderColor={processColor('teal')}
             borderWidth={1}
             drawBorders={true}
-
+            autoScaleMinMaxEnabled={false}
             touchEnabled={true}
             dragEnabled={true}
             scaleEnabled={true}
@@ -141,10 +138,12 @@ class LineChartScreen extends React.Component {
             scaleYEnabled={true}
             pinchZoom={true}
             doubleTapToZoomEnabled={true}
-
+            highlightPerTapEnabled={true}
+            highlightPerDragEnabled={false}
+            // visibleRange={this.state.visibleRange}
             dragDecelerationEnabled={true}
             dragDecelerationFrictionCoef={0.99}
-
+            ref="chart"
             keepPositionOnRotation={false}
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}

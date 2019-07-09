@@ -13,7 +13,7 @@ class RadarDataExtract : DataExtract {
     }
     
     override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
-        return RadarChartDataSet(values : entries, label: label)
+        return RadarChartDataSet(entries : entries, label: label)
     }
     
     override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
