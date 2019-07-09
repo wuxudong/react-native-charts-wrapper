@@ -13,7 +13,7 @@ class PieDataExtract : DataExtract {
     }
     
     override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
-        return PieChartDataSet(values: entries, label: label)
+        return PieChartDataSet(entries: entries, label: label)
     }
     
     override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
@@ -22,21 +22,46 @@ class PieDataExtract : DataExtract {
         ChartDataSetConfigUtils.commonConfig(pieDataSet, config: config);
         
         // PieDataSet only config
-        if config["sliceSpace"].number != nil {
-            pieDataSet.sliceSpace = CGFloat(config["sliceSpace"].numberValue)
+        if config["sliceSpace"].float != nil {
+            pieDataSet.sliceSpace = CGFloat(config["sliceSpace"].floatValue)
         }
         
-        if config["selectionShift"].number != nil {
-            pieDataSet.selectionShift = CGFloat(config["selectionShift"].numberValue)
+        if config["selectionShift"].float != nil {
+            pieDataSet.selectionShift = CGFloat(config["selectionShift"].floatValue)
         }
         
-        if config["xValuePosition"].number != nil {
-          pieDataSet.xValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["xValuePosition"].numberValue))!
+        if config["xValuePosition"].string != nil {
+            pieDataSet.xValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["xValuePosition"].stringValue)
         }
       
-        if config["yValuePosition"].number != nil {
-          pieDataSet.yValuePosition = PieChartDataSet.ValuePosition(rawValue: Int(config["yValuePosition"].numberValue))!
+        if config["yValuePosition"].string != nil {
+            pieDataSet.yValuePosition = BridgeUtils.parsePieChartDataSetValuePosition(config["yValuePosition"].stringValue)
         }
+        
+        if config["valueLinePart1Length"].float != nil {
+            pieDataSet.valueLinePart1Length = CGFloat(config["valueLinePart1Length"].floatValue)
+        }
+        
+        if config["valueLinePart2Length"].float != nil {
+            pieDataSet.valueLinePart2Length = CGFloat(config["valueLinePart2Length"].floatValue)
+        }
+        
+        if config["valueLineColor"].int != nil {
+            pieDataSet.valueLineColor = RCTConvert.uiColor(config["valueLineColor"].intValue);
+        }
+
+        if config["valueLineWidth"].float != nil {
+            pieDataSet.valueLineWidth = CGFloat(config["valueLineWidth"].floatValue)
+        }
+        
+        if config["valueLinePart1OffsetPercentage"].float != nil {
+            pieDataSet.valueLinePart1OffsetPercentage = CGFloat(config["valueLinePart1OffsetPercentage"].floatValue)
+        }
+        
+        if config["valueLineVariableLength"].bool != nil {
+            pieDataSet.valueLineVariableLength = config["valueLineVariableLength"].boolValue
+        }
+                
     }
     
     override func createEntry(_ values: [JSON], index: Int) -> ChartDataEntry {

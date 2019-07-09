@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -16,10 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class BarDataExtract extends DataExtract<BarData, BarEntry> {
-
-
     @Override
     BarData createData() {
         return new BarData();
@@ -64,10 +62,10 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<BarEntry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<BarEntry> dataSet, ReadableMap config) {
         BarDataSet barDataSet = (BarDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(barDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, barDataSet, config);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(barDataSet, config);
 
         if (BridgeUtils.validate(config, ReadableType.Number, "barShadowColor")) {

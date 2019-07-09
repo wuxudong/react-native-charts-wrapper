@@ -19,14 +19,17 @@ class PieChartScreen extends React.Component {
     this.state = {
       legend: {
         enabled: true,
-        textSize: 8,
+        textSize: 15,
         form: 'CIRCLE',
-        position: 'RIGHT_OF_CHART',
+
+        horizontalAlignment: "RIGHT",
+        verticalAlignment: "CENTER",
+        orientation: "VERTICAL",
         wordWrapEnabled: true
       },
       data: {
         dataSets: [{
-          values: [{value: 40, label: 'Sandwiches'},
+          values: [{value: 45, label: 'Sandwiches'},
             {value: 21, label: 'Salads'},
             {value: 15, label: 'Soup'},
             {value: 9, label: 'Beverages'},
@@ -37,7 +40,12 @@ class PieChartScreen extends React.Component {
             valueTextSize: 20,
             valueTextColor: processColor('green'),
             sliceSpace: 5,
-            selectionShift: 13
+            selectionShift: 13,
+            // xValuePosition: "OUTSIDE_SLICE",
+            // yValuePosition: "OUTSIDE_SLICE",
+            valueFormatter: "#.#'%'",
+            valueLineColor: processColor('green'),
+            valueLinePart1Length: 0.5
           }
         }],
       },
@@ -80,13 +88,13 @@ class PieChartScreen extends React.Component {
             legend={this.state.legend}
             highlights={this.state.highlights}
 
-            entryLabelColor={processColor('black')}
+            entryLabelColor={processColor('green')}
             entryLabelTextSize={20}
             drawEntryLabels={true}
 
             rotationEnabled={true}
             rotationAngle={45}
-            usePercentValues={false}
+            usePercentValues={true}
             styledCenterText={{text:'Pie center text!', color: processColor('pink'), size: 20}}
             centerTextRadiusPercent={100}
             holeRadius={40}

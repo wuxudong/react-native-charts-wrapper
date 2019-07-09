@@ -22,7 +22,6 @@ class TimeSeriesLineChartScreen extends React.Component {
         enabled: true,
         textColor: processColor('red'),
         textSize: 12,
-        position: 'BELOW_CHART_RIGHT',
         form: 'SQUARE',
         formSize: 14,
         xEntrySpace: 10,
@@ -42,7 +41,8 @@ class TimeSeriesLineChartScreen extends React.Component {
         markerFontSize: 14,
       },
 
-      selectedEntry: ""
+      selectedEntry: "",
+      yAxis: {left:{axisMaximum:12000}, right: {enabled: false}}
     }
 
   }
@@ -148,22 +148,9 @@ class TimeSeriesLineChartScreen extends React.Component {
             borderWidth={1}
             drawBorders={true}
 
-            touchEnabled={true}
-            dragEnabled={true}
-            scaleEnabled={true}
-            scaleXEnabled={true}
-            scaleYEnabled={true}
-            pinchZoom={true}
-            doubleTapToZoomEnabled={false}
+            yAxis={this.state.yAxis}
 
-            dragDecelerationEnabled={true}
-            dragDecelerationFrictionCoef={0.99}
-            yAxis={{left:{axisMaximum:12000}}}
-
-            keepPositionOnRotation={false}
-
-            xAxis={{valueFormatter: 'percent', position:'BOTTOM'}}
-
+            
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
 

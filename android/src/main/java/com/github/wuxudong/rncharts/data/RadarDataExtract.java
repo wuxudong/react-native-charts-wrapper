@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
 
     @Override
@@ -29,10 +29,10 @@ public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<RadarEntry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<RadarEntry> dataSet, ReadableMap config) {
         RadarDataSet radarDataSet = (RadarDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(radarDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, radarDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(radarDataSet, config);
         ChartDataSetConfigUtils.commonLineRadarConfig(radarDataSet, config);
 

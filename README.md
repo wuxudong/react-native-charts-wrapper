@@ -6,7 +6,7 @@ This library is React Native wrapper of popular Native charting library [MPAndro
 
 Inspired by [react-native-mp-android-chart](https://github.com/mskec/react-native-mp-android-chart) and [react-native-ios-charts](https://github.com/Jpadilla1/react-native-ios-charts)
 
-React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3), support both android & ios.
+React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0), support both android & iOS.
 
 
 ### ANDROID 
@@ -14,7 +14,6 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3),
 
 ### IOS
 ![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/IOS%20ScreenShot.png)
-
 
 ## Supported Chart Type
 
@@ -29,140 +28,8 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.0.2) & Charts(v3.0.3),
 
 ## Setup
 
-A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/Example/README.md)
+A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/installation_guide/README.md)
 
-
-
-Library can be easily installed using NPM:
-
-`npm install --save react-native-charts-wrapper`
-
-Additional setup is required because library is using native code.
-
-
-### ANDROID  
-
-
-#### 1. Add Maven Repository
-
-
-**android/build.gradle**
-
-```
-allprojects {
-    repositories {
-        ...
-
-        maven { url "https://jitpack.io" }    // used for MPAndroidChart
-    }
-}
-```
-
-
-#### 2. Add Maven Dependency
-
-
-*   **Mostly automatic install with react-native**
-
-		react-native link react-native-charts-wrapper
-		
-*   **Manual install**
-
-
-**android/settings.gradle**
-```
-include ':react-native-charts-wrapper'
-project(':react-native-charts-wrapper').projectDir = new File(
-  rootProject.projectDir,
-  '../node_modules/react-native-charts-wrapper/android'
-)
-```
-
-**android/app/build.gradle**
-
-```
-dependencies {
-    ...
-    compile project(':react-native-charts-wrapper')
-}
-```
-
-**MainApplication.java**
-
-On top where imports are:
-
-```java
-import com.github.wuxudong.rncharts.MPAndroidChartPackage;
-```
-
-Add package in `getPackages` method:
-
-```java
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new MPAndroidChartPackage()             // <----- Add this
-    );
-}
-```
-
-
-### IOS
-
-
-Your may be interested in this article [Detail Guide provided by contributor](https://www.evernote.com/shard/s304/sh/5d501d94-a8e0-4309-9866-e2026356a29d/130a7aa8b84d73a6)
-
-#### 1. Add Source Files
-
- create a group under your project *top level* and add files under directory node_modules/react-native-charts-wrapper/ios/ReactNativeCharts
-
-#### 2. Add Bridge File
-
- When you add the files XCode should prompt you to create a bridging header if you haven't done so already, or you can create empty swift file to trigger xcode prompt.
- Create the bridging header and import the RCTViewManager.h. It should look something like this.
-
-		#import "React/RCTBridge.h"
-		#import "React/RCTViewManager.h"
-		#import "React/RCTUIManager.h"
-		#import "React/UIView+React.h"
-		#import "React/RCTBridgeModule.h"
-		#import "React/RCTEventDispatcher.h"
-		#import "React/RCTEventEmitter.h"
-
-
-You should make sure set this file in your target -> Build Settings -> Swift Compiler - General -> Object-C Bridging Header 
-
-
-#### 3. Add Charts and SwiftyJSON
-
-*  **Mostly automatic install**
-
-
-add a `Podfile` to your ios directory with the following content. Then run `pod install` and open the generated .xcworkspace from now on in xcode.
-
-  ```
-  use_frameworks!
-
-  target 'MyApp' do
-    pod 'SwiftyJSON', '3.1.4'
-    pod 'Charts', '3.0.3'
-  end
-  
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['SWIFT_VERSION'] = '3.0'
-      end
-    end
-  end
-  ```
-  
-*  **Manual install**
-
-1. Install [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) and [iOS Charts](https://github.com/danielgindi/ios-charts) libraries and add `SwiftyJSON.xcodeproj` and `Charts.xcodeproj` files to your project.
-2. Under `Build Phases`, under `Link Binary With Libraries`, click the plus sign and add `SwiftyJSON.framework` and `Charts.framework`.
-3. Add the `SwiftyJSON.framework` and `Charts.framework` to the `Embedded Binaries` section in your app.
-4. In your project's build settings, go to build options and change the `Embedded Content Contains Swift Code` to `Yes`.
 
 ## Usage
 There are 8 supported charts with many configuration options.
@@ -230,11 +97,11 @@ check Example->TimeSeriesLineChart for details
 
 ## Callback
 
-**Support value selection callBack.**
+**Support value selection callBack: onSelect**
 
 you can do whatever you want, even pop your own modal, or jump to another page.
 
-**Support gesture callBack.**
+**Support gesture callBack: onChange**
 
 check Example->MultipleChart for details.
 
@@ -246,6 +113,43 @@ You can use `chart.moveViewToX(...)` or other functions directly.
 
 check Example->MovingWindowChart for details.
 
+supported functions:
+
+1. highlights([...]) 
+
+   it can be used to highlight entries programmatically, or clear already highlighted entries if you pass empty array to it: highlights([])
+
+2. moveViewTo/moveViewToX/moveViewToAnimated/centerViewTo/centerViewToAnimated
+3. fitScreen
+4. setDataAndLockIndex
+
+   It will rescale and move to the begining of your data when new data is set by default, this is not expected when you want to load more data when user scrolls.  
+   setDataAndLockIndex will remain x/y/zoom when you load more data.  
+   Because of the implementation of MpAndroidChart, if the action of setDataAndLockIndex is triggered by user dragging,  
+   then the range of new data (xMax - xMin) should be equal to original data(this basicly means size of new data equals to old one), otherwise the calculation of position transition won't be accurate,  
+   use may find the chart suddenly blink to another position.         
+   This restriction only exists in android, in iOS, we have no such problem.
+   
+   You can check the example InfiniteScrollLineChartScreen.
+
+## Special properties
+
+Several extra properties are introduced:
+
+1. group&identifier&syncX&syncY
+
+   They are useful when you want to implement linkage charts.
+   
+   Charts will sync its operation to other charts in the same group. All these sync jobs are done at native side.
+   
+   You can check the example LinkageChartScreen.
+   
+   Another way of syncing charts is to use onChange, but the performace is poor. 
+   You can check the example MultipleChartScreen.
+   
+   
+   There is a stock kLine chart in example, it combines group&identifier and setDataAndLockIndex together.
+      
 
 ## Custom Marker Content 
 
@@ -265,17 +169,6 @@ check Example->TimeSeriesLineChart for details.
 
 you can set chart to fixed width & height, or flex:1
   
-## Need for help
-
-I spent serveral days to learn swift and ios, but I am still quite new to it.
-
-It is not quite elegant to copy source files to your project, but I haven't figure out how to build it as a framework like others.
-
-Here is the [question](http://stackoverflow.com/questions/42570599/how-to-create-react-native-framework-using-swift) in stackoverflow. 
-
-It is appreciated if you can answer the question or create a issue/PR.
-
-
 
 
 

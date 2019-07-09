@@ -5,6 +5,7 @@
 import UIKit
 
 @objc(RNHorizontalBarChartManager)
+@objcMembers
 open class RNHorizontalBarChartManager: RCTViewManager, RNBarLineChartBaseManager {
   var _bridge: RCTBridge? {get{return self.bridge}}
   
@@ -13,7 +14,7 @@ open class RNHorizontalBarChartManager: RCTViewManager, RNBarLineChartBaseManage
     return ins;
   }
 
-  override open static func requiresMainQueueSetup() -> Bool {
+  override public static func requiresMainQueueSetup() -> Bool {
     return true;
   }
   

@@ -3,6 +3,7 @@ package com.github.wuxudong.rncharts.data;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
@@ -18,7 +19,6 @@ import java.util.Locale;
 /**
  * Created by xudong on 02/03/2017.
  */
-
 public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     @Override
     ScatterData createData() {
@@ -31,10 +31,10 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     }
 
     @Override
-    void dataSetConfig(IDataSet<Entry> dataSet, ReadableMap config) {
+    void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
         ScatterDataSet scatterDataSet = (ScatterDataSet) dataSet;
 
-        ChartDataSetConfigUtils.commonConfig(scatterDataSet, config);
+        ChartDataSetConfigUtils.commonConfig(chart, scatterDataSet, config);
         ChartDataSetConfigUtils.commonBarLineScatterCandleBubbleConfig(scatterDataSet, config);
         ChartDataSetConfigUtils.commonLineScatterCandleRadarConfig(scatterDataSet, config);
 

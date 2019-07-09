@@ -33,12 +33,24 @@ class RNCombinedChartView: RNBarLineChartViewBase {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setDrawOrder(_ config: NSArray) {
+        var array : [Int] = []
+        for object in RCTConvert.nsStringArray(config) {
+            array.append(BridgeUtils.parseDrawOrder(object).rawValue)
+        }
+        _chart.drawOrder = array
+    }
+    
     func setDrawValueAboveBar(_ enabled: Bool) {
         _chart.drawValueAboveBarEnabled = enabled
     }
 
     func setDrawBarShadow(_ enabled: Bool) {
         _chart.drawBarShadowEnabled = enabled
+    }
+
+    func setHighlightFullBarEnabled(_ enabled: Bool) {
+        _chart.highlightFullBarEnabled = enabled
     }
 
 }

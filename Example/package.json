@@ -6,21 +6,23 @@
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h && rm -rf node_modules/react-native-charts-wrapper/Example"
   },
   "dependencies": {
-    "immutability-helper": "2.4.0",
-    "lodash": "4.17.4",
-    "react": "16.1.1",
-    "react-native": "0.50.3",
+    "immutability-helper": "2.8.1",
+    "lodash": "4.17.11",
+    "moment": "^2.22.2",
+    "react": "^16.8.6",
+    "react-native": "^0.59.4",
     "react-native-charts-wrapper": "file:../",
-    "react-navigation": "^1.0.0-beta.19"
+    "react-native-gesture-handler": "^1.2.1",
+    "react-navigation": "3.8.1"
   },
   "devDependencies": {
-    "babel-jest": "21.0.2",
-    "babel-preset-react-native": "4.0.0",
-    "jest": "21.1.0",
-    "react-test-renderer": "15.6.1"
+    "@babel/core": "^7.4.3",
+    "@babel/runtime": "^7.4.3",
+    "metro-react-native-babel-preset": "^0.53.1"
   },
   "jest": {
     "preset": "react-native"

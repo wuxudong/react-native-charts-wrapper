@@ -13,7 +13,7 @@ class LineDataExtract : DataExtract {
     }
     
     override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
-        return LineChartDataSet(values: entries, label: label)
+        return LineChartDataSet(entries: entries, label: label)
     }
     
     override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
