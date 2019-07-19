@@ -159,7 +159,7 @@ react-native run-android, that is it.
 * run `yarn install` again
 * link subproject
 
-	*   **use cocoapods(suggested)**
+	*   **use cocoapods(suggested), notice cocoapod is not compatible with rn 0.60.x due to issue [581](https://github.com/wuxudong/react-native-charts-wrapper/issues/581)**
 
 		* create ios/Podfile
 
