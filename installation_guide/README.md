@@ -84,15 +84,15 @@ const styles = StyleSheet.create({
 
 #### 1. update android/build.gradle, upgrade gradle tools version, add jitpack.io
 
-add `maven { url "https://jitpack.io" }` under allprojects -> repositories, IT IS USED BY MPAndroidChart
+add `maven { url "https://jitpack.io" }` under allprojects -> repositories if it is absent, IT IS USED BY MPAndroidChart
 
 make sure compileSdkVersion >= 28
 
-#### 2. make sure gradle version >= 4.10.1 in android/gradle/wrapper/gradle-wrapper.properties 
+#### 2. make sure gradle version >= 5.1.1 in android/gradle/wrapper/gradle-wrapper.properties 
 
 #### 3. link subproject
 
-*   **Mostly automatic install with react-native**
+*   **Mostly automatic install with react-native link**
 
 		react-native link react-native-charts-wrapper
 				
