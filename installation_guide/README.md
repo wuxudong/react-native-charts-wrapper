@@ -8,15 +8,15 @@ This is my environment.
 
 ```
 $ yarn -v
-1.9.4
+1.16.0
 
 $ react-native -v
 react-native-cli: 2.0.1
 
 $ pod --version
-1.6.1
+1.7.4
 
-Xcode 10.2
+Xcode 11.0
 
 swift 5
 
@@ -144,75 +144,19 @@ react-native run-android, that is it.
 
 ## iOS
 
-* add postinstall in package.json
-
-```
-  "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",        
-    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h"
-
-  }
-
-```
-
-* run `yarn install` again
 * link subproject
 
-	*   **use cocoapods(suggested), notice cocoapod is not compatible with rn 0.60.x due to issue [581](https://github.com/wuxudong/react-native-charts-wrapper/issues/581)**
+	*   **use cocoapods(suggested)**
 
-		* create ios/Podfile
+		* add `use_frameworks!` to ios/Podfile before `target 'demo' do`
+		* add `pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'` to ios/Podfile after `pod 'Folly', :podspec => ......`
 
-		```
-		platform :ios, '9.0'
-			
-		use_frameworks!
-			
-		target 'demo' do
-		    pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/'
-		    pod 'React', path: '../node_modules/react-native/', :subspecs => [
-		    'Core',
-		    'ART',
-		    'RCTActionSheet',
-		    'RCTAnimation',
-		    'RCTLinkingIOS',
-		    'RCTGeolocation',
-		    'RCTImage',
-		    'RCTNetwork',
-		    'RCTText',
-		    'RCTVibration',
-		    'RCTWebSocket',
-		    'DevSupport',
-		    'CxxBridge',
-		    ]
-		    
-		    pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
-		    pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-		    pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-		    
-		    pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
-		    pre_install do |installer|
-		        installer.analysis_result.specifications.each do |s|
-		            s.swift_version = '5.0' unless s.swift_version
-		        end
-		    end
-
-		end
-			
-
-		```
-
-		
 		* cd ios && pod install
 		* open demo.xcworkspace
 		* create a empty swift file, the xcode will prompt a message 'Would you like to configure an Objective-C bridging header?' to Create Bridging Header, accept it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/create-oc-bridging-header.png)
-
-		* if you can't open development menu in iOS simulator, you can remove other libraries except Pods_demo.framework, and delete other targets except demo.
-
-		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/ios_project_settings.png)
-
+		
 		* run it from XCode or run `react-native run-ios`, that is it.
 
 		![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/installation_guide/iOS.png)
