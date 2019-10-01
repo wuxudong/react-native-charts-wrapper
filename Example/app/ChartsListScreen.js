@@ -8,7 +8,8 @@ import {
   Text,
 } from 'react-native';
 
-import {createStackNavigator, createAppContainer, SafeAreaView} from 'react-navigation';
+import {createAppContainer, SafeAreaView} from 'react-navigation';
+import {createStackNavigator } from 'react-navigation-stack';
 
 import AxisLineChartScreen from './AxisLineChartScreen';
 import MultipleChartScreen from './MultipleChartScreen';
