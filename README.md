@@ -159,11 +159,6 @@ check Example->TimeSeriesLineChart for details.
 
 ## Notice
 
-**Several settings are removed.**
-
-1. fontFamily & fontStyle
-
-  The font is a little different in android & ios, I don't know how to configure it in js in the same way.
   
 **size of chart**
 
