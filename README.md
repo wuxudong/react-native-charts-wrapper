@@ -60,35 +60,35 @@ Android and IOS have different convention:
 - Complete Form
 
 
-		data : {
-			...
-			dataSets: [
-				{
-					values: [
-						{x: 5, y: 90},
-						{x: 10, y: 130},
-						{x: 50, y: 2000, marker: "eat more"},
-						{x: 80, y: 9000, marker: "eat less"}
-					]
-				},
-				...
-			]
-		}
+        data : {
+            ...
+            dataSets: [
+                {
+                    values: [
+                        {x: 5, y: 90},
+                        {x: 10, y: 130},
+                        {x: 50, y: 2000, marker: "eat more"},
+                        {x: 80, y: 9000, marker: "eat less"}
+                    ]
+                },
+                ...
+            ]
+        }Ï
 
 marker is optional,  if x is omitted, index will be used.
 
 - Simplified Form
 
-	    data: {
-			...
-	        dataSets: [
-	        	{
-	          		values: [5, 40, 77, 81, 43]
-	          	},
-	          	....
-	        ]
-	    }
-
+        data: {
+            ...
+            dataSets: [
+                {
+                    values: [5, 40, 77, 81, 43]
+                },
+                ....
+            ]
+        }
+	
 index will used as x.
 
 
