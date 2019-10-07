@@ -147,9 +147,8 @@ react-native run-android, that is it.
 * link subproject
 
 	*   **use cocoapods(suggested)**
-
-		* add `use_frameworks!` to ios/Podfile before `target 'demo' do`
-		* add `pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'` to ios/Podfile after `pod 'Folly', :podspec => ......`
+		
+		* add `pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'` to ios/Podfile
 
 		* cd ios && pod install
 		* open demo.xcworkspace
@@ -164,7 +163,7 @@ react-native run-android, that is it.
 
 	* **manual setup**
 
-		Sometime `use_frameworks!` in Podfile conflict with other libs like  react-native-maps.  In this case, you can link this lib manually.
+		You can also link this lib manually.
 	
 		* Add Source Files
 		

@@ -1,6 +1,6 @@
 platform :ios, '9.0'
 
-use_frameworks!
+#use_frameworks!
 
 target 'Example' do
 
@@ -38,20 +38,5 @@ target 'Example' do
     pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
     pod 'RNCharts', :path => '../../'
-
-    swift5 = ['Charts', 'SwiftyJSON']
-
-
-
-
-    post_install do |installer|
-      installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-          if swift5.include?(target.name)
-            config.build_settings['SWIFT_VERSION'] = '5.0'
-          end
-        end
-      end
-    end
 
 end
