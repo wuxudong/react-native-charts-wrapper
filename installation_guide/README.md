@@ -2,7 +2,7 @@
 
 ## Environment:
 
-Outdated react-native version may cause some anonying problems, so keep them update to date.
+Outdated react-native version may cause some anonying problems, so keep them up to date.
 
 This is my environment.
 
