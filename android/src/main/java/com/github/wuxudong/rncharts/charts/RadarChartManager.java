@@ -62,6 +62,11 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
         chart.setWebAlpha(alpha);
     }
 
+    @ReactProp(name = "webAlphaInner")
+    public void setWebAlphaInner(RadarChart chart, int alpha) {
+        chart.setWebAlphaInner(alpha);
+    }
+
     @ReactProp(name = "webColor")
     public void setWebColor(RadarChart chart, int color) {
         chart.setWebColor(color);

@@ -73,6 +73,10 @@ class RNRadarChartView: RNYAxisChartViewBase {
         chart.webAlpha = CGFloat(truncating: alpha)
     }
 
+    func setWebAlphaInner(_ alpha: NSNumber) {
+        chart.webAlphaInner = CGFloat(truncating: alpha)
+    }
+
     func setWebColor(_ color: NSNumber) {
         chart.webColor = RCTConvert.uiColor(color.intValue)
     }
