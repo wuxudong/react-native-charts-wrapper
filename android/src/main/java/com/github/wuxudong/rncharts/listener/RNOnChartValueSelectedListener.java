@@ -27,11 +27,18 @@ public class RNOnChartValueSelectedListener implements OnChartValueSelectedListe
         if (mWeakChart != null) {
             Chart chart = mWeakChart.get();
 
+            WritableMap map = EntryToWritableMapUtils.convertEntryToWritableMap(entry);
+            if ( chart instanceof RadarChart) {
+                // Add an extra value to the map to know the index of the higlighted value
+                // This will allow the receiver to retreive the xAxis value that has been selected by the user
+                map.putDouble("hx", h.getX());
+            }
+
             ReactContext reactContext = (ReactContext) chart.getContext();
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                     chart.getId(),
                     "topSelect",
-                    EntryToWritableMapUtils.convertEntryToWritableMap(entry));
+                    map);
         }
     }
 
