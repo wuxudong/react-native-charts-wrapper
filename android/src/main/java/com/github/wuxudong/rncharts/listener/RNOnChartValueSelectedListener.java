@@ -10,6 +10,8 @@ import com.github.wuxudong.rncharts.utils.EntryToWritableMapUtils;
 
 import java.lang.ref.WeakReference;
 
+import com.facebook.react.bridge.WritableMap;
+
 /**
  * Created by xudong on 07/03/2017.
  */
