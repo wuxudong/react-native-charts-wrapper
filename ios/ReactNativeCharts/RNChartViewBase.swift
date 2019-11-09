@@ -463,7 +463,13 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if self.onSelect == nil {
             return
         } else {
-            self.onSelect!(EntryToDictionaryUtils.entryToDictionary(entry))
+            var dict = EntryToDictionaryUtils.entryToDictionary(entry)
+            if chartView is RNRadarChartView {
+                // Add an extra value to the map to know the index of the higlighted value
+                // This will allow the receiver to retreive the xAxis value that has been selected by the user
+                dict["hx"] = highlight.x
+            }
+            self.onSelect!(dict)
             
         }
     }
