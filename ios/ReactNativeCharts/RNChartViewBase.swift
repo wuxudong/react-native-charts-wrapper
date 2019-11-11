@@ -464,11 +464,12 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             return
         } else {
             var dict = EntryToDictionaryUtils.entryToDictionary(entry)
-            if chartView is RNRadarChartView {
+            // TODO find a mean of doing this only if we're dealing with a radar chart
+            //if chartView is RNRadarChartView {
                 // Add an extra value to the map to know the index of the higlighted value
                 // This will allow the receiver to retreive the xAxis value that has been selected by the user
                 dict["hx"] = highlight.x
-            }
+            //}
             self.onSelect!(dict)
             
         }
