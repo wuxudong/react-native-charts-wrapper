@@ -79,7 +79,14 @@ public class ChartDataSetConfigUtils {
                 if (BridgeUtils.validate(config, ReadableType.String, "timeUnit")) {
                     timeUnit = TimeUnit.valueOf(config.getString("timeUnit").toUpperCase());
                 }
-                dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit));
+
+                Locale locale = Locale.getDefault();
+                
+                if (BridgeUtils.validate(config, ReadableType.String, "locale")) {
+                    locale = Locale.forLanguageTag(config.getString("locale"));
+                }
+
+                dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
