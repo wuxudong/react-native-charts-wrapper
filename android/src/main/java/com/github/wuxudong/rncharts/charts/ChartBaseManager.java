@@ -444,7 +444,13 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                 if (BridgeUtils.validate(propMap, ReadableType.String, "timeUnit")) {
                     timeUnit = TimeUnit.valueOf(propMap.getString("timeUnit").toUpperCase());
                 }
-                axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit));
+                Locale locale = Locale.getDefault();
+                
+                if (BridgeUtils.validate(propMap, ReadableType.String, "locale")) {
+                    locale = Locale.forLanguageTag(propMap.getString("locale"));
+                }
+
+                axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));
             } else {
                 axis.setValueFormatter(new CustomFormatter(valueFormatter));
             }
