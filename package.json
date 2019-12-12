@@ -1,15 +1,24 @@
 {
-  "name": "react-native-charts-wrapper",
+  "name": "@infobiotech/react-native-charts-wrapper",
+  "version": "0.1.0",
+  "description": "This library is React Native wrapper of popular Native charting library [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) and [Charts](https://github.com/danielgindi/Charts)",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wuxudong/react-native-charts-wrapper.git"
+    "url": "git+https://github.com/infobiotech/react-native-charts-wrapper.git"
   },
-  "version": "0.5.7",
-  "description": "A react-native charts support both android and iOS.",
-  "author": "wuxudong",
+  "author": "infobiotech",
   "license": "MIT",
-  "nativePackage": true,
-  "homepage": "https://github.com/wuxudong/react-native-charts-wrapper",
+  "bugs": {
+    "url": "https://github.com/infobiotech/react-native-charts-wrapper/issues"
+  },
+  "homepage": "https://github.com/infobiotech/react-native-charts-wrapper#readme",
   "keywords": [
     "react native",
     "chart",
