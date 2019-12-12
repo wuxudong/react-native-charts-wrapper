@@ -17,6 +17,7 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Transformer;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
@@ -287,7 +288,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
                 "fitScreen", FIT_SCREEN,
                 "highlights", HIGHLIGHTS,
-                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
+                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
+                "addDataPoints", ADD_DATA_POINTS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -329,9 +331,19 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case SET_DATA_AND_LOCK_INDEX:
                 setDataAndLockIndex(root, args.getMap(0));
                 return;
+
+            case ADD_DATA_POINTS:
+                addDataPoints(root, args.getMap(0));
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
+    }
+
+    private void addDataPoints(T root, ReadableMap data) {
+        System.out.println("Add data points");
+        IDataSet dataSet = root.getData().getDataSetByIndex(0);
+        System.out.println(dataSet);
     }
 
     private void setDataAndLockIndex(T root, ReadableMap map) {

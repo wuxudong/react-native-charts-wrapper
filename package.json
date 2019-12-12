@@ -1,6 +1,6 @@
 {
   "name": "@infobiotech/react-native-charts-wrapper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This library is React Native wrapper of popular Native charting library [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) and [Charts](https://github.com/danielgindi/Charts)",
   "main": "index.js",
   "directories": {
