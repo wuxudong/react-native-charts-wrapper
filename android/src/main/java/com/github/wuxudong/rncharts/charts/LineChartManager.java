@@ -16,6 +16,10 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
         return "RNLineChart";
     }
 
+/*
+ * comment
+ */
+
     @Override
     protected LineChart createViewInstance(ThemedReactContext reactContext) {
         LineChart lineChart =  new LineChart(reactContext);
