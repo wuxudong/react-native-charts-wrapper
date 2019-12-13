@@ -341,9 +341,18 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     }
 
     private void addDataPoints(T root, ReadableMap data) {
-        System.out.println("Add data points");
-        IDataSet dataSet = root.getData().getDataSetByIndex(0);
-        System.out.println(dataSet);
+        ReadableArray dataSets = data.getArray("data");
+
+        for (int i = 0; i < dataSets.size(); i++) {
+            ReadableMap point = dataSets.getMap(i);
+            float x = (float) point.getDouble("x");
+            float y = (float) point.getDouble("y");
+            IDataSet lineData = root.getData().getDataSetByIndex(i);
+            lineData.addEntry(new Entry(x, y));
+        }
+        
+        root.notifyDataSetChanged();
+        root.invalidate();
     }
 
     private void setDataAndLockIndex(T root, ReadableMap map) {
