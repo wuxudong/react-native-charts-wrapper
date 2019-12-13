@@ -11,6 +11,7 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
@@ -282,14 +283,15 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     public Map<String, Integer> getCommandsMap() {
         Map<String, Integer> commandsMap = super.getCommandsMap();
 
-        Map<String, Integer> map = MapBuilder.of(
-                "moveViewTo", MOVE_VIEW_TO,
-                "moveViewToX", MOVE_VIEW_TO_X,
-                "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
-                "fitScreen", FIT_SCREEN,
-                "highlights", HIGHLIGHTS,
-                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
-                "addDataPoints", ADD_DATA_POINTS);
+        Map<String, Integer> map = MapBuilder.of();
+        map.put("moveViewTo", MOVE_VIEW_TO);
+        map.put("moveViewToX", MOVE_VIEW_TO_X);
+        map.put("moveViewToAnimated", MOVE_VIEW_TO_ANIMATED);
+        map.put("fitScreen", FIT_SCREEN);
+        map.put("highlights", HIGHLIGHTS);
+        map.put("setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
+        map.put("addDataPoints", ADD_DATA_POINTS);
+        map.put("updateConfig", UPDATE_CONFIG);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -335,6 +337,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case ADD_DATA_POINTS:
                 addDataPoints(root, args.getMap(0));
                 return;
+            
+            case UPDATE_CONFIG:
+                updateConfig(root, args.getArray(0));
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
@@ -351,6 +357,30 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             lineData.addEntry(new Entry(x, y));
         }
         
+        root.notifyDataSetChanged();
+        root.invalidate();
+    }
+
+    private void updateConfig(T root, ReadableArray configs) {
+        
+        for (int i = 0; i < configs.size(); i++) {
+            ReadableMap data = configs.getMap(i);
+
+            int id = data.getInt("id");
+            ReadableMap config = data.getMap("config");
+
+            LineDataSet lineData = (LineDataSet) root.getData().getDataSetByIndex(id);
+            
+            if (config.hasKey("visible")) {
+                boolean visible = config.getBoolean("visible");
+                lineData.setVisible(visible);
+            }
+            if (config.hasKey("selected")) {
+                boolean selected = config.getBoolean("selected");
+                lineData.setLineWidth(selected ? 3 : 1);
+            }
+        }
+
         root.notifyDataSetChanged();
         root.invalidate();
     }
