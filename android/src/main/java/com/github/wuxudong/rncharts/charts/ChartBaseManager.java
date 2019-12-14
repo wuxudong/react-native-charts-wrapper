@@ -25,6 +25,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
+import com.github.wuxudong.rncharts.markers.RNCircleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.EasingFunctionHelper;
 import com.github.wuxudong.rncharts.utils.TypefaceUtils;
@@ -267,9 +268,30 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             return;
         }
 
-        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
-        marker.setChartView(chart);
+        String markerType = propMap.getString("markerType");
+        switch(markerType) {
+            case "circle":
+                setCircleMarker(chart);
+                break;
+            default:
+                setRectangleMarker(chart, propMap);
+        }
+    }
 
+    private void setRectangleMarker(Chart chart, ReadableMap propMap) {
+        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
+        setMarkerParams(marker, propMap);
+        marker.setChartView(chart);
+        chart.setMarker(marker);
+    }
+
+    private void setCircleMarker(Chart chart) {
+        RNCircleMarkerView marker = new RNCircleMarkerView(chart.getContext());
+        marker.setChartView(chart);
+        chart.setMarker(marker);
+    }
+
+    private void setMarkerParams(RNRectangleMarkerView marker, ReadableMap propMap) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
                 BridgeUtils.validate(propMap, ReadableType.Number, "markerColor")) {
             marker.getTvContent()
@@ -288,8 +310,6 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.Number, "textSize")) {
             marker.getTvContent().setTextSize(propMap.getInt("textSize"));
         }
-
-        chart.setMarker(marker);
     }
 
     /**
@@ -445,7 +465,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     timeUnit = TimeUnit.valueOf(propMap.getString("timeUnit").toUpperCase());
                 }
                 Locale locale = Locale.getDefault();
-                
+
                 if (BridgeUtils.validate(propMap, ReadableType.String, "locale")) {
                     locale = Locale.forLanguageTag(propMap.getString("locale"));
                 }
