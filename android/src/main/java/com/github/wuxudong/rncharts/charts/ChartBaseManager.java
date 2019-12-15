@@ -268,7 +268,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             return;
         }
 
-        String markerType = propMap.getString("markerType");
+        String markerType = propMap.hasKey("markerType") ? propMap.getString("markerType") : "";
         switch(markerType) {
             case "circle":
                 setCircleMarker(chart);
