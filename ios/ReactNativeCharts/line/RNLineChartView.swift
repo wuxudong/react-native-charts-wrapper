@@ -34,11 +34,44 @@ class RNLineChartView: RNBarLineChartViewBase {
     }
     
     func addDataPoints(_ data: NSDictionary) {
-        print("native addDataPoints");
+        let dict = data as! Dictionary<String,Any>
+        let dataSets = dict["data"] as! Array<Dictionary<String, Any>>
+        
+        var maxYPoint = chart.leftAxis.axisMaximum
+        
+        for i in 0 ..< dataSets.count {
+            let point = dataSets[i]
+            let x = point["x"] as! Double
+            let y = point["y"] as! Double
+            let lineData = chart.data!.dataSets[i]
+            _ = lineData.addEntry(ChartDataEntry(x: x, y: y))
+            if y > maxYPoint - topOffset {
+                maxYPoint = y + topOffset
+            }
+        }
+        
+        chart.leftAxis.axisMaximum = maxYPoint
+        chart.notifyDataSetChanged()
     }
 
     func updateConfig(_ data: NSArray) {
-        print("native updateConfig");
+        let arr = data as! Array<Dictionary<String, Any>>
+        
+        for line in arr {
+            
+            let id = line["id"] as! Int;
+            let config = line["config"] as! Dictionary<String, Any>;
+            let lineData = chart.data!.dataSets[id] as! LineChartDataSet
+            
+            if let visible = config["visible"] as? Bool {
+                lineData.visible = visible
+            }
+            if let lineWidth = config["lineWidth"] as? CGFloat {
+                lineData.lineWidth = lineWidth
+            }
+        }
+
+        chart.notifyDataSetChanged()
     }
 
 }
