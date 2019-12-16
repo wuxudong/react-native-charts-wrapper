@@ -131,9 +131,9 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
                 boolean visible = config.getBoolean("visible");
                 lineData.setVisible(visible);
             }
-            if (config.hasKey("selected")) {
-                boolean selected = config.getBoolean("selected");
-                lineData.setLineWidth(selected ? 3 : 1);
+            if (config.hasKey("lineWidth")) {
+                float lineWidth = (float) config.getDouble("lineWidth");
+                lineData.setLineWidth(lineWidth);
             }
         }
 
