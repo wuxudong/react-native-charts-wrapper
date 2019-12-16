@@ -53,6 +53,7 @@ class ExtraPropertiesHolder {
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
     private ExtraPropertiesHolder extraPropertiesHolder = new ExtraPropertiesHolder();
+    private float axisOffset = 0;
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
@@ -354,7 +355,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
     private void addDataPoints(T root, ReadableMap data) {
         ReadableArray dataSets = data.getArray("data");
 
-        float maxYPoint = 40;
+        float maxYPoint = root.getAxisLeft().getAxisMaximum();
 
         for (int i = 0; i < dataSets.size(); i++) {
             ReadableMap point = dataSets.getMap(i);
@@ -362,14 +363,21 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             float y = (float) point.getDouble("y");
             IDataSet lineData = root.getData().getDataSetByIndex(i);
             lineData.addEntry(new Entry(x, y));
-            if (y > maxYPoint) {
-                maxYPoint = y;
+            if (y > maxYPoint - this.axisOffset) {
+                maxYPoint = y + this.axisOffset;
             }
         }
         
-        root.getAxisLeft().setAxisMaximum(maxYPoint + 5);
+        root.getAxisLeft().setAxisMaximum(maxYPoint);
         root.notifyDataSetChanged();
         root.invalidate();
+    }
+
+    @ReactProp(name = "axisOffset")
+    public void setAxisOffset(T chart, ReadableMap propMap) {
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "y")) {
+            this.axisOffset = (float) propMap.getDouble("y");
+        }
     }
 
     /**
