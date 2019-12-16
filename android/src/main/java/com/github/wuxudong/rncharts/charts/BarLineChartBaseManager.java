@@ -11,7 +11,6 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
@@ -53,7 +52,6 @@ class ExtraPropertiesHolder {
 public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U extends Entry> extends YAxisChartBase<T, U> {
 
     private ExtraPropertiesHolder extraPropertiesHolder = new ExtraPropertiesHolder();
-    private float axisOffset = 0;
 
     @Override
     public void setYAxis(Chart chart, ReadableMap propMap) {
@@ -291,8 +289,6 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         map.put("fitScreen", FIT_SCREEN);
         map.put("highlights", HIGHLIGHTS);
         map.put("setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
-        map.put("addDataPoints", ADD_DATA_POINTS);
-        map.put("updateConfig", UPDATE_CONFIG);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -334,79 +330,9 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case SET_DATA_AND_LOCK_INDEX:
                 setDataAndLockIndex(root, args.getMap(0));
                 return;
-
-            case ADD_DATA_POINTS:
-                addDataPoints(root, args.getMap(0));
-                return;
-            
-            case UPDATE_CONFIG:
-                updateConfig(root, args.getArray(0));
-                return;
         }
 
         super.receiveCommand(root, commandId, args);
-    }
-
-    /**
-     * Permette di aggiungere 
-     * Non è necessario fornire tutte le linee, basta un array con
-     * oggetti che hanno l'id della linea da modificare e le proprietà da modificare.
-     */
-    private void addDataPoints(T root, ReadableMap data) {
-        ReadableArray dataSets = data.getArray("data");
-
-        float maxYPoint = root.getAxisLeft().getAxisMaximum();
-
-        for (int i = 0; i < dataSets.size(); i++) {
-            ReadableMap point = dataSets.getMap(i);
-            float x = (float) point.getDouble("x");
-            float y = (float) point.getDouble("y");
-            IDataSet lineData = root.getData().getDataSetByIndex(i);
-            lineData.addEntry(new Entry(x, y));
-            if (y > maxYPoint - this.axisOffset) {
-                maxYPoint = y + this.axisOffset;
-            }
-        }
-        
-        root.getAxisLeft().setAxisMaximum(maxYPoint);
-        root.notifyDataSetChanged();
-        root.invalidate();
-    }
-
-    @ReactProp(name = "axisOffset")
-    public void setAxisOffset(T chart, ReadableMap propMap) {
-        if (BridgeUtils.validate(propMap, ReadableType.Number, "y")) {
-            this.axisOffset = (float) propMap.getDouble("y");
-        }
-    }
-
-    /**
-     * Permette di nascondere e di mettere in evidenza determinate linee.
-     * Non è necessario fornire tutte le linee, basta un array con
-     * oggetti che hanno l'id della linea da modificare e le proprietà da modificare.
-     */
-    private void updateConfig(T root, ReadableArray configs) {
-        
-        for (int i = 0; i < configs.size(); i++) {
-            ReadableMap data = configs.getMap(i);
-
-            int id = data.getInt("id");
-            ReadableMap config = data.getMap("config");
-
-            LineDataSet lineData = (LineDataSet) root.getData().getDataSetByIndex(id);
-            
-            if (config.hasKey("visible")) {
-                boolean visible = config.getBoolean("visible");
-                lineData.setVisible(visible);
-            }
-            if (config.hasKey("selected")) {
-                boolean selected = config.getBoolean("selected");
-                lineData.setLineWidth(selected ? 3 : 1);
-            }
-        }
-
-        root.notifyDataSetChanged();
-        root.invalidate();
     }
 
     private void setDataAndLockIndex(T root, ReadableMap map) {
