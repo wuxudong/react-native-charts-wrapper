@@ -6,6 +6,7 @@ import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -21,7 +22,7 @@ import javax.annotation.Nullable;
 
 public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> {
 
-    private float axisOffset = 0;
+    private float topOffset = 0;
 
     @Override
     public String getName() {
@@ -73,12 +74,16 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
     }
 
     /**
-     * Mantiene una distanza di y dal punto più alto nel dataset
+     * Mantiene una distanza di topOffset dal punto più alto nel dataset.
      */
-    @ReactProp(name = "axisOffset")
-    public void setAxisOffset(LineChart chart, ReadableMap propMap) {
-        if (BridgeUtils.validate(propMap, ReadableType.Number, "y")) {
-            this.axisOffset = (float) propMap.getDouble("y");
+    @Override
+    public void setYAxis(Chart chart, ReadableMap propMap) {
+        super.setYAxis(chart, propMap);
+        if (BridgeUtils.validate(propMap, ReadableType.Map, "left")) {
+            ReadableMap leftProp = propMap.getMap("left");
+            if (BridgeUtils.validate(leftProp, ReadableType.Number, "topOffset")) {
+                this.topOffset = (float) leftProp.getDouble("topOffset");
+            }
         }
     }
 
@@ -97,8 +102,8 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
             float y = (float) point.getDouble("y");
             LineDataSet lineData = (LineDataSet) root.getData().getDataSetByIndex(i);
             lineData.addEntry(new Entry(x, y));
-            if (y > maxYPoint - this.axisOffset) {
-                maxYPoint = y + this.axisOffset;
+            if (y > maxYPoint - this.topOffset) {
+                maxYPoint = y + this.topOffset;
             }
         }
         
