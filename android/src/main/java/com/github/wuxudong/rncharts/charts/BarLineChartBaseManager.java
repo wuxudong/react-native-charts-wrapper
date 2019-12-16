@@ -346,8 +346,15 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         super.receiveCommand(root, commandId, args);
     }
 
+    /**
+     * Permette di aggiungere 
+     * Non è necessario fornire tutte le linee, basta un array con
+     * oggetti che hanno l'id della linea da modificare e le proprietà da modificare.
+     */
     private void addDataPoints(T root, ReadableMap data) {
         ReadableArray dataSets = data.getArray("data");
+
+        float maxYPoint = 40;
 
         for (int i = 0; i < dataSets.size(); i++) {
             ReadableMap point = dataSets.getMap(i);
@@ -355,12 +362,21 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             float y = (float) point.getDouble("y");
             IDataSet lineData = root.getData().getDataSetByIndex(i);
             lineData.addEntry(new Entry(x, y));
+            if (y > maxYPoint) {
+                maxYPoint = y;
+            }
         }
         
+        root.getAxisLeft().setAxisMaximum(maxYPoint + 5);
         root.notifyDataSetChanged();
         root.invalidate();
     }
 
+    /**
+     * Permette di nascondere e di mettere in evidenza determinate linee.
+     * Non è necessario fornire tutte le linee, basta un array con
+     * oggetti che hanno l'id della linea da modificare e le proprietà da modificare.
+     */
     private void updateConfig(T root, ReadableArray configs) {
         
         for (int i = 0; i < configs.size(); i++) {
