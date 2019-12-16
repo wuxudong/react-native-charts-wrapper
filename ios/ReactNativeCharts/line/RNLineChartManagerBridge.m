@@ -10,5 +10,7 @@
 @interface RCT_EXTERN_MODULE(RNLineChartManager, RCTViewManager)
 
 EXPORT_BAR_LINE_CHART_BASE_PROPERTIES
+RCT_EXTERN_METHOD(addDataPoints:(nonnull NSNumber *)node data:(nonnull NSDictionary *)data)
+RCT_EXTERN_METHOD(updateConfig:(nonnull NSNumber *)node data:(nonnull NSArray *)data)
 
 @end

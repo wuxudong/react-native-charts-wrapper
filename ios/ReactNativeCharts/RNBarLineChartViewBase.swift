@@ -211,26 +211,6 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         
         barLineChart.data = dataExtract.extract(json)
         barLineChart.notifyDataSetChanged()
-        
-
-        let newVisibleXRange = barLineChart.visibleXRange
-        let newVisibleYRange = getVisibleYRange(axis)
-
-        let scaleX = newVisibleXRange / originalVisibleXRange
-        let scaleY = newVisibleYRange / originalVisibleYRange
-
-        // in iOS Charts chart.zoom scaleX: CGFloat, scaleY: CGFloat, xValue: Double, yValue: Double, axis: YAxis.AxisDependency)
-        // the scale is absolute scale, it will overwrite touchMatrix scale directly
-        // but in android MpAndroidChart, ZoomJob getInstance(viewPortHandler, scaleX, scaleY, xValue, yValue, trans, axis, v)
-        // the scale is relative scale, touchMatrix.scaleX = touchMatrix.scaleX * scaleX
-        // so in iOS, we updateVisibleRange after zoom
-        
-        barLineChart.zoom(scaleX: CGFloat(scaleX), scaleY: CGFloat(scaleY), xValue: Double(originCenterValue.x), yValue: Double(originCenterValue.y), axis: axis)
-        
-        if let config = savedVisibleRange {
-            updateVisibleRange(config)
-        }
-        barLineChart.notifyDataSetChanged()        
     }
 
     func getVisibleYRange(_ axis: YAxis.AxisDependency) -> CGFloat {

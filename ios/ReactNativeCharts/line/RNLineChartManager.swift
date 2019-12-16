@@ -50,4 +50,18 @@ open class RNLineChartManager: RCTViewManager, RNBarLineChartBaseManager {
     (self as RNBarLineChartBaseManager)._setDataAndLockIndex(reactTag, data: data)
   }
 
+  func addDataPoints(_ reactTag: NSNumber, data: NSDictionary) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNLineChartView = viewRegistry![reactTag] as! RNLineChartView;
+      view.addDataPoints(data);
+    }
+  }
+
+  func updateConfig(_ reactTag: NSNumber, data: NSArray) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNLineChartView = viewRegistry![reactTag] as! RNLineChartView;
+      view.updateConfig(data);
+    }
+  }
+
 }

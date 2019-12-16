@@ -33,4 +33,12 @@ class RNLineChartView: RNBarLineChartViewBase {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func addDataPoints(_ data: NSDictionary) {
+        print("native addDataPoints");
+    }
+
+    func updateConfig(_ data: NSArray) {
+        print("native updateConfig");
+    }
+
 }
