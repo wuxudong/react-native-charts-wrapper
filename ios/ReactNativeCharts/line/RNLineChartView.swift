@@ -7,7 +7,8 @@ import SwiftyJSON
 
 class RNLineChartView: RNBarLineChartViewBase {
     let _chart: LineChartView;
-    let _dataExtract : LineDataExtract;
+    let _dataExtract : LineDataExtract;    
+    var topOffset: Double = 0
     
     override var chart: LineChartView {
         return _chart
@@ -32,9 +33,18 @@ class RNLineChartView: RNBarLineChartViewBase {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func setYAxis(_ config: NSDictionary) {
+        super.setYAxis(config)
+
+        let propMap = config as! Dictionary<String, Any>
+        if let left = propMap["left"] as? Dictionary<String, Any> {
+            topOffset = left["topOffset"] as? Double ?? 0
+        }
+    }
     
     func addDataPoints(_ data: NSDictionary) {
-        let dict = data as! Dictionary<String,Any>
+        let dict = data as! Dictionary<String, Any>
         let dataSets = dict["data"] as! Array<Dictionary<String, Any>>
         
         var maxYPoint = chart.leftAxis.axisMaximum
