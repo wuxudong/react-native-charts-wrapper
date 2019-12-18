@@ -66,21 +66,20 @@ class LineDataExtract : DataExtract {
         
         if config["dashedLine"].exists() {
             let dashedLine = config["dashedLine"]
-            var lineLength = CGFloat(0);
-            var spaceLength = CGFloat(0);
+            var lineDashLengths: [CGFloat] = [];
             var phase = CGFloat(0);
             
-            if dashedLine["lineLength"].number != nil {
-                lineLength = CGFloat(dashedLine["lineLength"].numberValue)
-            }
-            if dashedLine["spaceLength"].number != nil {
-                spaceLength = CGFloat(dashedLine["spaceLength"].numberValue)
+            let dashLengths = dashedLine["lineDashLengths"].arrayValue
+            for dash in dashLengths {
+                if let dash = dash.double as Double? {
+                    lineDashLengths.append(CGFloat(dash))
+                }
             }
             if dashedLine["phase"].number != nil {
                 phase = CGFloat(dashedLine["phase"].numberValue)
             }
             
-            lineDataSet.lineDashLengths = [lineLength, spaceLength]
+            lineDataSet.lineDashLengths = lineDashLengths
             lineDataSet.lineDashPhase = phase
         }            
     }
