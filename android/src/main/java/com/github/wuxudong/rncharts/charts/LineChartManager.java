@@ -88,22 +88,33 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
     }
 
     /**
-     * Permette di aggiungere nuovi dati al grafico. Bisogna fornire un nuovo valore per tutte
-     * le linee e un singolo valore di ascissa che sarà associato a tutti i nuovi punti.
+     * Permette di aggiungere nuovi dati al grafico. Bisogna fornire una matrice
+     * in cui ogni riga è costituita da un valore di x comune a tutte le colonne
+     * dell'array delle y. [
+     *      {x: 5, y: [1, 2, ...]},
+     *      {x: 6, y: [2, 2, ...]},
+     * ]
      */
     private void addDataPoints(LineChart root, ReadableMap data) {
-        ReadableArray dataSets = data.getArray("data");
-
         float maxYPoint = root.getAxisLeft().getAxisMaximum();
+        
+        ReadableArray rows = data.getArray("data");
+        for (int i = 0; i < rows.size(); i++) {
 
-        for (int i = 0; i < dataSets.size(); i++) {
-            ReadableMap point = dataSets.getMap(i);
-            float x = (float) point.getDouble("x");
-            float y = (float) point.getDouble("y");
-            LineDataSet lineData = (LineDataSet) root.getData().getDataSetByIndex(i);
-            lineData.addEntry(new Entry(x, y));
-            if (y > maxYPoint - this.topOffset) {
-                maxYPoint = y + this.topOffset;
+            ReadableMap row = rows.getMap(i);
+
+            float x = (float) row.getDouble("x");
+            ReadableArray dataSets = row.getArray("y");
+            
+            for (int j = 0; j < dataSets.size(); j++) {
+                
+                float y = (float) dataSets.getDouble(j);
+                LineDataSet lineData = (LineDataSet) root.getData().getDataSetByIndex(j);
+                lineData.addEntry(new Entry(x, y));
+                if (y > maxYPoint - this.topOffset) {
+                    maxYPoint = y + this.topOffset;
+                }
+
             }
         }
         
