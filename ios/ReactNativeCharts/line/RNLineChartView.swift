@@ -45,18 +45,25 @@ class RNLineChartView: RNBarLineChartViewBase {
     
     func addDataPoints(_ data: NSDictionary) {
         let dict = data as! Dictionary<String, Any>
-        let dataSets = dict["data"] as! Array<Dictionary<String, Any>>
         
         var maxYPoint = chart.leftAxis.axisMaximum
         
-        for i in 0 ..< dataSets.count {
-            let point = dataSets[i]
-            let x = point["x"] as! Double
-            let y = point["y"] as! Double
-            let lineData = chart.data!.dataSets[i]
-            _ = lineData.addEntry(ChartDataEntry(x: x, y: y))
-            if y > maxYPoint - topOffset {
-                maxYPoint = y + topOffset
+        let rows = dict["data"] as! Array<Dictionary<String, Any>>
+        for  i in 0 ..< rows.count {
+            let row = rows[i]
+
+            if  let x = row["x"] as? Double,
+                let dataSets = row["y"] as? Array<Double> {
+                
+                for j in 0 ..< dataSets.count {
+                    
+                    let y = dataSets[j]
+                    let lineData = chart.data!.dataSets[j]
+                    _ = lineData.addEntry(ChartDataEntry(x: x, y: y))
+                    if y > maxYPoint - topOffset {
+                        maxYPoint = y + topOffset
+                    }
+                }
             }
         }
         
