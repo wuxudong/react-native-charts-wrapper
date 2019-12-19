@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.highlight.IDataSetHighlighter;
+import com.github.mikephil.charting.highlight.LineDataSetHighlighter;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.renderer.LineChartRenderer;
 
@@ -14,6 +16,7 @@ import com.github.mikephil.charting.renderer.LineChartRenderer;
  * @author Philipp Jahoda
  */
 public class LineChart extends BarLineChartBase<LineData> implements LineDataProvider {
+
 
     public LineChart(Context context) {
         super(context);
@@ -32,6 +35,7 @@ public class LineChart extends BarLineChartBase<LineData> implements LineDataPro
         super.init();
 
         mRenderer = new LineChartRenderer(this, mAnimator, mViewPortHandler);
+        setDataSetHighlighter(new LineDataSetHighlighter(this));
     }
 
     @Override

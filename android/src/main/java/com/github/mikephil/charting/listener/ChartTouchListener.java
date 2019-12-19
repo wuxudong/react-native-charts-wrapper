@@ -127,6 +127,15 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
     }
 
     /**
+     * Perform a dataset highlight operation.
+     *
+     * @param e
+     */
+    protected void performDataSetHighlight(int index, MotionEvent e) {
+        mChart.highlightDataSet(index, true);
+    }
+
+    /**
      * returns the distance between two points
      *
      * @param eventX

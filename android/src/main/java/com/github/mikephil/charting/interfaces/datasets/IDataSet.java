@@ -114,6 +114,16 @@ public interface IDataSet<T extends Entry> {
      */
     List<T> getEntriesForXValue(float xValue);
 
+
+    /**
+     * Returns two Entry objects, one as the greatest entry which that has x lower than xValue and
+     * the other as the smallest which that has x greater than x value
+     * @param xValue
+     * @return
+     */
+    List<T> getExtremesEntriesForXValue(float xValue);
+
+
     /**
      * Returns the Entry object found at the given index (NOT xIndex) in the values array.
      *
