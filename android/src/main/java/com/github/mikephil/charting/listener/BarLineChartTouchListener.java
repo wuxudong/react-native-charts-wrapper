@@ -616,15 +616,15 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
             l.onChartSingleTapped(e);
         }
 
+        int index = mChart.getDataSetHighlightByTouchPoint(e.getX(), e.getY());
+        performDataSetHighlight(index, e);
+
         if (!mChart.isHighlightPerTapEnabled()) {
             return false;
         }
 
         Highlight h = mChart.getHighlightByTouchPoint(e.getX(), e.getY());
         performHighlight(h, e);
-
-        int index = mChart.getDataSetHighlightByTouchPoint(e.getX(), e.getY());
-        performDataSetHighlight(index, e);
 
         return super.onSingleTapUp(e);
     }

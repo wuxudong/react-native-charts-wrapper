@@ -668,13 +668,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      */
     public void highlightDataSet(int index, boolean callListener) {
         if (callListener && mDataSetSelectionListener != null) {
-
-            if (!valuesToHighlight())
-                mDataSetSelectionListener.onNothingSelected();
-            else {
-                // notify the listener
-                mDataSetSelectionListener.onDataSetSelected(index);
-            }
+            mDataSetSelectionListener.onDataSetSelected(index);
         }
     }
 

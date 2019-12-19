@@ -14,6 +14,7 @@ import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.LineDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
+import com.github.wuxudong.rncharts.listener.RNOnChartDataSetSelectedListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.util.Map;
@@ -34,6 +35,7 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
         LineChart lineChart =  new LineChart(reactContext);
         lineChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(lineChart));
         lineChart.setOnChartGestureListener(new RNOnChartGestureListener(lineChart));
+        lineChart.setOnChartDataSetSelectedListener(new RNOnChartDataSetSelectedListener(lineChart));
         return lineChart;
     }
 
