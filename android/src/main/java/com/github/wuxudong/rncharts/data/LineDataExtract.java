@@ -65,21 +65,21 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
         }
         if (BridgeUtils.validate(config, ReadableType.Map, "dashedLine")) {
             ReadableMap dashedLine = config.getMap("dashedLine");
-            float lineLength = 0;
-            float spaceLength = 0;
             float phase = 0;
 
-            if (BridgeUtils.validate(dashedLine, ReadableType.Number, "lineLength")) {
-                lineLength = (float) dashedLine.getDouble("lineLength");
-            }
-            if (BridgeUtils.validate(dashedLine, ReadableType.Number, "spaceLength")) {
-                spaceLength = (float) dashedLine.getDouble("spaceLength");
-            }
             if (BridgeUtils.validate(dashedLine, ReadableType.Number, "phase")) {
                 phase = (float) dashedLine.getDouble("phase");
             }
 
-            lineDataSet.enableDashedLine(lineLength, spaceLength, phase);
+            if (BridgeUtils.validate(dashedLine, ReadableType.Array, "lineDashLengths")) {
+                ReadableArray dashLengths = dashedLine.getArray("lineDashLengths");
+                float[] lineDashLengths = new float[dashLengths.size()];
+                for (int i = 0; i < dashLengths.size(); i++) {
+                    lineDashLengths[i] = (float) dashLengths.getDouble(i);
+                }
+
+                lineDataSet.setLineDashLengths(lineDashLengths, phase);
+            }
         }
     }
 

@@ -225,6 +225,19 @@ public class LineDataSet extends LineRadarDataSet<Entry> implements ILineDataSet
     }
 
     /**
+     * Enables the line to be drawn in dashed mode, e.g. like this
+     * "- - - - - -". THIS ONLY WORKS IF HARDWARE-ACCELERATION IS TURNED OFF.
+     * Keep in mind that hardware acceleration boosts performance.
+     *
+     * @param lineDashLengths  even elements indicate line length, odd elements indicate space length,
+     *                         I.e. [1, 3, 4, 2] will paint [-   ----  ]
+     * @param phase       offset, in degrees (normally, use 0)
+     */
+    public void setLineDashLengths(float[] lineDashLengths, float phase) {
+        mDashPathEffect = new DashPathEffect(lineDashLengths, phase);
+    }
+
+    /**
      * Disables the line to be drawn in dashed mode.
      */
     public void disableDashedLine() {
