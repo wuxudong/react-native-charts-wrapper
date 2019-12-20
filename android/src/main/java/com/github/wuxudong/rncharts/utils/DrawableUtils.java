@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.AsyncTask;
 
 import java.io.IOException;
@@ -15,11 +16,11 @@ import java.net.URL;
 public class DrawableUtils {
     public static Drawable drawableFromUrl(String url, final int width, final int height) {
         try {
-            Drawable response = new DrawableLoadingAsyncTask().execute(url, Integer.toString(width), Integer.toString(height)).get();
-            return response;
+            return new DrawableLoadingAsyncTask().execute(url, Integer.toString(width), Integer.toString(height)).get();
         } catch (Exception e) {
+            // draw dummy drawable when execution fail
             e.printStackTrace();
-            return null;
+            return new ShapeDrawable();
         }
     }
 
@@ -42,7 +43,8 @@ public class DrawableUtils {
 
             } catch(IOException e) {
                 e.printStackTrace();
-                return null;
+                // draw dummy drawable when connection fail
+                return new ShapeDrawable();
             }
         }
     };
