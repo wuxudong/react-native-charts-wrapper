@@ -11,20 +11,10 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
+import com.github.wuxudong.rncharts.utils.DrawableUtils;
 
 import java.lang.Exception;
 import java.util.ArrayList;
-import android.util.Log;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import android.os.AsyncTask;
 
 
 /**
@@ -113,7 +103,7 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
                 int width = icon.getInt("width");
                 int height = icon.getInt("height");
                 try {
-                    entry = new Entry(x, (float) map.getDouble("y"), drawableFromUrl(bundle.getString("uri"), width, height));
+                    entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height));
                 } catch (Exception e){
                     e.printStackTrace();
                     throw new IllegalArgumentException("Unexpected url: " + bundle.getString("uri"));
@@ -131,35 +121,5 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
         return entry;
     }
 
-    public Drawable drawableFromUrl(String url, final int width, final int height) throws IOException {
 
-        AsyncTask<String, Void, Drawable> asyncTask = new AsyncTask<String, Void, Drawable>() {
-            @Override
-            protected Drawable doInBackground(String... strings) {
-                try {
-                    Bitmap x;
-
-                    HttpURLConnection connection = (HttpURLConnection) new URL(strings[0]).openConnection();
-                    connection.connect();
-                    InputStream input = connection.getInputStream();
-
-                    x = BitmapFactory.decodeStream(input);
-
-                    return new BitmapDrawable(Resources.getSystem(), Bitmap.createScaledBitmap(x, width, height, true));
-
-                } catch(IOException e) {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
-        };
-
-        try {
-            Drawable response = asyncTask.execute(url).get();
-            return response;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 }
