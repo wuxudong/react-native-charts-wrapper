@@ -112,8 +112,8 @@ class LineDataExtract : DataExtract {
                     let bundle = icon["bundle"];
                     
                     let uiImage = RCTConvert.uiImage(bundle.dictionaryObject);
-                    let width = CGFloat(icon["width"].numberValue);
-                    let height = CGFloat(icon["height"].numberValue);
+                    let width = CGFloat(icon["width"].numberValue)/4;
+                    let height = CGFloat(icon["height"].numberValue)/4;
                     
                     if let image = uiImage {
                         let realIconImage = resizeImage(image: image, width: width, height: height);
