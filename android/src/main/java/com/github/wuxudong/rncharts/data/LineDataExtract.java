@@ -102,12 +102,7 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
                 ReadableMap bundle = icon.getMap("bundle");
                 int width = icon.getInt("width");
                 int height = icon.getInt("height");
-                try {
-                    entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height));
-                } catch (Exception e){
-                    e.printStackTrace();
-                    throw new IllegalArgumentException("Unexpected url: " + bundle.getString("uri"));
-                }
+                entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height));
 
             } else {
                 entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
