@@ -93,17 +93,31 @@ class LineDataExtract : DataExtract {
         
         if value.dictionary != nil {
             let dict = value;
+            var y = Double(index);
             
             if dict["x"].double != nil {
                 x = Double((dict["x"].doubleValue));
             }
-            
+
             if dict["y"].number != nil {
-                entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+                y = dict["y"].doubleValue;
             } else {
                 fatalError("invalid data " + values.description);
             }
             
+            if dict["icon"].exists() {
+                let icon = dict["icon"]
+                if icon["bundle"].dictionary != nil {
+                    let bundle = icon["bundle"];
+                    
+                    let uiImage = RCTConvert.uiImage(bundle.dictionaryObject);
+                    entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: uiImage);
+                } else {
+                    entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+                }
+            } else {
+                entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+            }
             
         } else if value.double != nil {
             entry = ChartDataEntry(x: x, y: value.doubleValue);
