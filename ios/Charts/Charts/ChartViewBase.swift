@@ -30,6 +30,8 @@ public protocol ChartViewDelegate
     ///   - entry: The selected Entry.
     ///   - highlight: The corresponding highlight object that contains information about the highlighted position such as dataSetIndex etc.
     @objc optional func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight)
+
+    @objc optional func chartDataSetSelected(_ chartView: ChartViewBase, index: Int)
     
     /// Called when a user stops panning between values on the chart
     @objc optional func chartViewDidEndPanning(_ chartView: ChartViewBase)
@@ -109,6 +111,8 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     @objc open var renderer: DataRenderer?
     
     @objc open var highlighter: IHighlighter?
+
+    @objc open var dataSetHighlighter: IDataSetHighlighter?
     
     /// object that manages the bounds and drawing constraints of the chart
     internal var _viewPortHandler: ViewPortHandler!
@@ -557,6 +561,14 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         // redraw the chart
         setNeedsDisplay()
     }
+
+    /// Highlights the dataset selected by touch gesture. This generates a callback to the delegate.chartDataSetSelected().
+    @objc open func highlightDataSet(_ index: Int, callDelegate: Bool)
+    {
+        if callDelegate {
+            delegate?.chartDataSetSelected!(self, index: index);
+        }
+    }
     
     /// - Returns: The Highlight object (contains x-index and DataSet index) of the
     /// selected value at the given touch point inside the Line-, Scatter-, or
@@ -570,6 +582,17 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
         }
         
         return self.highlighter?.getHighlight(x: pt.x, y: pt.y)
+    }
+
+    /// - Returns the dataset index of the closest rendered dataset at the given touch point inside the Line Chart.
+    @objc open func getDataSetHighlightByTouchPoint(_ pt: CGPoint) -> Int
+    {
+        if _data === nil
+        {
+            Swift.print("Can't select by touch. No data set.")
+            return -1
+        }
+        return self.dataSetHighlighter?.getDataSetIndexHighlight(x: pt.x, y: pt.y) ?? -1
     }
 
     /// The last value that was highlighted via touch.

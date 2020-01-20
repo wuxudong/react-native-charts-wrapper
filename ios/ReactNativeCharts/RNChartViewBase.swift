@@ -467,6 +467,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             
         }
     }
+
+    @objc public func chartDataSetSelected(_ chartView: ChartViewBase, index: Int) {
+        self.onSelect?(["dataSetIndex": index])
+    }
     
     @objc public func chartValueNothingSelected(_ chartView: ChartViewBase) {
         if self.onSelect == nil {
