@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Charts
 import SwiftyJSON
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround

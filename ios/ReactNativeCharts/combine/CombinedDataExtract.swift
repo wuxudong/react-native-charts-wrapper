@@ -5,7 +5,6 @@
 import Foundation
 
 import SwiftyJSON
-import Charts
 
 class CombinedDataExtract : DataExtract {
     let lineDataExtract = LineDataExtract()

@@ -5,7 +5,6 @@
 import Foundation
 
 import SwiftyJSON
-import Charts
 
 class LineDataExtract : DataExtract {
     override func createData() -> ChartData {

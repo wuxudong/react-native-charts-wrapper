@@ -8,7 +8,6 @@
 
 import Foundation
 
-import Charts
 
 open class IndexValueFormatter: NSObject, IValueFormatter {
   

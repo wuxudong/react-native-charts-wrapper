@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Charts
 
 open class CustomChartDateFormatter: NSObject, IValueFormatter, IAxisValueFormatter {
     

@@ -2,7 +2,6 @@
 //  Copyright wuxudong
 //
 
-import Charts
 import SwiftyJSON
 
 class RNBubbleChartView: RNBarLineChartViewBase {

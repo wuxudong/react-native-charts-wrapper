@@ -14,8 +14,6 @@
 
 import Foundation;
 
-import Charts;
-
 import SwiftyJSON;
 
 open class BalloonMarker: MarkerView {

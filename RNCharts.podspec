@@ -20,7 +20,9 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.dependency 'React'
   s.dependency 'SwiftyJSON', '5.0'
-  s.dependency 'Charts', '3.3.0'
 
+  s.subspec 'Charts' do |ss|
+    ss.source_files = 'ios/Charts/**/*.{h,m,swift}'
+    end
 
 end
