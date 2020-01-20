@@ -39,11 +39,10 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
      */
     protected float mXMin = Float.MAX_VALUE;
 
-
     /**
-     * Creates a new DataSet object with the given values (entries) it represents. Also, a
-     * label that describes the DataSet can be specified. The label can also be
-     * used to retrieve the DataSet from a ChartData object.
+     * Creates a new DataSet object with the given values (entries) it represents.
+     * Also, a label that describes the DataSet can be specified. The label can also
+     * be used to retrieve the DataSet from a ChartData object.
      *
      * @param values
      * @param label
@@ -94,7 +93,8 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     /**
-     * Updates the min and max x and y value of this DataSet based on the given Entry.
+     * Updates the min and max x and y value of this DataSet based on the given
+     * Entry.
      *
      * @param e
      */
@@ -141,7 +141,8 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     /**
-     * Sets the array of entries that this DataSet represents, and calls notifyDataSetChanged()
+     * Sets the array of entries that this DataSet represents, and calls
+     * notifyDataSetChanged()
      *
      * @return
      */
@@ -176,15 +177,15 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     }
 
     /**
-     * Returns a simple string representation of the DataSet with the type and
-     * the number of Entries.
+     * Returns a simple string representation of the DataSet with the type and the
+     * number of Entries.
      *
      * @return
      */
     public String toSimpleString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append("DataSet, label: " + (getLabel() == null ? "" : getLabel()) + ", entries: " + mValues.size() +
-                "\n");
+        buffer.append(
+                "DataSet, label: " + (getLabel() == null ? "" : getLabel()) + ", entries: " + mValues.size() + "\n");
         return buffer.toString();
     }
 
@@ -307,8 +308,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         while (low < high) {
             int m = (low + high) / 2;
 
-            final float d1 = mValues.get(m).getX() - xValue,
-                    d2 = mValues.get(m + 1).getX() - xValue,
+            final float d1 = mValues.get(m).getX() - xValue, d2 = mValues.get(m + 1).getX() - xValue,
                     ad1 = Math.abs(d1), ad2 = Math.abs(d2);
 
             if (ad2 < ad1) {
@@ -337,12 +337,14 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         if (closest != -1) {
             float closestXValue = mValues.get(closest).getX();
             if (rounding == Rounding.UP) {
-                // If rounding up, and found x-value is lower than specified x, and we can go upper...
+                // If rounding up, and found x-value is lower than specified x, and we can go
+                // upper...
                 if (closestXValue < xValue && closest < mValues.size() - 1) {
                     ++closest;
                 }
             } else if (rounding == Rounding.DOWN) {
-                // If rounding down, and found x-value is upper than specified x, and we can go lower...
+                // If rounding down, and found x-value is upper than specified x, and we can go
+                // lower...
                 if (closestXValue > xValue && closest > 0) {
                     --closest;
                 }
@@ -426,7 +428,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
         List<T> entries = new ArrayList<T>();
 
         int low = 0;
-        int high = mValues.size() - 1; //forse va posto a -2
+        int high = mValues.size() - 1; // forse va posto a -2
         int middle = (high + low) / 2;
 
         T entry = mValues.get(middle);
@@ -441,26 +443,18 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
             entry = mValues.get(middle);
         }
 
-        
         entries.add(entry);
-        if (middle < mValues.size() - 1) {
-            entry = mValues.get(middle + 1);
-
-        } else {
-            entry = mValues.get(middle);
-        }
+        entry = mValues.get(middle + 1);
         entries.add(entry);
         return entries;
     }
 
     /**
      * Determines how to round DataSet index values for
-     * {@link DataSet#getEntryIndex(float, float, Rounding)} DataSet.getEntryIndex()}
-     * when an exact x-index is not found.
+     * {@link DataSet#getEntryIndex(float, float, Rounding)}
+     * DataSet.getEntryIndex()} when an exact x-index is not found.
      */
     public enum Rounding {
-        UP,
-        DOWN,
-        CLOSEST,
+        UP, DOWN, CLOSEST,
     }
 }
