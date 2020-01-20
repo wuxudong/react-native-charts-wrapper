@@ -441,8 +441,14 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
             entry = mValues.get(middle);
         }
 
+        
         entries.add(entry);
-        entry = mValues.get(middle + 1);
+        if (middle < mValues.size() - 1) {
+            entry = mValues.get(middle + 1);
+
+        } else {
+            entry = mValues.get(middle);
+        }
         entries.add(entry);
         return entries;
     }
