@@ -445,7 +445,10 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
         entries.add(entry);
         entry = mValues.get(middle + 1);
-        entries.add(entry);
+        if (middle < mValues.size() - 1) {
+            entry = mValues.get(middle + 1);
+            entries.add(entry);
+        }
         return entries;
     }
 
