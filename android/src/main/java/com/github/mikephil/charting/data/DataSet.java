@@ -424,7 +424,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
 
     @Override
     public List<T> getExtremesEntriesForXValue(float xValue) {
-        try{
+        try {
             List<T> entries = new ArrayList<T>();
 
             int low = 0;
@@ -452,7 +452,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
             }
             entries.add(entry);
             return entries;
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
