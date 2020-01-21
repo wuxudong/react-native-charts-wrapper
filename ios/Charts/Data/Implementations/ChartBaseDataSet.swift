@@ -77,6 +77,11 @@ open class ChartBaseDataSet: NSObject, IChartDataSet, NSCopying
     {
         fatalError("entryCount is not implemented in ChartBaseDataSet")
     }
+
+    open func extremesEntriesForXValue(_ xValue: Double) -> [ChartDataEntry]?
+    {
+        fatalError("extremesEntriesForXValue is not implemented in ChartBaseDataSet")
+    }
         
     open func entryForIndex(_ i: Int) -> ChartDataEntry?
     {

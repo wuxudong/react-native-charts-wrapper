@@ -162,6 +162,38 @@ open class ChartDataSet: ChartBaseDataSet
     @available(*, deprecated, message: "Use `count` instead")
     open override var entryCount: Int { return count }
     
+    open override func extremesEntriesForXValue(_ xValue: Double) -> [ChartDataEntry]?
+    {
+        if entries.count == 0 {
+            return nil
+        }
+        
+        var low: Int = 0
+        var high = entries.count
+        var middle: Int = (high + low) / 2
+
+        var entry1: ChartDataEntry = entries[middle]
+        while low <= high {
+            if xValue > entry1.x {
+                low = middle + 1
+            }
+            else {
+                high = middle - 1
+            }
+            
+            let temp: Int = (high + low) / 2
+            if temp >= entries.count {
+                break
+            }
+            
+            middle = temp
+            entry1 = entries[middle]
+        }
+
+        let entry2 = middle + 1 < entries.count ? entries[middle + 1] : entries[middle]
+        return [entry1, entry2]
+    }
+
     /// - Throws: out of bounds
     /// if `i` is out of bounds, it may throw an out-of-bounds exception
     /// - Returns: The entry object found at the given index (not x-value!)

@@ -41,6 +41,13 @@ public protocol IChartDataSet
     
     /// The number of y-values this DataSet represents
     var entryCount: Int { get }
+
+    /// Returns two Entry objects, one as the greatest entry which that has x lower than xValue and
+    /// the other as the smallest which that has x greater than x value
+    /// - Parameters:
+    ///   - xValue
+    /// - Returns:
+    func extremesEntriesForXValue(_ xValue: Double) -> [ChartDataEntry]?
     
     /// - Throws: out of bounds
     /// if `i` is out of bounds, it may throw an out-of-bounds exception

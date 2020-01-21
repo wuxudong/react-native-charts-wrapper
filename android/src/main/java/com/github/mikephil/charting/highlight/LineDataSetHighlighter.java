@@ -34,7 +34,7 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
             List<LineDataSet> dataSets = mChart.getData().getDataSets();
 
             float minDistance = Float.MAX_VALUE;
-            int minIndex = 0;
+            int minIndex = -1;
 
             for (int i = 0; i < dataSets.size(); i++) {
 
@@ -49,6 +49,9 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
 
                 if (dataSets.get(i).isVisible()) {
                     List<Entry> result = dataSets.get(i).getExtremesEntriesForXValue(xVal);
+                    if (result == null) {
+                        continue;
+                    }
 
                     float x_1 = result.get(0).getX();
                     float x_2 = result.get(1).getX();

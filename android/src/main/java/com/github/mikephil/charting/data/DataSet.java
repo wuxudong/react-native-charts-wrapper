@@ -425,32 +425,38 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
     @Override
     public List<T> getExtremesEntriesForXValue(float xValue) {
         try {
+
+            if (mValues.size() == 0) {
+                return null;
+            }
+
             List<T> entries = new ArrayList<T>();
 
             int low = 0;
             int high = mValues.size() - 1; // forse va posto a -2
             int middle = (high + low) / 2;
 
-            T entry = mValues.get(middle);
+            T entry1 = mValues.get(middle);
 
             while (low <= high) {
-                if (xValue > entry.getX()) {
+                if (xValue > entry1.getX()) {
                     low = middle + 1;
                 } else {
                     high = middle - 1;
                 }
-                middle = (high + low) / 2;
+
+                int temp = (high + low) / 2;
+                if (temp >= mValues.size()) {
+                    break;
+                }
+
+                middle = temp;
                 entry = mValues.get(middle);
             }
 
-            entries.add(entry);
-            entry = mValues.get(middle + 1);
-            if (middle < mValues.size() - 1) {
-                entry = mValues.get(middle + 1);
-            } else {
-                entry = mValues.get(middle);
-            }
-            entries.add(entry);
+            entries.add(entry1);
+            T entry2 = middle + 1 < mValues.size() ? mValues.get(middle + 1) : mValues.get(middle);
+            entries.add(entry2);
             return entries;
         } catch (Exception e) {
             return null;
