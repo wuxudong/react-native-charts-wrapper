@@ -686,8 +686,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return null;
-        } else
-            Log.i("pepperes", x + " " + y );
+        }
         return getHighlighter().getHighlight(x, y);
     }
 
@@ -704,8 +703,7 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
             return -1;
-        } else
-            Log.i("PEPPE", x + " " + y );
+        }
         return getDataSetHighlighter().getDataSetIndexHighlight(x, y);
     }
 
