@@ -451,7 +451,7 @@ public abstract class DataSet<T extends Entry> extends BaseDataSet<T> {
                 }
 
                 middle = temp;
-                entry = mValues.get(middle);
+                entry1 = mValues.get(middle);
             }
 
             entries.add(entry1);
