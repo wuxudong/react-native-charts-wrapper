@@ -91,7 +91,7 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
         
         let dist = sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection))
         let pixDist = sqrt((x - pix.x) * (x - pix.x) + (y - pix.y) * (y - pix.y))
-        return pixDist < 30 && dist < 5 ? minIndex : -1
+        return pixDist < 45 && dist < 5 ? minIndex : -1
     }
     
     /// - Parameters:

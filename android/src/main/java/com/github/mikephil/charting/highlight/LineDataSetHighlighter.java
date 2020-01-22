@@ -107,7 +107,7 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
 
             double dist = Math.sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection));
             double pixDist = Math.sqrt((x - pixX) * (x - pixX) + (y - pixY) * (y - pixY));
-            return pixDist < 30 && dist < 5 ? minIndex : -1;
+            return pixDist < 45 && dist < 5 ? minIndex : -1;
 
         } catch (Exception e) {
             // if any calc error occurs, the value -1 have no effect on the app behavior
