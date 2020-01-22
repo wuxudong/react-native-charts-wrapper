@@ -60,62 +60,37 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
                         minIndex = i
                         minM = m
                         minQ = q
-                        print("line point (\(x_1), \(y_1))")
-                        print("line point (\(x_2), \(y_2))")
                     }
                 }
             }
         }
         
-        guard let lineM = minM, let lineQ = minQ else {
+        guard let m1 = minM, let q1 = minQ else {
             return -1;
         }
         
         let xIntersection: Double
         let yIntersection: Double
-        if lineM == .infinity {
-            xIntersection = lineQ
+        if m1 == .infinity {
+            xIntersection = q1
             yIntersection = yVal
         }
-        else if lineM == 0 {
+        else if m1 == 0 {
             xIntersection = xVal
-            yIntersection = lineQ
+            yIntersection = q1
         }
         else {
-            /*
-                y - yVal = -1/minM * (x - xVal)
-                y = -1/minM * x + xVal/minM + yVal
-                y = (-1/minM * x) + (xVal/minM + yVal)
-            */
-            let m2 = -1/lineM
-            let q2 = xVal/lineM + yVal
-
-            /*
-                y = x * minM + minQ
-                y = x * m2 + q2
-                
-                x * m2 + q2 = x * minM + minQ
-                x * m2 - x * minM = minQ - q2
-                x * (m2 - minM) = minQ - q2
-            */
-            xIntersection = (lineQ - q2) / (m2 - lineM)
+            let m2 = -1/m1
+            let q2 = xVal/m1 + yVal
+            xIntersection = (q1 - q2) / (m2 - m1)
             yIntersection = xIntersection * m2 + q2
-            
-            print("(1) y = \(lineM)x + \(lineQ)")
-            print("(2) y = \(m2)x + \(q2)")
         }
-        
-        print("(\(xVal), \(yVal))")
-        print("(\(xIntersection), \(yIntersection))")
         guard let pix = getPixForVal(x: xIntersection, y: yIntersection) else {
             return -1;
         }
         
         let dist = sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection))
         let pixDist = sqrt((x - pix.x) * (x - pix.x) + (y - pix.y) * (y - pix.y))
-        print("dist \(dist), \(pixDist)")
-        print("touch (\(x), \(y))")
-        print("point (\(pix.x), \(pix.y))")
         return pixDist < 30 && dist < 5 ? minIndex : -1
     }
     
