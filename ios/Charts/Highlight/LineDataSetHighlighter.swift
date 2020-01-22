@@ -18,12 +18,14 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
             let dataSets = chart?.data?.dataSets else {
                 return -1
         }
-        
+                
         let xVal = Double(pos.x)
         let yVal = Double(pos.y)
-        let x = Double(x)
+
         var minDistance = Double.infinity
         var minIndex: Int = -1
+        var minM: Double?
+        var minQ: Double?
         
         for i in 0 ..< dataSets.count {
             if dataSets[i].isVisible {
@@ -35,24 +37,86 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
                     let y_2 = result[1].y
                     
                     var distance: Double
+                    let m: Double
+                    let q: Double
                     if x_2 - x_1 == 0 {
-                        distance = fabs(x_1 - x)
+                        m = .infinity
+                        q = x_1
+                        distance = fabs(x_1 - xVal)
+                    }
+                    else if y_2 - y_1 == 0 {
+                        m = 0
+                        q = y_1
+                        distance = fabs(y_1 - yVal)
                     }
                     else {
-                        let m = (y_2 - y_1) / (x_2 - x_1)
-                        let q = (x_2 * y_1 - x_1 * y_2) / (x_2 - x_1)
+                        m = (y_2 - y_1) / (x_2 - x_1)
+                        q = (x_2 * y_1 - x_1 * y_2) / (x_2 - x_1)
                         distance = (fabs(yVal - (m * xVal + q)) / sqrt(1 + m * m))
                     }
                     
                     if distance < minDistance {
                         minDistance = distance
                         minIndex = i
+                        minM = m
+                        minQ = q
+                        print("line point (\(x_1), \(y_1))")
+                        print("line point (\(x_2), \(y_2))")
                     }
                 }
             }
         }
         
-        return minIndex
+        guard let lineM = minM, let lineQ = minQ else {
+            return -1;
+        }
+        
+        let xIntersection: Double
+        let yIntersection: Double
+        if lineM == .infinity {
+            xIntersection = lineQ
+            yIntersection = yVal
+        }
+        else if lineM == 0 {
+            xIntersection = xVal
+            yIntersection = lineQ
+        }
+        else {
+            /*
+                y - yVal = -1/minM * (x - xVal)
+                y = -1/minM * x + xVal/minM + yVal
+                y = (-1/minM * x) + (xVal/minM + yVal)
+            */
+            let m2 = -1/lineM
+            let q2 = xVal/lineM + yVal
+
+            /*
+                y = x * minM + minQ
+                y = x * m2 + q2
+                
+                x * m2 + q2 = x * minM + minQ
+                x * m2 - x * minM = minQ - q2
+                x * (m2 - minM) = minQ - q2
+            */
+            xIntersection = (lineQ - q2) / (m2 - lineM)
+            yIntersection = xIntersection * m2 + q2
+            
+            print("(1) y = \(lineM)x + \(lineQ)")
+            print("(2) y = \(m2)x + \(q2)")
+        }
+        
+        print("(\(xVal), \(yVal))")
+        print("(\(xIntersection), \(yIntersection))")
+        guard let pix = getPixForVal(x: xIntersection, y: yIntersection) else {
+            return -1;
+        }
+        
+        let dist = sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection))
+        let pixDist = sqrt((x - pix.x) * (x - pix.x) + (y - pix.y) * (y - pix.y))
+        print("dist \(dist), \(pixDist)")
+        print("touch (\(x), \(y))")
+        print("point (\(pix.x), \(pix.y))")
+        return pixDist < 30 && dist < 5 ? minIndex : -1
     }
     
     /// - Parameters:
@@ -62,6 +126,12 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
     {        
         // take any transformer to determine the values
         return chart?.getTransformer(forAxis: .left).valueForTouchPoint(x: x, y: y)
+    }
+
+    open func getPixForVal(x: Double, y: Double) -> CGPoint?
+    {        
+        // take any transformer to determine the values
+        return chart?.getTransformer(forAxis: .left).pixelForValues(x: x, y: y)
     }
     
     internal var data: ChartData?
