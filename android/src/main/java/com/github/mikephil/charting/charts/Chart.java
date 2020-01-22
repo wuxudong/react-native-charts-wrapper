@@ -39,6 +39,7 @@ import com.github.mikephil.charting.highlight.ChartHighlighter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.highlight.IDataSetHighlighter;
 import com.github.mikephil.charting.highlight.IHighlighter;
+import com.github.mikephil.charting.highlight.DataSetHighlight;
 import com.github.mikephil.charting.interfaces.dataprovider.ChartInterface;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
@@ -666,9 +667,9 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * @param index         - the index of the highlighted dataset
      * @param callListener - call the listener
      */
-    public void highlightDataSet(int index, boolean callListener) {
+    public void highlightDataSet(DataSetHighlight d, boolean callListener) {
         if (callListener && mDataSetSelectionListener != null) {
-            mDataSetSelectionListener.onDataSetSelected(index);
+            mDataSetSelectionListener.onDataSetSelected(d);
         }
     }
 
@@ -698,11 +699,11 @@ public abstract class Chart<T extends ChartData<? extends IDataSet<? extends Ent
      * @param y
      * @return
      */
-    public int getDataSetHighlightByTouchPoint(float x, float y) {
+    public DataSetHighlight getDataSetHighlightByTouchPoint(float x, float y) {
 
         if (mData == null) {
             Log.e(LOG_TAG, "Can't select by touch. No data set.");
-            return -1;
+            return new DataSetHighlight(-1);
         }
         return getDataSetHighlighter().getDataSetIndexHighlight(x, y);
     }

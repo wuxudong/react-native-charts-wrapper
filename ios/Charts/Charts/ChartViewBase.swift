@@ -31,7 +31,7 @@ public protocol ChartViewDelegate
     ///   - highlight: The corresponding highlight object that contains information about the highlighted position such as dataSetIndex etc.
     @objc optional func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight)
 
-    @objc optional func chartDataSetSelected(_ chartView: ChartViewBase, index: Int)
+    @objc optional func chartDataSetSelected(_ chartView: ChartViewBase, _ d: DataSetHighlight)
     
     /// Called when a user stops panning between values on the chart
     @objc optional func chartViewDidEndPanning(_ chartView: ChartViewBase)
@@ -563,10 +563,10 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     }
 
     /// Highlights the dataset selected by touch gesture. This generates a callback to the delegate.chartDataSetSelected().
-    @objc open func highlightDataSet(_ index: Int, callDelegate: Bool)
+    @objc open func highlightDataSet(_ d: DataSetHighlight, callDelegate: Bool)
     {
         if callDelegate {
-            delegate?.chartDataSetSelected!(self, index: index);
+            delegate?.chartDataSetSelected!(self, d);
         }
     }
     
@@ -585,14 +585,14 @@ open class ChartViewBase: NSUIView, ChartDataProvider, AnimatorDelegate
     }
 
     /// - Returns the dataset index of the closest rendered dataset at the given touch point inside the Line Chart.
-    @objc open func getDataSetHighlightByTouchPoint(_ pt: CGPoint) -> Int
+    @objc open func getDataSetHighlightByTouchPoint(_ pt: CGPoint) -> DataSetHighlight
     {
         if _data === nil
         {
             Swift.print("Can't select by touch. No data set.")
-            return -1
+            return DataSetHighlight(index: -1)
         }
-        return self.dataSetHighlighter?.getDataSetIndexHighlight(x: pt.x, y: pt.y) ?? -1
+        return self.dataSetHighlighter?.getDataSetIndexHighlight(x: pt.x, y: pt.y) ?? DataSetHighlight(index: -1)
     }
 
     /// The last value that was highlighted via touch.

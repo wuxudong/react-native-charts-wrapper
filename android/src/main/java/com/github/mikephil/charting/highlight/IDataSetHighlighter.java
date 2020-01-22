@@ -1,5 +1,7 @@
 package com.github.mikephil.charting.highlight;
 
+import com.github.mikephil.charting.highlight.DataSetHighlight;
+
 public interface IDataSetHighlighter {
 
     /**
@@ -9,5 +11,5 @@ public interface IDataSetHighlighter {
      * @param y
      * @return
      */
-    int getDataSetIndexHighlight(float x, float y);
+    DataSetHighlight getDataSetIndexHighlight(float x, float y);
 }

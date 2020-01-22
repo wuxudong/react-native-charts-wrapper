@@ -5,6 +5,7 @@ import android.util.Log;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.DataSetHighlight;
 import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
 import com.github.mikephil.charting.utils.MPPointD;
 
@@ -24,7 +25,7 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
     }
 
     @Override
-    public int getDataSetIndexHighlight(float x, float y) {
+    public DataSetHighlight getDataSetIndexHighlight(float x, float y) {
         try {
             MPPointD pos = getValsForTouch(x, y);
             float xVal = (float) pos.x;
@@ -80,7 +81,7 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
             }
 
             if (m1 == null || q1 == null) {
-                return -1;
+                return new DataSetHighlight(-1);
             }
 
             float xIntersection;
@@ -107,11 +108,11 @@ public class LineDataSetHighlighter<T extends LineDataProvider> implements IData
 
             double dist = Math.sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection));
             double pixDist = Math.sqrt((x - pixX) * (x - pixX) + (y - pixY) * (y - pixY));
-            return pixDist < 45 && dist < 5 ? minIndex : -1;
+            return new DataSetHighlight(minIndex, (float) pixDist, (float) dist);
 
         } catch (Exception e) {
             // if any calc error occurs, the value -1 have no effect on the app behavior
-            return -1;
+            return new DataSetHighlight(-1);
         }
     }
 

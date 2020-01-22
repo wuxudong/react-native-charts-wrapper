@@ -538,8 +538,8 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         
         if recognizer.state == NSUIGestureRecognizerState.ended
         {
-            let index = getDataSetHighlightByTouchPoint(recognizer.location(in: self))
-            highlightDataSet(index, callDelegate: true)
+            let d = getDataSetHighlightByTouchPoint(recognizer.location(in: self))
+            highlightDataSet(d, callDelegate: true)
 
             if !isHighLightPerTapEnabled { return }
             

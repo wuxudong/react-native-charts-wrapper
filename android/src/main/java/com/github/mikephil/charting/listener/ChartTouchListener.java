@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.highlight.DataSetHighlight;
 
 /**
  * Created by philipp on 12/06/15.
@@ -131,8 +132,8 @@ public abstract class ChartTouchListener<T extends Chart<?>> extends GestureDete
      *
      * @param e
      */
-    protected void performDataSetHighlight(int index, MotionEvent e) {
-        mChart.highlightDataSet(index, true);
+    protected void performDataSetHighlight(DataSetHighlight d, MotionEvent e) {
+        mChart.highlightDataSet(d, true);
     }
 
     /**

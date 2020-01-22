@@ -11,12 +11,12 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
         self.chart = chart
     }
 
-    @objc public func getDataSetIndexHighlight(x: CGFloat, y: CGFloat) -> Int
+    @objc public func getDataSetIndexHighlight(x: CGFloat, y: CGFloat) -> DataSetHighlight
     {
         guard
             let pos = getValsForTouch(x: x, y: y),
             let dataSets = chart?.data?.dataSets else {
-                return -1
+                return DataSetHighlight(index: -1)
         }
                 
         let xVal = Double(pos.x)
@@ -66,7 +66,7 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
         }
         
         guard let m1 = minM, let q1 = minQ else {
-            return -1;
+            return DataSetHighlight(index: -1);
         }
         
         let xIntersection: Double
@@ -86,12 +86,12 @@ open class LineDataSetHighlighter : NSObject, IDataSetHighlighter
             yIntersection = xIntersection * m2 + q2
         }
         guard let pix = getPixForVal(x: xIntersection, y: yIntersection) else {
-            return -1;
+            return DataSetHighlight(index: -1);
         }
         
         let dist = sqrt((xVal - xIntersection) * (xVal - xIntersection) + (yVal - yIntersection) * (yVal - yIntersection))
         let pixDist = sqrt((x - pix.x) * (x - pix.x) + (y - pix.y) * (y - pix.y))
-        return pixDist < 45 && dist < 5 ? minIndex : -1
+        return DataSetHighlight(index: minIndex, pixelDistance: CGFloat(pixDist), pointDistance: CGFloat(dist))
     }
     
     /// - Parameters:

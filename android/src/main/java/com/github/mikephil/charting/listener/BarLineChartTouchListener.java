@@ -14,6 +14,7 @@ import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarLineScatterCandleBubbleData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.highlight.DataSetHighlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.utils.MPPointF;
@@ -616,8 +617,8 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
             l.onChartSingleTapped(e);
         }
 
-        int index = mChart.getDataSetHighlightByTouchPoint(e.getX(), e.getY());
-        performDataSetHighlight(index, e);
+        DataSetHighlight d = mChart.getDataSetHighlightByTouchPoint(e.getX(), e.getY());
+        performDataSetHighlight(d, e);
 
         if (!mChart.isHighlightPerTapEnabled()) {
             return false;

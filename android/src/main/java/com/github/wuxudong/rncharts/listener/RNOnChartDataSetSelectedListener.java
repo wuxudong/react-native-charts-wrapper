@@ -12,6 +12,7 @@ import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartDataSetSelectedListener;
+import com.github.mikephil.charting.highlight.DataSetHighlight;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.github.wuxudong.rncharts.charts.ChartGroupHolder;
@@ -27,13 +28,14 @@ public class RNOnChartDataSetSelectedListener implements OnChartDataSetSelectedL
     }
 
     @Override
-    public void onDataSetSelected(int dataSetIndex) {
-
+    public void onDataSetSelected(DataSetHighlight d) {
         if (mWeakChart != null) {
             Chart chart = mWeakChart.get();
 
             WritableMap event = Arguments.createMap();
-            event.putInt("dataSetIndex", dataSetIndex);
+            event.putInt("dataSetIndex", d.getIndex());
+            event.putDouble("dataSetPixelDistance", d.getPixelDistance());
+            event.putDouble("dataSetPointDistance", d.getPointDistance());
 
             ReactContext reactContext = (ReactContext) chart.getContext();
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
