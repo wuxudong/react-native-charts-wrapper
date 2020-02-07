@@ -48,6 +48,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     
     protected static final int ADD_DATA_POINTS = 10;
     protected static final int UPDATE_CONFIG = 11;
+    protected static final int SET_CHART_BOUNDS = 12;
 
     abstract DataExtract getDataExtract();
 

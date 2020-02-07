@@ -45,7 +45,7 @@ class RNLineChartView: RNBarLineChartViewBase {
     func addDataPoints(_ data: NSDictionary) {
         let dict = data as! Dictionary<String, Any>
         
-        var maxYPoint = chart.leftAxis.axisMaximum
+        // var maxYPoint = chart.leftAxis.axisMaximum
         
         let rows = dict["data"] as! Array<Dictionary<String, Any>>
         for  i in 0 ..< rows.count {
@@ -59,14 +59,14 @@ class RNLineChartView: RNBarLineChartViewBase {
                     let y = dataSets[j]
                     let lineData = chart.data!.dataSets[j]
                     _ = lineData.addEntry(ChartDataEntry(x: x, y: y))
-                    if y > maxYPoint - topOffset {
+                    /* if y > maxYPoint - topOffset {
                         maxYPoint = y + topOffset
-                    }
+                    } */
                 }
             }
         }
         
-        chart.leftAxis.axisMaximum = maxYPoint
+        // chart.leftAxis.axisMaximum = maxYPoint
         chart.notifyDataSetChanged()
     }
 
@@ -87,6 +87,23 @@ class RNLineChartView: RNBarLineChartViewBase {
             }
         }
 
+        chart.notifyDataSetChanged()
+    }
+
+    func setChartBounds(_ data: NSDictionary) {
+        let dict = data as! Dictionary<String, Any>
+        if let m = dict["yMax"] as? Double {
+            chart.leftAxis.axisMaximum = m
+        }
+        if let m = dict["yMin"] as? Double {
+            chart.leftAxis.axisMinimum = m
+        }
+        if let m = dict["xMax"] as? Double {
+            chart.xAxis.axisMaximum = m
+        }
+        if let m = dict["xMin"] as? Double {
+            chart.xAxis.axisMinimum = m
+        }
         chart.notifyDataSetChanged()
     }
 

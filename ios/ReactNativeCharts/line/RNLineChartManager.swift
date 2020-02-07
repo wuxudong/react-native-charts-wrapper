@@ -64,4 +64,11 @@ open class RNLineChartManager: RCTViewManager, RNBarLineChartBaseManager {
     }
   }
 
+  func setChartBounds(_ reactTag: NSNumber, data: NSDictionary) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNLineChartView = viewRegistry![reactTag] as! RNLineChartView;
+      view.setChartBounds(data);
+    }
+  }
+
 }

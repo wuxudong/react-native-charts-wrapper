@@ -53,6 +53,7 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
         Map<String, Integer> map = MapBuilder.of();
         map.put("addDataPoints", ADD_DATA_POINTS);
         map.put("updateConfig", UPDATE_CONFIG);
+        map.put("setChartBounds", SET_CHART_BOUNDS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -69,6 +70,9 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
             
             case UPDATE_CONFIG:
                 updateConfig(root, args.getArray(0));
+                return;
+            case SET_CHART_BOUNDS:
+                setChartBounds(root, args.getMap(0));
                 return;
         }
 
@@ -150,6 +154,25 @@ public class LineChartManager extends BarLineChartBaseManager<LineChart, Entry> 
             }
         }
 
+        root.notifyDataSetChanged();
+        root.invalidate();
+    }
+
+    private void setChartBounds(LineChart root, ReadableMap data) {
+        
+        if (data.hasKey("yMax")) {
+            root.getAxisLeft().setAxisMaximum((float) data.getDouble("yMax"));
+        }
+        if (data.hasKey("yMin")) {
+            root.getAxisLeft().setAxisMinimum((float) data.getDouble("yMin"));
+        }
+        if (data.hasKey("xMax")) {
+            root.getXAxis().setAxisMaximum((float) data.getDouble("xMax"));
+        }
+        if (data.hasKey("xMin")) {
+            root.getXAxis().setAxisMinimum((float) data.getDouble("xMin"));
+        }
+        
         root.notifyDataSetChanged();
         root.invalidate();
     }
