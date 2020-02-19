@@ -8,6 +8,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
+import com.github.wuxudong.rncharts.charts.ConfigurableMinimumLinePositionFillFormatter;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
@@ -80,6 +81,15 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
             }
 
             lineDataSet.enableDashedLine(lineLength, spaceLength, phase);
+        }
+        if (BridgeUtils.validate(config, ReadableType.Map, "fillFormatter")) {
+            ReadableMap fillFormatter = config.getMap("fillFormatter");
+            float min = 0F;
+
+            if (BridgeUtils.validate(fillFormatter, ReadableType.Number, "min")) {
+                min = (float) fillFormatter.getDouble("min");
+            }
+            lineDataSet.setFillFormatter(new ConfigurableMinimumLinePositionFillFormatter(min));
         }
     }
 
