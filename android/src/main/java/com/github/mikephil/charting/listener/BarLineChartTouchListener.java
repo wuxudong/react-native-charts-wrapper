@@ -257,6 +257,11 @@ public class BarLineChartTouchListener extends ChartTouchListener<BarLineChartBa
                     // So we need to recalculate offsets.
                     mChart.calculateOffsets();
                     mChart.postInvalidate();
+
+                    OnChartGestureListener l = mChart.getOnChartGestureListener();
+                    if (l != null)
+                        l.onChartScale(event, 1f, 1f);
+
                 }
 
                 mTouchMode = NONE;
