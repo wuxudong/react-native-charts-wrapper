@@ -70,7 +70,7 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     }
 
     @Override
-    public CandleEntry createEntry(ReadableArray values, int index) {
+    CandleEntry createEntry(ReadableArray values, int index) {
         if (!ReadableType.Map.equals(values.getType(index))) {
             throw new IllegalArgumentException();
         }

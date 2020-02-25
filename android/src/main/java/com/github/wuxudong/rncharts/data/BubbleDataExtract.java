@@ -46,7 +46,7 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
     }
 
     @Override
-    public BubbleEntry createEntry(ReadableArray values, int index) {
+    BubbleEntry createEntry(ReadableArray values, int index) {
         if (!ReadableType.Map.equals(values.getType(index))) {
             throw new IllegalArgumentException("Invalid BubbleEntry data");
         }

@@ -40,7 +40,7 @@ public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
     }
 
     @Override
-    public RadarEntry createEntry(ReadableArray values, int index) {
+    RadarEntry createEntry(ReadableArray values, int index) {
         RadarEntry entry;
 
         if (ReadableType.Map.equals(values.getType(index))) {
