@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.graphics.RectF;
 
+import android.util.Log;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -11,6 +12,7 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
@@ -21,6 +23,7 @@ import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -287,7 +290,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
                 "fitScreen", FIT_SCREEN,
                 "highlights", HIGHLIGHTS,
-                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
+                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
+                "addEntries", ADD_ENTRIES);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -329,9 +333,28 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case SET_DATA_AND_LOCK_INDEX:
                 setDataAndLockIndex(root, args.getMap(0));
                 return;
+
+            case ADD_ENTRIES:
+                addEntries(root, args);
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
+    }
+
+    private void addEntries(T root, ReadableArray arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            ReadableMap map = arr.getMap(i);
+            IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
+
+            ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
+            for (Entry entry : entries) {
+                dataSetByIndex.addEntry(entry);
+            }
+        }
+        root.getData().notifyDataChanged();
+        root.notifyDataSetChanged();
+        root.invalidate();
     }
 
     private void setDataAndLockIndex(T root, ReadableMap map) {

@@ -54,7 +54,7 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     }
 
     @Override
-    Entry createEntry(ReadableArray values, int index) {
+    public Entry createEntry(ReadableArray values, int index) {
         float x = index;
 
         Entry entry;

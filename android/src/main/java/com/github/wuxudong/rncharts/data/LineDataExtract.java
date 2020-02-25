@@ -84,7 +84,7 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
     }
 
     @Override
-    Entry createEntry(ReadableArray values, int index) {
+    public Entry createEntry(ReadableArray values, int index) {
         float x = index;
 
         Entry entry;

@@ -77,7 +77,7 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     }
 
     @Override
-    PieEntry createEntry(ReadableArray values, int index) {
+    public PieEntry createEntry(ReadableArray values, int index) {
         PieEntry entry;
 
         if (ReadableType.Map.equals(values.getType(index))) {

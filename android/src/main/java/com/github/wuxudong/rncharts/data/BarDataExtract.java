@@ -29,7 +29,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     }
 
     @Override
-    BarEntry createEntry(ReadableArray values, int index) {
+    public BarEntry createEntry(ReadableArray values, int index) {
         BarEntry entry;
 
         float x = index;

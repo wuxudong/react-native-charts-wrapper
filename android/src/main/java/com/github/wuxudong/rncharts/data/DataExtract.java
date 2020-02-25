@@ -61,7 +61,7 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
 
     abstract void dataSetConfig(Chart chart, IDataSet<U> dataSet, ReadableMap config);
 
-    ArrayList<U> createEntries(ReadableArray yValues) {
+    public ArrayList<U> createEntries(ReadableArray yValues) {
         ArrayList<U> entries = new ArrayList<>(yValues.size());
         for (int j = 0; j < yValues.size(); j++) {
             if (!yValues.isNull(j)) {
