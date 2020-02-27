@@ -34,6 +34,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(panGesture:)))
         self.addGestureRecognizer(panGesture)
         panGesture.delegate = self
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(tapGesture:)))
+        self.addGestureRecognizer(tapGesture)
+        tapGesture.delegate = self
     }
 
     override init(frame: CGRect) {
@@ -62,7 +66,16 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
             sendEvent("panEnded")
         }
     }
-    
+
+    @objc func handleTapGesture(tapGesture: UITapGestureRecognizer) {
+        if tapGesture.state == UIGestureRecognizer.State.recognized { 
+            sendEvent("tapBegan")
+        }
+        if tapGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("tapEnded")
+        }
+    }
+
     // See https://stackoverflow.com/questions/46185620/adding-a-second-pangesturerecognizer-or-equivalent-workaround
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true 
