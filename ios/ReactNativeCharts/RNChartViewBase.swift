@@ -13,7 +13,7 @@ import SwiftyJSON
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
 @objcMembers
-open class RNChartViewBase: UIView, ChartViewDelegate {
+open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDelegate {
     open var onSelect:RCTBubblingEventBlock?
     
     open var onChange:RCTBubblingEventBlock?
@@ -25,6 +25,48 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     private  var syncX = true
     
     private  var syncY = false
+
+    private func commonInit() {
+        let longPressgesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected(gesture:)))
+        longPressgesture.allowableMovement = 50
+        self.addGestureRecognizer(longPressgesture)
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(panGesture:)))
+        self.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }    
+
+    @objc func longPressDetected(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .ended {
+            sendEvent("longPressEnded")
+        }else if gesture.state == .began {
+            sendEvent("longPressBegan")
+        }
+    }
+
+    @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
+        if panGesture.state == UIGestureRecognizer.State.began { 
+            sendEvent("panBegan")
+        }
+        if panGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("panEnded")
+        }
+    }
+    
+    // See https://stackoverflow.com/questions/46185620/adding-a-second-pangesturerecognizer-or-equivalent-workaround
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true 
+    }
     
     override open func reactSetFrame(_ frame: CGRect)
     {
