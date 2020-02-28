@@ -52,8 +52,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
 
     @objc func longPressDetected(gesture: UILongPressGestureRecognizer) {
         if gesture.state == .ended {
+            sendEvent("gestureEnded")
             sendEvent("longPressEnded")
         }else if gesture.state == .began {
+            sendEvent("gestureBegan")
             sendEvent("longPressBegan")
         }
     }
@@ -61,8 +63,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
     @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
         if panGesture.state == UIGestureRecognizer.State.began { 
             sendEvent("panBegan")
+            sendEvent("gestureBegan")
         }
         if panGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("gestureEnded")
             sendEvent("panEnded")
         }
     }
@@ -70,8 +74,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
     @objc func handleTapGesture(tapGesture: UITapGestureRecognizer) {
         if tapGesture.state == UIGestureRecognizer.State.recognized { 
             sendEvent("tapBegan")
+            sendEvent("gestureBegan")
         }
         if tapGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("gestureEnded")
             sendEvent("tapEnded")
         }
     }
