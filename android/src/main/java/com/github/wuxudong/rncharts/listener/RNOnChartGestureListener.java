@@ -1,6 +1,8 @@
 package com.github.wuxudong.rncharts.listener;
 
 import androidx.annotation.NonNull;
+
+import android.util.Log;
 import android.view.MotionEvent;
 
 import com.facebook.react.bridge.Arguments;
@@ -43,10 +45,38 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        sendEvent("gestureBegan", me);
+        switch (lastPerformedGesture){
+            case LONG_PRESS:
+                sendEvent("longPressBegan", me);
+                break;
+            case SINGLE_TAP:
+                sendEvent("tapBegan", me);
+                break;
+            case DRAG:
+                sendEvent("panBegan", me);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        sendEvent("gestureEnded", me);
+        switch (lastPerformedGesture){
+            case LONG_PRESS:
+                sendEvent("longPressEnded", me);
+                break;
+            case SINGLE_TAP:
+                sendEvent("tapEnded", me);
+                break;
+            case DRAG:
+                sendEvent("panEnded", me);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

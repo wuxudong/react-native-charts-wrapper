@@ -13,7 +13,7 @@ import SwiftyJSON
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
 
 @objcMembers
-open class RNChartViewBase: UIView, ChartViewDelegate {
+open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDelegate {
     open var onSelect:RCTBubblingEventBlock?
     
     open var onChange:RCTBubblingEventBlock?
@@ -25,6 +25,67 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     private  var syncX = true
     
     private  var syncY = false
+
+    private func commonInit() {
+        let longPressgesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected(gesture:)))
+        longPressgesture.allowableMovement = 50
+        self.addGestureRecognizer(longPressgesture)
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(panGesture:)))
+        self.addGestureRecognizer(panGesture)
+        panGesture.delegate = self
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(tapGesture:)))
+        self.addGestureRecognizer(tapGesture)
+        tapGesture.delegate = self
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }    
+
+    @objc func longPressDetected(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .ended {
+            sendEvent("gestureEnded")
+            sendEvent("longPressEnded")
+        }else if gesture.state == .began {
+            sendEvent("gestureBegan")
+            sendEvent("longPressBegan")
+        }
+    }
+
+    @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
+        if panGesture.state == UIGestureRecognizer.State.began { 
+            sendEvent("panBegan")
+            sendEvent("gestureBegan")
+        }
+        if panGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("gestureEnded")
+            sendEvent("panEnded")
+        }
+    }
+
+    @objc func handleTapGesture(tapGesture: UITapGestureRecognizer) {
+        if tapGesture.state == UIGestureRecognizer.State.recognized { 
+            sendEvent("tapBegan")
+            sendEvent("gestureBegan")
+        }
+        if tapGesture.state == UIGestureRecognizer.State.ended {
+            sendEvent("gestureEnded")
+            sendEvent("tapEnded")
+        }
+    }
+
+    // See https://stackoverflow.com/questions/46185620/adding-a-second-pangesturerecognizer-or-equivalent-workaround
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true 
+    }
     
     override open func reactSetFrame(_ frame: CGRect)
     {
