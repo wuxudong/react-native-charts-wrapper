@@ -241,8 +241,12 @@ type common {
   valueTextSize: number,
   valueTextColor: number,
   visible: bool,
-  valueFormatter: bool,
-  valueFormatterPattern: string or 'largeValue' or 'percent' or 'date',
+  valueFormatter: string or 'largeValue' or 'percent' or 'date' or 'labelByXValue',
+  valueFormatterPattern: string,
+  valueFormatterLabels: {
+    x: number, // required
+    label: string // required
+  },
   axisDependency: string,
 }
 ```
