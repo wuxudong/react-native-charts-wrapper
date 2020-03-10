@@ -309,6 +309,9 @@ type lineData {
           spaceLength: number, // required
           phase: number
         },
+        fillFormatter: {
+            min: number // required
+        }
       }
     }
   ]
