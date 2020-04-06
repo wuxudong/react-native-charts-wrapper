@@ -19,7 +19,6 @@ RCT_EXPORT_VIEW_PROPERTY(extraOffsets, NSDictionary)
 RCT_EXPORT_VIEW_PROPERTY(webLineWidth, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(webLineWidthInner, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(webAlpha, NSNumber)
-RCT_EXPORT_VIEW_PROPERTY(webAlphaInner, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(webColor, NSNumber)
 RCT_EXPORT_VIEW_PROPERTY(webColorInner, NSNumber)
 
