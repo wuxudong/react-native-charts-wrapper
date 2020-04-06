@@ -13,6 +13,10 @@ import SwiftyJSON
 
 class ChartDataSetConfigUtils: NSObject {
     static func commonConfig(_ dataSet: ChartDataSet, config: JSON) {
+        if let font = FontUtils.getFont(config) {
+            dataSet.valueFont = font
+        }
+
         // Setting main color
         if config["color"].int != nil {
             dataSet.setColor(RCTConvert.uiColor(config["color"].intValue))
@@ -57,6 +61,15 @@ class ChartDataSetConfigUtils: NSObject {
                 let timeUnit = config["timeUnit"].string != nil ? config["timeUnit"].stringValue : "MILLISECONDS"
                 let locale = config["locale"].string;
                 dataSet.valueFormatter = CustomChartDateFormatter(pattern: valueFormatterPattern, since: since, timeUnit: timeUnit, locale: locale);
+            } else if "labelByXValue" == valueFormatter.stringValue {
+                let valueFormatterLabels = config["valueFormatterLabels"].arrayValue;
+
+                var labelsByXValue = [Double : String]();
+                for entry in valueFormatterLabels {
+                    labelsByXValue.updateValue(entry["label"].stringValue, forKey: entry["x"].doubleValue);
+                }
+
+                dataSet.valueFormatter = LabelByXValueFormatter(labelsByXValue);
             } else {
                 let customFormatter = NumberFormatter()
                 customFormatter.positiveFormat = valueFormatter.stringValue
@@ -70,10 +83,6 @@ class ChartDataSetConfigUtils: NSObject {
 
         if config["axisDependency"].string != nil {
             dataSet.axisDependency = BridgeUtils.parseAxisDependency(config["axisDependency"].stringValue)
-        }
-        
-        if let font = FontUtils.getFont(config) {
-            dataSet.valueFont = font
         }
     }
 
