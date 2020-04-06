@@ -6,3 +6,4 @@
 #import "React/RCTEventDispatcher.h"
 #import "React/RCTEventEmitter.h"
 #import "React/RCTFont.h"
+#import "React/RCTConvert.h"

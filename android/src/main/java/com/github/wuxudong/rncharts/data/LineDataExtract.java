@@ -11,8 +11,11 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
+import com.github.wuxudong.rncharts.utils.DrawableUtils;
 
+import java.lang.Exception;
 import java.util.ArrayList;
+
 
 /**
  * Created by xudong on 02/03/2017.
@@ -93,7 +96,17 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
             if (map.hasKey("x")) {
                 x = (float) map.getDouble("x");
             }
-            entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
+
+            if (map.hasKey("icon")) {
+                ReadableMap icon = map.getMap("icon");
+                ReadableMap bundle = icon.getMap("bundle");
+                int width = icon.getInt("width");
+                int height = icon.getInt("height");
+                entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height));
+
+            } else {
+                entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
+            }
         } else if (ReadableType.Number.equals(values.getType(index))) {
             entry = new Entry(x, (float) values.getDouble(index));
         } else {
@@ -102,4 +115,6 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
 
         return entry;
     }
+
+
 }
