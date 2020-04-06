@@ -448,7 +448,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         let balloonMarker = BalloonMarker(
             color: RCTConvert.uiColor(json["markerColor"].intValue),
             font: markerFont,
-            textColor: RCTConvert.uiColor(json["textColor"].intValue))
+            textColor: RCTConvert.uiColor(json["textColor"].intValue),
+            textAlign: RCTConvert.nsTextAlignment(json["textAlign"].stringValue))
         chart.marker = balloonMarker
         
         balloonMarker.chartView = chart

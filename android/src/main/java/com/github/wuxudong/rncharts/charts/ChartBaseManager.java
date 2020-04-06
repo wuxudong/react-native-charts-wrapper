@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -287,6 +288,23 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "textSize")) {
             marker.getTvContent().setTextSize(propMap.getInt("textSize"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.String, "textAlign")) {
+
+            int alignment = View.TEXT_ALIGNMENT_CENTER;
+            switch (propMap.getString("textAlign")) {
+                case "left":
+                    alignment = View.TEXT_ALIGNMENT_TEXT_START;
+                    break;
+                case "center":
+                    alignment = View.TEXT_ALIGNMENT_CENTER;
+                    break;
+                case "right":
+                    alignment = View.TEXT_ALIGNMENT_TEXT_END;
+                    break;
+            }
+            marker.getTvContent().setTextAlignment(alignment);
         }
 
         chart.setMarker(marker);

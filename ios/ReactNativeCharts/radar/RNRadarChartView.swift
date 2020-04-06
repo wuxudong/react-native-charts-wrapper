@@ -49,6 +49,17 @@ class RNRadarChartView: RNYAxisChartViewBase {
         chart.minOffset = CGFloat(truncating: minOffset)
     }
 
+    func setExtraOffsets(_ config: NSDictionary) {
+      let json = BridgeUtils.toJson(config)
+      
+      let left = json["left"].double != nil ? CGFloat(json["left"].doubleValue) : 0
+      let top = json["top"].double != nil ? CGFloat(json["top"].doubleValue) : 0
+      let right = json["right"].double != nil ? CGFloat(json["right"].doubleValue) : 0
+      let bottom = json["bottom"].double != nil ? CGFloat(json["bottom"].doubleValue) : 0
+      
+      chart.setExtraOffsets(left: left, top: top, right: right, bottom: bottom)
+    }
+  
     func setRotationEnabled(_ enabled: Bool) {
         chart.rotationEnabled = enabled
     }
