@@ -1,16 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   processColor
-} from "react-native";
-import update from "immutability-helper";
+} from 'react-native';
+import update from 'immutability-helper';
 
-import { RadarChart } from "react-native-charts-wrapper";
+import {RadarChart} from 'react-native-charts-wrapper';
+
 
 class RadarChartScreen extends React.Component {
+
   constructor() {
     super();
 
@@ -19,7 +21,7 @@ class RadarChartScreen extends React.Component {
       legend: {
         enabled: true,
         textSize: 14,
-        form: "CIRCLE",
+        form: 'CIRCLE',
         wordWrapEnabled: true
       }
     };
@@ -30,65 +32,43 @@ class RadarChartScreen extends React.Component {
       update(this.state, {
         data: {
           $set: {
-            dataSets: [
-              {
-                values: [
-                  { value: 100 },
-                  { value: 110 },
-                  { value: 105 },
-                  { value: 115 },
-                  { value: 110 }
-                ],
-                label: "DS 1",
-                config: {
-                  color: processColor("#FF8C9D"),
+            dataSets: [{
+              values: [{value: 100}, {value: 110}, {value: 105}, {value: 115}, {value: 110}],
+              label: 'DS 1',
+              config: {
+                color: processColor('#FF8C9D'),
 
-                  drawFilled: true,
-                  fillColor: processColor("#FF8C9D"),
-                  fillAlpha: 100,
-                  lineWidth: 2
-                }
-              },
-              {
-                values: [
-                  { value: 115 },
-                  { value: 100 },
-                  { value: 105 },
-                  { value: 110 },
-                  { value: 120 }
-                ],
-                label: "DS 2",
-                config: {
-                  color: processColor("#C0FF8C"),
-
-                  drawFilled: true,
-                  fillColor: processColor("#C0FF8C"),
-                  fillAlpha: 150,
-                  lineWidth: 1.5
-                }
-              },
-              {
-                values: [
-                  { value: 105 },
-                  { value: 115 },
-                  { value: 121 },
-                  { value: 110 },
-                  { value: 105 }
-                ],
-                label: "DS 3",
-                config: {
-                  color: processColor("#8CEAFF"),
-
-                  drawFilled: true,
-                  fillColor: processColor("#8CEAFF")
-                }
+                drawFilled: true,
+                fillColor: processColor('#FF8C9D'),
+                fillAlpha: 100,
+                lineWidth: 2
               }
-            ]
+            }, {
+              values: [{value: 115}, {value: 100}, {value: 105}, {value: 110}, {value: 120}],
+              label: 'DS 2',
+              config: {
+                color: processColor('#C0FF8C'),
+
+                drawFilled: true,
+                fillColor: processColor('#C0FF8C'),
+                fillAlpha: 150,
+                lineWidth: 1.5
+              }
+            }, {
+              values: [{value: 105}, {value: 115}, {value: 121}, {value: 110}, {value: 105}],
+              label: 'DS 3',
+              config: {
+                color: processColor('#8CEAFF'),
+
+                drawFilled: true,
+                fillColor: processColor('#8CEAFF')
+              }
+            }],
           }
         },
         xAxis: {
           $set: {
-            valueFormatter: ["A", "B", "C", "D", "E"]
+            valueFormatter: ['A', 'B', 'C', 'D', 'E']
           }
         }
       })
@@ -96,20 +76,21 @@ class RadarChartScreen extends React.Component {
   }
 
   handleSelect(event) {
-    let entry = event.nativeEvent;
+    let entry = event.nativeEvent
     if (entry == null) {
-      this.setState({ ...this.state, selectedEntry: null });
+      this.setState({...this.state, selectedEntry: null})
     } else {
-      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) });
+      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
     }
 
-    console.log(event.nativeEvent);
+    console.log(event.nativeEvent)
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ height: 80 }}>
+      <View style={{flex: 1}}>
+
+        <View style={{height:80}}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
@@ -119,21 +100,23 @@ class RadarChartScreen extends React.Component {
             style={styles.chart}
             data={this.state.data}
             xAxis={this.state.xAxis}
-            yAxis={{ drawLabels: true }}
-            chartDescription={{ text: "" }}
+            yAxis={{drawLabels:true}}
+            chartDescription={{text: ''}}
             legend={this.state.legend}
             drawWeb={true}
+
             webLineWidth={5}
             webLineWidthInner={5}
             webAlpha={255}
-            webAlphaInner={255}
             webColor={processColor("red")}
             webColorInner={processColor("green")}
+
             skipWebLineCount={1}
             onSelect={this.handleSelect.bind(this)}
-            onChange={event => console.log(event.nativeEvent)}
+            onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
+
       </View>
     );
   }
@@ -142,7 +125,7 @@ class RadarChartScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: '#F5FCFF'
   },
   chart: {
     flex: 1

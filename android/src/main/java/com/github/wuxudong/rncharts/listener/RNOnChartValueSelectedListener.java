@@ -1,17 +1,14 @@
 package com.github.wuxudong.rncharts.listener;
 
 import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.github.mikephil.charting.charts.Chart;
-import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.wuxudong.rncharts.utils.EntryToWritableMapUtils;
 
 import java.lang.ref.WeakReference;
-
 
 /**
  * Created by xudong on 07/03/2017.
@@ -30,18 +27,11 @@ public class RNOnChartValueSelectedListener implements OnChartValueSelectedListe
         if (mWeakChart != null) {
             Chart chart = mWeakChart.get();
 
-            WritableMap map = EntryToWritableMapUtils.convertEntryToWritableMap(entry);
-            if ( chart instanceof RadarChart) {
-                // Add an extra value to the map to know the index of the higlighted value
-                // This will allow the receiver to retreive the xAxis value that has been selected by the user
-                map.putDouble("hx", h.getX());
-            }
-
             ReactContext reactContext = (ReactContext) chart.getContext();
             reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
                     chart.getId(),
                     "topSelect",
-                    map);
+                    EntryToWritableMapUtils.convertEntryToWritableMap(entry));
         }
     }
 
