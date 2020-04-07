@@ -104,12 +104,8 @@ class LineDataExtract : DataExtract {
 
         if value.dictionary != nil {
             let dict = value;
-<<<<<<< HEAD
             var y = Double(index);
             
-=======
-
->>>>>>> 8ce6702a33355161bf07aa74e5a22f4a0d0d809b
             if dict["x"].double != nil {
                 x = Double((dict["x"].doubleValue));
             }
@@ -119,7 +115,6 @@ class LineDataExtract : DataExtract {
             } else {
                 fatalError("invalid data " + values.description);
             }
-<<<<<<< HEAD
             
             if dict["icon"].exists() {
                 let icon = dict["icon"]
@@ -145,10 +140,6 @@ class LineDataExtract : DataExtract {
                 entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
             }
             
-=======
-
-
->>>>>>> 8ce6702a33355161bf07aa74e5a22f4a0d0d809b
         } else if value.double != nil {
             entry = ChartDataEntry(x: x, y: value.doubleValue);
         } else {
