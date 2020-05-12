@@ -46,7 +46,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         sendEvent("gestureBegan", me);
-        switch (lastPerformedGesture){
+        switch (lastPerformedGesture) {
             case LONG_PRESS:
                 sendEvent("longPressBegan", me);
                 break;
@@ -64,7 +64,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         sendEvent("gestureEnded", me);
-        switch (lastPerformedGesture){
+        switch (lastPerformedGesture) {
             case LONG_PRESS:
                 sendEvent("longPressEnded", me);
                 break;
@@ -113,10 +113,7 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             WritableMap event = getEvent(action, me, chart);
 
             ReactContext reactContext = (ReactContext) chart.getContext();
-            reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-                    chart.getId(),
-                    "topChange",
-                    event);
+            reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(chart.getId(), "topChange", event);
         }
     }
 
@@ -132,20 +129,28 @@ public class RNOnChartGestureListener implements OnChartGestureListener {
             event.putDouble("scaleX", chart.getScaleX());
             event.putDouble("scaleY", chart.getScaleY());
 
-            MPPointD center = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.getContentCenter().getX(), viewPortHandler.getContentCenter().getY(), YAxis.AxisDependency.LEFT);
+            MPPointD center = ((BarLineChartBase) chart).getValuesByTouchPoint(
+                    viewPortHandler.getContentCenter().getX(), viewPortHandler.getContentCenter().getY(),
+                    YAxis.AxisDependency.LEFT);
             event.putDouble("centerX", center.x);
             event.putDouble("centerY", center.y);
 
-            MPPointD leftBottom = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentLeft(), viewPortHandler.contentBottom(), YAxis.AxisDependency.LEFT);
-            MPPointD rightTop = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentRight(), viewPortHandler.contentTop(), YAxis.AxisDependency.LEFT);
+            MPPointD leftBottom = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentLeft(),
+                    viewPortHandler.contentBottom(), YAxis.AxisDependency.LEFT);
+            MPPointD rightTop = ((BarLineChartBase) chart).getValuesByTouchPoint(viewPortHandler.contentRight(),
+                    viewPortHandler.contentTop(), YAxis.AxisDependency.LEFT);
 
             event.putDouble("left", leftBottom.x);
             event.putDouble("bottom", leftBottom.y);
             event.putDouble("right", rightTop.x);
             event.putDouble("top", rightTop.y);
 
+            event.putDouble("pointX", me.getX());
+            event.putDouble("pointY", me.getY());
+
             if (group != null && identifier != null) {
-                ChartGroupHolder.sync(group, identifier, chart.getScaleX(), chart.getScaleY(), (float) center.x, (float) center.y);
+                ChartGroupHolder.sync(group, identifier, chart.getScaleX(), chart.getScaleY(), (float) center.x,
+                        (float) center.y);
 
             }
         }

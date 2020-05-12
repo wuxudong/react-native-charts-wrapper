@@ -56,14 +56,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
             sendEvent("longPressEnded")
         }else if gesture.state == .began {
             sendEvent("gestureBegan")
-            sendEvent("longPressBegan")
+            sendEvent("longPressBegan", gesture)
         }
     }
 
     @objc func handlePanGesture(panGesture: UIPanGestureRecognizer) {
         if panGesture.state == UIGestureRecognizer.State.began { 
             sendEvent("panBegan")
-            sendEvent("gestureBegan")
+            sendEvent("gestureBegan", panGesture)
         }
         if panGesture.state == UIGestureRecognizer.State.ended {
             sendEvent("gestureEnded")
@@ -74,7 +74,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
     @objc func handleTapGesture(tapGesture: UITapGestureRecognizer) {
         if tapGesture.state == UIGestureRecognizer.State.recognized { 
             sendEvent("tapBegan")
-            sendEvent("gestureBegan")
+            sendEvent("gestureBegan", tapGesture)
         }
         if tapGesture.state == UIGestureRecognizer.State.ended {
             sendEvent("gestureEnded")
@@ -547,7 +547,7 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
         sendEvent("chartTranslated")
     }
     
-    func sendEvent(_ action:String) {
+    func sendEvent(_ action:String, _ gesture:UIGestureRecognizer? = nil) {
         var dict = [AnyHashable: Any]()
         
         dict["action"] = action
@@ -557,6 +557,17 @@ open class RNChartViewBase: UIView, ChartViewDelegate, NSUIGestureRecognizerDele
             
             dict["scaleX"] = barLineChart.scaleX
             dict["scaleY"] = barLineChart.scaleY
+
+            if let g = gesture {
+                // Recognize the location in the view
+                let touchLocation = g.location(in: barLineChart)
+                // The 'x-y' value where user touch the view
+                let touchedPoint: CGPoint? = barLineChart.valueForTouchPoint(point: touchLocation, axis: YAxis.AxisDependency.left)
+                if let point = touchedPoint {
+                    dict["pointX"] = point.x
+                    dict["pointY"] = point.y
+                }
+            }
             
             if let handler = viewPortHandler {
                 let center = barLineChart.valueForTouchPoint(point: handler.contentCenter, axis: YAxis.AxisDependency.left)
