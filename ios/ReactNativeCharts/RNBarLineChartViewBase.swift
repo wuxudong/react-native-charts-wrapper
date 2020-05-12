@@ -17,6 +17,9 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     var savedVisibleRange : NSDictionary?
 
     var savedZoom : NSDictionary?
+  
+    var _onYaxisMinMaxChange : RCTBubblingEventBlock?
+    var timer : Timer?
 
     override func setYAxis(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
@@ -35,6 +38,41 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         }
     }
 
+    func setOnYaxisMinMaxChange(_ callback: RCTBubblingEventBlock?) {
+      self._onYaxisMinMaxChange = callback;
+      self.timer?.invalidate();
+      if callback == nil {
+        return;
+      }
+      
+      var lastMin: Double = 0;
+      var lastMax: Double = 0;
+      
+      let axis = (self.chart as! BarLineChartViewBase).getAxis(.right);
+        
+      if #available(iOS 10.0, *) {
+        // Interval for 16ms
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
+          let minimum = axis.axisMinimum;
+          let maximum = axis.axisMaximum;
+          if lastMin != minimum || lastMax != maximum {
+            print("Update the view", minimum, lastMin, maximum, lastMax)
+            
+            guard let callback = self._onYaxisMinMaxChange else {
+              return;
+            }
+            callback([
+              "minY": minimum,
+              "maxY": maximum,
+            ]);
+          }
+          lastMin = minimum;
+          lastMax = maximum;
+        }
+      } else {
+        // Fallback on earlier versions
+      }
+    }
 
     func setMaxHighlightDistance(_  maxHighlightDistance: CGFloat) {
         barLineChart.maxHighlightDistance = maxHighlightDistance;
