@@ -32,9 +32,16 @@ public class TypefaceUtils {
             style = Typeface.BOLD;
         }
 
+        return getTypeface(chart, fontFamily, style);
+    }
+
+    public static Typeface getTypeface(Chart chart, String fontFamily) {
+        return getTypeface(chart, fontFamily, Typeface.NORMAL);
+    }
+
+    private static Typeface getTypeface(Chart chart, String fontFamily, int style) {
         return ReactFontManager.getInstance().getTypeface(fontFamily,
                 style,
                 chart.getContext().getAssets());
     }
-
 }
