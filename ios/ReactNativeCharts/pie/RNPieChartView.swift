@@ -16,7 +16,7 @@ class RNPieChartView: RNChartViewBase {
     override var dataExtract: DataExtract {
         return _dataExtract
     }
-  
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = PieChartView(frame: frame)
@@ -75,10 +75,17 @@ class RNPieChartView: RNChartViewBase {
 
             let fontSize = json["size"].float != nil ? CGFloat(json["size"].floatValue) : CGFloat(12)
 
+            var font: UIFont?
+            if let parsedFont = FontUtils.getFont(json) {
+                font = RCTFont.update(parsedFont, withSize: NSNumber(value: Float(fontSize)))
+            } else {
+                font = NSUIFont.systemFont(ofSize: fontSize)
+            }
+
             attrString = NSMutableAttributedString(string: json["text"].stringValue)
             attrString?.setAttributes([
                 NSAttributedString.Key.foregroundColor: color!,
-                NSAttributedString.Key.font: NSUIFont.systemFont(ofSize: fontSize),
+                NSAttributedString.Key.font: font,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
                 ], range: NSMakeRange(0, attrString!.length))
         }
@@ -117,7 +124,38 @@ class RNPieChartView: RNChartViewBase {
     func setEntryLabelTextSize(_ size: NSNumber) {
         chart.entryLabelFont = chart.entryLabelFont?.withSize(CGFloat(truncating: size))
     }
-    
+
+    func setEntryLabelFontFamily(_ fontFamily: String) {
+        chart.entryLabelFont = RCTFont.update(chart.entryLabelFont, withFamily: fontFamily)
+    }
+
+    func setExtraOffsets(_ data: NSDictionary) {
+        let json = BridgeUtils.toJson(data)
+        var leftOffset : CGFloat = 0
+        var topOffset : CGFloat = 0
+        var rightOffset : CGFloat = 0
+        var bottomOffset : CGFloat = 0
+
+        if json["left"].float != nil
+        {
+            leftOffset = CGFloat(json["left"].floatValue)
+        }
+        if json["top"].float != nil
+        {
+            topOffset = CGFloat(json["top"].floatValue)
+        }
+        if json["right"].float != nil
+        {
+            rightOffset = CGFloat(json["right"].floatValue)
+        }
+        if json["bottom"].float != nil
+        {
+            bottomOffset = CGFloat(json["bottom"].floatValue)
+        }
+
+        chart.setExtraOffsets(left: leftOffset, top: topOffset, right: rightOffset, bottom: bottomOffset)
+    }
+
     func setDrawEntryLabels(_ enabled: Bool) {
         chart.drawEntryLabelsEnabled = enabled
     }
@@ -140,7 +178,7 @@ class RNPieChartView: RNChartViewBase {
 
     override func didSetProps(_ changedProps: [String]!) {
         super.didSetProps(changedProps)
-        
+
         let pieChartDataSet = chart.data?.dataSets[0] as? PieChartDataSet
 
         pieChartDataSet?.entryLabelColor = chart.entryLabelColor
