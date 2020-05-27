@@ -38,6 +38,6 @@ target 'Example' do
     pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
     pod 'RNCharts', :path => '../../'
 
-
+    
 
 end
