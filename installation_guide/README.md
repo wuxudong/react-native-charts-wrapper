@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 
 #### 1. update android/build.gradle, upgrade gradle tools version, add jitpack.io
 
-add `maven { url "https://jitpack.io" }` under allprojects -> repositories if it is absent, IT IS USED BY MPAndroidChart
+add `maven { url "https://jitpack.io" }` as **the last entry** under allprojects -> repositories if it is absent, IT IS USED BY MPAndroidChart
 
 make sure compileSdkVersion >= 28
 
