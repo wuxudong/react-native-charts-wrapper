@@ -256,9 +256,6 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
             axis.setPosition(XAxisPosition.valueOf(propMap.getString("position")));
         }
-        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
-            axis.setYOffset((float)(propMap.getDouble("yOffset")));
-        }
 
     }
 
@@ -359,6 +356,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
             axis.setTypeface(TypefaceUtils.getTypeface(chart, propMap));
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
+            axis.setYOffset((float)(propMap.getDouble("yOffset")));
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "gridColor")) {
             axis.setGridColor(propMap.getInt("gridColor"));
