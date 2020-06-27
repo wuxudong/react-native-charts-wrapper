@@ -1,22 +1,16 @@
-import React, {Component} from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import "react-native-gesture-handler";
+import React, {Component} from "react";
+import {AppRegistry} from "react-native";
+import { enableScreens } from 'react-native-screens';
+import ChartsListScreen from "./app/ChartsListScreen";
 
-import ChartsListScreen from './app/ChartsListScreen';
+enableScreens();
 
-class Example extends React.Component {
-  render() {
-    return (
+const Example = () => (
+  <ChartsListScreen>
+  </ChartsListScreen>
+)
 
-      <ChartsListScreen>
-      </ChartsListScreen>
-    );
-  }
-}
 
 export default Example;
 

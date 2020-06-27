@@ -2,29 +2,40 @@
   "name": "Example",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-    "start": "react-native start",
+  "scripts": {    
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h && rm -rf node_modules/react-native-charts-wrapper/Example"
+    "start": "react-native start",
+    "test": "jtest",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.7.5",
+    "@react-navigation/stack": "^5.9.2",
+    "react": "^16.13.1",
+    "react-native": "^0.63.3",
+    "react-native-gesture-handler": "^1.8.0",
+    "react-native-reanimated": "^1.13.1",
+    "react-native-safe-area-context": "^3.1.8",
+    "react-native-screens": "^2.11.0",
+    
+
     "immutability-helper": "2.8.1",
     "lodash": "4.17.11",
     "moment": "^2.22.2",
-    "react": "^16.13.1",
-    "react-native": "^0.62.0",
-    "react-native-charts-wrapper": "file:../",
-    "react-native-gesture-handler": "^1.6.1",
-    "react-native-screens": "^2.8.0",
-    "react-navigation": "^4.3.7",
-    "react-navigation-stack": "^1.9.3"
+    "react-native-charts-wrapper": "file:../"
+
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/runtime": "^7.4.3",
-    "metro-react-native-babel-preset": "^0.53.1"
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.5.1",
+    "jest": "^25.1.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1"
   },
   "jest": {
     "preset": "react-native"

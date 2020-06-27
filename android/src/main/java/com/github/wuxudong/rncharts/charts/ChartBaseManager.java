@@ -17,6 +17,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.data.Entry;
@@ -272,26 +273,29 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
 
         String markerType = propMap.hasKey("markerType") ? propMap.getString("markerType") : "";
+
+        MarkerView markerView = null;
         switch(markerType) {
             case "circle":
-                setCircleMarker(chart);
+                markerView = circleMarker(chart);
+
                 break;
             default:
-                setRectangleMarker(chart, propMap);
+                markerView = rectangleMarker(chart, propMap);
         }
+
+        markerView.setChartView(chart);
+        chart.setMarker(markerView);
     }
 
-    private void setRectangleMarker(Chart chart, ReadableMap propMap) {
+    private RNRectangleMarkerView rectangleMarker(Chart chart, ReadableMap propMap) {
         RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
         setMarkerParams(marker, propMap);
-        marker.setChartView(chart);
-        chart.setMarker(marker);
+        return marker;
     }
 
-    private void setCircleMarker(Chart chart) {
-        RNCircleMarkerView marker = new RNCircleMarkerView(chart.getContext());
-        marker.setChartView(chart);
-        chart.setMarker(marker);
+    private RNCircleMarkerView circleMarker(Chart chart) {
+        return new RNCircleMarkerView(chart.getContext());
     }
 
     private void setMarkerParams(RNRectangleMarkerView marker, ReadableMap propMap) {
@@ -328,10 +332,10 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     alignment = View.TEXT_ALIGNMENT_TEXT_END;
                     break;
             }
-            marker.getTvContent().setTextAlignment(alignment);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                marker.getTvContent().setTextAlignment(alignment);
+            }
         }
-
-        chart.setMarker(marker);
     }
 
     /**
@@ -492,7 +496,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                 Locale locale = Locale.getDefault();
 
                 if (BridgeUtils.validate(propMap, ReadableType.String, "locale")) {
-                    locale = Locale.forLanguageTag(propMap.getString("locale"));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        locale = Locale.forLanguageTag(propMap.getString("locale"));
+                    }
                 }
 
                 axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));
