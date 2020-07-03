@@ -329,7 +329,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             marker.getTvContent().setTextAlignment(alignment);
         }
 
-        chart.setMarker(marker);
+        // chart.setMarker(marker);
     }
 
     /**
