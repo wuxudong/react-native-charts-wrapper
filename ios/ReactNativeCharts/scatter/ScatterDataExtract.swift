@@ -72,14 +72,14 @@ class ScatterDataExtract : DataExtract {
                     let bundle = icon["bundle"];
                     
                     let uiImage = RCTConvert.uiImage(bundle.dictionaryObject);
-                    let width = CGFloat(icon["width"].numberValue)/4;
-                    let height = CGFloat(icon["height"].numberValue)/4;
+                    let width = CGFloat(icon["width"].numberValue);
+                    let height = CGFloat(icon["height"].numberValue);
                     
                     if let image = uiImage {
                         let realIconImage = resizeImage(image: image, width: width, height: height);
-                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: realIconImage);
+                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: realIconImage, data: dict as AnyObject?);
                     } else {
-                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: uiImage);
+                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: uiImage, data: dict as AnyObject?);
                     }
                     
                     
@@ -114,15 +114,16 @@ class ScatterDataExtract : DataExtract {
             newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
         
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        if #available(iOS 10.0, *) {
+            let renderer = UIGraphicsImageRenderer(size: newSize)
+            return renderer.image { (context) in
+                image.draw(in: CGRect(origin: .zero, size: newSize))
+            }
+        } else {
+            return image
+        }
         
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
         
-        return newImage!
     }
 }
