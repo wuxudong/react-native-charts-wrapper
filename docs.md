@@ -160,9 +160,10 @@
 
 #### _BarLineChartBase props plus props listed below_.
 
-| Prop   | Type                     | Default | Note |
-| ------ | ------------------------ | ------- | ---- |
-| `data` | `DataTypes.combinedData` |         |      |
+| Prop        | Type                                                 | Default | Note |
+| ------      | ---------------------------------------------------- | ------- | ---- |
+| `data`      | `DataTypes.combinedData`                             |         |      |
+| `drawOrder` | `array with one of: ['SCATTER', 'BAR', 'LINE']`      |         |      |
 
 ## HorizontalBarChart
 
