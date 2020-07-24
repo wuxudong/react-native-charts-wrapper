@@ -95,13 +95,28 @@ index will used as x.
 check Example->TimeSeriesLineChart for details
 
 
-## Callback
+## Supported Callbacks
 
-**Support value selection callBack: onSelect**
+**onSelect**
 
-you can do whatever you want, even pop your own modal, or jump to another page.
+Triggered when a chart value is selected. The event passed back will include the coordinates of the touch as well as the data (including marker label) selected.
 
-**Support gesture callBack: onChange**
+**onChange**
+
+Triggered for various supported events on each platform. Due to the different nature of gesture handling on each platform as well as the different implementations of the underlying chart libraries, the same events are not supported on every platform. For full details on the supported events, see the table below:
+
+| Event Name | Description | iOS | Android |
+| --------------- | -------- | ------- | ---- |
+| `chartScaled`       | When a chart is scaled/zoomed via a pinch zoom gesture. | ✅ | ✅ |
+| `chartTranslated`   | When a chart is moved/translated via a drag gesture. | ✅ | ✅ |
+| `chartPanEnd`       | When a chart pan gesture ends. | ✅ | ❌ |
+| `chartGestureStart` | When a chart gesture starts. | ❌ | ✅ |
+| `chartGestureEnd`   | When a chart gesture ends. | ❌ | ✅ |
+| `chartLongPress`    | When a chart is long pressed. | ❌ | ✅ |
+| `chartSingleTap`    | When a chart is single tapped. | ❌ | ✅ |
+| `chartFling`        | When a chart recieves a fling gesture. | ❌ | ✅ |
+| `doubleTapped`      | When a chart is double tapped | ❌ | ✅ |
+
 
 check Example->MultipleChart for details.
 

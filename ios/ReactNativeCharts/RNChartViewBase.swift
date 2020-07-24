@@ -498,6 +498,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         sendEvent("chartTranslated")
     }
 
+    @objc public func chartViewDidEndPanning(_ chartView: ChartViewBase) {
+        sendEvent("chartPanEnd")
+    }
+
     func sendEvent(_ action:String) {
         var dict = [AnyHashable: Any]()
 
