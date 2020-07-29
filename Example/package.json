@@ -10,20 +10,20 @@
     "postinstall": "sed -i '' 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h && rm -rf node_modules/react-native-charts-wrapper/Example"
   },
   "dependencies": {
-    "immutability-helper": "2.8.1",
-    "lodash": "4.17.11",
-    "moment": "^2.22.2",
-    "react": "^16.9.0",
-    "react-native": "^0.61.1",
+    "immutability-helper": "3.1.1",
+    "lodash": "4.17.19",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-native": "^0.63.2",
     "react-native-charts-wrapper": "file:../",
-    "react-native-gesture-handler": "^1.4.1",
-    "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.9.3"
+    "react-native-gesture-handler": "^1.7.0",
+    "react-navigation": "^4.4.0",
+    "react-navigation-stack": "^2.8.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/runtime": "^7.4.3",
-    "metro-react-native-babel-preset": "^0.53.1"
+    "@babel/core": "^7.10.5",
+    "@babel/runtime": "^7.10.5",
+    "metro-react-native-babel-preset": "^0.61.0"
   },
   "jest": {
     "preset": "react-native"
