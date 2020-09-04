@@ -191,6 +191,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         chart.setNoDataText(noDataText);
     }
 
+    @ReactProp(name = "noDataTextColor")
+    public void setNoDataTextColor(Chart chart, Integer color) {
+        chart.setNoDataTextColor(color);
+    }
+
     @ReactProp(name = "touchEnabled")
     public void setTouchEnabled(Chart chart, boolean enabled) {
         chart.setTouchEnabled(enabled);
