@@ -238,5 +238,19 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         return barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.maxX, y:contentRect.minY), axis: axis).y - barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.minX, y:contentRect.maxY), axis: axis).y
     }
+
+    func addEntries(_ data: NSArray) {
+        for d in data {
+            let json = BridgeUtils.toJson(d as! NSDictionary);
+            let index = json["index"].int!;
+            let entries = dataExtract.createEntries(json["values"].array!)
+            let dataSet = barLineChart.data!.getDataSetByIndex(index)
+            for e in entries {
+                dataSet!.addEntry(e)
+            }
+        }
+        barLineChart.data!.notifyDataChanged()
+        barLineChart.notifyDataSetChanged()
+    }
     
 }
