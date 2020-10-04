@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "immutability-helper": "2.8.1",
-    "lodash": "4.17.11",
+    "lodash": "4.17.19",
     "moment": "^2.22.2",
     "react": "^16.13.1",
     "react-native": "^0.62.0",
