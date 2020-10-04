@@ -123,7 +123,9 @@ class ChartDataSetConfigUtils: NSObject {
                 angle = fillGradient["angle"]!.doubleValue
             }
 
-            dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: CGFloat(angle))
+            if (gradient != nil) {
+              dataSet.fill = Fill.fillWithLinearGradient(gradient!, angle: CGFloat(angle));
+            }
         } else if config["fillColor"].int != nil {
             dataSet.fillColor = RCTConvert.uiColor(config["fillColor"].intValue);
         }
