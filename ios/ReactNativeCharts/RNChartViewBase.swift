@@ -245,10 +245,6 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         if json["position"].string != nil {
             xAxis.labelPosition = BridgeUtils.parseXAxisLabelPosition(json["position"].stringValue)
         }
-
-        if json["yOffset"].number != nil {
-            xAxis.yOffset = CGFloat(truncating: json["yOffset"].numberValue)
-        }
     }
 
     func setCommonAxisConfig(_ axis: AxisBase, config: JSON) {
@@ -281,6 +277,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
 
         if config["textSize"].float != nil {
             axis.labelFont = axis.labelFont.withSize(CGFloat(config["textSize"].floatValue))
+        }
+
+        if config["yOffset"].number != nil {
+            axis.yOffset = CGFloat(truncating: config["yOffset"].numberValue)
         }
 
         if config["gridColor"].int != nil {

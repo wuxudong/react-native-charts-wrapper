@@ -59,6 +59,7 @@
 | `centerAxisLabels`         | `bool`                                                                                   |         | Centers the axis labels instead of drawing them at their original position. This is useful especially for grouped BarChart. |
 | `valueFormatter`           | one of `'largeValue', 'percent', 'date', string, [string]`                               |         |                                                                                                                             |
 | `valueFormatterPattern`    | `string`                                                                                 |         |
+| `yOffset`                  | `number`                                                                                 |    0    | adjust vertical label position
 
 ## xAxis
 
