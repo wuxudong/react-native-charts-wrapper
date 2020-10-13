@@ -16,6 +16,10 @@ class FontUtils {
       font = RCTFont.update(font ?? nil, withFamily: json["fontFamily"].string)
     }
     
+    if json["valueTextSize"].number != nil {
+      font = RCTFont.update(font ?? nil, withSize: json["valueTextSize"].number)
+    }
+
     if json["fontStyle"].string != nil {
       font = RCTFont.update(font ?? nil, withStyle: json["fontStyle"].string)
     }
