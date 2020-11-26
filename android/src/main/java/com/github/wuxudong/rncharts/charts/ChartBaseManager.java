@@ -417,9 +417,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     if (BridgeUtils.validate(limitLineMap, ReadableType.String, "label")) {
                         limitLine.setLabel(limitLineMap.getString("label"));
                     }
+
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineColor")) {
                         limitLine.setLineColor(limitLineMap.getInt("lineColor"));
                     }
+
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineWidth")) {
                         limitLine.setLineWidth((float) limitLineMap.getDouble("lineWidth"));
                     }
@@ -427,12 +429,24 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueTextColor")) {
                         limitLine.setTextColor(limitLineMap.getInt("valueTextColor"));
                     }
+
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueTextSize")) {
+                        limitLine.setTextSize((float) limitLineMap.getDouble("valueTextSize"));
+                    }
+
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.String, "fontFamily")) {
+                        limitLine.setTypeface(TypefaceUtils.getTypeface(chart, limitLineMap));
+                    }
+
+                    // Deprecated
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueFont")) {
                         limitLine.setTextSize(limitLineMap.getInt("valueFont"));
                     }
+
                     if (BridgeUtils.validate(limitLineMap, ReadableType.String, "labelPosition")) {
                         limitLine.setLabelPosition(LimitLine.LimitLabelPosition.valueOf(limitLineMap.getString("labelPosition")));
                     }
+
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "lineDashPhase")
                             && BridgeUtils.validate(limitLineMap, ReadableType.Array, "lineDashLengths")) {
                         if (limitLineMap.getArray("lineDashLengths").size() > 1) {
