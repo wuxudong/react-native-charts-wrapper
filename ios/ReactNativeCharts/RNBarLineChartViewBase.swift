@@ -26,6 +26,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         if json["left"].exists() {
             let leftYAxis = barLineChart.leftAxis
+            barLineChart.leftYAxisRenderer = CustomYAxisRenderer(viewPortHandler: barLineChart.viewPortHandler, yAxis: leftYAxis, transformer: barLineChart.getTransformer(forAxis: YAxis.AxisDependency.left), config: json["left"])
             setCommonAxisConfig(leftYAxis, config: json["left"]);
             setYAxisConfig(leftYAxis, config: json["left"]);
         }
@@ -33,6 +34,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         if json["right"].exists() {
             let rightAxis = barLineChart.rightAxis
+            barLineChart.rightYAxisRenderer = CustomYAxisRenderer(viewPortHandler: barLineChart.viewPortHandler, yAxis: rightAxis, transformer: barLineChart.getTransformer(forAxis: YAxis.AxisDependency.right), config: json["right"])
             setCommonAxisConfig(rightAxis, config: json["right"]);
             setYAxisConfig(rightAxis, config: json["right"]);
         }

@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.renderer.YAxisRenderer;
 import com.github.mikephil.charting.utils.MPPointD;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Transformer;
@@ -58,11 +59,15 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
         if (BridgeUtils.validate(propMap, ReadableType.Map, "left")) {
             YAxis leftYAxis = barLineChart.getAxisLeft();
+            YAxisRenderer leftYAxisRenderer = new CustomYAxisRenderer(barLineChart.getViewPortHandler(), leftYAxis, barLineChart.getTransformer(YAxis.AxisDependency.LEFT), propMap.getMap("left"));
+            barLineChart.setRendererLeftYAxis(leftYAxisRenderer);
             setCommonAxisConfig(chart, leftYAxis, propMap.getMap("left"));
             setYAxisConfig(leftYAxis, propMap.getMap("left"));
         }
         if (BridgeUtils.validate(propMap, ReadableType.Map, "right")) {
             YAxis rightYAxis = barLineChart.getAxisRight();
+            YAxisRenderer rightYAxisRenderer = new CustomYAxisRenderer(barLineChart.getViewPortHandler(), rightYAxis, barLineChart.getTransformer(YAxis.AxisDependency.RIGHT), propMap.getMap("right"));
+            barLineChart.setRendererRightYAxis(rightYAxisRenderer);
             setCommonAxisConfig(chart, rightYAxis, propMap.getMap("right"));
             setYAxisConfig(rightYAxis, propMap.getMap("right"));
         }
