@@ -54,4 +54,7 @@ class RNScatterChartManager: RCTViewManager, RNBarLineChartBaseManager {
     (self as RNBarLineChartBaseManager)._addEntries(reactTag, data: data)
   }
 
+  func replaceEntries(_ reactTag: NSNumber, data: NSArray) {
+    (self as RNBarLineChartBaseManager)._replaceEntries(reactTag, data: data)
+  }
 }

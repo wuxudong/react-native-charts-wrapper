@@ -292,6 +292,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "highlights", HIGHLIGHTS,
                 "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
                 "addEntries", ADD_ENTRIES);
+        map.put("replaceEntries", REPLACE_ENTRIES);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -337,6 +338,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case ADD_ENTRIES:
                 addEntries(root, args.getArray(0));
                 return;
+
+            case REPLACE_ENTRIES:
+                replaceEntries(root, args.getArray(0));
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
@@ -346,6 +351,22 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         for (int i = 0; i < arr.size(); i++) {
             ReadableMap map = arr.getMap(i);
             IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
+
+            ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
+            for (Entry entry : entries) {
+                dataSetByIndex.addEntry(entry);
+            }
+        }
+        root.getData().notifyDataChanged();
+        root.notifyDataSetChanged();
+        root.invalidate();
+    }
+
+    private void replaceEntries(T root, ReadableArray arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            ReadableMap map = arr.getMap(i);
+            IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
+            dataSetByIndex.clear();
 
             ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
             for (Entry entry : entries) {
