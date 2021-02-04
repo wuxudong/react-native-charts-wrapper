@@ -77,7 +77,7 @@ extension RNBarLineChartBaseManager {
   func _replaceDataSets(_ reactTag: NSNumber, data: NSArray) {
     _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
       let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
-      view._replaceDataSets(data);
+      view.replaceDataSets(data);
     }
   }
 }
