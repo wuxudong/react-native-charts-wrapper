@@ -24,7 +24,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     }
 
     @Override
-    IDataSet<BarEntry> createDataSet(ArrayList<BarEntry> entries, String label) {
+    public IDataSet<BarEntry> createDataSet(ArrayList<BarEntry> entries, String label) {
         return new BarDataSet(entries, label);
     }
 
@@ -62,7 +62,7 @@ public class BarDataExtract extends DataExtract<BarData, BarEntry> {
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<BarEntry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<BarEntry> dataSet, ReadableMap config) {
         BarDataSet barDataSet = (BarDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, barDataSet, config);

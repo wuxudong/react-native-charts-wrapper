@@ -27,12 +27,12 @@ public class CandleDataExtract extends DataExtract<CandleData, CandleEntry> {
     }
 
     @Override
-    IDataSet<CandleEntry> createDataSet(ArrayList<CandleEntry> entries, String label) {
+    public IDataSet<CandleEntry> createDataSet(ArrayList<CandleEntry> entries, String label) {
         return new CandleDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<CandleEntry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<CandleEntry> dataSet, ReadableMap config) {
         CandleDataSet candleDataSet = (CandleDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, candleDataSet, config);

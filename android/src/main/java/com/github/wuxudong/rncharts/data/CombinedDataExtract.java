@@ -54,12 +54,12 @@ public class CombinedDataExtract extends DataExtract<CombinedData, Entry> {
     }
 
     @Override
-    IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
+    public IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
         throw new UnsupportedOperationException();
     }
 
