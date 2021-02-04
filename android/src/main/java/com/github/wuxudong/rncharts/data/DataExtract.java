@@ -57,9 +57,9 @@ public abstract class DataExtract<D extends ChartData, U extends Entry> {
     void dataConfig(D data, ReadableMap config) {
     }
 
-    abstract IDataSet<U> createDataSet(ArrayList<U> entries, String label);
+    public abstract IDataSet<U> createDataSet(ArrayList<U> entries, String label);
 
-    abstract void dataSetConfig(Chart chart, IDataSet<U> dataSet, ReadableMap config);
+    public abstract void dataSetConfig(Chart chart, IDataSet<U> dataSet, ReadableMap config);
 
     public ArrayList<U> createEntries(ReadableArray yValues) {
         ArrayList<U> entries = new ArrayList<>(yValues.size());

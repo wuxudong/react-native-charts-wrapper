@@ -253,16 +253,17 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         barLineChart.notifyDataSetChanged()
     }
 
-    func replaceEntries(_ data: NSArray) {
+    func replaceDataSets(_ data: NSArray) {
         for d in data {
-            let json = BridgeUtils.toJson(d as! NSDictionary);
-            let index = json["index"].int!;
-            let entries = dataExtract.createEntries(json["values"].array!)
-            let dataSet = barLineChart.data!.getDataSetByIndex(index)
-            dataSet!.clear()
-            for e in entries {
-                dataSet!.addEntry(e)
-            }
+            // let json = BridgeUtils.toJson(d as! NSDictionary);
+            // let index = json["index"].int!;
+            // let entries = dataExtract.createEntries(json["values"].array!)
+            // let dataSet = barLineChart.data!.getDataSetByIndex(index)
+            // dataSet!.clear()
+            // for e in entries {
+            //     dataSet!.addEntry(e)
+            // }
+            // TODO
         }
         barLineChart.data!.notifyDataChanged()
         barLineChart.notifyDataSetChanged()

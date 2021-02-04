@@ -74,10 +74,10 @@ extension RNBarLineChartBaseManager {
     }
   }
 
-  func _replaceEntries(_ reactTag: NSNumber, data: NSArray) {
+  func _replaceDataSets(_ reactTag: NSNumber, data: NSArray) {
     _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
       let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
-      view._replaceEntries(data);
+      view._replaceDataSets(data);
     }
   }
 }

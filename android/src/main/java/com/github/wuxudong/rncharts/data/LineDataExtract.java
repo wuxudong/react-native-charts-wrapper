@@ -25,12 +25,12 @@ public class LineDataExtract extends DataExtract<LineData, Entry> {
 
 
     @Override
-    IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
+    public IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
         return new LineDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
         LineDataSet lineDataSet = (LineDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, lineDataSet, config);

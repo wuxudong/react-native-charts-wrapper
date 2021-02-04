@@ -2,7 +2,6 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.graphics.RectF;
 
-import android.util.Log;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -292,7 +291,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "highlights", HIGHLIGHTS,
                 "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
                 "addEntries", ADD_ENTRIES);
-        map.put("replaceEntries", REPLACE_ENTRIES);
+        map.put("replaceDataSets", REPLACE_DATA_SETS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -339,8 +338,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 addEntries(root, args.getArray(0));
                 return;
 
-            case REPLACE_ENTRIES:
-                replaceEntries(root, args.getArray(0));
+            case REPLACE_DATA_SETS:
+                replaceDataSets(root, args.getArray(0));
                 return;
         }
 
@@ -352,6 +351,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             ReadableMap map = arr.getMap(i);
             IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
 
+            if (map.hasKey("config")) {
+                getDataExtract().dataSetConfig(root, dataSetByIndex, map.getMap("config"));
+            }
+
             ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
             for (Entry entry : entries) {
                 dataSetByIndex.addEntry(entry);
@@ -362,16 +365,24 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
         root.invalidate();
     }
 
-    private void replaceEntries(T root, ReadableArray arr) {
+    private void replaceDataSets(T root, ReadableArray arr) {
         for (int i = 0; i < arr.size(); i++) {
             ReadableMap map = arr.getMap(i);
             IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
-            dataSetByIndex.clear();
 
-            ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
-            for (Entry entry : entries) {
-                dataSetByIndex.addEntry(entry);
+            ReadableMap dataSetReadableMap = map.getMap("dataSet");
+
+            ReadableArray values = dataSetReadableMap.getArray("values");
+            String label = dataSetReadableMap.getString("label");
+
+            ArrayList<U> entries = getDataExtract().createEntries(values);
+            IDataSet<U> dataSet = getDataExtract().createDataSet(entries, label);
+            if (BridgeUtils.validate(dataSetReadableMap, ReadableType.Map, "config")) {
+                getDataExtract().dataSetConfig(root, dataSet, dataSetReadableMap.getMap("config"));
             }
+
+            root.getData().removeDataSet(dataSetByIndex);
+            root.getData().getDataSets().add(map.getInt("index"), dataSet);
         }
         root.getData().notifyDataChanged();
         root.notifyDataSetChanged();
