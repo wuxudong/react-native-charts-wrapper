@@ -22,7 +22,7 @@
     
 
     "immutability-helper": "2.8.1",
-    "lodash": "4.17.11",
+    "lodash": "4.17.21",
     "moment": "^2.22.2",
     "react-native-charts-wrapper": "file:../"
 
