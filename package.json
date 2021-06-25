@@ -1,10 +1,10 @@
 {
-  "name": "react-native-charts-wrapper",
+  "name": "@hortau/react-native-charts-wrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wuxudong/react-native-charts-wrapper.git"
+    "url": "https://github.com/hortau/react-native-charts-wrapper.git"
   },
-  "version": "0.5.7",
+  "version": "0.6.0",
   "description": "A react-native charts support both android and iOS.",
   "author": "wuxudong",
   "license": "MIT",

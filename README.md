@@ -10,10 +10,10 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0),
 
 
 ### ANDROID 
-![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/Android%20ScreenShot.png)
+![](https://raw.githubusercontent.com/hortau/react-native-charts-wrapper/master/screenshot/Android%20ScreenShot.png)
 
 ### IOS
-![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/IOS%20ScreenShot.png)
+![](https://raw.githubusercontent.com/hortau/react-native-charts-wrapper/master/screenshot/IOS%20ScreenShot.png)
 
 ## Supported Chart Type
 
@@ -28,7 +28,7 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0),
 
 ## Setup
 
-A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/installation_guide/README.md)
+A step by step tutorial to set up a new project can be found [here](https://github.com/hortau/react-native-charts-wrapper/blob/master/installation_guide/README.md)
 
 
 ## Usage
