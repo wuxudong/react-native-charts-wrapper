@@ -18,6 +18,10 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
 
     open var onChange:RCTBubblingEventBlock?
 
+    open var onPress:RCTBubblingEventBlock?
+
+    open var onPressOut:RCTBubblingEventBlock?
+
     private var group: String?
 
     private  var identifier: String?
