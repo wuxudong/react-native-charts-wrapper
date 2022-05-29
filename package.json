@@ -19,11 +19,16 @@
     "Charts"
   ],
   "files": [
-    "android",
-    "ios",
+    "android/src",
+    "android/build.gradle",
+    "android/gradle.properties",    
+    "ios/**/*.h",
+    "ios/**/*.m",
+    "ios/**/*.swift",    
     "lib",
     "index.js",
-    "RNCharts.podspec"
+    "react-native-charts-wrapper.podspec",
+    "ios/ReactNativeCharts/ReactNativeCharts.xcodeproj/project.pbxproj"
   ],
   "dependencies": {
     "prop-types": "15.7.2",
