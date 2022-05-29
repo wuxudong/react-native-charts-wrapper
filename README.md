@@ -28,7 +28,67 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0),
 
 ## Setup
 
-A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/installation_guide/README.md)
+
+### expo
+1. expo init demo
+2. cd demo
+3. expo install react-native-charts-wrapper
+4. eas build 
+
+### react-native
+
+
+-  npx react-native init demo 
+-  cd demo 
+-  npm install --save react-native-charts-wrapper
+-  cd ios && pod install 
+-  npx react-native run-ios/run-android
+
+
+### update App.js 
+
+
+ 
+```
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View, processColor
+} from 'react-native';
+
+import {LineChart} from 'react-native-charts-wrapper';
+
+export default class App extends React.Component {
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <View style={styles.container}>
+          <LineChart style={styles.chart}
+            data={{dataSets:[{label: "demo", values: [{y: 1}, {y: 2}, {y: 1}]}]}}
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  chart: {
+    flex: 1
+  }
+});
+
+```
+
+![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/iOS.png)
+
 
 
 ## Usage

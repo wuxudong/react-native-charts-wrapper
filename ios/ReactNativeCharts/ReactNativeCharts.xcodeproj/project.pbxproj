@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9DAEF87F284355CB0018D713 /* IndexValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF869284355CB0018D713 /* IndexValueFormatter.swift */; };
+		9DAEF880284355CB0018D713 /* CustomChartDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF86C284355CB0018D713 /* CustomChartDateFormatter.swift */; };
+		9DAEF881284355CB0018D713 /* RNBarLineChartBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF86E284355CB0018D713 /* RNBarLineChartBaseManager.swift */; };
+		9DAEF882284355CB0018D713 /* CircleMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF86F284355CB0018D713 /* CircleMarker.swift */; };
+		9DAEF883284355CB0018D713 /* RNYAxisChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF871284355CB0018D713 /* RNYAxisChartViewBase.swift */; };
+		9DAEF884284355CB0018D713 /* ConfigurableMinimumLinePositionFillFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF872284355CB0018D713 /* ConfigurableMinimumLinePositionFillFormatter.swift */; };
+		9DAEF885284355CB0018D713 /* RNChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF877284355CB0018D713 /* RNChartViewBase.swift */; };
+		9DAEF886284355CB0018D713 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF879284355CB0018D713 /* BalloonMarker.swift */; };
+		9DAEF887284355CB0018D713 /* ChartGroupHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF87A284355CB0018D713 /* ChartGroupHolder.swift */; };
+		9DAEF888284355CB0018D713 /* DataExtract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF87C284355CB0018D713 /* DataExtract.swift */; };
+		9DAEF889284355CB0018D713 /* RNBarLineChartViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAEF87E284355CB0018D713 /* RNBarLineChartViewBase.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9DAEF85A284355760018D713 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9DAEF85C284355760018D713 /* libReactNativeCharts.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReactNativeCharts.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DAEF866284355CB0018D713 /* RNYAxisChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNYAxisChartManagerBridge.h; sourceTree = SOURCE_ROOT; };
+		9DAEF867284355CB0018D713 /* bar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bar; sourceTree = SOURCE_ROOT; };
+		9DAEF868284355CB0018D713 /* utils */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = utils; sourceTree = SOURCE_ROOT; };
+		9DAEF869284355CB0018D713 /* IndexValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexValueFormatter.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF86A284355CB0018D713 /* scatter */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scatter; sourceTree = SOURCE_ROOT; };
+		9DAEF86B284355CB0018D713 /* bubble */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bubble; sourceTree = SOURCE_ROOT; };
+		9DAEF86C284355CB0018D713 /* CustomChartDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomChartDateFormatter.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF86D284355CB0018D713 /* RNBarLineChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBarLineChartManagerBridge.h; sourceTree = SOURCE_ROOT; };
+		9DAEF86E284355CB0018D713 /* RNBarLineChartBaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNBarLineChartBaseManager.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF86F284355CB0018D713 /* CircleMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleMarker.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF870284355CB0018D713 /* RNCharts-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCharts-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		9DAEF871284355CB0018D713 /* RNYAxisChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNYAxisChartViewBase.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF872284355CB0018D713 /* ConfigurableMinimumLinePositionFillFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableMinimumLinePositionFillFormatter.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF873284355CB0018D713 /* candlestick */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = candlestick; sourceTree = SOURCE_ROOT; };
+		9DAEF874284355CB0018D713 /* radar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = radar; sourceTree = SOURCE_ROOT; };
+		9DAEF875284355CB0018D713 /* line */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = line; sourceTree = SOURCE_ROOT; };
+		9DAEF876284355CB0018D713 /* combine */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = combine; sourceTree = SOURCE_ROOT; };
+		9DAEF877284355CB0018D713 /* RNChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNChartViewBase.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF878284355CB0018D713 /* formatters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = formatters; sourceTree = SOURCE_ROOT; };
+		9DAEF879284355CB0018D713 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF87A284355CB0018D713 /* ChartGroupHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartGroupHolder.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF87B284355CB0018D713 /* RNChartManagerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNChartManagerBridge.h; sourceTree = SOURCE_ROOT; };
+		9DAEF87C284355CB0018D713 /* DataExtract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtract.swift; sourceTree = SOURCE_ROOT; };
+		9DAEF87D284355CB0018D713 /* pie */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pie; sourceTree = SOURCE_ROOT; };
+		9DAEF87E284355CB0018D713 /* RNBarLineChartViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNBarLineChartViewBase.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9DAEF859284355760018D713 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9DAEF853284355760018D713 = {
+			isa = PBXGroup;
+			children = (
+				9DAEF85E284355760018D713 /* ReactNativeCharts */,
+				9DAEF85D284355760018D713 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9DAEF85D284355760018D713 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9DAEF85C284355760018D713 /* libReactNativeCharts.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DAEF85E284355760018D713 /* ReactNativeCharts */ = {
+			isa = PBXGroup;
+			children = (
+				9DAEF879284355CB0018D713 /* BalloonMarker.swift */,
+				9DAEF867284355CB0018D713 /* bar */,
+				9DAEF86B284355CB0018D713 /* bubble */,
+				9DAEF873284355CB0018D713 /* candlestick */,
+				9DAEF87A284355CB0018D713 /* ChartGroupHolder.swift */,
+				9DAEF86F284355CB0018D713 /* CircleMarker.swift */,
+				9DAEF876284355CB0018D713 /* combine */,
+				9DAEF872284355CB0018D713 /* ConfigurableMinimumLinePositionFillFormatter.swift */,
+				9DAEF86C284355CB0018D713 /* CustomChartDateFormatter.swift */,
+				9DAEF87C284355CB0018D713 /* DataExtract.swift */,
+				9DAEF878284355CB0018D713 /* formatters */,
+				9DAEF869284355CB0018D713 /* IndexValueFormatter.swift */,
+				9DAEF875284355CB0018D713 /* line */,
+				9DAEF87D284355CB0018D713 /* pie */,
+				9DAEF874284355CB0018D713 /* radar */,
+				9DAEF86E284355CB0018D713 /* RNBarLineChartBaseManager.swift */,
+				9DAEF86D284355CB0018D713 /* RNBarLineChartManagerBridge.h */,
+				9DAEF87E284355CB0018D713 /* RNBarLineChartViewBase.swift */,
+				9DAEF87B284355CB0018D713 /* RNChartManagerBridge.h */,
+				9DAEF870284355CB0018D713 /* RNCharts-Bridging-Header.h */,
+				9DAEF877284355CB0018D713 /* RNChartViewBase.swift */,
+				9DAEF866284355CB0018D713 /* RNYAxisChartManagerBridge.h */,
+				9DAEF871284355CB0018D713 /* RNYAxisChartViewBase.swift */,
+				9DAEF86A284355CB0018D713 /* scatter */,
+				9DAEF868284355CB0018D713 /* utils */,
+			);
+			path = ReactNativeCharts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9DAEF85B284355760018D713 /* ReactNativeCharts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DAEF863284355760018D713 /* Build configuration list for PBXNativeTarget "ReactNativeCharts" */;
+			buildPhases = (
+				9DAEF858284355760018D713 /* Sources */,
+				9DAEF859284355760018D713 /* Frameworks */,
+				9DAEF85A284355760018D713 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReactNativeCharts;
+			productName = ReactNativeCharts;
+			productReference = 9DAEF85C284355760018D713 /* libReactNativeCharts.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9DAEF854284355760018D713 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					9DAEF85B284355760018D713 = {
+						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
+					};
+				};
+			};
+			buildConfigurationList = 9DAEF857284355760018D713 /* Build configuration list for PBXProject "ReactNativeCharts" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9DAEF853284355760018D713;
+			productRefGroup = 9DAEF85D284355760018D713 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9DAEF85B284355760018D713 /* ReactNativeCharts */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DAEF858284355760018D713 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DAEF881284355CB0018D713 /* RNBarLineChartBaseManager.swift in Sources */,
+				9DAEF882284355CB0018D713 /* CircleMarker.swift in Sources */,
+				9DAEF883284355CB0018D713 /* RNYAxisChartViewBase.swift in Sources */,
+				9DAEF880284355CB0018D713 /* CustomChartDateFormatter.swift in Sources */,
+				9DAEF884284355CB0018D713 /* ConfigurableMinimumLinePositionFillFormatter.swift in Sources */,
+				9DAEF888284355CB0018D713 /* DataExtract.swift in Sources */,
+				9DAEF885284355CB0018D713 /* RNChartViewBase.swift in Sources */,
+				9DAEF887284355CB0018D713 /* ChartGroupHolder.swift in Sources */,
+				9DAEF889284355CB0018D713 /* RNBarLineChartViewBase.swift in Sources */,
+				9DAEF87F284355CB0018D713 /* IndexValueFormatter.swift in Sources */,
+				9DAEF886284355CB0018D713 /* BalloonMarker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9DAEF861284355760018D713 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9DAEF862284355760018D713 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9DAEF864284355760018D713 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9DAEF865284355760018D713 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DAEF857284355760018D713 /* Build configuration list for PBXProject "ReactNativeCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DAEF861284355760018D713 /* Debug */,
+				9DAEF862284355760018D713 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DAEF863284355760018D713 /* Build configuration list for PBXNativeTarget "ReactNativeCharts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DAEF864284355760018D713 /* Debug */,
+				9DAEF865284355760018D713 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9DAEF854284355760018D713 /* Project object */;
+}
