@@ -1,5 +1,6 @@
 # Documentation
 
+## For complete properties list, please check files under lib/*
 
 ## Description (prop for all charts)
 
@@ -13,23 +14,27 @@
 
 ## Legend (prop for all charts)
 
-| Prop              | Type                                                          | Default | Note |
-| ----------------- | ------------------------------------------------------------- | ------- | ---- |
-| `enabled`         | `bool`                                                        |         |      |
-| `text`            | `string`                                                      |         |      |
-| `textColor`       | `number`                                                      |         |      |
-| `textSize`        | `number`                                                      |         |      |
-| `fontFamily`      | `string`                                                      |         |      |
-| `fontStyle`       | `number`                                                      |         |      |
-| `wordWrapEnabled` | `bool`                                                        |         |      |
-| `maxSizePercent`  | `number`                                                      |         |      |
-| `position`        | `number`                                                      |         |      |
-| `form`            | `string`                                                      |         |      |
-| `formSize`        | `number`                                                      |         |      |
-| `xEntrySpace`     | `bool`                                                        |         |      |
-| `yEntrySpace`     | `number`                                                      |         |      |
-| `formToTextSpace` | `number`                                                      |         |      |
-| `custom`          | `{`<br />`colors: [number],`<br />`labels: [string]`<br />`}` |         |      |
+| Prop                      | Type                                                          | Default | Note |
+| ------------------------- | ------------------------------------------------------------- | ------- | ---- |
+| `enabled`                 | `bool`                                                        |         |      |
+| `text`                    | `string`                                                      |         |      |
+| `textColor`               | `number`                                                      |         |      |
+| `textSize`                | `number`                                                      |         |      |
+| `fontFamily`              | `string`                                                      |         |      |
+| `fontStyle`               | `number`                                                      |         |      |
+| `wordWrapEnabled`         | `bool`                                                        |         |      |
+| `maxSizePercent`          | `number`                                                      |         |      |
+| `horizontalAlignment`     | one of `'LEFT', 'CENTER', 'RIGHT'`                            |         |      |
+| `verticalAlignment`       | one of `'TOP', 'CENTER', 'BOTTOM'`                            |         |      |
+| `orientation`             | one of `'HORIZONTAL', 'VERTICAL'`                             |         |      |
+| `drawInside`              | `bool`                                                        |         |      |
+| `direction`               | one of `LEFT_TO_RIGHT', 'RIGHT_TO_LEFT`                       |         |      |
+| `form`                    | `string`                                                      |         |      |
+| `formSize`                | `number`                                                      |         |      |
+| `xEntrySpace`             | `bool`                                                        |         |      |
+| `yEntrySpace`             | `number`                                                      |         |      |
+| `formToTextSpace`         | `number`                                                      |         |      |
+| `custom`                  | `{`<br />`colors: [number],`<br />`labels: [string]`<br />`}` |         |      |
 
 ## Common Props for xAxis and yAxis
 
