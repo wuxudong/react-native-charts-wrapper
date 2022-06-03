@@ -1,14 +1,14 @@
 import "react-native-gesture-handler";
 import React, {Component} from "react";
 import {AppRegistry} from "react-native";
-import { enableScreens } from 'react-native-screens';
+import {NavigationContainer} from "@react-navigation/native";
 import ChartsListScreen from "./app/ChartsListScreen";
 
-enableScreens();
-
 const Example = () => (
-  <ChartsListScreen>
-  </ChartsListScreen>
+  <NavigationContainer>
+    <ChartsListScreen>
+    </ChartsListScreen>
+  </NavigationContainer>
 )
 
 
