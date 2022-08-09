@@ -1,38 +1,27 @@
-import React from 'react';
-import {
-  Platform,
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
-
-import {createAppContainer, SafeAreaView} from 'react-navigation';
-import {createStackNavigator } from 'react-navigation-stack';
-
-import AxisLineChartScreen from './AxisLineChartScreen';
-import MultipleChartScreen from './MultipleChartScreen';
-import MovingWindowChartScreen from './MovingWindowChartScreen';
-import BarChartScreen from './BarChartScreen';
-import HorizontalBarChartScreen from './HorizontalBarChartScreen';
-import BubbleChartScreen from './BubbleChartScreen';
-import CandleStickChartScreen from './CandleStickChartScreen';
-import CombinedChartScreen from './CombinedChartScreen';
-import LineChartScreen from './LineChartScreen';
-import LineChartGradientScreen from './LineChartGradientScreen';
-import TimeSeriesLineChartScreen from './TimeSeriesLineChartScreen';
-import PieChartScreen from './PieChartScreen';
-import RadarChartScreen from './RadarChartScreen';
-import ScatterChartScreen from './ScatterChartScreen';
-import StackedBarChartScreen from './StackedBarChartScreen';
-import ZeroLineChartScreen from './ZeroLineChartScreen';
-import LiveUpdateChartScreen from './LiveUpdateChartScreen';
-import GroupBarChartScreen from './GroupBarChartScreen';
-import InfiniteScrollLineChartScreen from './InfiniteScrollLineChartScreen';
-import LinkageChartScreen from './LinkageChartScreen';
-import StockChartScreen from './StockChartScreen';
-
+import React, {createContext} from "react";
+import {ScrollView, TouchableOpacity, StyleSheet, View, Text} from "react-native";
+import {createStackNavigator} from "@react-navigation/stack";
+import AxisLineChartScreen from "./AxisLineChartScreen";
+import MultipleChartScreen from "./MultipleChartScreen";
+import MovingWindowChartScreen from "./MovingWindowChartScreen";
+import BarChartScreen from "./BarChartScreen";
+import HorizontalBarChartScreen from "./HorizontalBarChartScreen";
+import BubbleChartScreen from "./BubbleChartScreen";
+import CandleStickChartScreen from "./CandleStickChartScreen";
+import CombinedChartScreen from "./CombinedChartScreen";
+import LineChartScreen from "./LineChartScreen";
+import LineChartGradientScreen from "./LineChartGradientScreen";
+import TimeSeriesLineChartScreen from "./TimeSeriesLineChartScreen";
+import PieChartScreen from "./PieChartScreen";
+import RadarChartScreen from "./RadarChartScreen";
+import ScatterChartScreen from "./ScatterChartScreen";
+import StackedBarChartScreen from "./StackedBarChartScreen";
+import ZeroLineChartScreen from "./ZeroLineChartScreen";
+import LiveUpdateChartScreen from "./LiveUpdateChartScreen";
+import GroupBarChartScreen from "./GroupBarChartScreen";
+import InfiniteScrollLineChartScreen from "./InfiniteScrollLineChartScreen";
+import LinkageChartScreen from "./LinkageChartScreen";
+import StockChartScreen from "./StockChartScreen";
 
 const styles = StyleSheet.create({
   item: {
@@ -168,58 +157,49 @@ var ExampleRoutes = {
   },
 };
 
-const MainScreen = ({navigation}) => (
-
-  <ScrollView style={{ flex: 1 }} contentInsetAdjustmentBehavior="automatic">
+const Intro = ({navigation}) => (
+  <ScrollView style={{flex: 1}} contentInsetAdjustmentBehavior="automatic">
     {Object.keys(ExampleRoutes).map((routeName) => (
       <TouchableOpacity
         key={routeName}
         onPress={() => {
-          const { path, params, screen } = ExampleRoutes[routeName];
-          const { router } = screen;
-          const action = path && router.getActionForPathAndParams(path, params);
-          navigation.navigate(routeName, {}, action);
+          navigation.navigate(routeName);
         }}
       >
-        <SafeAreaView
-          style={styles.itemContainer}
-          forceInset={{ vertical: 'never' }}
-        >
-          <View style={styles.item}>
-            <Text style={styles.title}>{ExampleRoutes[routeName].name}</Text>
-            <Text style={styles.description}>
-              {ExampleRoutes[routeName].description}
-            </Text>
-          </View>
-        </SafeAreaView>
+        <View style={styles.item}>
+          <Text style={styles.title}>{ExampleRoutes[routeName].name}</Text>
+          <Text style={styles.description}>
+            {ExampleRoutes[routeName].description}
+          </Text>
+        </View>
       </TouchableOpacity>
     ))}
   </ScrollView>
+)
+
+const Stack = createStackNavigator();
+
+const MainScreen = () => (
+  <Stack.Navigator style={{flex: 1}}>
+    <Stack.Screen name="Intro" component={Intro}/>
+
+    {Object.keys(ExampleRoutes).map((routeName) => (
+      <Stack.Screen name={routeName} component={ExampleRoutes[routeName].screen}
+                    key={routeName}/>
+    ))}
+  </Stack.Navigator>  
 );
 
 MainScreen.navigationOptions = {
   title: 'Home',
 };
 
-const ChartsExplorer = createStackNavigator(
-  {
-    Index: {
-      screen: MainScreen,
-    },
-    ...ExampleRoutes,
+const Context = createContext();
 
-  },
-  {
-    initialRouteName: 'Index',
-    headerMode: 'screen',
-
-
-    /*
-   * Use modal on iOS because the card mode comes from the right,
-   * which conflicts with the drawer example gesture
-   */
-    mode: Platform.OS === 'ios' ? 'modal' : 'card',
-  },
+const ChartsExplorer = () => (
+  <Context.Provider value={{}}>
+    <MainScreen />
+  </Context.Provider>
 );
 
-export default createAppContainer(ChartsExplorer);
+export default ChartsExplorer;

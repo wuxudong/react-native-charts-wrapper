@@ -27,6 +27,7 @@ RCT_EXPORT_VIEW_PROPERTY(doubleTapToZoomEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(zoom, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(viewPortOffsets, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(extraOffsets, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(onYaxisMinMaxChange, RCTBubblingEventBlock) \
 RCT_EXTERN_METHOD(moveViewToX:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue) \
 RCT_EXTERN_METHOD(moveViewTo:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency) \
 RCT_EXTERN_METHOD(moveViewToAnimated:(nonnull NSNumber *)node xValue:(nonnull NSNumber *)xValue yValue:(nonnull NSNumber *)yValue axisDependency:(nonnull NSString *)axisDependency duration:(nonnull NSNumber *)duration) \

@@ -1,5 +1,6 @@
 # Documentation
 
+## For complete properties list, please check files under lib/*
 
 ## Description (prop for all charts)
 
@@ -13,23 +14,27 @@
 
 ## Legend (prop for all charts)
 
-| Prop              | Type                                                          | Default | Note |
-| ----------------- | ------------------------------------------------------------- | ------- | ---- |
-| `enabled`         | `bool`                                                        |         |      |
-| `text`            | `string`                                                      |         |      |
-| `textColor`       | `number`                                                      |         |      |
-| `textSize`        | `number`                                                      |         |      |
-| `fontFamily`      | `string`                                                      |         |      |
-| `fontStyle`       | `number`                                                      |         |      |
-| `wordWrapEnabled` | `bool`                                                        |         |      |
-| `maxSizePercent`  | `number`                                                      |         |      |
-| `position`        | `number`                                                      |         |      |
-| `form`            | `string`                                                      |         |      |
-| `formSize`        | `number`                                                      |         |      |
-| `xEntrySpace`     | `bool`                                                        |         |      |
-| `yEntrySpace`     | `number`                                                      |         |      |
-| `formToTextSpace` | `number`                                                      |         |      |
-| `custom`          | `{`<br />`colors: [number],`<br />`labels: [string]`<br />`}` |         |      |
+| Prop                      | Type                                                          | Default | Note |
+| ------------------------- | ------------------------------------------------------------- | ------- | ---- |
+| `enabled`                 | `bool`                                                        |         |      |
+| `text`                    | `string`                                                      |         |      |
+| `textColor`               | `number`                                                      |         |      |
+| `textSize`                | `number`                                                      |         |      |
+| `fontFamily`              | `string`                                                      |         |      |
+| `fontStyle`               | `number`                                                      |         |      |
+| `wordWrapEnabled`         | `bool`                                                        |         |      |
+| `maxSizePercent`          | `number`                                                      |         |      |
+| `horizontalAlignment`     | one of `'LEFT', 'CENTER', 'RIGHT'`                            |         |      |
+| `verticalAlignment`       | one of `'TOP', 'CENTER', 'BOTTOM'`                            |         |      |
+| `orientation`             | one of `'HORIZONTAL', 'VERTICAL'`                             |         |      |
+| `drawInside`              | `bool`                                                        |         |      |
+| `direction`               | one of `LEFT_TO_RIGHT', 'RIGHT_TO_LEFT`                       |         |      |
+| `form`                    | `string`                                                      |         |      |
+| `formSize`                | `number`                                                      |         |      |
+| `xEntrySpace`             | `bool`                                                        |         |      |
+| `yEntrySpace`             | `number`                                                      |         |      |
+| `formToTextSpace`         | `number`                                                      |         |      |
+| `custom`                  | `{`<br />`colors: [number],`<br />`labels: [string]`<br />`}` |         |      |
 
 ## Common Props for xAxis and yAxis
 
@@ -59,6 +64,7 @@
 | `centerAxisLabels`         | `bool`                                                                                   |         | Centers the axis labels instead of drawing them at their original position. This is useful especially for grouped BarChart. |
 | `valueFormatter`           | one of `'largeValue', 'percent', 'date', string, [string]`                               |         |                                                                                                                             |
 | `valueFormatterPattern`    | `string`                                                                                 |         |
+| `yOffset`                  | `number`                                                                                 |    0    | adjust vertical label position
 
 ## xAxis
 
@@ -95,6 +101,7 @@
 | `chartBackgroundColor`         | `number`                                                                                                                                        |         |                                                                                                                                                                                                                                                             |
 | `logEnabled`                   | `bool`                                                                                                                                          |         |                                                                                                                                                                                                                                                             |
 | `noDataText`                   | `string`                                                                                                                                        |         |                                                                                                                                                                                                                                                             |
+| `noDataTextColor`              | `number`                                                                                                                                        |         |                                                                                                                                                                                                                                                             |
 | `touchEnabled`                 | `bool`                                                                                                                                          |         |                                                                                                                                                                                                                                                             |
 | `dragDecelerationEnabled`      | `bool`                                                                                                                                          |         |                                                                                                                                                                                                                                                             |
 | `dragDecelerationFrictionCoef` | `function`                                                                                                                                      |         |                                                                                                                                                                                                                                                             |
@@ -160,9 +167,10 @@
 
 #### _BarLineChartBase props plus props listed below_.
 
-| Prop   | Type                     | Default | Note |
-| ------ | ------------------------ | ------- | ---- |
-| `data` | `DataTypes.combinedData` |         |      |
+| Prop        | Type                                                 | Default | Note |
+| ------      | ---------------------------------------------------- | ------- | ---- |
+| `data`      | `DataTypes.combinedData`                             |         |      |
+| `drawOrder` | `array with one of: ['SCATTER', 'BAR', 'LINE']`      |         |      |
 
 ## HorizontalBarChart
 
@@ -204,21 +212,23 @@
 
 #### _PieRadarChartBase props plus props listed below_.
 
-| Prop                      | Type                                                                        | Default | Note |
-| ------------------------- | --------------------------------------------------------------------------- | ------- | ---- |
-| `drawEntryLabels`         | `bool`                                                                      |         |      |
-| `usePercentValues`        | `bool`                                                                      |         |      |
-| `centerText`              | `string`                                                                    |         |      |
-| `styledCenterText`        | `{`<br />`text: string,`<br />`color: number,`<br />`size: number`<br />`}` |         |      |
-| `centerTextRadiusPercent` | `number`                                                                    |         |      |
-| `holeRadius`              | `number`                                                                    |         |      |
-| `holeColor`               | `number`                                                                    |         |      |
-| `transparentCircleRadius` | `number`                                                                    |         |      |
-| `transparentCircleColor`  | `number`                                                                    |         |      |
-| `entryLabelColor`         | `number`                                                                    |         |      |
-| `entryLabelTextSize`      | `number`                                                                    |         |      |
-| `maxAngle`                | `number`                                                                    |         |      |
-| `data`                    | `DataTypes.pieData`                                                         |         |      |
+| Prop                      | Type                                                                                                   | Default | Note |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ | ------- | ---- |
+| `extraOffsets`            | `{`<br />`left: number,`<br />`top: number,`<br />`right: number,`<br />`bottom: number,`<br />`}`     |         |      |
+| `drawEntryLabels`         | `bool`                                                                                                 |         |      |
+| `usePercentValues`        | `bool`                                                                                                 |         |      |
+| `centerText`              | `string`                                                                                               |         |      |
+| `styledCenterText`        | `{`<br />`text: string,`<br />`color: number,`<br />`fontFamily: string,`<br />`size: number`<br />`}` |         |      |
+| `centerTextRadiusPercent` | `number`                                                                                               |         |      |
+| `holeRadius`              | `number`                                                                                               |         |      |
+| `holeColor`               | `number`                                                                                               |         |      |
+| `transparentCircleRadius` | `number`                                                                                               |         |      |
+| `transparentCircleColor`  | `number`                                                                                               |         |      |
+| `entryLabelColor`         | `number`                                                                                               |         |      |
+| `entryLabelTextSize`      | `number`                                                                                               |         |      |
+| `entryLabelFontFamily`    | `string`                                                                                               |         |      |
+| `maxAngle`                | `number`                                                                                               |         |      |
+| `data`                    | `DataTypes.pieData`                                                                                    |         |      |
 
 ## RadarChart
 
@@ -241,8 +251,12 @@ type common {
   valueTextSize: number,
   valueTextColor: number,
   visible: bool,
-  valueFormatter: bool,
-  valueFormatterPattern: string or 'largeValue' or 'percent' or 'date',
+  valueFormatter: string or 'largeValue' or 'percent' or 'date' or 'labelByXValue',
+  valueFormatterPattern: string,
+  valueFormatterLabels: {
+    x: number, // required
+    label: string // required
+  },
   axisDependency: string,
 }
 ```
@@ -309,6 +323,9 @@ type lineData {
           spaceLength: number, // required
           phase: number
         },
+        fillFormatter: {
+            min: number // required
+        }
       }
     }
   ]

@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.data.Entry;
@@ -25,6 +27,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.markers.RNRectangleMarkerView;
+import com.github.wuxudong.rncharts.markers.RNCircleMarkerView;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.EasingFunctionHelper;
 import com.github.wuxudong.rncharts.utils.TypefaceUtils;
@@ -191,6 +194,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         chart.setNoDataText(noDataText);
     }
 
+    @ReactProp(name = "noDataTextColor")
+    public void setNoDataTextColor(Chart chart, Integer color) {
+        chart.setNoDataTextColor(color);
+    }
+
     @ReactProp(name = "touchEnabled")
     public void setTouchEnabled(Chart chart, boolean enabled) {
         chart.setTouchEnabled(enabled);
@@ -256,9 +264,6 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         if (BridgeUtils.validate(propMap, ReadableType.String, "position")) {
             axis.setPosition(XAxisPosition.valueOf(propMap.getString("position")));
         }
-        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
-            axis.setYOffset((float)(propMap.getDouble("yOffset")));
-        }
 
     }
 
@@ -269,9 +274,33 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             return;
         }
 
-        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
-        marker.setChartView(chart);
+        String markerType = propMap.hasKey("markerType") ? propMap.getString("markerType") : "";
 
+        MarkerView markerView = null;
+        switch(markerType) {
+            case "circle":
+                markerView = circleMarker(chart);
+
+                break;
+            default:
+                markerView = rectangleMarker(chart, propMap);
+        }
+
+        markerView.setChartView(chart);
+        chart.setMarker(markerView);
+    }
+
+    private RNRectangleMarkerView rectangleMarker(Chart chart, ReadableMap propMap) {
+        RNRectangleMarkerView marker = new RNRectangleMarkerView(chart.getContext());
+        setMarkerParams(marker, propMap);
+        return marker;
+    }
+
+    private RNCircleMarkerView circleMarker(Chart chart) {
+        return new RNCircleMarkerView(chart.getContext());
+    }
+
+    private void setMarkerParams(RNRectangleMarkerView marker, ReadableMap propMap) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
                 BridgeUtils.validate(propMap, ReadableType.Number, "markerColor")) {
             marker.getTvContent()
@@ -291,7 +320,24 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
             marker.getTvContent().setTextSize(propMap.getInt("textSize"));
         }
 
-        chart.setMarker(marker);
+        if (BridgeUtils.validate(propMap, ReadableType.String, "textAlign")) {
+
+            int alignment = View.TEXT_ALIGNMENT_CENTER;
+            switch (propMap.getString("textAlign")) {
+                case "left":
+                    alignment = View.TEXT_ALIGNMENT_TEXT_START;
+                    break;
+                case "center":
+                    alignment = View.TEXT_ALIGNMENT_CENTER;
+                    break;
+                case "right":
+                    alignment = View.TEXT_ALIGNMENT_TEXT_END;
+                    break;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                marker.getTvContent().setTextAlignment(alignment);
+            }
+        }
     }
 
     /**
@@ -321,6 +367,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
         if (BridgeUtils.validate(propMap, ReadableType.String, "fontFamily")) {
             axis.setTypeface(TypefaceUtils.getTypeface(chart, propMap));
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "yOffset")) {
+            axis.setYOffset((float)(propMap.getDouble("yOffset")));
         }
         if (BridgeUtils.validate(propMap, ReadableType.Number, "gridColor")) {
             axis.setGridColor(propMap.getInt("gridColor"));
@@ -447,9 +496,11 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     timeUnit = TimeUnit.valueOf(propMap.getString("timeUnit").toUpperCase());
                 }
                 Locale locale = Locale.getDefault();
-                
+
                 if (BridgeUtils.validate(propMap, ReadableType.String, "locale")) {
-                    locale = Locale.forLanguageTag(propMap.getString("locale"));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        locale = Locale.forLanguageTag(propMap.getString("locale"));
+                    }
                 }
 
                 axis.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));

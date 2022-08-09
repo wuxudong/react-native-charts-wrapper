@@ -36,14 +36,14 @@ open class BalloonMarker: MarkerView {
     fileprivate var _drawAttributes = [NSAttributedString.Key: Any]()
 
 
-    public init(color: UIColor, font: UIFont, textColor: UIColor) {
+  public init(color: UIColor, font: UIFont, textColor: UIColor, textAlign: NSTextAlignment) {
         super.init(frame: CGRect.zero);
         self.color = color
         self.font = font
         self.textColor = textColor
 
         _paragraphStyle = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
-        _paragraphStyle?.alignment = .center
+        _paragraphStyle?.alignment = textAlign
     }
 
     public required init?(coder aDecoder: NSCoder) {
