@@ -517,7 +517,8 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
             dict["scaleX"] = barLineChart.scaleX
             dict["scaleY"] = barLineChart.scaleY
 
-            if let handler = viewPortHandler {
+            if viewPortHandler != nil {
+                let handler = viewPortHandler
                 let center = barLineChart.valueForTouchPoint(point: handler.contentCenter, axis: YAxis.AxisDependency.left)
                 dict["centerX"] = center.x
                 dict["centerY"] = center.y

@@ -11,22 +11,22 @@ class BridgeUtils {
     static func toIOSAlpha(_ alpha: NSNumber) -> CGFloat {
         return CGFloat(Double(truncating: alpha) / 255.0);
     }
-    
+
     static func parseColors(_ array: [JSON]) -> [NSUIColor] {
         return array.map {
             return RCTConvert.uiColor($0.intValue);
         }
     }
-    
+
     static func toJson(_ dict: NSDictionary) -> JSON {
         let json = try! JSONSerialization.data(withJSONObject: dict);
-        
+
         return JSON.init(parseJSON: NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String);
     }
-    
+
     static func parseLineChartMode(_ mode: String) -> LineChartDataSet.Mode {
         let iosEnumString = androidEnumToIOSEnum(mode)
-        
+
         switch iosEnumString {
         case "linear":
             return .linear
@@ -40,10 +40,10 @@ class BridgeUtils {
             return .linear
         }
     }
-    
+
     static func parseLegendHorizontalAlignment(_ horizontalAlignment: String) -> Legend.HorizontalAlignment {
         let iosEnumString = androidEnumToIOSEnum(horizontalAlignment)
-        
+
         switch iosEnumString {
         case "right":
             return .right
@@ -53,10 +53,10 @@ class BridgeUtils {
             return .left
         }
     }
-    
+
     static func parseLegendVerticalAlignment(_ verticalAlignment: String) -> Legend.VerticalAlignment {
         let iosEnumString = androidEnumToIOSEnum(verticalAlignment)
-        
+
         switch iosEnumString {
         case "top":
             return .top
@@ -66,10 +66,10 @@ class BridgeUtils {
             return .bottom
         }
     }
-    
+
     static func parseLegendOrientation(_ orientation: String) -> Legend.Orientation {
         let iosEnumString = androidEnumToIOSEnum(orientation)
-        
+
         switch iosEnumString {
         case "vertical":
             return .vertical
@@ -77,10 +77,10 @@ class BridgeUtils {
             return .horizontal
         }
     }
-    
+
     static func parseLegendDirection(_ direction: String) -> Legend.Direction {
         let iosEnumString = androidEnumToIOSEnum(direction)
-        
+
         switch iosEnumString {
         case "rightToLeft":
             return .rightToLeft
@@ -88,12 +88,12 @@ class BridgeUtils {
             return .leftToRight
         }
     }
-    
-    
-    
+
+
+
     static func parseYAxisLabelPosition(_ position: String) -> YAxis.LabelPosition {
         let iosEnumString = androidEnumToIOSEnum(position)
-        
+
         switch iosEnumString {
         case "outsideChart":
             return .outsideChart
@@ -103,10 +103,10 @@ class BridgeUtils {
             return .outsideChart
         }
     }
-    
+
     static func parseXAxisLabelPosition(_ position: String) -> XAxis.LabelPosition {
         let iosEnumString = androidEnumToIOSEnum(position)
-        
+
         switch iosEnumString {
         case "top":
             return .top
@@ -122,11 +122,11 @@ class BridgeUtils {
             return .top
         }
     }
-    
+
     static func parseLegendForm(_ form: String) -> Legend.Form {
-        
+
         let iosEnumString = androidEnumToIOSEnum(form)
-        
+
         switch iosEnumString {
         case "none":
             return .none
@@ -144,10 +144,10 @@ class BridgeUtils {
             return .square
         }
     }
-    
+
     static func parseScatterShape(_ shape: String) -> ScatterChartDataSet.Shape {
         let iosEnumString = androidEnumToIOSEnum(shape)
-        
+
         switch iosEnumString {
         case "square":
             return .square
@@ -167,10 +167,10 @@ class BridgeUtils {
             return  .square
         }
     }
-    
+
     static func parseEasingOption(_ option: String) -> ChartEasingOption {
         let iosEnumString = String(option.first!).lowercased() + String(option.dropFirst())
-        
+
         switch iosEnumString {
         case "linear":
             return .linear
@@ -238,40 +238,40 @@ class BridgeUtils {
             return .linear
         }
     }
-    
+
     static func parseAxisDependency(_ option: String) -> YAxis.AxisDependency {
         let iosEnumString = androidEnumToIOSEnum(option)
-        
+
         switch iosEnumString {
         case "left":
             return .left
-            
+
         case "right":
             return .right
-            
+
         default:
             return .left
         }
     }
-    
+
     static func parsePieChartDataSetValuePosition(_ option: String) -> PieChartDataSet.ValuePosition {
         let iosEnumString = androidEnumToIOSEnum(option)
-        
+
         switch iosEnumString {
         case "insideSlice":
             return .insideSlice
-            
+
         case "outsideSlice":
             return .outsideSlice
-            
+
         default:
             return .insideSlice
         }
     }
-    
+
     static func androidEnumToIOSEnum(_ desc: String) -> String {
         let components = desc.components(separatedBy: "_")
-        
+
         if components.count > 1 {
             return components.enumerated().reduce("") {
                 accumulate, current in
@@ -282,12 +282,12 @@ class BridgeUtils {
             return desc.lowercased();
         }
     }
-    
+
     // unfortunately, this function can only work with pure swift enum without @objc
     // check http://stackoverflow.com/questions/42513337/why-does-an-objc-enum-have-a-different-description-than-a-pure-swift-enum
     static func parseIntEnumFromString<T:RawRepresentable>(_ enumType: T.Type, desc: String) -> T? where T.RawValue == Int {
         let iosEnumString = androidEnumToIOSEnum(desc);
-        
+
         var i = 0
         while let item = enumType.init(rawValue: i) {
             if String(describing: item) == iosEnumString {
@@ -297,26 +297,26 @@ class BridgeUtils {
         }
         return nil;
     }
-    
+
     static func parseLimitlineLabelPosition(_ position: String) -> ChartLimitLine.LabelPosition {
         let iosEnumString = androidEnumToIOSEnum(position)
         //      NSLog("this label position %@", iosEnumString)
         switch iosEnumString {
         case "rightBottom":
-            return .bottomRight
+            return .rightBottom
         case "leftBottom":
-            return .bottomLeft
+            return .leftBottom
         case "rightTop":
-            return .topRight
+            return .rightTop
         case "leftTop":
-            return .topLeft
+            return .leftTop
         default:
-            return .topRight
+            return .rightTop
         }
     }
-    
+
     static func parseDrawOrder(_ drawOrder: String) -> CombinedChartView.DrawOrder{
-        let iosEnumString = androidEnumToIOSEnum(drawOrder)        
+        let iosEnumString = androidEnumToIOSEnum(drawOrder)
         switch iosEnumString {
         case "bar":
             return .bar

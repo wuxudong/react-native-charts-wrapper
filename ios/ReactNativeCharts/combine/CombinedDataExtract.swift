@@ -63,11 +63,11 @@ class CombinedDataExtract : DataExtract {
         fatalError("not support")
     }
 
-    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry], label: String) -> ChartDataSetProtocol {
         fatalError("not support")
     }
 
-    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: ChartDataSetProtocol, config: JSON) {
         fatalError("not support")
     }
 
