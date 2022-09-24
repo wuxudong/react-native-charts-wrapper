@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage     = package["homepage"]
 
   s.license      = package["license"]
-  s.platform     = :ios, "13.0"
+  s.platform     = :ios, "12.0"
 
   s.source       = { :git => "https://github.com/wuxudong/react-native-charts-wrapper.git", :tag => "#{s.version}" }
   s.source_files = "ios/ReactNativeCharts/**/*.{h,m,swift}"
