@@ -7,8 +7,6 @@ import {
   processColor,
 } from 'react-native';
 
-import {StackNavigator, SafeAreaView} from 'react-navigation';
-
 import {PieChart} from 'react-native-charts-wrapper';
 
 class PieChartScreen extends React.Component {
@@ -72,7 +70,7 @@ class PieChartScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1}}>
         <View>
           <Text>selected:</Text>
           <Text> {this.state.selectedEntry}</Text>
@@ -88,14 +86,17 @@ class PieChartScreen extends React.Component {
             legend={this.state.legend}
             highlights={this.state.highlights}
 
+            extraOffsets={{left: 5, top: 5, right: 5, bottom: 5}}
+
             entryLabelColor={processColor('green')}
             entryLabelTextSize={20}
+            entryLabelFontFamily={'HelveticaNeue-Medium'}
             drawEntryLabels={true}
 
             rotationEnabled={true}
             rotationAngle={45}
             usePercentValues={true}
-            styledCenterText={{text:'Pie center text!', color: processColor('pink'), size: 20}}
+            styledCenterText={{text:'Pie center text!', color: processColor('pink'), fontFamily: 'HelveticaNeue-Medium', size: 20}}
             centerTextRadiusPercent={100}
             holeRadius={40}
             holeColor={processColor('#f0f0f0')}
@@ -106,7 +107,7 @@ class PieChartScreen extends React.Component {
             onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }

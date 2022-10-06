@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.charts.Chart;
@@ -12,6 +13,7 @@ import com.github.wuxudong.rncharts.data.DataExtract;
 import com.github.wuxudong.rncharts.data.RadarDataExtract;
 import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.listener.RNOnChartValueSelectedListener;
+import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
 
@@ -81,6 +83,25 @@ public class RadarChartManager extends YAxisChartBase<RadarChart, RadarEntry> {
     @ReactProp(name = "minOffset")
     public void setMinOffset(RadarChart chart, float minOffset) {
         chart.setMinOffset(minOffset);
+    }
+
+    @ReactProp(name = "extraOffsets")
+    public void setExtraOffsets(RadarChart chart, ReadableMap propMap) {
+        double left = 0, top = 0, right = 0, bottom = 0;
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "left")) {
+            left = propMap.getDouble("left");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "top")) {
+            top = propMap.getDouble("top");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "right")) {
+            right = propMap.getDouble("right");
+        }
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "bottom")) {
+            bottom = propMap.getDouble("bottom");
+        }
+        chart.setExtraOffsets((float) left, (float) top, (float) right, (float) bottom);
     }
 
     @ReactProp(name = "rotationEnabled")

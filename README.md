@@ -28,7 +28,67 @@ React Native Charts Wrapper is built on MPAndroidChart(v3.1.0) & Charts(v3.3.0),
 
 ## Setup
 
-A step by step tutorial to set up a new project can be found [here](https://github.com/wuxudong/react-native-charts-wrapper/blob/master/installation_guide/README.md)
+
+### expo
+1. expo init demo
+2. cd demo
+3. expo install react-native-charts-wrapper
+4. eas build 
+
+### react-native
+
+
+-  npx react-native init demo 
+-  cd demo 
+-  npm install --save react-native-charts-wrapper
+-  cd ios && pod install 
+-  npx react-native run-ios/run-android
+
+
+### update App.js 
+
+
+ 
+```
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View, processColor
+} from 'react-native';
+
+import {LineChart} from 'react-native-charts-wrapper';
+
+export default class App extends React.Component {
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <View style={styles.container}>
+          <LineChart style={styles.chart}
+            data={{dataSets:[{label: "demo", values: [{y: 1}, {y: 2}, {y: 1}]}]}}
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  chart: {
+    flex: 1
+  }
+});
+
+```
+
+![](https://raw.githubusercontent.com/wuxudong/react-native-charts-wrapper/master/screenshot/iOS.png)
+
 
 
 ## Usage
@@ -95,13 +155,28 @@ index will used as x.
 check Example->TimeSeriesLineChart for details
 
 
-## Callback
+## Supported Callbacks
 
-**Support value selection callBack: onSelect**
+**onSelect**
 
-you can do whatever you want, even pop your own modal, or jump to another page.
+Triggered when a chart value is selected. The event passed back will include the coordinates of the touch as well as the data (including marker label) selected.
 
-**Support gesture callBack: onChange**
+**onChange**
+
+Triggered for various supported events on each platform. Due to the different nature of gesture handling on each platform as well as the different implementations of the underlying chart libraries, the same events are not supported on every platform. For full details on the supported events, see the table below:
+
+| Event Name | Description | iOS | Android |
+| --------------- | -------- | ------- | ---- |
+| `chartScaled`       | When a chart is scaled/zoomed via a pinch zoom gesture. | ✅ | ✅ |
+| `chartTranslated`   | When a chart is moved/translated via a drag gesture. | ✅ | ✅ |
+| `chartPanEnd`       | When a chart pan gesture ends. | ✅ | ❌ |
+| `chartGestureStart` | When a chart gesture starts. | ❌ | ✅ |
+| `chartGestureEnd`   | When a chart gesture ends. | ❌ | ✅ |
+| `chartLongPress`    | When a chart is long pressed. | ❌ | ✅ |
+| `chartSingleTap`    | When a chart is single tapped. | ❌ | ✅ |
+| `chartFling`        | When a chart recieves a fling gesture. | ❌ | ✅ |
+| `doubleTapped`      | When a chart is double tapped | ❌ | ✅ |
+
 
 check Example->MultipleChart for details.
 
