@@ -45,7 +45,18 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
     func setData(_ data: NSDictionary) {
         let json = BridgeUtils.toJson(data)
 
-        chart.data = dataExtract.extract(json)
+        let extractedChartData: ChartData? = dataExtract.extract(json)
+        
+        guard let chartData = extractedChartData else { return }
+    
+        // https://github.com/danielgindi/Charts/issues/4690    
+        let originValueFormatters = chartData.map {$0.valueFormatter}
+        
+        chart.data = chartData
+            
+        for (set, valueFormatter) in zip(chartData, originValueFormatters) {
+            set.valueFormatter = valueFormatter
+        }
     }
 
     func setLegend(_ config: NSDictionary) {
