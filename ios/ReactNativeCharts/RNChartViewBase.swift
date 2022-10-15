@@ -358,8 +358,12 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
                         limitLine.valueTextColor = RCTConvert.uiColor(limitLineConfig["valueTextColor"].intValue)
                     }
 
-                    if (limitLineConfig["valueFont"].int != nil) {
-                        limitLine.valueFont = NSUIFont.systemFont(ofSize: CGFloat(limitLineConfig["valueFont"].intValue))
+                    let fontSize = limitLineConfig["valueFont"].int != nil ? CGFloat(limitLineConfig["valueFont"].intValue) : CGFloat(13)
+
+                    if let parsedFont = FontUtils.getFont(limitLineConfig) {
+                        limitLine.valueFont = RCTFont.update(parsedFont, withSize: NSNumber(value: Float(fontSize)))
+                    } else {
+                        limitLine.valueFont = NSUIFont.systemFont(ofSize: fontSize)
                     }
 
                     if limitLineConfig["lineWidth"].number != nil {

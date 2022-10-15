@@ -431,6 +431,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                     if (BridgeUtils.validate(limitLineMap, ReadableType.Number, "valueFont")) {
                         limitLine.setTextSize(limitLineMap.getInt("valueFont"));
                     }
+                    if (BridgeUtils.validate(limitLineMap, ReadableType.String, "fontFamily")) {
+                        limitLine.setTypeface(TypefaceUtils.getTypeface(chart, limitLineMap));
+                    }
                     if (BridgeUtils.validate(limitLineMap, ReadableType.String, "labelPosition")) {
                         limitLine.setLabelPosition(LimitLine.LimitLabelPosition.valueOf(limitLineMap.getString("labelPosition")));
                     }
