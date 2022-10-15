@@ -2,6 +2,7 @@ package com.github.wuxudong.rncharts.charts;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -557,6 +558,33 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         }
 
         chart.highlightValues(highlights.toArray(new Highlight[highlights.size()]));
+    }
+
+    @ReactProp(name = "disallowInterceptTouch")
+    public void setDisallowInterceptTouch(Chart chart, boolean enabled) {
+        if (enabled) {
+            chart.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_CANCEL:
+                        case MotionEvent.ACTION_UP: {
+                            v.getParent().requestDisallowInterceptTouchEvent(false);
+                            break;
+                        }
+                        case MotionEvent.ACTION_DOWN: {
+                            v.getParent().requestDisallowInterceptTouchEvent(true);
+                            break;
+                        }
+                        case MotionEvent.ACTION_MOVE: {
+                            v.getParent().requestDisallowInterceptTouchEvent(true);
+                            break;
+                        }
+                    }
+                    return false;
+                }
+            });
+        }
     }
 
     protected void onAfterDataSetChanged(T chart) {
