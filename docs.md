@@ -84,6 +84,8 @@
 | Prop          | Type                                                                                  | Default | Note |
 | ------------- | ------------------------------------------------------------------------------------- | ------- | ---- |
 | `inverted`    | `number`                                                                              |         |      |
+| `left`			  | `config`                                                                              |         | Applies config to left line      |
+| `right`		    | `config`                                                                              |         | Applies config to right line     |
 | `spaceTop`    | `bool`                                                                                |         |      |
 | `spaceBottom` | `number`                                                                              |         |      |
 | `position`    | `number`                                                                              |         |      |
