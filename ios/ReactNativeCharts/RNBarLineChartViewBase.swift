@@ -282,7 +282,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             let json = BridgeUtils.toJson(d as! NSDictionary);
             let index = json["index"].int!;
             let entries = dataExtract.createEntries(json["values"].array!)
-            let dataSet = barLineChart.data!.getDataSetByIndex(index)
+            let dataSet = barLineChart.data!.dataSet(at: index)
             for e in entries {
                 dataSet!.addEntry(e)
             }
