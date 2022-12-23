@@ -295,7 +295,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         for d in data {
             let json = BridgeUtils.toJson(d as! NSDictionary);
             let index = json["index"].int!;
-            let dataSetByIndex = barLineChart.data!.getDataSetByIndex(index);
+            let dataSetByIndex = barLineChart.data!.dataSet(at: index)
             let dataSet = json["dataSet"].dictionary;
             let values = dataSet!["values"]!.arrayValue;
             let label = dataSet!["label"]!.stringValue;
@@ -304,7 +304,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             if dataSet!["config"]!.dictionary != nil {
                 dataExtract.dataSetConfig(chartDataSet, config: dataSet!["config"]!)
             }
-            barLineChart.data!.removeDataSet(dataSetByIndex as! IChartDataSet);
+            barLineChart.data!.removeDataSet(dataSetByIndex!);
             barLineChart.data!.dataSets.insert(chartDataSet, at: index);
         }
         barLineChart.data!.notifyDataChanged()
