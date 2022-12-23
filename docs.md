@@ -53,7 +53,7 @@
 | `axisLineColor`            | `bool`                                                                                   |         |                                                                                                                             |
 | `axisLineWidth`            | `bool`                                                                                   |         |                                                                                                                             |
 | `gridDashedLine`           | `{`<br />`lineLength: number,`<br />`spaceLength: number,`<br />`phase: number`<br />`}` |         |                                                                                                                             |
-| `limitLines`               | array : `[{ limit: number, label: string, lineColor: number, lineWidth: number, valueTextColor: number, valueFont: number, labelPosition: string, lineDashPhase: number, lineDashLengths: [number] }]`                                                                                 |         |                                                                                                                             |
+| `limitLines`               | array : `[{ limit: number, label: string, lineColor: number, lineWidth: number, valueTextColor: number, valueFont: number, fontFamily: string, fontStyle: string, fontWeight: string, labelPosition: string, lineDashPhase: number, lineDashLengths: [number] }]`                                                                                 |         |                                                                                                                             |
 | `drawLimitLinesBehindData` | `bool`                                                                                   |         |                                                                                                                             |
 | `axisMaximum`              | `number`                                                                                 |         |                                                                                                                             |
 | `axisMinimum`              | `number`                                                                                 |         |                                                                                                                             |
@@ -84,6 +84,8 @@
 | Prop          | Type                                                                                  | Default | Note |
 | ------------- | ------------------------------------------------------------------------------------- | ------- | ---- |
 | `inverted`    | `number`                                                                              |         |      |
+| `left`			  | `config`                                                                              |         | Applies config to left line      |
+| `right`		    | `config`                                                                              |         | Applies config to right line     |
 | `spaceTop`    | `bool`                                                                                |         |      |
 | `spaceBottom` | `number`                                                                              |         |      |
 | `position`    | `number`                                                                              |         |      |

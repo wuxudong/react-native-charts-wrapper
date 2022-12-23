@@ -13,11 +13,11 @@ class LineDataExtract : DataExtract {
         return LineChartData();
     }
 
-    override func createDataSet(_ entries: [ChartDataEntry]?, label: String?) -> IChartDataSet {
+    override func createDataSet(_ entries: [ChartDataEntry], label: String) -> ChartDataSetProtocol {
         return LineChartDataSet(entries: entries, label: label)
     }
 
-    override func dataSetConfig(_ dataSet: IChartDataSet, config: JSON) {
+    override func dataSetConfig(_ dataSet: ChartDataSetProtocol, config: JSON) {
 
 
         let lineDataSet = dataSet as! LineChartDataSet;
@@ -105,7 +105,7 @@ class LineDataExtract : DataExtract {
         if value.dictionary != nil {
             let dict = value;
             var y = Double(index);
-            
+
             if dict["x"].double != nil {
                 x = Double((dict["x"].doubleValue));
             }
@@ -115,31 +115,31 @@ class LineDataExtract : DataExtract {
             } else {
                 fatalError("invalid data " + values.description);
             }
-            
+
             if dict["icon"].exists() {
                 let icon = dict["icon"]
                 if icon["bundle"].dictionary != nil {
                     let bundle = icon["bundle"];
-                    
+
                     let uiImage = RCTConvert.uiImage(bundle.dictionaryObject);
                     let width = CGFloat(icon["width"].numberValue)/4;
                     let height = CGFloat(icon["height"].numberValue)/4;
-                    
+
                     if let image = uiImage {
                         let realIconImage = resizeImage(image: image, width: width, height: height);
                         entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: realIconImage);
                     } else {
                         entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: uiImage);
-                    } 
-                    
-                    
+                    }
+
+
                 } else {
                     entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
                 }
             } else {
                 entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
             }
-            
+
         } else if value.double != nil {
             entry = ChartDataEntry(x: x, y: value.doubleValue);
         } else {
