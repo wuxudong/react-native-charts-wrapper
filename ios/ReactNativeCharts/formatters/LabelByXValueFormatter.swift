@@ -1,7 +1,7 @@
 import Foundation
 import Charts
 
-open class LabelByXValueFormatter: NSObject, IValueFormatter, IAxisValueFormatter {
+open class LabelByXValueFormatter: NSObject, ValueFormatter, AxisValueFormatter {
 
     open var labels = [Double : String]()
 

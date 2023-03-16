@@ -1,0 +1,18 @@
+{
+  "cli": {
+    "version": ">= 0.52.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "android": {
+        "distribution": "internal",
+        "withoutCredentials": true
+      },
+      "ios": {
+        "simulator": true
+      }      
+    },
+    "production": {}
+  }
+}

@@ -1,6 +1,5 @@
 import React, {createContext} from "react";
 import {ScrollView, TouchableOpacity, StyleSheet, View, Text} from "react-native";
-import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import AxisLineChartScreen from "./AxisLineChartScreen";
 import MultipleChartScreen from "./MultipleChartScreen";
@@ -23,8 +22,6 @@ import GroupBarChartScreen from "./GroupBarChartScreen";
 import InfiniteScrollLineChartScreen from "./InfiniteScrollLineChartScreen";
 import LinkageChartScreen from "./LinkageChartScreen";
 import StockChartScreen from "./StockChartScreen";
-import {enableScreens} from "react-native-screens";
-enableScreens();
 
 const styles = StyleSheet.create({
   item: {
@@ -183,16 +180,14 @@ const Intro = ({navigation}) => (
 const Stack = createStackNavigator();
 
 const MainScreen = () => (
-  <NavigationContainer>
-    <Stack.Navigator style={{flex: 1}}>
-      <Stack.Screen name="Intro" component={Intro}/>
+  <Stack.Navigator style={{flex: 1}}>
+    <Stack.Screen name="Intro" component={Intro}/>
 
-      {Object.keys(ExampleRoutes).map((routeName) => (
-        <Stack.Screen name={routeName} component={ExampleRoutes[routeName].screen}
-                      key={routeName}/>
-      ))}
-    </Stack.Navigator>
-  </NavigationContainer>
+    {Object.keys(ExampleRoutes).map((routeName) => (
+      <Stack.Screen name={routeName} component={ExampleRoutes[routeName].screen}
+                    key={routeName}/>
+    ))}
+  </Stack.Navigator>  
 );
 
 MainScreen.navigationOptions = {
@@ -202,7 +197,7 @@ MainScreen.navigationOptions = {
 const Context = createContext();
 
 const ChartsExplorer = () => (
-  <Context.Provider>
+  <Context.Provider value={{}}>
     <MainScreen />
   </Context.Provider>
 );
