@@ -276,5 +276,38 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         return barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.maxX, y:contentRect.minY), axis: axis).y - barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.minX, y:contentRect.maxY), axis: axis).y
     }
-    
+
+    func addEntries(_ data: NSArray) {
+        for d in data {
+            let json = BridgeUtils.toJson(d as! NSDictionary);
+            let index = json["index"].int!;
+            let entries = dataExtract.createEntries(json["values"].array!)
+            let dataSet = barLineChart.data!.dataSet(at: index)
+            for e in entries {
+                dataSet!.addEntry(e)
+            }
+        }
+        barLineChart.data!.notifyDataChanged()
+        barLineChart.notifyDataSetChanged()
+    }
+
+    func replaceDataSets(_ data: NSArray) {
+        for d in data {
+            let json = BridgeUtils.toJson(d as! NSDictionary);
+            let index = json["index"].int!;
+            let dataSetByIndex = barLineChart.data!.dataSet(at: index)
+            let dataSet = json["dataSet"].dictionary;
+            let values = dataSet!["values"]!.arrayValue;
+            let label = dataSet!["label"]!.stringValue;
+            let entries = dataExtract.createEntries(values);
+            let chartDataSet = dataExtract.createDataSet(entries, label: label);
+            if dataSet!["config"]!.dictionary != nil {
+                dataExtract.dataSetConfig(chartDataSet, config: dataSet!["config"]!)
+            }
+            barLineChart.data!.removeDataSet(dataSetByIndex!);
+            barLineChart.data!.dataSets.insert(chartDataSet, at: index);
+        }
+        barLineChart.data!.notifyDataChanged()
+        barLineChart.notifyDataSetChanged()
+    }
 }

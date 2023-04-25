@@ -11,6 +11,7 @@ import com.github.mikephil.charting.charts.BarLineChartBase;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.mikephil.charting.jobs.ZoomJob;
 import com.github.mikephil.charting.listener.BarLineChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
@@ -21,6 +22,7 @@ import com.github.wuxudong.rncharts.listener.RNOnChartGestureListener;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -287,7 +289,9 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
                 "fitScreen", FIT_SCREEN,
                 "highlights", HIGHLIGHTS,
-                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
+                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
+                "addEntries", ADD_ENTRIES);
+        map.put("replaceDataSets", REPLACE_DATA_SETS);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -329,9 +333,60 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
             case SET_DATA_AND_LOCK_INDEX:
                 setDataAndLockIndex(root, args.getMap(0));
                 return;
+
+            case ADD_ENTRIES:
+                addEntries(root, args.getArray(0));
+                return;
+
+            case REPLACE_DATA_SETS:
+                replaceDataSets(root, args.getArray(0));
+                return;
         }
 
         super.receiveCommand(root, commandId, args);
+    }
+
+    private void addEntries(T root, ReadableArray arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            ReadableMap map = arr.getMap(i);
+            IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
+
+            if (map.hasKey("config")) {
+                getDataExtract().dataSetConfig(root, dataSetByIndex, map.getMap("config"));
+            }
+
+            ArrayList<Entry> entries = getDataExtract().createEntries(map.getArray("values"));
+            for (Entry entry : entries) {
+                dataSetByIndex.addEntry(entry);
+            }
+        }
+        root.getData().notifyDataChanged();
+        root.notifyDataSetChanged();
+        root.invalidate();
+    }
+
+    private void replaceDataSets(T root, ReadableArray arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            ReadableMap map = arr.getMap(i);
+            IDataSet dataSetByIndex = root.getData().getDataSetByIndex(map.getInt("index"));
+
+            ReadableMap dataSetReadableMap = map.getMap("dataSet");
+
+            ReadableArray values = dataSetReadableMap.getArray("values");
+            String label = dataSetReadableMap.getString("label");
+
+            ArrayList<U> entries = getDataExtract().createEntries(values);
+            IDataSet<U> dataSet = getDataExtract().createDataSet(entries, label);
+            if (BridgeUtils.validate(dataSetReadableMap, ReadableType.Map, "config")) {
+                getDataExtract().dataSetConfig(root, dataSet, dataSetReadableMap.getMap("config"));
+            }
+
+            root.getData().removeDataSet(dataSetByIndex);
+            root.getData().getDataSets().add(map.getInt("index"), dataSet);
+        }
+        root.getData().notifyDataChanged();
+        root.notifyDataSetChanged();
+        root.invalidate();
     }
 
     private void setDataAndLockIndex(T root, ReadableMap map) {

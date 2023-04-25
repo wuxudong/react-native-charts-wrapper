@@ -50,4 +50,11 @@ open class RNCandleStickChartManager: RCTViewManager, RNBarLineChartBaseManager 
     (self as RNBarLineChartBaseManager)._setDataAndLockIndex(reactTag, data: data)
   }
 
+  func addEntries(_ reactTag: NSNumber, data: NSArray) {
+    (self as RNBarLineChartBaseManager)._addEntries(reactTag, data: data)
+  }
+
+  func replaceDataSets(_ reactTag: NSNumber, data: NSArray) {
+    (self as RNBarLineChartBaseManager)._replaceDataSets(reactTag, data: data)
+  }
 }
