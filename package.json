@@ -37,5 +37,6 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "16.13.1"
-  }
+  },
+  "types": "index.d.ts"
 }
