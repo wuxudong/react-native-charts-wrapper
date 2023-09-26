@@ -2,7 +2,7 @@
 //  Copyright wuxudong
 //
 
-import Charts
+import DGCharts
 import SwiftyJSON
 
 class RNScatterChartView: RNBarLineChartViewBase {
@@ -16,7 +16,7 @@ class RNScatterChartView: RNBarLineChartViewBase {
     override var dataExtract: DataExtract {
         return _dataExtract
     }
-    
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = ScatterChartView(frame: frame);
@@ -34,5 +34,5 @@ class RNScatterChartView: RNBarLineChartViewBase {
     }
 
 
-  
+
 }

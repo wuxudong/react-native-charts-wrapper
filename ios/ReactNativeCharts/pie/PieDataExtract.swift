@@ -5,7 +5,7 @@
 import Foundation
 
 import SwiftyJSON
-import Charts
+import DGCharts
 
 class PieDataExtract : DataExtract {
     override func createData() -> ChartData {

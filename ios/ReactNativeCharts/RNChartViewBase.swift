@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Charts
+import DGCharts
 import SwiftyJSON
 
 // In react native, because object-c is unaware of swift protocol extension. use baseClass as workaround
@@ -46,14 +46,14 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         let json = BridgeUtils.toJson(data)
 
         let extractedChartData: ChartData? = dataExtract.extract(json)
-        
+
         guard let chartData = extractedChartData else { return }
-    
-        // https://github.com/danielgindi/Charts/issues/4690    
+
+        // https://github.com/danielgindi/Charts/issues/4690
         let originValueFormatters = chartData.map {$0.valueFormatter}
-        
+
         chart.data = chartData
-            
+
         for (set, valueFormatter) in zip(chartData, originValueFormatters) {
             set.valueFormatter = valueFormatter
         }

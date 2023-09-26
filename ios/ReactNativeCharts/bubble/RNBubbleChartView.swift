@@ -2,7 +2,7 @@
 //  Copyright wuxudong
 //
 
-import Charts
+import DGCharts
 import SwiftyJSON
 
 class RNBubbleChartView: RNBarLineChartViewBase {
@@ -12,11 +12,11 @@ class RNBubbleChartView: RNBarLineChartViewBase {
     override var chart: BubbleChartView {
         return _chart
     }
-    
+
     override var dataExtract: DataExtract {
         return _dataExtract
     }
-    
+
 
     override init(frame: CoreGraphics.CGRect) {
 
@@ -24,7 +24,7 @@ class RNBubbleChartView: RNBarLineChartViewBase {
         self._dataExtract = BubbleDataExtract()
 
         super.init(frame: frame)
-      
+
         self._chart.delegate = self
         self.addSubview(_chart)
 
