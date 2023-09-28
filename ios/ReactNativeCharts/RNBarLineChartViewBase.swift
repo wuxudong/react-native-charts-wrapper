@@ -138,6 +138,20 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         }
     }
 
+    func setMaxScale(_ config: NSDictionary) {
+        let json = BridgeUtils.toJson(config)
+
+        let maxScaleX = json["x"]
+        if maxScaleX.double != nil {
+            barLineChart.viewPortHandler.setMaximumScaleX(maxScaleX.doubleValue)
+        }
+
+        let maxScaleY = json["y"]
+        if maxScaleY.double != nil {
+            barLineChart.viewPortHandler.setMaximumScaleY(maxScaleY.doubleValue)
+        }
+    }
+
     func setAutoScaleMinMaxEnabled(_  enabled: Bool) {
         barLineChart.autoScaleMinMaxEnabled = enabled
     }
