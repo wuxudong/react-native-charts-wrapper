@@ -62,8 +62,8 @@ public class ChartDataSetConfigUtils {
 
         if (BridgeUtils.validate(config, ReadableType.String, "valueFormatter")) {
             String valueFormatter = config.getString("valueFormatter");
-
-            if ("largeValue".equals(valueFormatter)) {
+            System.out.println("I am a string");
+            if ("largeval".equals(valueFormatter)) {
                 dataSet.setValueFormatter(new LargeValueFormatter());
             } else if ("percent".equals(valueFormatter)) {
                 dataSet.setValueFormatter(new PercentFormatter());
@@ -90,7 +90,7 @@ public class ChartDataSetConfigUtils {
                 dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));
             } else if ("labelByXValue".equals(valueFormatter)) {
                 ReadableArray valueFormatterLabels = config.getArray("valueFormatterLabels");
-
+                System.out.println("LABEL BY X formatter");
                 Map<Float, String> labelsByXValue = new HashMap<>();
                 for (int index = 0; index < valueFormatterLabels.size(); index++) {
                     ReadableMap entry = valueFormatterLabels.getMap(index);
@@ -99,6 +99,7 @@ public class ChartDataSetConfigUtils {
 
                 dataSet.setValueFormatter(new LabelByXValueFormatter(labelsByXValue));
             } else {
+                System.out.println("CUSTOM Formatter");
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
         } else if (BridgeUtils.validate(config, ReadableType.Array, "valueFormatter")) {
