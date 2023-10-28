@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Charts
+import DGCharts
 
 open class ChartDateFormatter: NSObject, ValueFormatter, AxisValueFormatter {
 

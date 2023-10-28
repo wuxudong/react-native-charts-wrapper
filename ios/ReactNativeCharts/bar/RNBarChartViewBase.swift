@@ -2,7 +2,7 @@
 //  Copyright wuxudong
 //
 
-import Charts
+import DGCharts
 import SwiftyJSON
 
 class RNBarChartViewBase: RNBarLineChartViewBase {
@@ -20,7 +20,7 @@ class RNBarChartViewBase: RNBarLineChartViewBase {
     func setDrawBarShadow(_ enabled: Bool) {
         barChart.drawBarShadowEnabled = enabled
     }
-    
+
     func setHighlightFullBarEnabled(_ enabled: Bool) {
         barChart.highlightFullBarEnabled = enabled
     }

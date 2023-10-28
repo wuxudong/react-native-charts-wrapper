@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import Charts
+import DGCharts
 import SwiftyJSON
 
 class RNBarLineChartViewBase: RNYAxisChartViewBase {
@@ -13,11 +13,11 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             return chart as! BarLineChartViewBase
         }
     }
-    
+
     var savedVisibleRange : NSDictionary?
 
     var savedZoom : NSDictionary?
-  
+
     var _onYaxisMinMaxChange : RCTBubblingEventBlock?
     var timer : Timer?
 
@@ -44,12 +44,12 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
       if callback == nil {
         return;
       }
-      
+
       var lastMin: Double = 0;
       var lastMax: Double = 0;
-      
+
       let axis = (self.chart as! BarLineChartViewBase).getAxis(.right);
-        
+
       if #available(iOS 10.0, *) {
         // Interval for 16ms
         self.timer = Timer.scheduledTimer(withTimeInterval: 1/60, repeats: true) { timer in
@@ -57,7 +57,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
           let maximum = axis.axisMaximum;
           if lastMin != minimum || lastMax != maximum {
             print("Update the view", minimum, lastMin, maximum, lastMax)
-            
+
             guard let callback = self._onYaxisMinMaxChange else {
               return;
             }
@@ -93,7 +93,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     }
 
     func setBorderColor(_ color: Int) {
-        
+
         barLineChart.borderColor = RCTConvert.uiColor(color);
     }
 
@@ -105,15 +105,15 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
     func setMaxVisibleValueCount(_ count: NSInteger) {
         barLineChart.maxVisibleCount = count;
     }
-    
+
     func setVisibleRange(_ config: NSDictionary) {
         // delay visibleRange handling until chart data is set
         savedVisibleRange = config
     }
-    
+
     func updateVisibleRange(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
-        
+
         let x = json["x"]
         if x["min"].double != nil {
             barLineChart.setVisibleXRangeMinimum(x["min"].doubleValue)
@@ -121,7 +121,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         if x["max"].double != nil {
             barLineChart.setVisibleXRangeMaximum(x["max"].doubleValue)
         }
-        
+
         let y = json["y"]
         if y["left"]["min"].double != nil {
             barLineChart.setVisibleYRangeMinimum(y["left"]["min"].doubleValue, axis: YAxis.AxisDependency.left)
@@ -129,7 +129,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         if y["left"]["max"].double != nil {
             barLineChart.setVisibleYRangeMaximum(y["left"]["max"].doubleValue, axis: YAxis.AxisDependency.left)
         }
-        
+
         if y["right"]["min"].double != nil {
             barLineChart.setVisibleYRangeMinimum(y["right"]["min"].doubleValue, axis: YAxis.AxisDependency.right)
         }
@@ -137,7 +137,21 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             barLineChart.setVisibleYRangeMaximum(y["right"]["max"].doubleValue, axis: YAxis.AxisDependency.right)
         }
     }
-    
+
+    func setMaxScale(_ config: NSDictionary) {
+        let json = BridgeUtils.toJson(config)
+
+        let maxScaleX = json["x"]
+        if maxScaleX.double != nil {
+            barLineChart.viewPortHandler.setMaximumScaleX(maxScaleX.doubleValue)
+        }
+
+        let maxScaleY = json["y"]
+        if maxScaleY.double != nil {
+            barLineChart.viewPortHandler.setMaximumScaleY(maxScaleY.doubleValue)
+        }
+    }
+
     func setAutoScaleMinMaxEnabled(_  enabled: Bool) {
         barLineChart.autoScaleMinMaxEnabled = enabled
     }
@@ -188,7 +202,7 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
             if json["axisDependency"].string != nil && json["axisDependency"].stringValue == "RIGHT" {
                 axisDependency = YAxis.AxisDependency.right
             }
-            
+
             barLineChart.zoom(scaleX: CGFloat(json["scaleX"].floatValue),
                     scaleY: CGFloat(json["scaleY"].floatValue),
                     xValue: json["xValue"].doubleValue,
@@ -210,15 +224,15 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
     func setExtraOffsets(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
-    
+
         let left = json["left"].double != nil ? CGFloat(json["left"].doubleValue) : 0
         let top = json["top"].double != nil ? CGFloat(json["top"].doubleValue) : 0
         let right = json["right"].double != nil ? CGFloat(json["right"].doubleValue) : 0
         let bottom = json["bottom"].double != nil ? CGFloat(json["bottom"].doubleValue) : 0
-    
+
         barLineChart.setExtraOffsets(left: left, top: top, right: right, bottom: bottom)
     }
-    
+
     override func onAfterDataSetChanged() {
         super.onAfterDataSetChanged()
 
@@ -246,10 +260,10 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         let originalVisibleYRange = getVisibleYRange(axis)
 
         barLineChart.fitScreen()
-        
+
         barLineChart.data = dataExtract.extract(json)
         barLineChart.notifyDataSetChanged()
-        
+
 
         let newVisibleXRange = barLineChart.visibleXRange
         let newVisibleYRange = getVisibleYRange(axis)
@@ -262,13 +276,13 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         // but in android MpAndroidChart, ZoomJob getInstance(viewPortHandler, scaleX, scaleY, xValue, yValue, trans, axis, v)
         // the scale is relative scale, touchMatrix.scaleX = touchMatrix.scaleX * scaleX
         // so in iOS, we updateVisibleRange after zoom
-        
+
         barLineChart.zoom(scaleX: CGFloat(scaleX), scaleY: CGFloat(scaleY), xValue: Double(originCenterValue.x), yValue: Double(originCenterValue.y), axis: axis)
-        
+
         if let config = savedVisibleRange {
             updateVisibleRange(config)
         }
-        barLineChart.notifyDataSetChanged()        
+        barLineChart.notifyDataSetChanged()
     }
 
     func getVisibleYRange(_ axis: YAxis.AxisDependency) -> CGFloat {
@@ -276,5 +290,5 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
 
         return barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.maxX, y:contentRect.minY), axis: axis).y - barLineChart.valueForTouchPoint(point: CGPoint(x: contentRect.minX, y:contentRect.maxY), axis: axis).y
     }
-    
+
 }

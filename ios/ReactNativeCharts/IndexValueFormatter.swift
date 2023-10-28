@@ -8,7 +8,7 @@
 
 import Foundation
 
-import Charts
+import DGCharts
 
 open class IndexValueFormatter: NSObject, ValueFormatter {
 

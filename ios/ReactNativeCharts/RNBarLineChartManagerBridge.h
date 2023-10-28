@@ -15,6 +15,7 @@ RCT_EXPORT_VIEW_PROPERTY(borderColor, NSInteger) \
 RCT_EXPORT_VIEW_PROPERTY(borderWidth, CGFloat) \
 RCT_EXPORT_VIEW_PROPERTY(maxVisibleValueCount, NSInteger) \
 RCT_EXPORT_VIEW_PROPERTY(visibleRange, NSDictionary) \
+RCT_EXPORT_VIEW_PROPERTY(maxScale, NSDictionary) \
 RCT_EXPORT_VIEW_PROPERTY(autoScaleMinMaxEnabled, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(keepPositionOnRotation, BOOL) \
 RCT_EXPORT_VIEW_PROPERTY(scaleEnabled, BOOL) \

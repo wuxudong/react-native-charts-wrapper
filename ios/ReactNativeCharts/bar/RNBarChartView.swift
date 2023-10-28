@@ -2,22 +2,22 @@
 //  Copyright wuxudong
 //
 
-import Charts
+import DGCharts
 import SwiftyJSON
 
 class RNBarChartView: RNBarChartViewBase {
 
     let _chart: BarChartView
     let _dataExtract : BarDataExtract
-    
+
     override var chart: BarChartView {
         return _chart
     }
-    
+
     override var dataExtract: DataExtract {
         return _dataExtract
     }
-    
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = BarChartView(frame: frame)

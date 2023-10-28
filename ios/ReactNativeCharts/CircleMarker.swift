@@ -1,5 +1,5 @@
 import Foundation
-import Charts
+import DGCharts
 
 open class CircleMarker: MarkerImage
 {

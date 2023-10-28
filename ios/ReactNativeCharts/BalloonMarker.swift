@@ -14,7 +14,7 @@
 
 import Foundation;
 
-import Charts;
+import DGCharts;
 
 import SwiftyJSON;
 
@@ -25,10 +25,10 @@ open class BalloonMarker: MarkerView {
     open var textColor: UIColor?
     open var minimumSize = CGSize()
 
-    
+
     fileprivate var insets = UIEdgeInsets(top: 8.0,left: 8.0,bottom: 20.0,right: 8.0)
     fileprivate var topInsets = UIEdgeInsets(top: 20.0,left: 8.0,bottom: 8.0,right: 8.0)
-    
+
     fileprivate var labelns: NSString?
     fileprivate var _labelSize: CGSize = CGSize()
     fileprivate var _size: CGSize = CGSize()
@@ -59,9 +59,9 @@ open class BalloonMarker: MarkerView {
 
 
         var rect = CGRect(origin: point, size: _size)
-        
+
         if point.y - _size.height < 0 {
-          
+
             if point.x - _size.width / 2.0 < 0 {
                 drawTopLeftRect(context: context, rect: rect)
             } else if (chart != nil && point.x + width - _size.width / 2.0 > (chart?.bounds.width)!) {
@@ -71,14 +71,14 @@ open class BalloonMarker: MarkerView {
                 rect.origin.x -= _size.width / 2.0
                 drawTopCenterRect(context: context, rect: rect)
             }
-            
+
             rect.origin.y += self.topInsets.top
             rect.size.height -= self.topInsets.top + self.topInsets.bottom
 
         } else {
-            
+
             rect.origin.y -= _size.height
-            
+
             if point.x - _size.width / 2.0 < 0 {
                 drawLeftRect(context: context, rect: rect)
             } else if (chart != nil && point.x + width - _size.width / 2.0 > (chart?.bounds.width)!) {
@@ -88,12 +88,12 @@ open class BalloonMarker: MarkerView {
                 rect.origin.x -= _size.width / 2.0
                 drawCenterRect(context: context, rect: rect)
             }
-            
+
             rect.origin.y += self.insets.top
             rect.size.height -= self.insets.top + self.insets.bottom
 
         }
-        
+
         return rect
     }
 
@@ -138,9 +138,9 @@ open class BalloonMarker: MarkerView {
         context.fillPath()
 
     }
-    
+
     func drawTopCenterRect(context: CGContext, rect: CGRect) {
-        
+
         context.setFillColor((color?.cgColor)!)
         context.beginPath()
         context.move(to: CGPoint(x: rect.origin.x + rect.size.width / 2.0, y: rect.origin.y))
@@ -152,7 +152,7 @@ open class BalloonMarker: MarkerView {
         context.addLine(to: CGPoint(x: rect.origin.x + (rect.size.width - arrowSize.width) / 2.0, y: rect.origin.y + arrowSize.height))
         context.addLine(to: CGPoint(x: rect.origin.x + rect.size.width / 2.0, y: rect.origin.y))
         context.fillPath()
-        
+
     }
 
     func drawTopLeftRect(context: CGContext, rect: CGRect) {
@@ -215,7 +215,7 @@ open class BalloonMarker: MarkerView {
         if let object = entry.data as? JSON {
             if object["marker"].exists() {
                 label = object["marker"].stringValue;
-              
+
                 if highlight.stackIndex != -1 && object["marker"].array != nil {
                     label = object["marker"].arrayValue[highlight.stackIndex].stringValue
                 }

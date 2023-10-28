@@ -9,7 +9,7 @@
 import Foundation
 
 import SwiftyJSON
-import Charts
+import DGCharts
 
 class ScatterDataExtract : DataExtract {
     override func createData() -> ChartData {
