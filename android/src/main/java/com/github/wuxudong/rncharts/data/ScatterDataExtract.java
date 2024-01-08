@@ -65,14 +65,14 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
             if (map.hasKey("x")) {
                 x = (float) map.getDouble("x");
             }
-            entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
+            // entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
 
             if (map.hasKey("icon")) {
                 ReadableMap icon = map.getMap("icon");
                 ReadableMap bundle = icon.getMap("bundle");
                 int width = icon.getInt("width");
                 int height = icon.getInt("height");
-                entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height));
+                entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(bundle.getString("uri"), width, height), ConversionUtil.toMap(map));
 
             } else {
                 entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
