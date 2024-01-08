@@ -10,6 +10,7 @@ import Foundation
 
 import SwiftyJSON
 import DGCharts
+import UIKit
 
 class ScatterDataExtract : DataExtract {
     override func createData() -> ChartData {
@@ -53,17 +54,40 @@ class ScatterDataExtract : DataExtract {
 
         if value.dictionary != nil {
             let dict = value;
+            var y = Double(index);
 
             if dict["x"].double != nil {
                 x = Double((dict["x"].doubleValue));
             }
 
             if dict["y"].number != nil {
-                entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+                y = dict["y"].doubleValue;
             } else {
                 fatalError("invalid data " + values.description);
             }
 
+            if dict["icon"].exists() {
+                let icon = dict["icon"]
+                if icon["bundle"].dictionary != nil {
+                    let bundle = icon["bundle"];
+
+                    let uiImage = RCTConvert.uiImage(bundle.dictionaryObject);
+                    let width = CGFloat(icon["width"].numberValue)/4;
+                    let height = CGFloat(icon["height"].numberValue)/4;
+
+                    if let image = uiImage {
+                        let realIconImage = resizeImage(image: image, width: width, height: height);
+                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: realIconImage);
+                    } else {
+                        entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, icon: uiImage);
+                    } 
+
+                } else {
+                    entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+                }
+            } else {
+                entry = ChartDataEntry(x: x, y: dict["y"].doubleValue, data: dict as AnyObject?);
+            }
 
         } else if value.double != nil {
             entry = ChartDataEntry(x: x, y: value.doubleValue);
@@ -72,5 +96,32 @@ class ScatterDataExtract : DataExtract {
         }
 
         return entry;
+    }
+
+    func resizeImage(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+      let targetSize = CGSize(width: width, height: height)
+      let size = image.size
+
+      let widthRatio  = targetSize.width  / size.width
+      let heightRatio = targetSize.height / size.height
+
+      // Figure out what our orientation is, and use that to form the rectangle
+      var newSize: CGSize
+      if(widthRatio > heightRatio) {
+          newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+      } else {
+          newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+      }
+
+      // This is the rect that we've calculated out and this is what is actually used below
+      let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+      // Actually do the resizing to the rect using the ImageContext stuff
+      UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+      image.draw(in: rect)
+      let newImage = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+
+      return newImage!
     }
 }
