@@ -278,7 +278,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         MarkerView markerView = null;
         switch(markerType) {
             case "circle":
-                markerView = circleMarker(chart);
+                markerView = circleMarker(chart, propMap);
 
                 break;
             default:
@@ -295,8 +295,20 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
         return marker;
     }
 
-    private RNCircleMarkerView circleMarker(Chart chart) {
-        return new RNCircleMarkerView(chart.getContext());
+    private RNCircleMarkerView circleMarker(Chart chart, ReadableMap propMap) {
+        RNCircleMarkerView marker = new RNCircleMarkerView(chart.getContext());
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "markerSize")) {
+            marker.setSize(propMap.getInt("markerSize"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "markerStrokeSize")) {
+            marker.setStroke(propMap.getInt("markerStrokeSize"), propMap.getInt("markerStrokeColor"));
+        }
+
+        if (BridgeUtils.validate(propMap, ReadableType.Number, "markerColor")) {
+            marker.setColor(propMap.getInt("markerColor"));
+        }
+        return marker;
     }
 
     private void setMarkerParams(RNRectangleMarkerView marker, ReadableMap propMap) {
