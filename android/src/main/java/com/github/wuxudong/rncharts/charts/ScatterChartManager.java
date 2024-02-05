@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.charts;
 
+import android.content.Context;
 
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.github.mikephil.charting.charts.ScatterChart;
@@ -16,9 +17,12 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
         return "RNScatterChart";
     }
 
+    Context context;
+
     @Override
     protected ScatterChart createViewInstance(ThemedReactContext reactContext) {
         ScatterChart scatterChart = new ScatterChart(reactContext);
+        context = reactContext;
         scatterChart.setOnChartValueSelectedListener(new RNOnChartValueSelectedListener(scatterChart));
         scatterChart.setOnChartGestureListener(new RNOnChartGestureListener(scatterChart));
         return scatterChart;
@@ -27,6 +31,8 @@ public class ScatterChartManager extends BarLineChartBaseManager<ScatterChart, E
 
     @Override
     DataExtract getDataExtract() {
-        return new ScatterDataExtract();
+        ScatterDataExtract dataExtract = new ScatterDataExtract();
+        dataExtract.context = context;
+        return dataExtract;
     }
 }
