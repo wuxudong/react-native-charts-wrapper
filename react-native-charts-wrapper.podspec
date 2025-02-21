@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.swift_version = '5.0'
   s.dependency 'React'
-  s.dependency 'SwiftyJSON', '5.0'
+  s.dependency 'SwiftyJSON', '5.0.2'
   s.dependency 'DGCharts', '5.0.0'
 
 
