@@ -18,6 +18,10 @@ class RNCandleStickChartView: RNBarLineChartViewBase {
         return _dataExtract
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        _chart.frame = self.bounds
+    }
 
     override init(frame: CoreGraphics.CGRect) {
 

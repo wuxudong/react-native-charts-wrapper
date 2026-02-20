@@ -18,6 +18,11 @@ class RNRadarChartView: RNYAxisChartViewBase {
         return _dataExtract
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        _chart.frame = self.bounds
+    }
+
     override func setYAxis(_ config: NSDictionary) {
         let json = BridgeUtils.toJson(config)
         let yAxis = _chart.yAxis

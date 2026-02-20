@@ -17,6 +17,11 @@ class RNScatterChartView: RNBarLineChartViewBase {
         return _dataExtract
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        _chart.frame = self.bounds
+    }
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = ScatterChartView(frame: frame);
