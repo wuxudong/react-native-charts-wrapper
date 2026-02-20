@@ -34,6 +34,11 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
         chart.reactSetFrame(chartFrame)
     }
 
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        chart.frame = self.bounds
+    }
+
     var chart: ChartViewBase {
         fatalError("subclass should override this function.")
     }
