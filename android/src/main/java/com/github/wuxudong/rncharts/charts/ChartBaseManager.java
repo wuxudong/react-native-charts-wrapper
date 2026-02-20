@@ -554,6 +554,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
      */
     @ReactProp(name = "data")
     public void setData(T chart, ReadableMap propMap) {
+        // Clear highlights before updating data to prevent index-out-of-range
+        // crashes when highlighted indices no longer exist in the new data
+        chart.highlightValues(null);
         chart.setData(getDataExtract().extract(chart, propMap));
     }
 

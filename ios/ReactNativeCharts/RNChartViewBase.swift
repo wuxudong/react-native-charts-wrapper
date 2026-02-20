@@ -47,7 +47,15 @@ open class RNChartViewBase: UIView, ChartViewDelegate {
 
         let extractedChartData: ChartData? = dataExtract.extract(json)
 
-        guard let chartData = extractedChartData else { return }
+        // Clear highlights before updating data to prevent index-out-of-range
+        // crashes when highlighted indices no longer exist in the new data
+        chart.highlightValues(nil)
+
+        guard let chartData = extractedChartData else {
+            chart.data = nil
+            chart.notifyDataSetChanged()
+            return
+        }
 
         // https://github.com/danielgindi/Charts/issues/4690
         let originValueFormatters = chartData.map {$0.valueFormatter}
