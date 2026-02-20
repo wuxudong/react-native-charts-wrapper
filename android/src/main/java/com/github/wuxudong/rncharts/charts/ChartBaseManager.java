@@ -8,6 +8,7 @@ import android.view.View;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.animation.Easing;
@@ -36,6 +37,7 @@ import com.github.wuxudong.rncharts.utils.TypefaceUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
@@ -51,6 +53,33 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int SET_DATA_AND_LOCK_INDEX = 9;
 
     abstract DataExtract getDataExtract();
+
+    @Override
+    public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
+        Map<String, Object> baseEvents = super.getExportedCustomBubblingEventTypeConstants();
+        if (baseEvents == null) {
+            baseEvents = MapBuilder.newHashMap();
+        }
+
+        baseEvents.put("topChange", MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onChange")));
+
+        return baseEvents;
+    }
+
+    @Override
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        Map<String, Object> baseEvents = super.getExportedCustomDirectEventTypeConstants();
+        if (baseEvents == null) {
+            baseEvents = MapBuilder.newHashMap();
+        }
+
+        baseEvents.put("topSelect", MapBuilder.of(
+                "registrationName", "onSelect"));
+
+        return baseEvents;
+    }
 
     /**
      * More details about legend customization: https://github.com/PhilJay/MPAndroidChart/wiki/Legend
