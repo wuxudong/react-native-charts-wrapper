@@ -24,12 +24,12 @@ public class RadarDataExtract extends DataExtract<RadarData, RadarEntry> {
     }
 
     @Override
-    IDataSet<RadarEntry> createDataSet(ArrayList<RadarEntry> entries, String label) {
+    public IDataSet<RadarEntry> createDataSet(ArrayList<RadarEntry> entries, String label) {
         return new RadarDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<RadarEntry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<RadarEntry> dataSet, ReadableMap config) {
         RadarDataSet radarDataSet = (RadarDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, radarDataSet, config);

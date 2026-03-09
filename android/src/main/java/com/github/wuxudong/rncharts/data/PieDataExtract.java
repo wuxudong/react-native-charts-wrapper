@@ -25,12 +25,12 @@ public class PieDataExtract extends DataExtract<PieData, PieEntry> {
     }
 
     @Override
-    IDataSet<PieEntry> createDataSet(ArrayList<PieEntry> entries, String label) {
+    public IDataSet<PieEntry> createDataSet(ArrayList<PieEntry> entries, String label) {
         return new PieDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<PieEntry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<PieEntry> dataSet, ReadableMap config) {
         PieDataSet pieDataSet = (PieDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, pieDataSet, config);

@@ -37,6 +37,11 @@ class RNRadarChartView: RNYAxisChartViewBase {
         self.addSubview(_chart)
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        _chart.frame = self.bounds // Adjust the chart's frame to fill the entire component's bounds
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

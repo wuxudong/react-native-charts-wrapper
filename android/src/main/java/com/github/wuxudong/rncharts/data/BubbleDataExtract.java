@@ -25,12 +25,12 @@ public class BubbleDataExtract extends DataExtract<BubbleData, BubbleEntry> {
 
 
     @Override
-    IDataSet<BubbleEntry> createDataSet(ArrayList<BubbleEntry> entries, String label) {
+    public IDataSet<BubbleEntry> createDataSet(ArrayList<BubbleEntry> entries, String label) {
         return new BubbleDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<BubbleEntry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<BubbleEntry> dataSet, ReadableMap config) {
         BubbleDataSet bubbleDataSet = (BubbleDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, bubbleDataSet, config);

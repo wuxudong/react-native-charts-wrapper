@@ -26,12 +26,12 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     }
 
     @Override
-    IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
+    public IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
         return new ScatterDataSet(entries, label);
     }
 
     @Override
-    void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
+    public void dataSetConfig(Chart chart, IDataSet<Entry> dataSet, ReadableMap config) {
         ScatterDataSet scatterDataSet = (ScatterDataSet) dataSet;
 
         ChartDataSetConfigUtils.commonConfig(chart, scatterDataSet, config);
