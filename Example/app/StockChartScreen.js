@@ -23,6 +23,8 @@ class StockChartScreen extends React.Component {
   constructor() {
     super();
 
+    this.priceChartRef = React.createRef();
+    this.volumeChartRef = React.createRef();
     this.isLoading = false
     this.xMin = 0
     this.xMax = 0
@@ -272,7 +274,7 @@ class StockChartScreen extends React.Component {
 
           dragDecelerationEnabled={false}
           yAxis={{left: {enabled: false}, right: {position: 'INSIDE_CHART'}}}
-          ref="priceChart"
+          ref={this.priceChartRef}
           doubleTapToZoomEnabled={false}  // it has to be false!!
           chartDescription={{text: ""}}
           legend={{verticalAlignment: "TOP"}}
@@ -294,7 +296,7 @@ class StockChartScreen extends React.Component {
 
           dragDecelerationEnabled={false}
           yAxis={{left: {enabled: false}, right: {position: 'INSIDE_CHART'}}}
-          ref="volumeChart"
+          ref={this.volumeChartRef}
           doubleTapToZoomEnabled={false}  // it has to be false!!
           chartDescription={{text: ""}}
           style={styles.volume}/>

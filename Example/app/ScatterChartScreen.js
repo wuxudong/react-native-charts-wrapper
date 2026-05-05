@@ -7,8 +7,8 @@ import {
   processColor
 } from 'react-native';
 import update from 'immutability-helper';
+import times from 'lodash.times';
 
-import _ from 'lodash';
 import {ScatterChart} from 'react-native-charts-wrapper';
 
 class ScatterChartScreen extends React.Component {
@@ -71,7 +71,7 @@ class ScatterChartScreen extends React.Component {
   }
 
   _randomYValues(range: number, size: number) {
-    return _.times(size, () => {
+    return times(size, () => {
       return {y: Math.random() * range}
     });
   }

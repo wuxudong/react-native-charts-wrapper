@@ -1,35 +1,37 @@
 {
-  "expo": {
-    "name": "Example",
-    "slug": "Example",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.wuxudong.Example"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+   "expo" : {
+      "android" : {
+         "adaptiveIcon" : {
+            "backgroundColor" : "#FFFFFF",
+            "foregroundImage" : "./assets/adaptive-icon.png"
+         },
+         "package" : "com.wuxudong.Example"
       },
-      "package": "com.wuxudong.Example"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
+      "assetBundlePatterns" : [
+         "**/*"
+      ],
+      "extra" : {
+         "eas" : {
+            "projectId" : "a8a0f35f-52dd-4f88-b1ce-37a2e16068df"
+         }
+      },
+      "icon" : "./assets/icon.png",
+      "ios" : {
+         "bundleIdentifier" : "com.wuxudong.Example",
+         "supportsTablet" : true
+      },
+      "name" : "Example",
+      "orientation" : "portrait",
+      "slug" : "Example",
+      "splash" : {
+         "backgroundColor" : "#ffffff",
+         "image" : "./assets/splash.png",
+         "resizeMode" : "contain"
+      },
+      "userInterfaceStyle" : "light",
+      "version" : "1.0.0",
+      "web" : {
+         "favicon" : "./assets/favicon.png"
+      }
+   }
 }

@@ -8,14 +8,16 @@ import {
   processColor
 } from 'react-native';
 import update from 'immutability-helper';
+import times from 'lodash.times';
 
-import _ from 'lodash';
 import {CandleStickChart} from 'react-native-charts-wrapper';
 
 class CandleStickChartScreen extends React.Component {
 
   constructor() {
     super();
+
+    this.chartRef = React.createRef();
 
     this.state = {
       legend: {
@@ -112,7 +114,7 @@ class CandleStickChartScreen extends React.Component {
               position: 'BOTTOM',
               yOffset: 5,
 
-              limitLines: _.times(this.state.data.dataSets[0].values.length / 5, (i) => {
+              limitLines: times(this.state.data.dataSets[0].values.length / 5, (i) => {
                 return {
                   limit: 5 * (i + 1) + 0.5,
                   lineColor: processColor('darkgray'),
@@ -186,7 +188,7 @@ class CandleStickChartScreen extends React.Component {
             // zoom={{scaleX: 2, scaleY: 1, xValue:  400000, yValue: 1}}
             zoom={{scaleX: 15.41, scaleY: 1, xValue:  40, yValue: 916, axisDependency: 'LEFT'}}
             onSelect={this.handleSelect.bind(this)}
-            ref="chart"
+            ref={this.chartRef}
             onChange={(event) => console.log(event.nativeEvent)}
           />
         </View>

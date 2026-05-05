@@ -7,8 +7,8 @@ import {
   processColor
 } from 'react-native';
 import update from 'immutability-helper';
+import times from 'lodash.times';
 
-import _ from 'lodash';
 import {LineChart} from 'react-native-charts-wrapper';
 
 const COLOR_PURPLE = processColor('#697dfb');
@@ -84,7 +84,7 @@ class AxisLineChartScreen extends React.Component {
     const nextValueMaxDiff = 0.2;
     let lastValue = range / 2;
 
-    return _.times(size, () => {
+    return times(size, () => {
       let min = lastValue * (1 - nextValueMaxDiff);
       let max = lastValue * (1 + nextValueMaxDiff);
       return {y: Math.random() * (max - min) + min};

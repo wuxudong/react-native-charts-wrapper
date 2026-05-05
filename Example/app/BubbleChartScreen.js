@@ -7,8 +7,8 @@ import {
   processColor
 } from 'react-native';
 import update from 'immutability-helper';
+import times from 'lodash.times';
 
-import _ from 'lodash';
 import {BubbleChart} from 'react-native-charts-wrapper';
 
 class BubbleChartScreen extends React.Component {
@@ -64,7 +64,7 @@ class BubbleChartScreen extends React.Component {
   }
 
   _randomYValues(range: number, size: number) {
-    return _.times(size, (index) => {
+    return times(size, (index) => {
       return {
         y: Math.random() * range,
         size: Math.random() * range

@@ -65,21 +65,15 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
                 "phasedRegistrationNames",
                 MapBuilder.of("bubbled", "onChange")));
 
-        return baseEvents;
-    }
-
-    @Override
-    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
-        Map<String, Object> baseEvents = super.getExportedCustomDirectEventTypeConstants();
-        if (baseEvents == null) {
-            baseEvents = MapBuilder.newHashMap();
-        }
-
         baseEvents.put("topSelect", MapBuilder.of(
-                "registrationName", "onSelect"));
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onSelect")));
 
         return baseEvents;
     }
+
+
+
 
     /**
      * More details about legend customization: https://github.com/PhilJay/MPAndroidChart/wiki/Legend

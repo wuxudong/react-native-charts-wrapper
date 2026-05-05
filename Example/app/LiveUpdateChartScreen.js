@@ -19,6 +19,7 @@ export default class LiveUpdating extends Component {
 
   constructor(props) {
     super(props);
+    this.chartRef = React.createRef();
     this.state = {
       values: [0],
       colorIndex: 0,
@@ -64,7 +65,7 @@ export default class LiveUpdating extends Component {
         // https://github.com/PhilJay/MPAndroidChart/issues/2450
         // MpAndroidChart 3.0.2 will crash when data entry list is empty.
 
-        this.refs.chart.highlights([])
+        this.chartRef.current.highlights([])
         this.setState({values: [0], colorIndex: 0});
       } else {
         this.setState({
@@ -83,7 +84,7 @@ export default class LiveUpdating extends Component {
     const {values, colorIndex} = this.state;
     const config = this.next(values, colorIndex);
     return (
-      <LineChart data={config.data} xAxis={config.xAxis} style={styles.container} marker={this.state.marker} ref="chart"/>
+      <LineChart data={config.data} xAxis={config.xAxis} style={styles.container} marker={this.state.marker} ref={this.chartRef}/>
     );
   }
 }

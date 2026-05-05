@@ -1,6 +1,6 @@
 import React, {createContext} from "react";
 import {ScrollView, TouchableOpacity, StyleSheet, View, Text} from "react-native";
-import {createStackNavigator} from "@react-navigation/stack";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import AxisLineChartScreen from "./AxisLineChartScreen";
 import MultipleChartScreen from "./MultipleChartScreen";
 import MovingWindowChartScreen from "./MovingWindowChartScreen";
@@ -177,7 +177,7 @@ const Intro = ({navigation}) => (
   </ScrollView>
 )
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const MainScreen = () => (
   <Stack.Navigator style={{flex: 1}}>
