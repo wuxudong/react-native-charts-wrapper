@@ -18,6 +18,7 @@ class InfiniteScrollLineChartScreen extends React.Component {
   constructor() {
     super();
 
+    this.chartRef = React.createRef();
     this.isLoading = false
     this.xMin = 0
     this.xMax = 0
@@ -25,6 +26,19 @@ class InfiniteScrollLineChartScreen extends React.Component {
 
     this.state = {
       data: {},
+      xAxis: {
+        position: 'BOTTOM',
+        drawLabels: true,
+        drawGridLines: false,
+      },
+      yAxis: {
+        left: {
+          drawGridLines: false,
+        },
+        right: {
+          enabled: false,
+        }
+      }
     };
   }
 
@@ -87,7 +101,7 @@ class InfiniteScrollLineChartScreen extends React.Component {
           
           _this.mockLoadDataFromServer(centerX - pageSize, centerX + pageSize).then(function (data) {
 
-            _this.refs.chart.setDataAndLockIndex(data)
+            _this.chartRef.current?.setDataAndLockIndex(data)
 
             _this.isLoading = false
 
@@ -114,7 +128,7 @@ class InfiniteScrollLineChartScreen extends React.Component {
             scaleYEnabled={true}
             visibleRange={this.state.visibleRange}
             dragDecelerationEnabled={false}
-            ref="chart"
+            ref={this.chartRef}
             onChange={this.handleChange.bind(this)}
           />
         </View>

@@ -16,6 +16,10 @@ class LinkageChartScreen extends React.Component {
     super();
 
     this.state = {
+      xAxis: {
+        granularityEnabled: true,
+        granularity: 1,
+      },
       priceData: {dataSets: [{
         values: Array.from(new Array(600), (val, index) => index),
         label: 'price',

@@ -17,6 +17,11 @@ class RNPieChartView: RNChartViewBase {
         return _dataExtract
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        _chart.frame = self.bounds
+    }
+
     override init(frame: CoreGraphics.CGRect) {
 
         self._chart = PieChartView(frame: frame)
@@ -179,9 +184,12 @@ class RNPieChartView: RNChartViewBase {
     override func didSetProps(_ changedProps: [String]!) {
         super.didSetProps(changedProps)
 
-        let pieChartDataSet = chart.data?.dataSets[0] as? PieChartDataSet
+        guard let dataSets = chart.data?.dataSets, !dataSets.isEmpty,
+              let pieChartDataSet = dataSets[0] as? PieChartDataSet else {
+            return
+        }
 
-        pieChartDataSet?.entryLabelColor = chart.entryLabelColor
-        pieChartDataSet?.entryLabelFont = chart.entryLabelFont
+        pieChartDataSet.entryLabelColor = chart.entryLabelColor
+        pieChartDataSet.entryLabelFont = chart.entryLabelFont
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.github.mikephil.charting.animation.Easing;
@@ -36,6 +37,7 @@ import com.github.wuxudong.rncharts.utils.TypefaceUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends SimpleViewManager<T> {
@@ -51,6 +53,27 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int SET_DATA_AND_LOCK_INDEX = 9;
 
     abstract DataExtract getDataExtract();
+
+    @Override
+    public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
+        Map<String, Object> baseEvents = super.getExportedCustomBubblingEventTypeConstants();
+        if (baseEvents == null) {
+            baseEvents = MapBuilder.newHashMap();
+        }
+
+        baseEvents.put("topChange", MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onChange")));
+
+        baseEvents.put("topSelect", MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onSelect")));
+
+        return baseEvents;
+    }
+
+
+
 
     /**
      * More details about legend customization: https://github.com/PhilJay/MPAndroidChart/wiki/Legend
@@ -525,6 +548,9 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
      */
     @ReactProp(name = "data")
     public void setData(T chart, ReadableMap propMap) {
+        // Clear highlights before updating data to prevent index-out-of-range
+        // crashes when highlighted indices no longer exist in the new data
+        chart.highlightValues(null);
         chart.setData(getDataExtract().extract(chart, propMap));
     }
 

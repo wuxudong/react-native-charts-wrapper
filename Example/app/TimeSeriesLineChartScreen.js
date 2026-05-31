@@ -7,14 +7,16 @@ import {
   processColor
 } from 'react-native';
 import update from 'immutability-helper';
+import times from 'lodash.times';
 
-import _ from 'lodash';
 import {LineChart} from 'react-native-charts-wrapper';
 
 class TimeSeriesLineChartScreen extends React.Component {
 
   constructor() {
     super();
+
+    this.chartRef = React.createRef();
 
     this.state = {
       data: {},
@@ -105,7 +107,7 @@ class TimeSeriesLineChartScreen extends React.Component {
   }
 
   _randomParabolaValues(size: number) {
-    return _.times(size, (index) => {
+    return times(size, (index) => {
       return {x: index, y: index * index}
     });
   }
@@ -154,7 +156,7 @@ class TimeSeriesLineChartScreen extends React.Component {
             onSelect={this.handleSelect.bind(this)}
             onChange={(event) => console.log(event.nativeEvent)}
 
-            ref="chart"
+            ref={this.chartRef}
           />
         </View>
       </View>
