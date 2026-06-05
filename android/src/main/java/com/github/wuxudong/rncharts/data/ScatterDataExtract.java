@@ -1,5 +1,7 @@
 package com.github.wuxudong.rncharts.data;
 
+import android.content.Context;
+
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableType;
@@ -12,7 +14,9 @@ import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.github.wuxudong.rncharts.utils.BridgeUtils;
 import com.github.wuxudong.rncharts.utils.ChartDataSetConfigUtils;
 import com.github.wuxudong.rncharts.utils.ConversionUtil;
+import com.github.wuxudong.rncharts.utils.DrawableUtils;
 
+import java.lang.Exception;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -24,6 +28,8 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
     ScatterData createData() {
         return new ScatterData();
     }
+
+    public Context context;
 
     @Override
     IDataSet<Entry> createDataSet(ArrayList<Entry> entries, String label) {
@@ -63,7 +69,17 @@ public class ScatterDataExtract extends DataExtract<ScatterData, Entry> {
             if (map.hasKey("x")) {
                 x = (float) map.getDouble("x");
             }
-            entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
+
+            if (map.hasKey("icon")) {
+                ReadableMap icon = map.getMap("icon");
+                ReadableMap bundle = icon.getMap("bundle");
+                int width = icon.getInt("width");
+                int height = icon.getInt("height");
+                entry = new Entry(x, (float) map.getDouble("y"), DrawableUtils.drawableFromUrl(context, bundle.getString("uri"), width, height), ConversionUtil.toMap(map));
+
+            } else {
+                entry = new Entry(x, (float) map.getDouble("y"), ConversionUtil.toMap(map));
+            }
         } else if (ReadableType.Number.equals(values.getType(index))) {
             entry = new Entry(x, (float) values.getDouble(index));
         } else {

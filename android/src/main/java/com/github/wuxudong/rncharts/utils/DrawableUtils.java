@@ -1,5 +1,6 @@
 package com.github.wuxudong.rncharts.utils;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,19 +9,28 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.AsyncTask;
 
+import com.github.wuxudong.rncharts.BuildConfig;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class DrawableUtils {
-    public static Drawable drawableFromUrl(String url, final int width, final int height) {
-        try {
-            return new DrawableLoadingAsyncTask().execute(url, Integer.toString(width), Integer.toString(height)).get();
-        } catch (Exception e) {
-            // draw dummy drawable when execution fail
-            e.printStackTrace();
-            return new ShapeDrawable();
+        public static Drawable drawableFromUrl(Context context, String url, final int width, final int height) {
+        if (BuildConfig.BUILD_TYPE == "debug") {
+            try {
+                return new DrawableLoadingAsyncTask().execute(url, Integer.toString(width), Integer.toString(height)).get();
+            } catch (Exception e) {
+                // draw dummy drawable when execution fail
+                e.printStackTrace();
+                return new ShapeDrawable();
+            }
+        } else {
+            int resourceId = context.getResources().getIdentifier(url, "drawable", context.getPackageName());
+
+            Bitmap image = BitmapFactory.decodeResource(context.getResources(), resourceId);
+            return new BitmapDrawable(Resources.getSystem(), Bitmap.createScaledBitmap(image, width, height, true));
         }
     }
 
