@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/circle_ivContent"
         android:background="@drawable/circle_marker"
         android:layout_width="15dp"
         android:layout_height="15dp" />

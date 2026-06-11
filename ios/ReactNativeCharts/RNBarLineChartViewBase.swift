@@ -168,6 +168,10 @@ class RNBarLineChartViewBase: RNYAxisChartViewBase {
         barLineChart.dragEnabled = enabled
     }
 
+    func setDragYEnabled(_  enabled: Bool) {
+        barLineChart.dragYEnabled = enabled
+    }
+
 
     func setScaleXEnabled(_  enabled: Bool) {
         barLineChart.scaleXEnabled = enabled

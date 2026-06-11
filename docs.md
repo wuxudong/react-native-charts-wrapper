@@ -272,6 +272,10 @@ type lineScatterCandleRadar {
   drawVerticalHighlightIndicator: bool,
   drawHorizontalHighlightIndicator: bool,
   highlightLineWidth: number
+  // draw Charts(ios) dashed highlight
+  highlightLineDashLengths: [number],
+  // draw MPAndroidChart(android) dashed highlight
+  dashedHighlightLine: [number]
 }
 ```
 
